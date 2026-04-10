@@ -1,0 +1,350 @@
+<mxfile host="65bd71144e">
+    <diagram id="as-is-bpmn" name="1. As-Is BPMN">
+        <mxGraphModel dx="1160" dy="1298" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="As-Is Бизнес-процесс: Приём у врача в клинике «Вита»" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="20" width="600" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="pool" value="Клиника «Вита»" style="swimlane;html=1;horizontal=1;startSize=20;fillColor=none;strokeColor=#000000;whiteSpace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="60" width="1000" height="680" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_patient" value="Пациент" style="swimlane;html=1;horizontal=1;startSize=30;fillColor=#ffe6cc;strokeColor=#d79b00;whiteSpace=wrap;" vertex="1" parent="pool">
+                    <mxGeometry y="210" width="1000" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_terminate" value="" style="shape=mxgraph.bpmn.shape;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;perimeter=ellipsePerimeter;outline=end;symbol=general;" vertex="1" parent="lane_patient">
+                    <mxGeometry x="480" y="60" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_admin" value="Администратор" style="swimlane;html=1;horizontal=1;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;whiteSpace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="60" width="1000" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="start" value="" style="shape=mxgraph.bpmn.shape;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;perimeter=ellipsePerimeter;outline=standard;symbol=general;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="120" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="task1" value="Пациент чувствует себя плохо" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="110" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="start" target="task1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="task2" value="Звонок в клинику" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="110" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="task1" target="task2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="task3" value="Администратор проверяет календарь" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="110" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="task2" target="task3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gw1" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="120" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="task3" target="gw1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gw1_label" value="Есть свободное время?" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+                    <mxGeometry x="490" y="185" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" value="Нет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=11;" parent="1" source="gw1" target="end_terminate" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="task4" value="Создание записи в календаре" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="110" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" value="Да" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;" parent="1" source="gw1" target="task4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="task5" value="Запись создана (создан)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="110" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="task4" target="task5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="task6" value="Звонок за день для подтверждения" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="190" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="task5" target="task6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gw2" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="320" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="task6" target="gw2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gw2_label" value="Пациент подтверждает?" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+                    <mxGeometry x="780" y="385" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="task7" value="Запись подтверждена" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="320" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" value="Да" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;" parent="1" source="gw2" target="task7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_doctor" value="Врач" style="swimlane;html=1;horizontal=1;startSize=30;fillColor=#d5e8d4;strokeColor=#82b366;whiteSpace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="460" width="1000" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="task8" value="Пациент приходит на приём" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="500" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="task7" target="task8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="task9" value="Врач начинает приём (в работе)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="500" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="task8" target="task9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="task10" value="Осмотр, жалобы, постановка диагноза" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="500" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="task9" target="task10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="task11" value="Назначение лечения, оформление протокола" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="500" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="task10" target="task11" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="end" value="Завершён" style="shape=mxgraph.bpmn.shape;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;perimeter=ellipsePerimeter;outline=end;symbol=general;" vertex="1" parent="1">
+                    <mxGeometry x="400" y="500" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="task11" target="end" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="as-is-state" name="2. As-Is State Machine">
+        <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <!-- Title -->
+                <mxCell id="title" value="Диаграмма состояний приёма у врача (As-Is)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="30" width="600" height="40" as="geometry"/>
+                </mxCell>
+                <!-- Initial State -->
+                <mxCell id="init" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="300" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <!-- State: Создан -->
+                <mxCell id="state1" value="[[Создан]]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="285" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="init" target="state1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- State: Ожидает подтверждения -->
+                <mxCell id="state2" value="[[Ожидает подтверждения]]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="285" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" value="Звонок администратора" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;" edge="1" parent="1" source="state1" target="state2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- State: Подтверждён -->
+                <mxCell id="state3" value="[[Подтверждён]]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="160" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" value="Пациент подтвердил" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;" edge="1" parent="1" source="state2" target="state3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- State: Отменён -->
+                <mxCell id="state4" value="[[Отменён]]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="410" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" value="Пациент отказался" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;" edge="1" parent="1" source="state2" target="state4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Final state for cancelled -->
+                <mxCell id="final1" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="760" y="425" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="state4" target="final1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- State: В работе -->
+                <mxCell id="state5" value="[[В работе]]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" value="Пациент пришёл на приём" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;" edge="1" parent="1" source="state3" target="state5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- State: Завершён -->
+                <mxCell id="state6" value="[[Завершён]]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b0e0e6;strokeColor=#4682b4;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="800" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" value="Приём окончен, протокол оформлен" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;" edge="1" parent="1" source="state5" target="state6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Final state for completed -->
+                <mxCell id="final2" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="960" y="55" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="state6" target="final2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="to-be-bpmn" name="3. To-Be BPMN">
+        <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <!-- Title -->
+                <mxCell id="title" value="To-Be Бизнес-процесс: Запись через приложение клиники «Вита»" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="20" width="600" height="30" as="geometry"/>
+                </mxCell>
+                <!-- Pool: Клиника Вита -->
+                <mxCell id="pool" value="Клиника «Вита» (To-Be)" style="swimlane;html=1;horizontal=1;startSize=20;fillColor=none;strokeColor=#000000;whiteSpace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="60" width="1000" height="680" as="geometry"/>
+                </mxCell>
+                <!-- Lane: Пациент -->
+                <mxCell id="lane_patient" value="Пациент" style="swimlane;html=1;horizontal=1;startSize=30;fillColor=#ffe6cc;strokeColor=#d79b00;whiteSpace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="60" width="1000" height="180" as="geometry"/>
+                </mxCell>
+                <!-- Start Event -->
+                <mxCell id="start" value="" style="shape=mxgraph.bpmn.shape;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;perimeter=ellipsePerimeter;outline=standard;symbol=general;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="120" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <!-- Task: Patient opens app -->
+                <mxCell id="task1" value="Пациент открывает приложение" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="110" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="start" target="task1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Task: Select doctor and time -->
+                <mxCell id="task2" value="Выбор врача и времени в приложении" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="260" y="110" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="task1" target="task2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Gateway: Available slot? -->
+                <mxCell id="gw1" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="120" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="task2" target="gw1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gw1_label" value="Есть свободное время?" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="185" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <!-- Task: Suggest other options -->
+                <mxCell id="task3" value="Предложить другое время/врача" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="280" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" value="Нет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=11;" edge="1" parent="1" source="gw1" target="task3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Edge back to select -->
+                <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="task3" target="task2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Lane: Приложение (автоматически) -->
+                <mxCell id="lane_app" value="Приложение (автоматически)" style="swimlane;html=1;horizontal=1;startSize=30;fillColor=#cce5ff;strokeColor=#666666;whiteSpace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="240" width="1000" height="220" as="geometry"/>
+                </mxCell>
+                <!-- Task: Auto confirm -->
+                <mxCell id="task4" value="Автоматическое подтверждение записи" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="560" y="310" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" value="Да" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;" edge="1" parent="1" source="gw1" target="task4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Task: Appointment created -->
+                <mxCell id="task5" value="Запись создана (создан)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="310" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="task4" target="task5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Task: Auto notification -->
+                <mxCell id="task6" value="Автоматическое уведомление за день" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="390" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="task5" target="task6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Gateway: Patient confirms in app? -->
+                <mxCell id="gw2" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="750" y="490" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="task6" target="gw2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gw2_label" value="Пациент подтверждает?" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+                    <mxGeometry x="730" y="555" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <!-- Task: Patient cancels in app -->
+                <mxCell id="task7" value="Пациент отменяет в приложении" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="580" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" value="Нет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;" edge="1" parent="1" source="gw2" target="task7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Cancelled -->
+                <mxCell id="cancelled" value="Отменён" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="580" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="task7" target="cancelled">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Task: Auto confirmed -->
+                <mxCell id="task8" value="Запись подтверждена автоматически" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+                    <mxGeometry x="900" y="490" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e12" value="Да" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;" edge="1" parent="1" source="gw2" target="task8">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Lane: Врач -->
+                <mxCell id="lane_doctor" value="Врач" style="swimlane;html=1;horizontal=1;startSize=30;fillColor=#d5e8d4;strokeColor=#82b366;whiteSpace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="460" width="1000" height="280" as="geometry"/>
+                </mxCell>
+                <!-- Task: Patient comes -->
+                <mxCell id="task9" value="Пациент приходит на приём" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="900" y="580" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="task8" target="task9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Task: Doctor starts -->
+                <mxCell id="task10" value="Врач начинает приём (в работе)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+                    <mxGeometry x="760" y="580" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="task9" target="task10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Task: Examination -->
+                <mxCell id="task11" value="Осмотр, жалобы, постановка диагноза" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="620" y="580" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="task10" target="task11">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Task: Treatment -->
+                <mxCell id="task12" value="Назначение лечения, оформление протокола" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="480" y="580" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="task11" target="task12">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- End Event -->
+                <mxCell id="end" value="Завершён" style="shape=mxgraph.bpmn.shape;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;perimeter=ellipsePerimeter;outline=end;symbol=general;" vertex="1" parent="1">
+                    <mxGeometry x="400" y="580" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="e17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="task12" target="end">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

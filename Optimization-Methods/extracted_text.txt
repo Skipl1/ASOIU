@@ -1,0 +1,431 @@
+Министерство науки и высшего образования Российской Федерации
+Федеральное государственное бюджетное образовательное учреждение
+высшего образования
+ИРКУТСКИЙ НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ
+ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ
+Институт информационных технологий и анализа данных
+наименование
+Расчет на ЭВМ оптимальных параметров ПИД-регулятора
+ОТЧЕТ
+по лабораторной работе № 1
+Вариант № 18
+по дисциплине Методы оптимизации
+наименование учебной дисциплины
+Выполнил студент ИСИб-23-1         ____________           Д. С. Привалихин
+номер группы                 подпись                       И. О. Фамилия
+Принял  		      доцент             ____________          И.А.Серышева
+должность 	                          подпись		             И. О. Фамилия
+Иркутск 2026 г.
+Введение
+Цель работы - ознакомление с методикой расчета оптимальных параметров регулятора при заданной структурной автоматической системы регулирования и заданных параметрах регулирования по интегральным критериям качества процесса регулирования.
+Ход работы
+1 часть работы:
+– колебательное звено
+Распишем переход от передаточной функции к дифференциальному уравнению:
+Избавимся от коэффициента, тогда:
+Подготовим звено к моделированию методом непосредственного интегрирования:
+Путем преобразований исходное дифференциальное уравнение второго порядка сводится к эквивалентной системе из двух уравнений первого порядка:
+Применяя метод Рунге-Кутта получаем:
+Моделирование замкнутой системы без ПИД-регулятора
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<script
+type="text/javascript"
+src="https://www.gstatic.com/charts/loader.js"
+></script>
+<script type="text/javascript">
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+var T = 1;
+var k = 1;
+var zeta = 0.75;
+var tau = 0.1;
+var g = 1;
+var dt = 0.01;
+var L = 7;
+var ns = Math.round(tau / dt); // сколько шагов ждать
+var mas = []; // массив для хранения значений
+var z1 = 0;
+var z2 = 0;
+var y_now = 0; // сигнал сейчас
+var y_delayed = 0; // задержанный сигнал
+var x;
+var k1, k2, k3, k4, m1, m2, m3, m4;
+var t_ = 0;
+var A = [
+[
+"t",
+"y(t) - без запаздывания",
+"y(t) - с запаздыванием",
+"g(t) - вход",
+],
+];
+while (t_ <= L) {
+y_now = z1;
+// Запаздывание
+mas.push(y_now); // сохраняем текущее значение
+if (mas.length > ns) {
+y_delayed = mas.shift(); // берем старое значение
+} else {
+y_delayed = 0;
+}
+x = g - y_now;
+// Добавляем точку на график
+A.push([t_, y_now, y_delayed, g]);
+// Метод Рунге-Кутты
+k1 = dt * (z2 - ((2 * zeta) / T) * y_now);
+m1 = dt * ((k / (T * T)) * x - y_now / (T * T));
+k2 = dt * (z2 + m1 / 2 - ((2 * zeta) / T) * (y_now + k1 / 2));
+m2 = dt * ((k / (T * T)) * x - (1 / (T * T)) * (y_now + k1 / 2));
+k3 = dt * (z2 + m2 / 2 - ((2 * zeta) / T) * (y_now + k2 / 2));
+m3 = dt * ((k / (T * T)) * x - (1 / (T * T)) * (y_now + k2 / 2));
+k4 = dt * (z2 + m3 - ((2 * zeta) / T) * (y_now + k3));
+m4 = dt * ((k / (T * T)) * x - (1 / (T * T)) * (y_now + k3));
+z1 = z1 + (1 / 6) * (k1 + 2 * k2 + 2 * k3 + k4);
+z2 = z2 + (1 / 6) * (m1 + 2 * m2 + 2 * m3 + m4);
+t_ = t_ + dt;
+}
+var data = google.visualization.arrayToDataTable(A);
+var options = {
+curveType: "function",
+hAxis: { title: "Время t, с" },
+vAxis: { title: "Амплитуда" },
+legend: { position: "bottom" },
+colors: ["#2980b9", "#c0392b", "#f1c40f"],
+lineWidth: 2,
+};
+var chart = new google.visualization.LineChart(
+document.getElementById("curve_chart"),
+);
+chart.draw(data, options);
+}
+</script>
+</head>
+<body>
+<div class="conteiner" style="display: flex; justify-content: center">
+<div id="curve_chart" style="width: 900px; height: 600px"></div>
+</div>
+</body>
+</html>
+График:
+Смоделируем данную систему в SimInTech и сравним результаты графиков:
+Структурная схема:
+График:
+Как мы видим, графики полностью совпадают, значит наше ручное решение верное.
+Моделирование замкнутой системы с ПИД-регулятором
+Передаточная функция регулятора:
+Для подбора оптимальных параметров  необходим критерий оптимизации. В качестве такого критерия воспользуемся составным интегральным функционалом:
+Код:
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<script
+type="text/javascript"
+src="https://www.gstatic.com/charts/loader.js"
+></script>
+<script type="text/javascript">
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+var T = 1;
+var k = 1;
+var zeta = 0.75;
+var tau = 0.1;
+var g = 1;
+var dt = 0.01;
+var L = 9;
+var ns = Math.round(tau / dt);
+var mas = [];
+var z1 = 0;
+var z2 = 0;
+var y_now = 0;
+var y_delayed = 0;
+var x,
+x_prev = 0,
+intx = 0,
+dx,
+u,
+t_ = 0,
+I = 0,
+mu = 0.01;
+// ПИД регулятор
+var q1 = 1,
+q2 = 1,
+q3 = 1;
+var A = [
+[
+"t",
+"y(t) - без запаздывания",
+"y(t) - с запаздыванием",
+"g(t) - вход",
+"I(t) - ошибка",
+],
+];
+var x_init = g - y_now;
+x_prev = x_init;
+while (t_ <= L) {
+y_now = z1;
+x = g - y_now;
+intx += x * dt;
+dx = (x - x_prev) / dt;
+u = q1 * x + q2 * intx + q3 * dx;
+x_prev = x;
+I = I + (x * x + mu * mu * dx * dx) * dt;
+mas.push(y_now);
+if (mas.length > ns) {
+y_delayed = mas.shift();
+} else {
+y_delayed = 0;
+}
+A.push([t_, y_now, y_delayed, g, I]);
+// Рунге-Кутта
+k1 = dt * (z2 - ((2 * zeta) / T) * y_now);
+m1 = dt * ((k / (T * T)) * u - y_now / (T * T));
+k2 = dt * (z2 + m1 / 2 - ((2 * zeta) / T) * (y_now + k1 / 2));
+m2 = dt * ((k / (T * T)) * u - (1 / (T * T)) * (y_now + k1 / 2));
+k3 = dt * (z2 + m2 / 2 - ((2 * zeta) / T) * (y_now + k2 / 2));
+m3 = dt * ((k / (T * T)) * u - (1 / (T * T)) * (y_now + k2 / 2));
+k4 = dt * (z2 + m3 - ((2 * zeta) / T) * (y_now + k3));
+m4 = dt * ((k / (T * T)) * u - (1 / (T * T)) * (y_now + k3));
+z1 = z1 + (1 / 6) * (k1 + 2 * k2 + 2 * k3 + k4);
+z2 = z2 + (1 / 6) * (m1 + 2 * m2 + 2 * m3 + m4);
+t_ = t_ + dt;
+}
+console.log("Итоговое значение интегральной ошибки I:", I);
+var data = google.visualization.arrayToDataTable(A);
+var options = {
+curveType: "function",
+hAxis: { title: "Время t, с" },
+vAxis: {
+title: "Амплитуда",
+viewWindow: { min: -0.2, max: 1.1 },
+gridlines: { count: 10 },
+},
+legend: { position: "bottom" },
+colors: ["#2980b9", "#c0392b", "#f1c40f", "#27ae60", "#8e44ad"],
+lineWidth: 2,
+chartArea: { width: "85%", height: "75%" },
+};
+var chart = new google.visualization.LineChart(
+document.getElementById("curve_chart"),
+);
+chart.draw(data, options);
+}
+</script>
+</head>
+<body>
+<div class="conteiner" style="display: flex; justify-content: center">
+<div id="curve_chart" style="width: 900px; height: 600px"></div>
+</div>
+</body>
+</html>
+График при параметрах :
+Значение I:
+Подбор оптимальных параметров ПИД- регулятора методом покоординатного спуска
+Суть метода:
+Покоординатный спуск — это итерационный метод оптимизации, при котором на каждом шаге оптимизируется только один параметр, а остальные фиксируются. Цикл повторяется до сходимости.
+Код:
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<script
+type="text/javascript"
+src="https://www.gstatic.com/charts/loader.js"
+></script>
+<script type="text/javascript">
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.setOnLoadCallback(optimizeAndDrawChart);
+function get_error(q1, q2, q3) {
+var T = 1,
+k = 1,
+zeta = 0.75,
+tau = 0.1,
+g = 1,
+dt = 0.01,
+L = 9;
+var z1 = 0,
+z2 = 0,
+y_now = 0;
+var x,
+x_prev = 0,
+intx = 0,
+dx,
+u,
+t_ = 0,
+I = 0,
+mu = 0.01;
+var k1, k2, k3, k4, m1, m2, m3, m4;
+x_prev = g - y_now;
+while (t_ <= L) {
+y_now = z1;
+x = g - y_now;
+intx += x * dt;
+dx = (x - x_prev) / dt;
+u = q1 * x + q2 * intx + q3 * dx;
+x_prev = x;
+I = I + (x * x + mu * mu * dx * dx) * dt;
+k1 = dt * (z2 - ((2 * zeta) / T) * y_now);
+m1 = dt * ((k / (T * T)) * u - y_now / (T * T));
+k2 = dt * (z2 + m1 / 2 - ((2 * zeta) / T) * (y_now + k1 / 2));
+m2 = dt * ((k / (T * T)) * u - (1 / (T * T)) * (y_now + k1 / 2));
+k3 = dt * (z2 + m2 / 2 - ((2 * zeta) / T) * (y_now + k2 / 2));
+m3 = dt * ((k / (T * T)) * u - (1 / (T * T)) * (y_now + k2 / 2));
+k4 = dt * (z2 + m3 - ((2 * zeta) / T) * (y_now + k3));
+m4 = dt * ((k / (T * T)) * u - (1 / (T * T)) * (y_now + k3));
+z1 = z1 + (1 / 6) * (k1 + 2 * k2 + 2 * k3 + k4);
+z2 = z2 + (1 / 6) * (m1 + 2 * m2 + 2 * m3 + m4);
+t_ = t_ + dt;
+}
+return I;
+}
+function optimizeAndDrawChart() {
+var q = [1.0, 0.0, 0.0];
+var step = 1;
+var eps = 0.01;
+var best_I = get_error(q[0], q[1], q[2]);
+var changed = true;
+// Покоординатный спуск с ограничениями
+while (step > eps) {
+changed = false;
+for (var i = 0; i < 3; i++) {
+var q_plus = [...q];
+var q_minus = [...q];
+q_plus[i] += step;
+q_minus[i] -= step;
+var I_plus =
+q_plus[i] <= 5
+? get_error(q_plus[0], q_plus[1], q_plus[2])
+: Infinity;
+var I_minus =
+q_minus[i] >= 0
+? get_error(q_minus[0], q_minus[1], q_minus[2])
+: Infinity;
+if (I_plus < best_I && I_plus < I_minus) {
+q[i] = q_plus[i];
+best_I = I_plus;
+changed = true;
+} else if (I_minus < best_I) {
+q[i] = q_minus[i];
+best_I = I_minus;
+changed = true;
+}
+}
+if (!changed) {
+step = step / 2;
+}
+}
+document.getElementById("optimal_params").innerHTML =
+"<b>Оптимальные параметры:</b><br>" +
+"q1 = " +
+q[0].toFixed(4) +
+"<br>" +
+"q2 = " +
+q[1].toFixed(4) +
+"<br>" +
+"q3 = " +
+q[2].toFixed(4) +
+"<br>" +
+"Минимальная ошибка I = " +
+best_I.toFixed(5);
+// Финальная отрисовка
+var T = 1,
+k = 1,
+zeta = 0.75,
+tau = 0.1,
+g = 1,
+dt = 0.01,
+L = 9;
+var ns = Math.round(tau / dt);
+var mas = [];
+var z1 = 0,
+z2 = 0,
+y_now = 0,
+y_delayed = 0;
+var x,
+x_prev = 0,
+intx = 0,
+dx,
+u,
+t_ = 0,
+I = 0,
+mu = 0.01;
+var A = [["t", "y(t)", "y(t) с зап.", "g(t)", "I(t)"]];
+x_prev = g - y_now;
+while (t_ <= L) {
+y_now = z1;
+x = g - y_now;
+intx += x * dt;
+dx = (x - x_prev) / dt;
+u = q[0] * x + q[1] * intx + q[2] * dx;
+x_prev = x;
+I = I + (x * x + mu * mu * dx * dx) * dt;
+mas.push(y_now);
+y_delayed = mas.length > ns ? mas.shift() : 0;
+A.push([t_, y_now, y_delayed, g, I]);
+var k1_r = dt * (z2 - ((2 * zeta) / T) * y_now);
+var m1_r = dt * ((k / (T * T)) * u - y_now / (T * T));
+var k2_r =
+dt * (z2 + m1_r / 2 - ((2 * zeta) / T) * (y_now + k1_r / 2));
+var m2_r =
+dt * ((k / (T * T)) * u - (1 / (T * T)) * (y_now + k1_r / 2));
+var k3_r =
+dt * (z2 + m2_r / 2 - ((2 * zeta) / T) * (y_now + k2_r / 2));
+var m3_r =
+dt * ((k / (T * T)) * u - (1 / (T * T)) * (y_now + k2_r / 2));
+var k4_r = dt * (z2 + m3_r - ((2 * zeta) / T) * (y_now + k3_r));
+var m4_r = dt * ((k / (T * T)) * u - (1 / (T * T)) * (y_now + k3_r));
+z1 += (1 / 6) * (k1_r + 2 * k2_r + 2 * k3_r + k4_r);
+z2 += (1 / 6) * (m1_r + 2 * m2_r + 2 * m3_r + m4_r);
+t_ += dt;
+}
+var data = google.visualization.arrayToDataTable(A);
+var chart = new google.visualization.LineChart(
+document.getElementById("curve_chart"),
+);
+chart.draw(data, {
+curveType: "function",
+hAxis: { title: "Время t, с" },
+vAxis: { title: "Амплитуда", viewWindow: { min: -0.2, max: 1.1 } },
+legend: { position: "bottom" },
+colors: ["#2980b9", "#c0392b", "#f1c40f", "#8e44ad"],
+chartArea: { width: "85%", height: "75%" },
+});
+}
+</script>
+</head>
+<body>
+<div class="conteiner" style="display: flex; justify-content: center">
+<div id="curve_chart" style="width: 900px; height: 600px"></div>
+</div>
+<div
+style="
+display: flex;
+justify-content: center;
+font-family: sans-serif;
+margin-top: -20px;
+"
+>
+<div
+id="optimal_params"
+style="
+background: #f4f4f4;
+padding: 15px;
+border-radius: 8px;
+border: 1px solid #ddd;
+"
+></div>
+</div>
+</body>
+</html>
+Найдём оптимальные параметры:
+График:
+Сравним графики с реализацией в SimInTech:
+Схема:
+График:
+Критерий улучшился в  2,468 раза.
+Расчёт функции чувствительности

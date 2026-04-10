@@ -1,0 +1,429 @@
+# Extracted Formulas (LaTeX format)
+# Format: [Section] Paragraph #index: LaTeX
+
+# Formula 1
+[Document Body]
+Paragraph #48
+Context: 
+W_{об}(p)=\frac{k_{об}}{T_{об}^{2}p^{2}+2ζT_{об}p+1}λ^{-τ_{об}p}
+
+# Formula 2
+[Document Body]
+Paragraph #48
+Context: 
+W_{об}(p)=\frac{k_{об}}{T_{об}^{2}p^{2}+2ζT_{об}p+1}λ^{-τ_{об}p}
+
+# Formula 3
+[Document Body]
+Paragraph #49
+Context: 
+W_{рег}(p)=q_{1}+\frac{q_{2}}{p}+q_{3}p
+
+# Formula 4
+[Document Body]
+Paragraph #49
+Context: 
+W_{рег}(p)=q_{1}+\frac{q_{2}}{p}+q_{3}p
+
+# Formula 5
+[Document Body]
+Paragraph #50
+Context: 
+k_{об}=1
+
+# Formula 6
+[Document Body]
+Paragraph #50
+Context: 
+k_{об}=1
+
+# Formula 7
+[Document Body]
+Paragraph #51
+Context: 
+T_{об}=1
+
+# Formula 8
+[Document Body]
+Paragraph #51
+Context: 
+T_{об}=1
+
+# Formula 9
+[Document Body]
+Paragraph #52
+Context: 
+ζ=0,75
+
+# Formula 10
+[Document Body]
+Paragraph #52
+Context: 
+ζ=0,75
+
+# Formula 11
+[Document Body]
+Paragraph #53
+Context: 
+τ_{об}=0,1
+
+# Formula 12
+[Document Body]
+Paragraph #53
+Context: 
+τ_{об}=0,1
+
+# Formula 13
+[Document Body]
+Paragraph #54
+Context: 
+I_{3}=_{0}^{∞} (x^{2}t+μ^{2}\hat{x}^{2}(t))dt
+
+# Formula 14
+[Document Body]
+Paragraph #54
+Context: 
+I_{3}=_{0}^{∞} (x^{2}t+μ^{2}\hat{x}^{2}(t))dt
+
+# Formula 15
+[Document Body]
+Paragraph #82
+Context: – колебательное звено
+W(p)=\frac{k}{T^{2}p^{2}+2ζTp+1}
+
+# Formula 16
+[Document Body]
+Paragraph #85
+Context: 
+W(p)=\frac{k}{T^{2}p^{2}+2ζTp+1}= \frac{y}{g}
+
+# Formula 17
+[Document Body]
+Paragraph #85
+Context: 
+W(p)=\frac{k}{T^{2}p^{2}+2ζTp+1}= \frac{y}{g}
+
+# Formula 18
+[Document Body]
+Paragraph #86
+Context: 
+T^{2}p^{2}+2ζTp+1y=kg
+
+# Formula 19
+[Document Body]
+Paragraph #86
+Context: 
+T^{2}p^{2}+2ζTp+1y=kg
+
+# Formula 20
+[Document Body]
+Paragraph #87
+Context: 
+T^{2}\frac{d^{2}y}{dt^{2}}+2Tζ\frac{dy}{dt}+y=kg
+
+# Formula 21
+[Document Body]
+Paragraph #87
+Context: 
+T^{2}\frac{d^{2}y}{dt^{2}}+2Tζ\frac{dy}{dt}+y=kg
+
+# Formula 22
+[Document Body]
+Paragraph #89
+Context: 
+\frac{d^{2}y}{dt^{2}}+\frac{2ζ}{T}\frac{dy}{dt}+\frac{y}{T^{2}}=\frac{k}{T^{2}}g
+
+# Formula 23
+[Document Body]
+Paragraph #89
+Context: 
+\frac{d^{2}y}{dt^{2}}+\frac{2ζ}{T}\frac{dy}{dt}+\frac{y}{T^{2}}=\frac{k}{T^{2}}g
+
+# Formula 24
+[Document Body]
+Paragraph #90
+Context: 
+a_{2}=1
+
+# Formula 25
+[Document Body]
+Paragraph #90
+Context: 
+a_{2}=1
+
+# Formula 26
+[Document Body]
+Paragraph #91
+Context: 
+a_{1}=\frac{2ζ}{T}
+
+# Formula 27
+[Document Body]
+Paragraph #91
+Context: 
+a_{1}=\frac{2ζ}{T}
+
+# Formula 28
+[Document Body]
+Paragraph #92
+Context: 
+a_{0}=\frac{1}{T^{2}}
+
+# Formula 29
+[Document Body]
+Paragraph #92
+Context: 
+a_{0}=\frac{1}{T^{2}}
+
+# Formula 30
+[Document Body]
+Paragraph #93
+Context: 
+b_{0}=\frac{k}{T^{2}}
+
+# Formula 31
+[Document Body]
+Paragraph #93
+Context: 
+b_{0}=\frac{k}{T^{2}}
+
+# Formula 32
+[Document Body]
+Paragraph #94
+Context: 
+b_{1}=b_{2}=0
+
+# Formula 33
+[Document Body]
+Paragraph #94
+Context: 
+b_{1}=b_{2}=0
+
+# Formula 34
+[Document Body]
+Paragraph #95
+Context: 
+z_{3}=0
+
+# Formula 35
+[Document Body]
+Paragraph #95
+Context: 
+z_{3}=0
+
+# Formula 36
+[Document Body]
+Paragraph #97
+Context: 
+y=z_{1}+b_{2}g=z_{1}
+
+# Formula 37
+[Document Body]
+Paragraph #97
+Context: 
+y=z_{1}+b_{2}g=z_{1}
+
+# Formula 38
+[Document Body]
+Paragraph #98
+Context: 
+\frac{dz_{1}}{dt}=-a_{1}y-b_{1}g+z_{2}=-\frac{2ζ}{T}y+z_{2}
+
+# Formula 39
+[Document Body]
+Paragraph #98
+Context: 
+\frac{dz_{1}}{dt}=-a_{1}y-b_{1}g+z_{2}=-\frac{2ζ}{T}y+z_{2}
+
+# Formula 40
+[Document Body]
+Paragraph #99
+Context: 
+\frac{dz_{2}}{dt}=-a_{0}y-b_{0}g+z_{3}=-\frac{y}{T^{2}}+\frac{k}{T^{2}}g
+
+# Formula 41
+[Document Body]
+Paragraph #99
+Context: 
+\frac{dz_{2}}{dt}=-a_{0}y-b_{0}g+z_{3}=-\frac{y}{T^{2}}+\frac{k}{T^{2}}g
+
+# Formula 42
+[Document Body]
+Paragraph #102
+Context: 
+\begin{aligned}
+y=z_{1}\\
+\begin{aligned}
+\frac{dz_{1}}{dt}=-\frac{2ζ}{T}y+z_{2}\\
+\frac{dz_{2}}{dt}=-\frac{y}{T^{2}}+\frac{k}{T^{2}}g
+\end{aligned}
+\end{aligned}
+
+# Formula 43
+[Document Body]
+Paragraph #102
+Context: 
+\begin{aligned}
+y=z_{1}\\
+\begin{aligned}
+\frac{dz_{1}}{dt}=-\frac{2ζ}{T}y+z_{2}\\
+\frac{dz_{2}}{dt}=-\frac{y}{T^{2}}+\frac{k}{T^{2}}g
+\end{aligned}
+\end{aligned}
+
+# Formula 44
+[Document Body]
+Paragraph #105
+Context: 
+\begin{aligned}
+\begin{aligned}
+x=g-y\\
+y=z_{1}
+\end{aligned}\\
+\begin{aligned}
+k_{1}=dtz_{2}-\frac{2ζ}{T}y\\
+m_{1}=dt(\frac{k}{T^{2}}x-\frac{y}{T^{2}})
+\end{aligned}\\
+k_{2}=dtz_{2}+\frac{m_{1}}{2}-\frac{2ζ}{T}(y+)\frac{k_{1}}{2}\\
+m_{2}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+)\frac{k_{1}}{2}\\
+\begin{aligned}
+k_{3}=dtz_{2}+\frac{m_{2}}{2}-\frac{2ζ}{T}(y+\frac{k_{2}}{2})\\
+\begin{aligned}
+m_{3}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+\frac{k_{2}}{2})\\
+\begin{aligned}
+k_{4}=dtz_{2}+m_{3}-\frac{2ζ}{T}(y+k_{3})\\
+m_{4}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+k_{3})
+\end{aligned}
+\end{aligned}
+\end{aligned}
+\end{aligned}
+
+# Formula 45
+[Document Body]
+Paragraph #105
+Context: 
+\begin{aligned}
+\begin{aligned}
+x=g-y\\
+y=z_{1}
+\end{aligned}\\
+\begin{aligned}
+k_{1}=dtz_{2}-\frac{2ζ}{T}y\\
+m_{1}=dt(\frac{k}{T^{2}}x-\frac{y}{T^{2}})
+\end{aligned}\\
+k_{2}=dtz_{2}+\frac{m_{1}}{2}-\frac{2ζ}{T}(y+)\frac{k_{1}}{2}\\
+m_{2}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+)\frac{k_{1}}{2}\\
+\begin{aligned}
+k_{3}=dtz_{2}+\frac{m_{2}}{2}-\frac{2ζ}{T}(y+\frac{k_{2}}{2})\\
+\begin{aligned}
+m_{3}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+\frac{k_{2}}{2})\\
+\begin{aligned}
+k_{4}=dtz_{2}+m_{3}-\frac{2ζ}{T}(y+k_{3})\\
+m_{4}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+k_{3})
+\end{aligned}
+\end{aligned}
+\end{aligned}
+\end{aligned}
+
+# Formula 46
+[Document Body]
+Paragraph #106
+Context: 
+z_{1}=z_{1}+\frac{1}{6}⋅k_{1}+2k_{2}+2k_{3}+k_{4}
+
+# Formula 47
+[Document Body]
+Paragraph #106
+Context: 
+z_{1}=z_{1}+\frac{1}{6}⋅k_{1}+2k_{2}+2k_{3}+k_{4}
+
+# Formula 48
+[Document Body]
+Paragraph #107
+Context: 
+z_{2}=z_{2}+\frac{1}{6}⋅m_{1}+2m_{2}+2m_{3}+m_{4}
+
+# Formula 49
+[Document Body]
+Paragraph #107
+Context: 
+z_{2}=z_{2}+\frac{1}{6}⋅m_{1}+2m_{2}+2m_{3}+m_{4}
+
+# Formula 50
+[Document Body]
+Paragraph #278
+Context: 
+W_{рег}p=q_{1}+\frac{q_{2}}{p}+q_{3}p
+
+# Formula 51
+[Document Body]
+Paragraph #278
+Context: 
+W_{рег}p=q_{1}+\frac{q_{2}}{p}+q_{3}p
+
+# Formula 52
+[Document Body]
+Paragraph #279
+Context: 
+ut, q=W_{рег}pxt, q
+
+# Formula 53
+[Document Body]
+Paragraph #279
+Context: 
+ut, q=W_{рег}pxt, q
+
+# Formula 54
+[Document Body]
+Paragraph #280
+Context: 
+yt,q=W_{об}put,q
+
+# Formula 55
+[Document Body]
+Paragraph #280
+Context: 
+yt,q=W_{об}put,q
+
+# Formula 56
+[Document Body]
+Paragraph #281
+Context: 
+ut,q=q_{1}xt,q+q_{2} xt,qdt+q_{3}\frac{dxt,q}{dt}
+
+# Formula 57
+[Document Body]
+Paragraph #281
+Context: 
+ut,q=q_{1}xt,q+q_{2} xt,qdt+q_{3}\frac{dxt,q}{dt}
+
+# Formula 58
+[Document Body]
+Paragraph #282
+Context: Для подбора оптимальных параметров  необходим критерий оптимизации. В качестве такого критерия воспо
+q_{1}, q_{2}, q_{3}
+
+# Formula 59
+[Document Body]
+Paragraph #283
+Context: 
+I_{3}=_{0}^{∞} (x^{2}t+μ^{2}\hat{x}^{2}(t))dt
+
+# Formula 60
+[Document Body]
+Paragraph #283
+Context: 
+I_{3}=_{0}^{∞} (x^{2}t+μ^{2}\hat{x}^{2}(t))dt
+
+# Formula 61
+[Document Body]
+Paragraph #397
+Context: График при параметрах :
+q_{1}= q_{2}= q_{3}=1
+
+# Formula 62
+[Document Body]
+Paragraph #625
+Context: Критерий улучшился в  2,468 раза.
+\frac{1.0925}{0.4425}=
+

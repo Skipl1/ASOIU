@@ -1,0 +1,599 @@
+================================================================================
+EXTRACTION REPORT
+================================================================================
+
+Document: Привалихин Дмитрий_1 часть.docx
+Total paragraphs: 638
+Total formulas found: 62
+Total images found: 10
+Total tables found: 0
+
+================================================================================
+MATHEMATICAL FORMULAS
+================================================================================
+
+--- Formula #1 ---
+Section: Document Body
+Paragraph Index: 48
+Type: inline_math
+Context: 
+LaTeX: W_{об}(p)=\frac{k_{об}}{T_{об}^{2}p^{2}+2ζT_{об}p+1}λ^{-τ_{об}p}
+
+--- Formula #2 ---
+Section: Document Body
+Paragraph Index: 48
+Type: display_math
+Context: 
+LaTeX: W_{об}(p)=\frac{k_{об}}{T_{об}^{2}p^{2}+2ζT_{об}p+1}λ^{-τ_{об}p}
+
+--- Formula #3 ---
+Section: Document Body
+Paragraph Index: 49
+Type: inline_math
+Context: 
+LaTeX: W_{рег}(p)=q_{1}+\frac{q_{2}}{p}+q_{3}p
+
+--- Formula #4 ---
+Section: Document Body
+Paragraph Index: 49
+Type: display_math
+Context: 
+LaTeX: W_{рег}(p)=q_{1}+\frac{q_{2}}{p}+q_{3}p
+
+--- Formula #5 ---
+Section: Document Body
+Paragraph Index: 50
+Type: inline_math
+Context: 
+LaTeX: k_{об}=1
+
+--- Formula #6 ---
+Section: Document Body
+Paragraph Index: 50
+Type: display_math
+Context: 
+LaTeX: k_{об}=1
+
+--- Formula #7 ---
+Section: Document Body
+Paragraph Index: 51
+Type: inline_math
+Context: 
+LaTeX: T_{об}=1
+
+--- Formula #8 ---
+Section: Document Body
+Paragraph Index: 51
+Type: display_math
+Context: 
+LaTeX: T_{об}=1
+
+--- Formula #9 ---
+Section: Document Body
+Paragraph Index: 52
+Type: inline_math
+Context: 
+LaTeX: ζ=0,75
+
+--- Formula #10 ---
+Section: Document Body
+Paragraph Index: 52
+Type: display_math
+Context: 
+LaTeX: ζ=0,75
+
+--- Formula #11 ---
+Section: Document Body
+Paragraph Index: 53
+Type: inline_math
+Context: 
+LaTeX: τ_{об}=0,1
+
+--- Formula #12 ---
+Section: Document Body
+Paragraph Index: 53
+Type: display_math
+Context: 
+LaTeX: τ_{об}=0,1
+
+--- Formula #13 ---
+Section: Document Body
+Paragraph Index: 54
+Type: inline_math
+Context: 
+LaTeX: I_{3}=_{0}^{∞} (x^{2}t+μ^{2}\hat{x}^{2}(t))dt
+
+--- Formula #14 ---
+Section: Document Body
+Paragraph Index: 54
+Type: display_math
+Context: 
+LaTeX: I_{3}=_{0}^{∞} (x^{2}t+μ^{2}\hat{x}^{2}(t))dt
+
+--- Formula #15 ---
+Section: Document Body
+Paragraph Index: 82
+Type: inline_math
+Context: – колебательное звено
+LaTeX: W(p)=\frac{k}{T^{2}p^{2}+2ζTp+1}
+
+--- Formula #16 ---
+Section: Document Body
+Paragraph Index: 85
+Type: inline_math
+Context: 
+LaTeX: W(p)=\frac{k}{T^{2}p^{2}+2ζTp+1}= \frac{y}{g}
+
+--- Formula #17 ---
+Section: Document Body
+Paragraph Index: 85
+Type: display_math
+Context: 
+LaTeX: W(p)=\frac{k}{T^{2}p^{2}+2ζTp+1}= \frac{y}{g}
+
+--- Formula #18 ---
+Section: Document Body
+Paragraph Index: 86
+Type: inline_math
+Context: 
+LaTeX: T^{2}p^{2}+2ζTp+1y=kg
+
+--- Formula #19 ---
+Section: Document Body
+Paragraph Index: 86
+Type: display_math
+Context: 
+LaTeX: T^{2}p^{2}+2ζTp+1y=kg
+
+--- Formula #20 ---
+Section: Document Body
+Paragraph Index: 87
+Type: inline_math
+Context: 
+LaTeX: T^{2}\frac{d^{2}y}{dt^{2}}+2Tζ\frac{dy}{dt}+y=kg
+
+--- Formula #21 ---
+Section: Document Body
+Paragraph Index: 87
+Type: display_math
+Context: 
+LaTeX: T^{2}\frac{d^{2}y}{dt^{2}}+2Tζ\frac{dy}{dt}+y=kg
+
+--- Formula #22 ---
+Section: Document Body
+Paragraph Index: 89
+Type: inline_math
+Context: 
+LaTeX: \frac{d^{2}y}{dt^{2}}+\frac{2ζ}{T}\frac{dy}{dt}+\frac{y}{T^{2}}=\frac{k}{T^{2}}g
+
+--- Formula #23 ---
+Section: Document Body
+Paragraph Index: 89
+Type: display_math
+Context: 
+LaTeX: \frac{d^{2}y}{dt^{2}}+\frac{2ζ}{T}\frac{dy}{dt}+\frac{y}{T^{2}}=\frac{k}{T^{2}}g
+
+--- Formula #24 ---
+Section: Document Body
+Paragraph Index: 90
+Type: inline_math
+Context: 
+LaTeX: a_{2}=1
+
+--- Formula #25 ---
+Section: Document Body
+Paragraph Index: 90
+Type: display_math
+Context: 
+LaTeX: a_{2}=1
+
+--- Formula #26 ---
+Section: Document Body
+Paragraph Index: 91
+Type: inline_math
+Context: 
+LaTeX: a_{1}=\frac{2ζ}{T}
+
+--- Formula #27 ---
+Section: Document Body
+Paragraph Index: 91
+Type: display_math
+Context: 
+LaTeX: a_{1}=\frac{2ζ}{T}
+
+--- Formula #28 ---
+Section: Document Body
+Paragraph Index: 92
+Type: inline_math
+Context: 
+LaTeX: a_{0}=\frac{1}{T^{2}}
+
+--- Formula #29 ---
+Section: Document Body
+Paragraph Index: 92
+Type: display_math
+Context: 
+LaTeX: a_{0}=\frac{1}{T^{2}}
+
+--- Formula #30 ---
+Section: Document Body
+Paragraph Index: 93
+Type: inline_math
+Context: 
+LaTeX: b_{0}=\frac{k}{T^{2}}
+
+--- Formula #31 ---
+Section: Document Body
+Paragraph Index: 93
+Type: display_math
+Context: 
+LaTeX: b_{0}=\frac{k}{T^{2}}
+
+--- Formula #32 ---
+Section: Document Body
+Paragraph Index: 94
+Type: inline_math
+Context: 
+LaTeX: b_{1}=b_{2}=0
+
+--- Formula #33 ---
+Section: Document Body
+Paragraph Index: 94
+Type: display_math
+Context: 
+LaTeX: b_{1}=b_{2}=0
+
+--- Formula #34 ---
+Section: Document Body
+Paragraph Index: 95
+Type: inline_math
+Context: 
+LaTeX: z_{3}=0
+
+--- Formula #35 ---
+Section: Document Body
+Paragraph Index: 95
+Type: display_math
+Context: 
+LaTeX: z_{3}=0
+
+--- Formula #36 ---
+Section: Document Body
+Paragraph Index: 97
+Type: inline_math
+Context: 
+LaTeX: y=z_{1}+b_{2}g=z_{1}
+
+--- Formula #37 ---
+Section: Document Body
+Paragraph Index: 97
+Type: display_math
+Context: 
+LaTeX: y=z_{1}+b_{2}g=z_{1}
+
+--- Formula #38 ---
+Section: Document Body
+Paragraph Index: 98
+Type: inline_math
+Context: 
+LaTeX: \frac{dz_{1}}{dt}=-a_{1}y-b_{1}g+z_{2}=-\frac{2ζ}{T}y+z_{2}
+
+--- Formula #39 ---
+Section: Document Body
+Paragraph Index: 98
+Type: display_math
+Context: 
+LaTeX: \frac{dz_{1}}{dt}=-a_{1}y-b_{1}g+z_{2}=-\frac{2ζ}{T}y+z_{2}
+
+--- Formula #40 ---
+Section: Document Body
+Paragraph Index: 99
+Type: inline_math
+Context: 
+LaTeX: \frac{dz_{2}}{dt}=-a_{0}y-b_{0}g+z_{3}=-\frac{y}{T^{2}}+\frac{k}{T^{2}}g
+
+--- Formula #41 ---
+Section: Document Body
+Paragraph Index: 99
+Type: display_math
+Context: 
+LaTeX: \frac{dz_{2}}{dt}=-a_{0}y-b_{0}g+z_{3}=-\frac{y}{T^{2}}+\frac{k}{T^{2}}g
+
+--- Formula #42 ---
+Section: Document Body
+Paragraph Index: 102
+Type: inline_math
+Context: 
+LaTeX: \begin{aligned}
+y=z_{1}\\
+\begin{aligned}
+\frac{dz_{1}}{dt}=-\frac{2ζ}{T}y+z_{2}\\
+\frac{dz_{2}}{dt}=-\frac{y}{T^{2}}+\frac{k}{T^{2}}g
+\end{aligned}
+\end{aligned}
+
+--- Formula #43 ---
+Section: Document Body
+Paragraph Index: 102
+Type: display_math
+Context: 
+LaTeX: \begin{aligned}
+y=z_{1}\\
+\begin{aligned}
+\frac{dz_{1}}{dt}=-\frac{2ζ}{T}y+z_{2}\\
+\frac{dz_{2}}{dt}=-\frac{y}{T^{2}}+\frac{k}{T^{2}}g
+\end{aligned}
+\end{aligned}
+
+--- Formula #44 ---
+Section: Document Body
+Paragraph Index: 105
+Type: inline_math
+Context: 
+LaTeX: \begin{aligned}
+\begin{aligned}
+x=g-y\\
+y=z_{1}
+\end{aligned}\\
+\begin{aligned}
+k_{1}=dtz_{2}-\frac{2ζ}{T}y\\
+m_{1}=dt(\frac{k}{T^{2}}x-\frac{y}{T^{2}})
+\end{aligned}\\
+k_{2}=dtz_{2}+\frac{m_{1}}{2}-\frac{2ζ}{T}(y+)\frac{k_{1}}{2}\\
+m_{2}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+)\frac{k_{1}}{2}\\
+\begin{aligned}
+k_{3}=dtz_{2}+\frac{m_{2}}{2}-\frac{2ζ}{T}(y+\frac{k_{2}}{2})\\
+\begin{aligned}
+m_{3}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+\frac{k_{2}}{2})\\
+\begin{aligned}
+k_{4}=dtz_{2}+m_{3}-\frac{2ζ}{T}(y+k_{3})\\
+m_{4}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+k_{3})
+\end{aligned}
+\end{aligned}
+\end{aligned}
+\end{aligned}
+
+--- Formula #45 ---
+Section: Document Body
+Paragraph Index: 105
+Type: display_math
+Context: 
+LaTeX: \begin{aligned}
+\begin{aligned}
+x=g-y\\
+y=z_{1}
+\end{aligned}\\
+\begin{aligned}
+k_{1}=dtz_{2}-\frac{2ζ}{T}y\\
+m_{1}=dt(\frac{k}{T^{2}}x-\frac{y}{T^{2}})
+\end{aligned}\\
+k_{2}=dtz_{2}+\frac{m_{1}}{2}-\frac{2ζ}{T}(y+)\frac{k_{1}}{2}\\
+m_{2}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+)\frac{k_{1}}{2}\\
+\begin{aligned}
+k_{3}=dtz_{2}+\frac{m_{2}}{2}-\frac{2ζ}{T}(y+\frac{k_{2}}{2})\\
+\begin{aligned}
+m_{3}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+\frac{k_{2}}{2})\\
+\begin{aligned}
+k_{4}=dtz_{2}+m_{3}-\frac{2ζ}{T}(y+k_{3})\\
+m_{4}=dt\frac{k}{T^{2}}x-\frac{1}{T^{2}}(y+k_{3})
+\end{aligned}
+\end{aligned}
+\end{aligned}
+\end{aligned}
+
+--- Formula #46 ---
+Section: Document Body
+Paragraph Index: 106
+Type: inline_math
+Context: 
+LaTeX: z_{1}=z_{1}+\frac{1}{6}⋅k_{1}+2k_{2}+2k_{3}+k_{4}
+
+--- Formula #47 ---
+Section: Document Body
+Paragraph Index: 106
+Type: display_math
+Context: 
+LaTeX: z_{1}=z_{1}+\frac{1}{6}⋅k_{1}+2k_{2}+2k_{3}+k_{4}
+
+--- Formula #48 ---
+Section: Document Body
+Paragraph Index: 107
+Type: inline_math
+Context: 
+LaTeX: z_{2}=z_{2}+\frac{1}{6}⋅m_{1}+2m_{2}+2m_{3}+m_{4}
+
+--- Formula #49 ---
+Section: Document Body
+Paragraph Index: 107
+Type: display_math
+Context: 
+LaTeX: z_{2}=z_{2}+\frac{1}{6}⋅m_{1}+2m_{2}+2m_{3}+m_{4}
+
+--- Formula #50 ---
+Section: Document Body
+Paragraph Index: 278
+Type: inline_math
+Context: 
+LaTeX: W_{рег}p=q_{1}+\frac{q_{2}}{p}+q_{3}p
+
+--- Formula #51 ---
+Section: Document Body
+Paragraph Index: 278
+Type: display_math
+Context: 
+LaTeX: W_{рег}p=q_{1}+\frac{q_{2}}{p}+q_{3}p
+
+--- Formula #52 ---
+Section: Document Body
+Paragraph Index: 279
+Type: inline_math
+Context: 
+LaTeX: ut, q=W_{рег}pxt, q
+
+--- Formula #53 ---
+Section: Document Body
+Paragraph Index: 279
+Type: display_math
+Context: 
+LaTeX: ut, q=W_{рег}pxt, q
+
+--- Formula #54 ---
+Section: Document Body
+Paragraph Index: 280
+Type: inline_math
+Context: 
+LaTeX: yt,q=W_{об}put,q
+
+--- Formula #55 ---
+Section: Document Body
+Paragraph Index: 280
+Type: display_math
+Context: 
+LaTeX: yt,q=W_{об}put,q
+
+--- Formula #56 ---
+Section: Document Body
+Paragraph Index: 281
+Type: inline_math
+Context: 
+LaTeX: ut,q=q_{1}xt,q+q_{2} xt,qdt+q_{3}\frac{dxt,q}{dt}
+
+--- Formula #57 ---
+Section: Document Body
+Paragraph Index: 281
+Type: display_math
+Context: 
+LaTeX: ut,q=q_{1}xt,q+q_{2} xt,qdt+q_{3}\frac{dxt,q}{dt}
+
+--- Formula #58 ---
+Section: Document Body
+Paragraph Index: 282
+Type: inline_math
+Context: Для подбора оптимальных параметров  необходим критерий оптимизации. В качестве такого критерия воспо
+LaTeX: q_{1}, q_{2}, q_{3}
+
+--- Formula #59 ---
+Section: Document Body
+Paragraph Index: 283
+Type: inline_math
+Context: 
+LaTeX: I_{3}=_{0}^{∞} (x^{2}t+μ^{2}\hat{x}^{2}(t))dt
+
+--- Formula #60 ---
+Section: Document Body
+Paragraph Index: 283
+Type: display_math
+Context: 
+LaTeX: I_{3}=_{0}^{∞} (x^{2}t+μ^{2}\hat{x}^{2}(t))dt
+
+--- Formula #61 ---
+Section: Document Body
+Paragraph Index: 397
+Type: inline_math
+Context: График при параметрах :
+LaTeX: q_{1}= q_{2}= q_{3}=1
+
+--- Formula #62 ---
+Section: Document Body
+Paragraph Index: 625
+Type: inline_math
+Context: Критерий улучшился в  2,468 раза.
+LaTeX: \frac{1.0925}{0.4425}=
+
+================================================================================
+IMAGES
+================================================================================
+
+--- Image #1 ---
+File: image_1.png
+Path: D:\Для Windows 11\Всё подряд\Users\kreck\Desktop\Прочее\Методы оптимизации\Отчёты\Optimization-Methods\lab2\extracted_content\images\image_1.png
+Section: Document Body
+Context/Caption: No caption
+Size: None x None px
+Content Type: image/png
+
+--- Image #2 ---
+File: image_2.png
+Path: D:\Для Windows 11\Всё подряд\Users\kreck\Desktop\Прочее\Методы оптимизации\Отчёты\Optimization-Methods\lab2\extracted_content\images\image_2.png
+Section: Document Body
+Context/Caption: No caption
+Size: None x None px
+Content Type: image/png
+
+--- Image #3 ---
+File: image_3.png
+Path: D:\Для Windows 11\Всё подряд\Users\kreck\Desktop\Прочее\Методы оптимизации\Отчёты\Optimization-Methods\lab2\extracted_content\images\image_3.png
+Section: Document Body
+Context/Caption: No caption
+Size: None x None px
+Content Type: image/png
+
+--- Image #4 ---
+File: image_4.png
+Path: D:\Для Windows 11\Всё подряд\Users\kreck\Desktop\Прочее\Методы оптимизации\Отчёты\Optimization-Methods\lab2\extracted_content\images\image_4.png
+Section: Document Body
+Context/Caption: No caption
+Size: None x None px
+Content Type: image/png
+
+--- Image #5 ---
+File: image_5.png
+Path: D:\Для Windows 11\Всё подряд\Users\kreck\Desktop\Прочее\Методы оптимизации\Отчёты\Optimization-Methods\lab2\extracted_content\images\image_5.png
+Section: Document Body
+Context/Caption: No caption
+Size: None x None px
+Content Type: image/png
+
+--- Image #6 ---
+File: image_6.png
+Path: D:\Для Windows 11\Всё подряд\Users\kreck\Desktop\Прочее\Методы оптимизации\Отчёты\Optimization-Methods\lab2\extracted_content\images\image_6.png
+Section: Document Body
+Context/Caption: No caption
+Size: None x None px
+Content Type: image/png
+
+--- Image #7 ---
+File: image_7.png
+Path: D:\Для Windows 11\Всё подряд\Users\kreck\Desktop\Прочее\Методы оптимизации\Отчёты\Optimization-Methods\lab2\extracted_content\images\image_7.png
+Section: Document Body
+Context/Caption: No caption
+Size: None x None px
+Content Type: image/png
+
+--- Image #8 ---
+File: image_8.png
+Path: D:\Для Windows 11\Всё подряд\Users\kreck\Desktop\Прочее\Методы оптимизации\Отчёты\Optimization-Methods\lab2\extracted_content\images\image_8.png
+Section: Document Body
+Context/Caption: No caption
+Size: None x None px
+Content Type: image/png
+
+--- Image #9 ---
+File: image_9.png
+Path: D:\Для Windows 11\Всё подряд\Users\kreck\Desktop\Прочее\Методы оптимизации\Отчёты\Optimization-Methods\lab2\extracted_content\images\image_9.png
+Section: Document Body
+Context/Caption: No caption
+Size: None x None px
+Content Type: image/png
+
+--- Image #10 ---
+File: image_10.png
+Path: D:\Для Windows 11\Всё подряд\Users\kreck\Desktop\Прочее\Методы оптимизации\Отчёты\Optimization-Methods\lab2\extracted_content\images\image_10.png
+Section: Document Body
+Context/Caption: No caption
+Size: None x None px
+Content Type: image/png
+
+================================================================================
+TABLES
+================================================================================
+
+No tables found in the document.
+
+================================================================================
+DOCUMENT STRUCTURE SUMMARY
+================================================================================
+
+Section: Document Body
+   Paragraphs: 638
+   Formulas: 62

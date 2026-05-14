@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АС ГРСН - авторизация</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-panel">
+      <div class="brand">
+        <div class="brand-mark">АС</div>
+        <div>
+          <strong>АС ГРСН</strong>
+          <span>Спортивное питание</span>
+        </div>
+      </div>
+
+      <h1>Вход в систему</h1>
+      <p>Доступ к генерации рецептов, истории и отчётам.</p>
+
+      <form class="form">
+        <div class="field">
+          <label for="email">Электронная почта</label>
+          <input id="email" type="email" value="athlete@example.ru">
+        </div>
+        <div class="field">
+          <label for="password">Пароль</label>
+          <input id="password" type="password" value="password">
+        </div>
+        <label class="checkbox-row">
+          <input type="checkbox" checked>
+          <span>Запомнить устройство</span>
+        </label>
+        <a class="btn primary" href="profile.html">Войти</a>
+        <a class="btn" href="register.html">Создать учётную запись</a>
+      </form>
+    </section>
+
+    <section class="auth-side">
+      <div class="auth-preview">
+        <div class="preview-header">
+          <strong>Сводка пользователя</strong>
+          <span class="status ok">Профиль активен</span>
+        </div>
+        <div class="preview-grid">
+          <div class="preview-tile">
+            <strong>Цель</strong>
+            <span class="tag blue">Набор мышечной массы</span>
+          </div>
+          <div class="preview-tile">
+            <strong>Калорийность</strong>
+            <div class="metric">
+              <span>Цель на день</span>
+              <strong>2800 ккал</strong>
+            </div>
+          </div>
+          <div class="preview-tile">
+            <strong>Запреты</strong>
+            <div class="pill-row">
+              <span class="tag red">Арахис</span>
+              <span class="tag red">Молоко</span>
+              <span class="tag amber">Глютен</span>
+            </div>
+          </div>
+          <div class="preview-tile">
+            <strong>Последний рецепт</strong>
+            <span>Овсяный протеиновый боул</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АС ГРСН - регистрация</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-panel">
+      <div class="brand">
+        <div class="brand-mark">АС</div>
+        <div>
+          <strong>АС ГРСН</strong>
+          <span>Спортивное питание</span>
+        </div>
+      </div>
+
+      <h1>Регистрация</h1>
+      <p>Создание учётной записи пользователя.</p>
+
+      <form class="form">
+        <div class="field">
+          <label for="name">Имя</label>
+          <input id="name" type="text" value="Дмитрий">
+        </div>
+        <div class="field">
+          <label for="email">Электронная почта</label>
+          <input id="email" type="email" value="d.priv@example.ru">
+        </div>
+        <div class="field">
+          <label for="password">Пароль</label>
+          <input id="password" type="password" value="password">
+        </div>
+        <div class="field">
+          <label for="password-repeat">Повтор пароля</label>
+          <input id="password-repeat" type="password" value="password">
+        </div>
+        <label class="checkbox-row">
+          <input type="checkbox" checked>
+          <span>Согласие на обработку данных профиля</span>
+        </label>
+        <a class="btn primary" href="profile.html">Зарегистрироваться</a>
+        <a class="btn" href="index.html">Уже есть аккаунт</a>
+      </form>
+    </section>
+
+    <section class="auth-side">
+      <div class="auth-preview">
+        <div class="preview-header">
+          <strong>Создаваемый профиль</strong>
+          <span class="status warn">Черновик</span>
+        </div>
+        <div class="preview-grid">
+          <div class="preview-tile">
+            <strong>Следующий шаг</strong>
+            <span>Антропометрические параметры</span>
+          </div>
+          <div class="preview-tile">
+            <strong>Безопасность</strong>
+            <span>Пароль хранится в виде хеша</span>
+          </div>
+          <div class="preview-tile">
+            <strong>Доступ</strong>
+            <span class="tag purple">Пользователь</span>
+          </div>
+          <div class="preview-tile">
+            <strong>Сессия</strong>
+            <span>JWT после входа</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

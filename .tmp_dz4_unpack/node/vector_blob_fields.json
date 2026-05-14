@@ -1,0 +1,81 @@
+{
+  "name": "Vector",
+  "guid": {
+    "sessionID": 201,
+    "localID": 27
+  },
+  "blobFields": [
+    {
+      "path": "fillGeometry[0].commandsBlob",
+      "value": 24
+    },
+    {
+      "path": "vectorData.vectorNetworkBlob",
+      "value": 23
+    }
+  ],
+  "vectorNode": {
+    "guid": {
+      "sessionID": 201,
+      "localID": 27
+    },
+    "phase": "CREATED",
+    "parentIndex": {
+      "guid": {
+        "sessionID": 201,
+        "localID": 26
+      },
+      "position": "!"
+    },
+    "type": "VECTOR",
+    "name": "Vector",
+    "visible": true,
+    "opacity": 1,
+    "size": {
+      "x": 77.07630157470703,
+      "y": 29.265567779541016
+    },
+    "transform": {
+      "m00": 1,
+      "m01": 0,
+      "m02": 0.000028445290809031576,
+      "m10": 0,
+      "m11": 1,
+      "m12": 47.17763900756836
+    },
+    "strokeWeight": 4,
+    "strokeAlign": "CENTER",
+    "strokeCap": "ROUND",
+    "strokeJoin": "ROUND",
+    "fillPaints": [
+      {
+        "type": "SOLID",
+        "color": {
+          "r": 0.7411764860153198,
+          "g": 0.7411764860153198,
+          "b": 0.7411764860153198,
+          "a": 1
+        },
+        "opacity": 1,
+        "visible": true,
+        "blendMode": "NORMAL"
+      }
+    ],
+    "fillGeometry": [
+      {
+        "windingRule": "NONZERO",
+        "commandsBlob": 24,
+        "styleID": 0
+      }
+    ],
+    "horizontalConstraint": "SCALE",
+    "verticalConstraint": "SCALE",
+    "vectorData": {
+      "vectorNetworkBlob": 23,
+      "normalizedSize": {
+        "x": 397,
+        "y": 150.7393341064453
+      }
+    }
+  }
+}

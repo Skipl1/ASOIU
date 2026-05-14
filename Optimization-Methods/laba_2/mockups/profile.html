@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АС ГРСН - профиль</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">АС</div>
+        <div><strong>АС ГРСН</strong><span>Макеты интерфейсов</span></div>
+      </div>
+      <nav class="nav">
+        <a class="active" href="profile.html">Профиль</a>
+        <a href="restrictions.html">Запреты</a>
+        <a href="ingredients.html">Ингредиенты</a>
+        <a href="generate.html">Генерация</a>
+        <a href="history.html">История</a>
+        <a href="reports.html">Отчёты</a>
+        <a href="analysis.html">Анализ</a>
+        <a href="admin.html">Администрирование</a>
+      </nav>
+      <div class="sidebar-footer">Пользователь: Дмитрий Привалихин<br>Роль: спортсмен</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="page-title">
+          <h1>Профиль и фитнес-ориентир</h1>
+          <p>Данные используются для расчёта BMR, TDEE и целевой калорийности.</p>
+        </div>
+        <div class="top-actions">
+          <a class="btn" href="index.html">Выйти</a>
+          <button class="btn primary">Сохранить</button>
+        </div>
+      </header>
+
+      <section class="layout grid-4">
+        <div class="metric"><span>Вес</span><strong>78 кг</strong></div>
+        <div class="metric"><span>Рост</span><strong>182 см</strong></div>
+        <div class="metric"><span>BMR</span><strong>1846</strong></div>
+        <div class="metric"><span>Цель</span><strong>2800</strong></div>
+      </section>
+
+      <section class="layout grid-2" style="margin-top:18px">
+        <div class="panel">
+          <div class="panel-header">
+            <h2>Антропометрические параметры</h2>
+            <span>Текущая запись профиля</span>
+          </div>
+          <div class="panel-body">
+            <form class="form">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="weight">Вес, кг</label>
+                  <input id="weight" value="78">
+                </div>
+                <div class="field">
+                  <label for="height">Рост, см</label>
+                  <input id="height" value="182">
+                </div>
+                <div class="field">
+                  <label for="age">Возраст</label>
+                  <input id="age" value="21">
+                </div>
+                <div class="field">
+                  <label for="gender">Пол</label>
+                  <select id="gender">
+                    <option selected>Мужской</option>
+                    <option>Женский</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="activity">Уровень активности</label>
+                <select id="activity">
+                  <option>Сидячий образ жизни</option>
+                  <option>Лёгкая активность</option>
+                  <option selected>Средняя активность, тренировки 3-5 раз в неделю</option>
+                  <option>Высокая активность</option>
+                  <option>Экстремальная активность</option>
+                </select>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h2>Фитнес-ориентир</h2>
+            <span>Коррекция целевой калорийности</span>
+          </div>
+          <div class="panel-body">
+            <div class="list">
+              <label class="choice-card">
+                <input type="radio" name="fitness-goal">
+                <div class="choice-card-text">
+                  <strong>Снижение веса</strong>
+                  <span>Дефицит калорий</span>
+                </div>
+                <span class="tag amber">-500 ккал</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="fitness-goal">
+                <div class="choice-card-text">
+                  <strong>Поддержание формы</strong>
+                  <span>Без изменения нормы</span>
+                </div>
+                <span class="tag blue">0 ккал</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="fitness-goal" checked>
+                <div class="choice-card-text">
+                  <strong>Набор мышечной массы</strong>
+                  <span>Выбранный ориентир</span>
+                </div>
+                <span class="tag green">+300 ккал</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="fitness-goal">
+                <div class="choice-card-text">
+                  <strong>Повышение выносливости</strong>
+                  <span>Умеренная прибавка энергии</span>
+                </div>
+                <span class="tag teal">+200 ккал</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

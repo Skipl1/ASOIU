@@ -1,0 +1,736 @@
+﻿{
+  "me": {
+    "prelude": "fig-kiwi",
+    "version": 106,
+    "totalNodes": 253,
+    "topTypes": [
+      [
+        "FRAME",
+        95
+      ],
+      [
+        "TEXT",
+        84
+      ],
+      [
+        "ROUNDED_RECTANGLE",
+        48
+      ],
+      [
+        "VECTOR",
+        10
+      ],
+      [
+        "SHAPE_WITH_TEXT",
+        8
+      ],
+      [
+        "SYMBOL",
+        4
+      ],
+      [
+        "CANVAS",
+        3
+      ],
+      [
+        "DOCUMENT",
+        1
+      ]
+    ],
+    "sampleNamed": [
+      {
+        "type": "DOCUMENT",
+        "name": "Document"
+      },
+      {
+        "type": "CANVAS",
+        "name": "Page 1"
+      },
+      {
+        "type": "CANVAS",
+        "name": "Internal Only Canvas"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group 2299"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group 7"
+      },
+      {
+        "type": "CANVAS",
+        "name": "component"
+      },
+      {
+        "type": "FRAME",
+        "name": "icon"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Mask group"
+      },
+      {
+        "type": "FRAME",
+        "name": "UI flows components"
+      },
+      {
+        "type": "FRAME",
+        "name": "icon"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Mask group"
+      },
+      {
+        "type": "FRAME",
+        "name": "icon"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Mask group"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕. ╨Т╨▓╨╛╨┤ ╨┤╨░╨╜╨╜╤Л╤Е ╨┐╨╛╨╗╤М╨╖╨╛╨▓╨░╤В╨╡╨╗╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕. ╨Я╤А╨╛╤Б╨╝╨╛╤В╤А ╤Б╨┐╨╕╤Б╨║╨░ ╨▓╤А╨░╤З╨╡╨╣"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╤М ╨╜╨░ ╨┐╤А╨╕╤С╨╝. ╨Т╨▓╨╛╨┤ ╨┤╨░╨╜╨╜╤Л╤Е ╨╛ ╨┐╤А╨╕╤С╨╝╨╡"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨в╨╡╨╗╨╡╤Д╨╛╨╜"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Я╨╛╨╗╨╡ ╨▓╨▓╨╛╨┤╨░ ╤В╨╡╨╗╨╡╤Д╨╛╨╜╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ъ╨╜╨╛╨┐╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Э╨░╨╖╨▓╨░╨╜╨╕╨╡ ╤Н╨║╤А╨░╨╜╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ъ╨╜╨╛╨┐╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Я╨╛╨╗╨╡ ╨▓╨▓╨╛╨┤╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨в╨╡╨╗╨╡╤Д╨╛╨╜"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨и╨░╨▒╨╗╨╛╨╜╤Л"
+      },
+      {
+        "type": "FRAME",
+        "name": "Frame 1"
+      },
+      {
+        "type": "FRAME",
+        "name": "Frame 2"
+      },
+      {
+        "type": "FRAME",
+        "name": "Frame 3"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕. ╨Э╨░╤Б╤В╤А╨╛╨╣╨║╨╕ ╨┐╨░╤А╨░╨╝╨╡╤В╤А╨╛╨▓ ╨┐╨╛╨╕╤Б╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ъ╨╜╨╛╨┐╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕. ╨Я╤А╨╛╤Б╨╝╨╛╤В╤А ╨┤╨░╨╜╨╜╤Л╤Е ╨▓╤А╨░╤З╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ъ╨╜╨╛╨┐╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕. ╨Т╨▓╨╛╨┤ OTP"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Я╨╛╨╗╨╡ ╨▓╨▓╨╛╨┤╨░ ╤В╨╡╨╗╨╡╤Д╨╛╨╜╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨в╨╡╨╗╨╡╤Д╨╛╨╜"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ъ╨╜╨╛╨┐╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      }
+    ]
+  },
+  "example": {
+    "prelude": "fig-kiwi",
+    "version": 106,
+    "totalNodes": 304,
+    "topTypes": [
+      [
+        "FRAME",
+        104
+      ],
+      [
+        "TEXT",
+        97
+      ],
+      [
+        "ROUNDED_RECTANGLE",
+        62
+      ],
+      [
+        "SHAPE_WITH_TEXT",
+        15
+      ],
+      [
+        "VECTOR",
+        11
+      ],
+      [
+        "SYMBOL",
+        5
+      ],
+      [
+        "INSTANCE",
+        4
+      ],
+      [
+        "CANVAS",
+        3
+      ],
+      [
+        "DOCUMENT",
+        1
+      ],
+      [
+        "VARIABLE_SET",
+        1
+      ],
+      [
+        "VARIABLE",
+        1
+      ]
+    ],
+    "sampleNamed": [
+      {
+        "type": "DOCUMENT",
+        "name": "Document"
+      },
+      {
+        "type": "CANVAS",
+        "name": "Page 1"
+      },
+      {
+        "type": "CANVAS",
+        "name": "Internal Only Canvas"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group 2299"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group 7"
+      },
+      {
+        "type": "CANVAS",
+        "name": "component"
+      },
+      {
+        "type": "FRAME",
+        "name": "icon"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Mask group"
+      },
+      {
+        "type": "FRAME",
+        "name": "UI flows components"
+      },
+      {
+        "type": "FRAME",
+        "name": "icon"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Mask group"
+      },
+      {
+        "type": "FRAME",
+        "name": "icon"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group"
+      },
+      {
+        "type": "FRAME",
+        "name": "Mask group"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕. ╨Т╨▓╨╛╨┤ ╨┤╨░╨╜╨╜╤Л╤Е ╨┐╨╛╨╗╤М╨╖╨╛╨▓╨░╤В╨╡╨╗╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╤М ╨╜╨░ ╨┐╤А╨╕╤С╨╝. ╨Т╨▓╨╛╨┤ ╨┤╨░╨╜╨╜╤Л╤Е ╨╛ ╨┐╤А╨╕╤С╨╝╨╡"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨в╨╡╨╗╨╡╤Д╨╛╨╜"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Я╨╛╨╗╨╡ ╨▓╨▓╨╛╨┤╨░ ╤В╨╡╨╗╨╡╤Д╨╛╨╜╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ъ╨╜╨╛╨┐╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Э╨░╨╖╨▓╨░╨╜╨╕╨╡ ╤Н╨║╤А╨░╨╜╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ъ╨╜╨╛╨┐╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Я╨╛╨╗╨╡ ╨▓╨▓╨╛╨┤╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨в╨╡╨╗╨╡╤Д╨╛╨╜"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨и╨░╨▒╨╗╨╛╨╜╤Л"
+      },
+      {
+        "type": "FRAME",
+        "name": "Frame 1"
+      },
+      {
+        "type": "FRAME",
+        "name": "Frame 2"
+      },
+      {
+        "type": "FRAME",
+        "name": "Frame 3"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕. ╨Т╨▓╨╛╨┤ OTP"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ъ╨╜╨╛╨┐╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Я╨╛╨╗╨╡ ╨▓╨▓╨╛╨┤╨░ ╤В╨╡╨╗╨╡╤Д╨╛╨╜╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨в╨╡╨╗╨╡╤Д╨╛╨╜"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕. ╨Ф╨░╨╜╨╜╤Л╨╡ ╨┐╨╛╨╗╤М╨╖╨╛╨▓╨░╤В╨╡╨╗╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group 2300"
+      },
+      {
+        "type": "FRAME",
+        "name": "Group 7"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ъ╨╜╨╛╨┐╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕. ╨Ф╨░╨╜╨╜╤Л╨╡ ╨╖╨░╨┐╨╕╤Б╨╕ ╨╜╨░ ╨┐╤А╨╕╨╡╨╝"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╡╨╜╤О"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ь╨╛╨╕ ╨╖╨░╨┐╨╕╤Б╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨У╨╗╨░╨▓╨╜╨░╤П"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ъ╨╜╨╛╨┐╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Ъ╨╜╨╛╨┐╨║╨░"
+      },
+      {
+        "type": "FRAME",
+        "name": "╨Т╤А╨░╤З╨╕. ╨Я╤А╨╛╤Б╨╝╨╛╤В╤А ╤Б╨┐╨╕╤Б╨║╨░ ╨▓╤А╨░╤З╨╡╨╣"
+      }
+    ]
+  }
+}

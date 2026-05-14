@@ -1,0 +1,9 @@
+{
+  "frame": "Врачи. Просмотр данных врача",
+  "count": 18,
+  "types": {
+    "FRAME": 7,
+    "TEXT": 7,
+    "ROUNDED_RECTANGLE": 4
+  }
+}

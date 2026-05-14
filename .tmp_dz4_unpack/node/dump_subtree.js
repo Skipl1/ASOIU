@@ -1,0 +1,33 @@
+﻿const fs=require('fs');
+const zlib=require('zlib');
+const {decodeBinarySchema,compileSchema}=require('kiwi-schema');
+const {ZstdCodec}=require('zstd-codec');
+function readCanvasFig(path){const buf=fs.readFileSync(path);let off=12;const chunks=[];while(off<buf.length){const len=buf.readUInt32LE(off);off+=4;chunks.push(buf.subarray(off,off+len));off+=len;}return chunks;}
+function inflateRaw(u8){return zlib.inflateRawSync(u8);} 
+async function decode(path){const ch=readCanvasFig(path);const schema=decodeBinarySchema(new Uint8Array(inflateRaw(ch[0])));const compiled=compileSchema(schema);const zstd=await new Promise(r=>ZstdCodec.run(z=>r(z)));const mc=ch[1];const isZ=mc[0]==0x28&&mc[1]==0xB5&&mc[2]==0x2F&&mc[3]==0xFD;const mr=isZ?Buffer.from(new zstd.Simple().decompress(mc)):inflateRaw(mc);return {compiled,msg:compiled.decodeMessage(new Uint8Array(mr))};}
+function key(g){return g?`${g.sessionID}:${g.localID}`:''}
+function buildChildren(nodes){const children=new Map();for(const n of nodes){const pg=n.parentIndex&&n.parentIndex.guid; if(!pg) continue; const k=key(pg); if(!children.has(k)) children.set(k,[]); children.get(k).push(n);}return children;}
+function collectSubtree(nodes, rootGuid){const byGuid=new Map(nodes.filter(n=>n.guid).map(n=>[key(n.guid),n]));
+ const children=buildChildren(nodes);
+ const out=[]; const stack=[key(rootGuid)]; const seen=new Set();
+ while(stack.length){const k=stack.pop(); if(seen.has(k)) continue; seen.add(k);
+ const node=byGuid.get(k); if(node) out.push(node);
+ const kids=children.get(k)||[];
+ for(const c of kids){if(c.guid) stack.push(key(c.guid));}
+ }
+ return out;
+}
+(async()=>{
+ const exPath=process.argv[2];
+ const frameName=process.argv[3];
+ const {msg}=await decode(exPath);
+ const nodes=msg.nodeChanges||[];
+ const frame=nodes.find(n=>n.type==='FRAME' && n.name===frameName);
+ if(!frame){console.error('frame not found'); process.exit(2);}
+ const subtree=collectSubtree(nodes, frame.guid);
+ const types={};
+ for(const n of subtree){types[n.type]=(types[n.type]||0)+1;}
+ const vector=subtree.find(n=>n.type==='VECTOR' || n.type==='BOOLEAN_OPERATION');
+ fs.writeFileSync('subtree_types.json', JSON.stringify({frame:frameName,count:subtree.length,types,vectorSample:vector},null,2),'utf8');
+ console.log('wrote subtree_types.json');
+})();

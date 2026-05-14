@@ -5,7 +5,7 @@
   group: "ИСИБ-23-1",
   student: "Л.А. Демонов",
   teacher: "О.С. Бучнев",
-  year: "2025"
+  year: "2026"
 ) = {
   // Настройки страницы (ГОСТ)
   set page(margin: (left: 3cm, right: 1.5cm, top: 2cm, bottom: 2cm))
@@ -90,6 +90,4 @@
   align(center)[
     Иркутск #year г.
   ]
-  
-  pagebreak()
 }

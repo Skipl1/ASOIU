@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АС ГРСН - запреты</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">АС</div><div><strong>АС ГРСН</strong><span>Макеты интерфейсов</span></div></div>
+      <nav class="nav">
+        <a href="profile.html">Профиль</a>
+        <a class="active" href="restrictions.html">Запреты</a>
+        <a href="ingredients.html">Ингредиенты</a>
+        <a href="generate.html">Генерация</a>
+        <a href="history.html">История</a>
+        <a href="reports.html">Отчёты</a>
+        <a href="analysis.html">Анализ</a>
+        <a href="admin.html">Администрирование</a>
+      </nav>
+      <div class="sidebar-footer">Список запретов применяется при каждой генерации рецепта.</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="page-title">
+          <h1>Аллергены и запрещённые продукты</h1>
+          <p>Единый список ограничений пользователя.</p>
+        </div>
+        <div class="top-actions">
+          <button class="btn">Очистить</button>
+          <button class="btn primary">Сохранить запреты</button>
+        </div>
+      </header>
+
+      <section class="split">
+        <div class="panel">
+          <div class="panel-header">
+            <h2>Добавление запрета</h2>
+            <span>Нормализация по справочникам</span>
+          </div>
+          <div class="panel-body">
+            <form class="form">
+              <div class="field">
+                <label for="restriction">Продукт или вещество</label>
+                <input id="restriction" value="арахис">
+              </div>
+              <div class="field">
+                <label for="match">Найденное соответствие</label>
+                <select id="match">
+                  <option selected>Аллерген: арахис</option>
+                  <option>Ингредиент: арахисовая паста</option>
+                  <option>Ингредиент: смесь ореховая</option>
+                </select>
+              </div>
+              <button class="btn primary">Добавить в список</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h2>Текущие ограничения</h2>
+            <span>5 записей</span>
+          </div>
+          <div class="panel-body">
+            <div class="list">
+              <div class="row-item"><div class="row-main"><strong>Арахис</strong><span>Аллерген</span></div><span class="tag red">запрещён</span></div>
+              <div class="row-item"><div class="row-main"><strong>Молоко</strong><span>Аллерген</span></div><span class="tag red">запрещён</span></div>
+              <div class="row-item"><div class="row-main"><strong>Глютен</strong><span>Вещество</span></div><span class="tag amber">контроль</span></div>
+              <div class="row-item"><div class="row-main"><strong>Креветки</strong><span>Ингредиент</span></div><span class="tag red">запрещён</span></div>
+              <div class="row-item"><div class="row-main"><strong>Соевый белок</strong><span>Ингредиент</span></div><span class="tag red">запрещён</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" style="margin-top:18px">
+        <div class="panel-header">
+          <h2>Проверка выбранного набора ингредиентов</h2>
+          <span>Результат перед генерацией</span>
+        </div>
+        <div class="panel-body">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Ингредиент</th><th>Связанные аллергены</th><th>Результат</th><th>Причина</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Овсяные хлопья</td><td>глютен</td><td><span class="status warn">требует замены</span></td><td>Совпадение с веществом из списка запретов</td></tr>
+                <tr><td>Банан</td><td>-</td><td><span class="status ok">допустим</span></td><td>-</td></tr>
+                <tr><td>Сывороточный протеин</td><td>молоко</td><td><span class="status bad">исключён</span></td><td>Содержит запрещённый аллерген</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АС ГРСН - отчёты</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">АС</div><div><strong>АС ГРСН</strong><span>Макеты интерфейсов</span></div></div>
+      <nav class="nav">
+        <a href="profile.html">Профиль</a>
+        <a href="restrictions.html">Запреты</a>
+        <a href="ingredients.html">Ингредиенты</a>
+        <a href="generate.html">Генерация</a>
+        <a href="history.html">История</a>
+        <a class="active" href="reports.html">Отчёты</a>
+        <a href="analysis.html">Анализ</a>
+        <a href="admin.html">Администрирование</a>
+      </nav>
+      <div class="sidebar-footer">Отчёты собираются по истории рецептов за выбранный период.</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="page-title">
+          <h1>Отчёты о пищевой ценности</h1>
+          <p>Выборочная выгрузка за указанный интервал.</p>
+        </div>
+        <div class="top-actions">
+          <button class="btn">PDF</button>
+          <button class="btn">XLSX</button>
+          <button class="btn primary">Сформировать</button>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Параметры отчёта</h2>
+          <span>Отчёт о пищевой ценности</span>
+        </div>
+        <div class="panel-body">
+          <form class="form-grid">
+            <div class="field"><label for="date-start">Начало периода</label><input id="date-start" value="2026-05-01"></div>
+            <div class="field"><label for="date-end">Конец периода</label><input id="date-end" value="2026-05-14"></div>
+            <div class="field"><label for="format">Формат</label><select id="format"><option selected>PDF</option><option>XLSX</option><option>CSV</option></select></div>
+            <div class="field"><label for="goal">Цель</label><select id="goal"><option selected>Все цели</option><option>Набор массы</option><option>Поддержание</option></select></div>
+          </form>
+        </div>
+      </section>
+
+      <section class="layout grid-4" style="margin-top:18px">
+        <div class="metric"><span>Средняя калорийность</span><strong>2460</strong></div>
+        <div class="metric"><span>Белки за период</span><strong>1280 г</strong></div>
+        <div class="metric"><span>Жиры за период</span><strong>540 г</strong></div>
+        <div class="metric"><span>Углеводы за период</span><strong>3120 г</strong></div>
+      </section>
+
+      <section class="layout grid-2" style="margin-top:18px">
+        <div class="chart-card">
+          <div class="panel-header" style="padding:0 0 12px;border-bottom:0"><h2>Калорийность по дням</h2><span>ккал</span></div>
+          <div class="value-chart">
+            <div class="chart-scale">
+              <span>2800</span>
+              <span>2400</span>
+              <span>2000</span>
+              <span>1600</span>
+            </div>
+            <div class="chart-columns">
+              <span data-value="2240" style="height:52%"></span>
+              <span data-value="2380" style="height:64%"></span>
+              <span data-value="2100" style="height:41%"></span>
+              <span data-value="2680" style="height:89%"></span>
+              <span data-value="2470" style="height:72%"></span>
+              <span data-value="2290" style="height:57%"></span>
+              <span data-value="2550" style="height:79%"></span>
+            </div>
+          </div>
+          <div class="chart-labels" style="margin-left:72px"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><h2>Макронутриентный баланс</h2><span>среднее значение</span></div>
+          <div class="panel-body">
+            <div class="macro-bars">
+              <div class="bar-line"><span>Белки</span><div class="bar"><span class="protein" style="width:34%"></span></div><strong>34%</strong></div>
+              <div class="bar-line"><span>Жиры</span><div class="bar"><span class="fat" style="width:24%"></span></div><strong>24%</strong></div>
+              <div class="bar-line"><span>Углеводы</span><div class="bar"><span class="carbs" style="width:42%"></span></div><strong>42%</strong></div>
+            </div>
+            <div style="height:18px"></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Показатель</th><th>Значение</th><th>Цель</th></tr></thead>
+                <tbody>
+                  <tr><td>Средний день</td><td>2460 ккал</td><td>2800 ккал</td></tr>
+                  <tr><td>Отклонение</td><td>-340 ккал</td><td><span class="status warn">ниже цели</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

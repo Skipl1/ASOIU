@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АС ГРСН - генерация</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">АС</div><div><strong>АС ГРСН</strong><span>Макеты интерфейсов</span></div></div>
+      <nav class="nav">
+        <a href="profile.html">Профиль</a>
+        <a href="restrictions.html">Запреты</a>
+        <a href="ingredients.html">Ингредиенты</a>
+        <a class="active" href="generate.html">Генерация</a>
+        <a href="history.html">История</a>
+        <a href="reports.html">Отчёты</a>
+        <a href="analysis.html">Анализ</a>
+        <a href="admin.html">Администрирование</a>
+      </nav>
+      <div class="sidebar-footer">Рецепт создаётся с учётом цели, запретов и доступных ингредиентов.</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="page-title">
+          <h1>Генерация рецепта</h1>
+          <p>Формирование 1-3 вариантов с расчётом пищевой ценности.</p>
+        </div>
+        <div class="top-actions">
+          <button class="btn">Сохранить черновик</button>
+          <button class="btn primary">Сгенерировать</button>
+        </div>
+      </header>
+
+      <section class="split">
+        <div class="layout">
+          <div class="panel">
+            <div class="panel-header">
+              <h2>1. Параметры генерации</h2>
+              <span>Запрос генерации</span>
+            </div>
+            <div class="panel-body">
+              <form class="form">
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="goal">Фитнес-ориентир</label>
+                    <select id="goal">
+                      <option selected>Набор мышечной массы</option>
+                      <option>Снижение веса</option>
+                      <option>Поддержание формы</option>
+                      <option>Повышение выносливости</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="variants">Количество вариантов</label>
+                    <select id="variants">
+                      <option selected>1 вариант</option>
+                      <option>2 варианта</option>
+                      <option>3 варианта</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="meal">Доля суточной нормы</label>
+                    <select id="meal">
+                      <option selected>1/3 дня</option>
+                      <option>1/4 дня</option>
+                      <option>1/2 дня</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="difficulty">Сложность</label>
+                    <select id="difficulty">
+                      <option selected>Низкая</option>
+                      <option>Средняя</option>
+                      <option>Высокая</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="comment">Дополнительные пожелания</label>
+                  <textarea id="comment">Быстрый завтрак после тренировки, без молочных продуктов.</textarea>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h2>2. Проверка ограничений</h2>
+              <span>Перед отправкой в модель</span>
+            </div>
+            <div class="panel-body">
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Группа</th><th>Состояние</th><th>Комментарий</th></tr></thead>
+                  <tbody>
+                    <tr><td>Профиль</td><td><span class="status ok">готов</span></td><td>Вес, рост, возраст и активность заполнены</td></tr>
+                    <tr><td>Запреты</td><td><span class="status ok">учтены</span></td><td>5 ограничений</td></tr>
+                    <tr><td>Ингредиенты</td><td><span class="status warn">частично</span></td><td>2 ингредиента будут исключены</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="layout">
+          <div class="panel">
+            <div class="panel-header">
+              <h2>3. Результат генерации</h2>
+              <span class="status ok">соответствует запретам</span>
+            </div>
+            <div class="panel-body">
+              <div class="recipe-visual">Протеиновый боул с рисом и бананом</div>
+              <div style="height:14px"></div>
+              <div class="pill-row">
+                <span class="tag blue">1 порция</span>
+                <span class="tag green">620 ккал</span>
+                <span class="tag purple">15 минут</span>
+              </div>
+              <div style="height:14px"></div>
+              <div class="macro-bars">
+                <div class="bar-line"><span>Белки</span><div class="bar"><span class="protein" style="width:42%"></span></div><strong>42 г</strong></div>
+                <div class="bar-line"><span>Жиры</span><div class="bar"><span class="fat" style="width:18%"></span></div><strong>14 г</strong></div>
+                <div class="bar-line"><span>Углеводы</span><div class="bar"><span class="carbs" style="width:40%"></span></div><strong>78 г</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h2>4. Инструкция приготовления</h2>
+              <span>3 шага</span>
+            </div>
+            <div class="panel-body">
+              <ol class="steps">
+                <li>Отварить бурый рис до готовности и переложить в глубокую миску.</li>
+                <li>Добавить нарезанный банан, куриную грудку и разрешённые семена.</li>
+                <li>Перемешать с соусом на воде, проверить массу порции и подать.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

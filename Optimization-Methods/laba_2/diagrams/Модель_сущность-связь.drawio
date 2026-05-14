@@ -1,0 +1,490 @@
+<mxfile host="65bd71144e">
+    <diagram id="er-as-grsn-simplified" name="ER-модель">
+        <mxGraphModel dx="3887" dy="2548" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1250" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="ER-модель АС генерации персонализированных рецептов спортивного питания" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="-340" width="1500" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend" value="&lt;b&gt;Обозначения&lt;/b&gt;&lt;br&gt;&lt;u&gt;Подчёркнуто&lt;/u&gt; - первичный ключ&lt;br&gt;Внешний ключ - связь с другой сущностью&lt;br&gt;Уникальное - значение не повторяется&lt;br&gt;Необязательно - поле может быть пустым" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1380" y="30" width="250" height="125" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user" value="Пользователь" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#dae8fc;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;separatorColor=#6c8ebf;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="90" width="350" height="194" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_row_1" value="&lt;u&gt;Идентификатор пользователя (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_user" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_row_2" value="Электронная почта (уникальное)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_user" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_row_3" value="Хеш пароля" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_user" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_row_4" value="Роль" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_user" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_row_5" value="Статус" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_user" vertex="1" connectable="0">
+                    <mxGeometry y="138" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_row_6" value="Дата регистрации" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_user" vertex="1" connectable="0">
+                    <mxGeometry y="164" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_profile" value="Профиль пользователя" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#dae8fc;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;separatorColor=#6c8ebf;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="-400" y="90" width="350" height="242" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_profile_row_1" value="&lt;u&gt;Идентификатор профиля (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_profile" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_profile_row_2" value="Идентификатор пользователя (внешний ключ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_profile" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_profile_row_3" value="Идентификатор фитнес-ориентира (внешний ключ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_profile" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_profile_row_4" value="Вес, кг" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_profile" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_profile_row_5" value="Рост, см" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_profile" vertex="1" connectable="0">
+                    <mxGeometry y="138" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_profile_row_6" value="Возраст" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_profile" vertex="1" connectable="0">
+                    <mxGeometry y="164" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_profile_row_7" value="Пол" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_profile" vertex="1" connectable="0">
+                    <mxGeometry y="190" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_profile_row_8" value="Уровень активности" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_profile" vertex="1" connectable="0">
+                    <mxGeometry y="216" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_restriction" value="Запрет пользователя" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#dae8fc;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;separatorColor=#6c8ebf;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="400" width="350" height="164" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_restriction_row_1" value="&lt;u&gt;Идентификатор запрета (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_user_restriction" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_restriction_row_2" value="Идентификатор пользователя (внешний ключ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_user_restriction" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_restriction_row_3" value="Идентификатор ингредиента (внешний ключ, необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_user_restriction" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_restriction_row_4" value="Идентификатор аллергена (внешний ключ, необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_user_restriction" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_restriction_row_5" value="Исходное название запрета" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_user_restriction" vertex="1" connectable="0">
+                    <mxGeometry y="138" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_available" value="Доступный ингредиент" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#dae8fc;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;separatorColor=#6c8ebf;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="-380" y="390" width="350" height="138" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_available_row_1" value="&lt;u&gt;Идентификатор пользователя (первичный и внешний ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_available" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_available_row_2" value="&lt;u&gt;Идентификатор ингредиента (первичный и внешний ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_available" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_available_row_3" value="Доступное количество, г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_available" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_available_row_4" value="Дата обновления" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_available" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_goal" value="Фитнес-ориентир" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#fff2cc;swimlaneFillColor=#ffffff;strokeColor=#d6b656;separatorColor=#d6b656;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="90" width="350" height="138" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_goal_row_1" value="&lt;u&gt;Идентификатор фитнес-ориентира (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_goal" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_goal_row_2" value="Название" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_goal" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_goal_row_3" value="Коррекция калорий" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_goal" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_goal_row_4" value="Описание (необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_goal" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_category" value="Категория ингредиента" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#d5e8d4;swimlaneFillColor=#ffffff;strokeColor=#82b366;separatorColor=#82b366;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="300" width="350" height="116" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_category_row_1" value="&lt;u&gt;Идентификатор категории (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_category" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_category_row_2" value="Название (уникальное)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_category" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_category_row_3" value="Описание (необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_category" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient" value="Ингредиент" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#d5e8d4;swimlaneFillColor=#ffffff;strokeColor=#82b366;separatorColor=#82b366;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="480" width="350" height="298" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_row_1" value="&lt;u&gt;Идентификатор ингредиента (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_row_2" value="Идентификатор категории (внешний ключ, необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_row_3" value="Название (уникальное)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_row_4" value="Белки на 100 г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_row_5" value="Жиры на 100 г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="138" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_row_6" value="Углеводы на 100 г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="164" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_row_7" value="Калорийность на 100 г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="190" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_row_8" value="Признак составного ингредиента" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="216" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_row_9" value="Синонимы названия (необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="242" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_row_10" value="Состав ингредиента (необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="268" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_allergen" value="Аллерген" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#f8cecc;swimlaneFillColor=#ffffff;strokeColor=#b85450;separatorColor=#b85450;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="666" width="350" height="112" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_allergen_row_1" value="&lt;u&gt;Идентификатор аллергена (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_allergen" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_allergen_row_2" value="Название (уникальное)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_allergen" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_allergen_row_3" value="Описание (необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_allergen" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="350" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_allergen" value="Аллерген ингредиента" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#f8cecc;swimlaneFillColor=#ffffff;strokeColor=#b85450;separatorColor=#b85450;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="839" width="360" height="86" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_allergen_row_1" value="&lt;u&gt;Идентификатор ингредиента (первичный и внешний ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_ingredient_allergen" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_allergen_row_2" value="&lt;u&gt;Идентификатор аллергена (первичный и внешний ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_ingredient_allergen" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_ingredient" value="Состав рецепта" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#fff2cc;swimlaneFillColor=#ffffff;strokeColor=#d6b656;separatorColor=#d6b656;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="850" width="360" height="138" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_ingredient_row_1" value="&lt;u&gt;Идентификатор рецепта (первичный и внешний ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_recipe_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_ingredient_row_2" value="&lt;u&gt;Идентификатор ингредиента (первичный и внешний ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_recipe_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_ingredient_row_3" value="Масса, г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_ingredient_row_4" value="Номер в списке" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe_ingredient" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_rating" value="Оценка рецепта" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#e1d5e7;swimlaneFillColor=#ffffff;strokeColor=#9673a6;separatorColor=#9673a6;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="870" y="610" width="360" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_rating_row_1" value="&lt;u&gt;Идентификатор оценки (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_rating" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_rating_row_2" value="Идентификатор пользователя (внешний ключ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_rating" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_rating_row_3" value="Идентификатор рецепта (внешний ключ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_rating" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_rating_row_4" value="Балл" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_rating" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_rating_row_5" value="Комментарий (необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_rating" vertex="1" connectable="0">
+                    <mxGeometry y="138" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_rating_row_6" value="Дата оценки" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_rating" vertex="1" connectable="0">
+                    <mxGeometry y="164" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_user_profile" value="1:1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#6c8ebf;fontSize=12;" parent="1" target="e_profile" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="40" y="210" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_goal_profile" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#d6b656;fontSize=12;entryX=0.723;entryY=0.012;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="e_goal" target="e_profile" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-147" y="250" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="635" y="70"/>
+                            <mxPoint x="-147" y="70"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_user_restriction" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#6c8ebf;fontSize=12;" parent="1" source="e_user" target="e_user_restriction" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_ingredient_restriction" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#82b366;fontSize=12;" parent="1" source="e_ingredient" target="e_user_restriction" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="425" y="540"/>
+                            <mxPoint x="425" y="482"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_allergen_restriction" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#b85450;fontSize=12;" parent="1" source="e_allergen" target="e_user_restriction" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_user_available" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#6c8ebf;fontSize=12;entryX=0.434;entryY=-0.007;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" parent="1" source="e_user" target="e_available" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="190" y="284" as="sourcePoint"/>
+                        <mxPoint x="190" y="850" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="128" y="370"/>
+                            <mxPoint x="-228" y="370"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_ingredient_available" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#82b366;fontSize=12;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="e_ingredient" target="e_available" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_category_ingredient" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#82b366;fontSize=12;" parent="1" source="e_category" target="e_ingredient" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_ingredient_ingredient_allergen" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#82b366;fontSize=12;" parent="1" source="e_ingredient" target="e_ingredient_allergen" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="635" y="824"/>
+                            <mxPoint x="540" y="824"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_allergen_ingredient_allergen" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#b85450;fontSize=12;" parent="1" source="e_allergen" target="e_ingredient_allergen" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="215" y="824"/>
+                            <mxPoint x="320" y="824"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_user_recipe" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#6c8ebf;fontSize=12;" parent="1" source="e_user" target="e_recipe" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="650" y="240"/>
+                            <mxPoint x="650" y="240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_goal_recipe" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#d6b656;fontSize=12;" parent="1" source="e_goal" target="e_recipe" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1030" y="159"/>
+                            <mxPoint x="1030" y="100"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_recipe_recipe_ingredient" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#d6b656;fontSize=12;" parent="1" source="e_recipe" target="e_recipe_ingredient" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="830" y="350"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_ingredient_recipe_ingredient" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#82b366;fontSize=12;" parent="1" source="e_ingredient" target="e_recipe_ingredient" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="730" y="819"/>
+                            <mxPoint x="750" y="819"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_user_rating" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#6c8ebf;fontSize=12;" parent="1" source="e_user" target="e_rating" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="890" y="280"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_recipe_rating" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#9673a6;fontSize=12;" parent="1" source="e_recipe" target="e_rating" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1080" y="590"/>
+                            <mxPoint x="1080" y="590"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_generation_request" value="Запрос генерации" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#fff2cc;swimlaneFillColor=#ffffff;strokeColor=#d6b656;separatorColor=#d6b656;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="890" y="-268" width="360" height="268" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_generation_request_row_1" value="&lt;u&gt;Идентификатор запроса (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_generation_request" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_generation_request_row_2" value="Идентификатор пользователя (внешний ключ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_generation_request" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_generation_request_row_3" value="Идентификатор фитнес-ориентира (внешний ключ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_generation_request" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_generation_request_row_4" value="Количество вариантов" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_generation_request" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_generation_request_row_5" value="Доля суточной нормы" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_generation_request" vertex="1" connectable="0">
+                    <mxGeometry y="138" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_generation_request_row_6" value="Статус" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_generation_request" vertex="1" connectable="0">
+                    <mxGeometry y="164" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_generation_request_row_7" value="Причина отказа (необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_generation_request" vertex="1" connectable="0">
+                    <mxGeometry y="190" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_generation_request_row_8" value="Рекомендуемые ингредиенты (необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_generation_request" vertex="1" connectable="0">
+                    <mxGeometry y="216" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_generation_request_row_9" value="Дата запроса" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_generation_request" vertex="1" connectable="0">
+                    <mxGeometry y="242" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report" value="Отчёт о пищевой ценности" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#e1d5e7;swimlaneFillColor=#ffffff;strokeColor=#9673a6;separatorColor=#9673a6;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="-235" width="360" height="294" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report_row_1" value="&lt;u&gt;Идентификатор отчёта (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_report" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report_row_2" value="Идентификатор пользователя (внешний ключ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_report" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report_row_3" value="Начало периода" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_report" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report_row_4" value="Конец периода" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_report" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report_row_5" value="Формат экспорта" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_report" vertex="1" connectable="0">
+                    <mxGeometry y="138" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report_row_6" value="Общая калорийность" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_report" vertex="1" connectable="0">
+                    <mxGeometry y="164" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report_row_7" value="Белки всего, г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_report" vertex="1" connectable="0">
+                    <mxGeometry y="190" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report_row_8" value="Жиры всего, г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_report" vertex="1" connectable="0">
+                    <mxGeometry y="216" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report_row_9" value="Углеводы всего, г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_report" vertex="1" connectable="0">
+                    <mxGeometry y="242" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report_row_10" value="Дата формирования" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_report" vertex="1" connectable="0">
+                    <mxGeometry y="268" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_parameter_history" value="История параметров пользователя" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#dae8fc;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;separatorColor=#6c8ebf;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="35" y="-196" width="360" height="216" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_parameter_history_row_1" value="&lt;u&gt;Идентификатор записи (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_parameter_history" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_parameter_history_row_2" value="Идентификатор пользователя (внешний ключ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_parameter_history" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_parameter_history_row_3" value="Вес, кг" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_parameter_history" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_parameter_history_row_4" value="Рост, см" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_parameter_history" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_parameter_history_row_5" value="Возраст" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_parameter_history" vertex="1" connectable="0">
+                    <mxGeometry y="138" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_parameter_history_row_6" value="Уровень активности" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_parameter_history" vertex="1" connectable="0">
+                    <mxGeometry y="164" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_parameter_history_row_7" value="Дата фиксации" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_parameter_history" vertex="1" connectable="0">
+                    <mxGeometry y="190" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe" value="Рецепт" style="swimlane;whiteSpace=wrap;html=1;rounded=0;startSize=34;horizontal=1;collapsible=0;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;container=1;recursiveResize=0;shadow=0;strokeWidth=1.5;fillColor=#fff2cc;swimlaneFillColor=#ffffff;strokeColor=#d6b656;separatorColor=#d6b656;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="930" y="30" width="360" height="424" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_1" value="&lt;u&gt;Идентификатор рецепта (первичный ключ)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=4;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="34" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_2" value="Идентификатор запроса (внешний ключ, необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="60" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_3" value="Идентификатор пользователя (внешний ключ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="86" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_4" value="Идентификатор фитнес-ориентира (внешний ключ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="112" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_5" value="Название" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="138" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_6" value="Статус генерации" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="164" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_7" value="Соответствует запретам" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="190" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_8" value="Причины несоответствия (необязательно)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="216" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_9" value="Белки всего, г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="242" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_10" value="Жиры всего, г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="268" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_11" value="Углеводы всего, г" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="294" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_12" value="Калорийность, ккал" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="320" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_13" value="Количество порций" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="346" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_14" value="Инструкция приготовления" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="372" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_row_15" value="Дата создания" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=8;whiteSpace=wrap;html=1;fontSize=12;fontStyle=0;points=[];portConstraint=eastwest;" parent="e_recipe" vertex="1" connectable="0">
+                    <mxGeometry y="398" width="360" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_user_generation_request" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#6c8ebf;fontSize=12;" parent="1" source="e_user" target="e_generation_request" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="910" y="260"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_goal_generation_request" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#d6b656;fontSize=12;" parent="1" source="e_goal" target="e_generation_request" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="860" y="140"/>
+                            <mxPoint x="860" y="-134"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_generation_request_recipe" value="1:0..3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#d6b656;fontSize=12;" parent="1" source="e_generation_request" target="e_recipe" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1350" y="-134"/>
+                            <mxPoint x="1350" y="242"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_user_report" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#9673a6;fontSize=12;" parent="1" source="e_user" target="e_report" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="440" y="130"/>
+                            <mxPoint x="440" y="-88"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_user_parameter_history" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;strokeWidth=2;strokeColor=#6c8ebf;fontSize=12;" parent="1" source="e_user" target="e_parameter_history" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

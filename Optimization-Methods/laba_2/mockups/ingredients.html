@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АС ГРСН - ингредиенты</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">АС</div><div><strong>АС ГРСН</strong><span>Макеты интерфейсов</span></div></div>
+      <nav class="nav">
+        <a href="profile.html">Профиль</a>
+        <a href="restrictions.html">Запреты</a>
+        <a class="active" href="ingredients.html">Ингредиенты</a>
+        <a href="generate.html">Генерация</a>
+        <a href="history.html">История</a>
+        <a href="reports.html">Отчёты</a>
+        <a href="analysis.html">Анализ</a>
+        <a href="admin.html">Администрирование</a>
+      </nav>
+      <div class="sidebar-footer">Каталог связан с категориями и аллергенами из ER-модели.</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="page-title">
+          <h1>Каталог и доступные ингредиенты</h1>
+          <p>Пищевая ценность указана на 100 г продукта.</p>
+        </div>
+        <div class="top-actions">
+          <button class="btn">Импорт</button>
+          <button class="btn primary">Сохранить набор</button>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Каталог продуктов</h2>
+          <div class="toolbar-right">
+            <input class="search" value="курица">
+            <select>
+              <option selected>Все категории</option>
+              <option>Белковые продукты</option>
+              <option>Крупы</option>
+              <option>Фрукты</option>
+            </select>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Выбор</th><th>Ингредиент</th><th>Категория</th><th>Белки</th><th>Жиры</th><th>Углеводы</th><th>Ккал</th><th>Аллергены</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><input type="checkbox" checked></td><td>Куриная грудка</td><td>Белковые продукты</td><td>23</td><td>2</td><td>0</td><td>110</td><td><span class="tag green">нет</span></td></tr>
+                <tr><td><input type="checkbox" checked></td><td>Рис бурый</td><td>Крупы</td><td>7</td><td>3</td><td>72</td><td>337</td><td><span class="tag green">нет</span></td></tr>
+                <tr><td><input type="checkbox"></td><td>Сывороточный протеин</td><td>Спортивное питание</td><td>78</td><td>6</td><td>8</td><td>392</td><td><span class="tag red">молоко</span></td></tr>
+                <tr><td><input type="checkbox" checked></td><td>Банан</td><td>Фрукты</td><td>1</td><td>0</td><td>23</td><td>96</td><td><span class="tag green">нет</span></td></tr>
+                <tr><td><input type="checkbox"></td><td>Арахисовая паста</td><td>Орехи</td><td>25</td><td>50</td><td>20</td><td>588</td><td><span class="tag red">арахис</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout grid-3" style="margin-top:18px">
+        <div class="metric"><span>Выбрано ингредиентов</span><strong>12</strong></div>
+        <div class="metric"><span>Недопустимых после запретов</span><strong>2</strong></div>
+        <div class="metric"><span>Категорий в наборе</span><strong>5</strong></div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

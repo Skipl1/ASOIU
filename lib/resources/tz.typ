@@ -150,34 +150,4 @@
     [Подпись],
     [Дата]
   )
-
-  v(1cm)
-  align(center)[*СОСТАВИЛ*]
-  v(0.2cm)
-  table(
-    columns: (1.2fr, 1fr, 1.5fr, 0.8fr, 0.8fr),
-    align: left + horizon,
-    stroke: 0.5pt,
-    ..table_header,
-    [#institute],
-    [Студент \ гр. #group],
-    [#student],
-    [],
-    []
-  )
-
-  v(1cm)
-  align(center)[*СОГЛАСОВАНО*]
-  v(0.2cm)
-  table(
-    columns: (1.2fr, 1fr, 1.5fr, 0.8fr, 0.8fr),
-    align: left + horizon,
-    stroke: 0.5pt,
-    ..table_header,
-    [#institute],
-    [Руководитель],
-    [#teacher],
-    [],
-    []
-  )
 }

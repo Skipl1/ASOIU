@@ -1,0 +1,179 @@
+<mxfile host="65bd71144e">
+    <diagram id="interface-structure-as-grsn" name="Структура интерфейса">
+        <mxGraphModel dx="1131" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1250" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="Модель структуры интерфейса АС ГРСН" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="20" width="1720" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="auth" value="&lt;b&gt;Авторизация&lt;/b&gt;&lt;br&gt;index.html&lt;br&gt;Ввод e-mail и пароля" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="110" width="260" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="register" value="&lt;b&gt;Регистрация&lt;/b&gt;&lt;br&gt;register.html&lt;br&gt;Создание учётной записи" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="250" width="260" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="shell" value="&lt;b&gt;Основная оболочка интерфейса&lt;/b&gt;&lt;br&gt;Боковая навигация, верхняя панель, рабочая область" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;spacing=8;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="160" width="360" height="115" as="geometry"/>
+                </mxCell>
+                <mxCell id="profile" value="&lt;b&gt;Профиль&lt;/b&gt;&lt;br&gt;profile.html&lt;br&gt;Антропометрия, активность, фитнес-ориентир" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="90" width="300" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="restrictions" value="&lt;b&gt;Запреты&lt;/b&gt;&lt;br&gt;restrictions.html&lt;br&gt;Аллергены, непереносимости, проверка ограничений" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="230" width="300" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="ingredients" value="&lt;b&gt;Ингредиенты&lt;/b&gt;&lt;br&gt;ingredients.html&lt;br&gt;Каталог, категории, доступные продукты" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="370" width="300" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="generate" value="&lt;b&gt;Генерация рецепта&lt;/b&gt;&lt;br&gt;generate.html&lt;br&gt;Параметры → проверка → результат → инструкция" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="510" width="300" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="history" value="&lt;b&gt;История рецептов&lt;/b&gt;&lt;br&gt;history.html&lt;br&gt;Архив, состав рецепта, оценка" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="650" width="300" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="reports" value="&lt;b&gt;Отчёты&lt;/b&gt;&lt;br&gt;reports.html&lt;br&gt;Период, таблицы, графики, экспорт" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="790" width="300" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="analysis" value="&lt;b&gt;Анализ рациона&lt;/b&gt;&lt;br&gt;analysis.html&lt;br&gt;Сравнение с целью, тренд веса, рекомендации" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="930" width="300" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="admin" value="&lt;b&gt;Администрирование&lt;/b&gt;&lt;br&gt;admin.html&lt;br&gt;Пользователи, каталог, аллергены, контроль" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="1070" width="300" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="profile_sub" value="Поля профиля:&lt;br&gt;вес, рост, возраст, пол, активность, цель" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="1300" y="80" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="restrictions_sub" value="Список запретов:&lt;br&gt;ингредиент или аллерген, нормализация ввода" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="1300" y="220" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="ingredients_sub" value="Каталог:&lt;br&gt;БЖУ, калорийность, аллергены, выбор доступных" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="1300" y="360" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="generate_sub" value="Результат:&lt;br&gt;рецепт, состав, БЖУ, флаг соответствия запретам" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="1300" y="500" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="history_sub" value="История:&lt;br&gt;повторный просмотр, оценка, комментарий" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#9673a6;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="1300" y="640" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="reports_sub" value="Отчёты:&lt;br&gt;калорийность по дням, баланс БЖУ, экспорт" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#9673a6;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="1300" y="780" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="analysis_sub" value="Анализ:&lt;br&gt;цель/факт, расчётный тренд веса, рекомендации" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="1300" y="920" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="admin_sub" value="Админка:&lt;br&gt;учётные записи, справочники, резервные копии" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#666666;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="1300" y="1060" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend" value="&lt;b&gt;Цвета&lt;/b&gt;&lt;br&gt;Синий - пользовательские данные&lt;br&gt;Зелёный - ингредиенты&lt;br&gt;Красный - запреты и анализ&lt;br&gt;Жёлтый - генерация&lt;br&gt;Фиолетовый - история и отчёты" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#999999;fontSize=13;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="690" width="320" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_auth_shell" value="успешный вход" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="auth" target="shell" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_register_shell" value="после регистрации" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="register" target="shell" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="380" y="298"/>
+                            <mxPoint x="380" y="240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_auth_register" value="создать аккаунт" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="auth" target="register" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_shell_profile" value="навигация" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="shell" target="profile" edge="1">
+                    <mxGeometry x="0.5733" y="20" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="880" y="170"/>
+                            <mxPoint x="880" y="140"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_shell_restrictions" value="навигация" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="shell" target="restrictions" edge="1">
+                    <mxGeometry x="0.1884" y="20" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="880" y="190"/>
+                            <mxPoint x="880" y="280"/>
+                        </Array>
+                        <mxPoint y="1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_shell_ingredients" value="навигация" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="shell" target="ingredients" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="850" y="200"/>
+                            <mxPoint x="850" y="420"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_shell_generate" value="навигация" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="shell" target="generate" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="840" y="210"/>
+                            <mxPoint x="840" y="560"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_shell_history" value="навигация" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="shell" target="history" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="830" y="230"/>
+                            <mxPoint x="830" y="700"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_shell_reports" value="навигация" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="shell" target="reports" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="820" y="240"/>
+                            <mxPoint x="820" y="840"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_shell_analysis" value="навигация" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="shell" target="analysis" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="810" y="250"/>
+                            <mxPoint x="810" y="980"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_shell_admin" value="навигация" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.997;exitY=0.896;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="shell" target="admin" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="760" y="420" as="sourcePoint"/>
+                        <mxPoint x="920" y="1170" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="800" y="263"/>
+                            <mxPoint x="800" y="1120"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_profile_details" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="profile" target="profile_sub" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_restrictions_details" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="restrictions" target="restrictions_sub" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredients_details" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="ingredients" target="ingredients_sub" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_generate_details" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="generate" target="generate_sub" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_history_details" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="history" target="history_sub" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_reports_details" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="reports" target="reports_sub" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_analysis_details" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="analysis" target="analysis_sub" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_admin_details" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1.5;fontSize=12;" parent="1" source="admin" target="admin_sub" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

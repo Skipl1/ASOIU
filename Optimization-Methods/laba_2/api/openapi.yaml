@@ -1,0 +1,1057 @@
+openapi: 3.0.3
+info:
+  title: АС ГРСН API
+  version: 1.0.0
+  description: REST API автоматизированной системы генерации персонализированных рецептов спортивного питания.
+servers:
+  - url: /api/v1
+    description: Версия API v1
+security:
+  - bearerAuth: []
+tags:
+  - name: auth
+    description: Регистрация, вход и завершение сессии
+  - name: profile
+    description: Профиль пользователя и история параметров
+  - name: restrictions
+    description: Запреты, аллергены и непереносимости
+  - name: ingredients
+    description: Каталог и доступные ингредиенты
+  - name: recipes
+    description: Генерация, история и оценка рецептов
+  - name: reports
+    description: Отчёты о пищевой ценности
+  - name: analysis
+    description: Анализ соответствия рациона цели
+  - name: admin
+    description: Администрирование справочников и пользователей
+paths:
+  /auth/register:
+    post:
+      tags: [auth]
+      summary: Регистрация пользователя
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "201":
+          description: Пользователь зарегистрирован
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "409":
+          $ref: "#/components/responses/Conflict"
+  /auth/login:
+    post:
+      tags: [auth]
+      summary: Авторизация пользователя
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: JWT-токен выдан
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+  /auth/logout:
+    post:
+      tags: [auth]
+      summary: Завершение пользовательской сессии
+      responses:
+        "204":
+          description: Сессия завершена
+  /profile:
+    get:
+      tags: [profile]
+      summary: Получить профиль текущего пользователя
+      responses:
+        "200":
+          description: Профиль пользователя
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Profile"
+    put:
+      tags: [profile]
+      summary: Обновить профиль и текущий фитнес-ориентир
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileUpdate"
+      responses:
+        "200":
+          description: Профиль обновлён
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Profile"
+  /profile/parameter-history:
+    get:
+      tags: [profile]
+      summary: Получить историю физических параметров
+      responses:
+        "200":
+          description: Список замеров
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ParameterHistoryItem"
+    post:
+      tags: [profile]
+      summary: Добавить замер физических параметров
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ParameterHistoryCreate"
+      responses:
+        "201":
+          description: Замер сохранён
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParameterHistoryItem"
+  /goals:
+    get:
+      tags: [profile]
+      summary: Получить список фитнес-ориентиров
+      responses:
+        "200":
+          description: Справочник целей
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FitnessGoal"
+  /restrictions:
+    get:
+      tags: [restrictions]
+      summary: Получить запреты текущего пользователя
+      responses:
+        "200":
+          description: Список запретов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserRestriction"
+    post:
+      tags: [restrictions]
+      summary: Добавить запрет пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RestrictionCreate"
+      responses:
+        "201":
+          description: Запрет добавлен
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserRestriction"
+  /restrictions/{restrictionId}:
+    delete:
+      tags: [restrictions]
+      summary: Удалить запрет пользователя
+      parameters:
+        - $ref: "#/components/parameters/RestrictionId"
+      responses:
+        "204":
+          description: Запрет удалён
+  /ingredients:
+    get:
+      tags: [ingredients]
+      summary: Получить каталог ингредиентов
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: categoryId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: allowedOnly
+          in: query
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: Каталог ингредиентов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Ingredient"
+  /ingredients/{ingredientId}:
+    get:
+      tags: [ingredients]
+      summary: Получить карточку ингредиента
+      parameters:
+        - $ref: "#/components/parameters/IngredientId"
+      responses:
+        "200":
+          description: Ингредиент
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ingredient"
+  /available-ingredients:
+    get:
+      tags: [ingredients]
+      summary: Получить выбранные пользователем доступные ингредиенты
+      responses:
+        "200":
+          description: Доступные ингредиенты
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AvailableIngredient"
+    put:
+      tags: [ingredients]
+      summary: Обновить набор доступных ингредиентов пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [items]
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/AvailableIngredientInput"
+      responses:
+        "200":
+          description: Набор ингредиентов обновлён
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AvailableIngredient"
+  /recipes/generate:
+    post:
+      tags: [recipes]
+      summary: Сгенерировать персонализированный рецепт
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateRecipeRequest"
+      responses:
+        "201":
+          description: Рецепт сформирован или возвращена причина отказа
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerateRecipeResponse"
+  /recipes:
+    get:
+      tags: [recipes]
+      summary: Получить историю рецептов пользователя
+      parameters:
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: goalId
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: История рецептов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RecipeSummary"
+  /recipes/{recipeId}:
+    get:
+      tags: [recipes]
+      summary: Получить подробную карточку рецепта
+      parameters:
+        - $ref: "#/components/parameters/RecipeId"
+      responses:
+        "200":
+          description: Рецепт
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Recipe"
+  /recipes/{recipeId}/rating:
+    post:
+      tags: [recipes]
+      summary: Сохранить оценку рецепта
+      parameters:
+        - $ref: "#/components/parameters/RecipeId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RatingCreate"
+      responses:
+        "201":
+          description: Оценка сохранена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecipeRating"
+  /reports/nutrition:
+    get:
+      tags: [reports]
+      summary: Сформировать отчёт о пищевой ценности за период
+      parameters:
+        - $ref: "#/components/parameters/DateFrom"
+        - $ref: "#/components/parameters/DateTo"
+      responses:
+        "200":
+          description: Отчёт о пищевой ценности
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NutritionReport"
+  /reports/nutrition/export:
+    post:
+      tags: [reports]
+      summary: Экспортировать отчёт
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [dateFrom, dateTo, format]
+              properties:
+                dateFrom:
+                  type: string
+                  format: date
+                dateTo:
+                  type: string
+                  format: date
+                format:
+                  type: string
+                  enum: [pdf, xlsx, csv]
+      responses:
+        "200":
+          description: Ссылка на файл экспорта
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  downloadUrl:
+                    type: string
+                    format: uri
+  /analysis/nutrition:
+    get:
+      tags: [analysis]
+      summary: Получить анализ соответствия рациона цели
+      parameters:
+        - $ref: "#/components/parameters/DateFrom"
+        - $ref: "#/components/parameters/DateTo"
+      responses:
+        "200":
+          description: Аналитика рациона
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NutritionAnalysis"
+  /admin/users:
+    get:
+      tags: [admin]
+      summary: Получить список пользователей
+      responses:
+        "200":
+          description: Пользователи
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AdminUser"
+  /admin/users/{userId}:
+    patch:
+      tags: [admin]
+      summary: Изменить роль или статус пользователя
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  type: string
+                  enum: [user, admin]
+                status:
+                  type: string
+                  enum: [active, blocked, deleted]
+      responses:
+        "200":
+          description: Пользователь обновлён
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminUser"
+  /admin/ingredients:
+    post:
+      tags: [admin]
+      summary: Добавить ингредиент в каталог
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IngredientInput"
+      responses:
+        "201":
+          description: Ингредиент создан
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ingredient"
+  /admin/ingredients/{ingredientId}:
+    put:
+      tags: [admin]
+      summary: Изменить ингредиент
+      parameters:
+        - $ref: "#/components/parameters/IngredientId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IngredientInput"
+      responses:
+        "200":
+          description: Ингредиент обновлён
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ingredient"
+    delete:
+      tags: [admin]
+      summary: Удалить ингредиент
+      parameters:
+        - $ref: "#/components/parameters/IngredientId"
+      responses:
+        "204":
+          description: Ингредиент удалён
+  /admin/allergens:
+    post:
+      tags: [admin]
+      summary: Добавить аллерген
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AllergenInput"
+      responses:
+        "201":
+          description: Аллерген создан
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Allergen"
+  /admin/allergens/{allergenId}:
+    put:
+      tags: [admin]
+      summary: Изменить аллерген
+      parameters:
+        - $ref: "#/components/parameters/AllergenId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AllergenInput"
+      responses:
+        "200":
+          description: Аллерген обновлён
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Allergen"
+    delete:
+      tags: [admin]
+      summary: Удалить аллерген
+      parameters:
+        - $ref: "#/components/parameters/AllergenId"
+      responses:
+        "204":
+          description: Аллерген удалён
+  /admin/backups:
+    post:
+      tags: [admin]
+      summary: Запустить резервное копирование базы данных
+      responses:
+        "202":
+          description: Задача резервного копирования запущена
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    RecipeId:
+      name: recipeId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    IngredientId:
+      name: ingredientId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    AllergenId:
+      name: allergenId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    RestrictionId:
+      name: restrictionId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    DateFrom:
+      name: dateFrom
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+    DateTo:
+      name: dateTo
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+  responses:
+    Unauthorized:
+      description: Требуется авторизация или токен недействителен
+    Conflict:
+      description: Конфликт данных, например e-mail уже зарегистрирован
+  schemas:
+    RegisterRequest:
+      type: object
+      required: [name, email, password]
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        tokenType:
+          type: string
+          example: bearer
+        expiresIn:
+          type: integer
+          example: 1800
+        user:
+          $ref: "#/components/schemas/User"
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum: [user, admin]
+        status:
+          type: string
+          enum: [active, blocked]
+    AdminUser:
+      allOf:
+        - $ref: "#/components/schemas/User"
+        - type: object
+          properties:
+            createdAt:
+              type: string
+              format: date-time
+            lastLoginAt:
+              type: string
+              format: date-time
+              nullable: true
+    Profile:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        weightKg:
+          type: number
+          example: 78
+        heightCm:
+          type: number
+          example: 182
+        age:
+          type: integer
+          example: 21
+        gender:
+          type: string
+          enum: [male, female]
+        activityLevel:
+          type: number
+          example: 1.55
+        goal:
+          $ref: "#/components/schemas/FitnessGoal"
+        targetCalories:
+          type: number
+          example: 2800
+    ProfileUpdate:
+      type: object
+      required: [weightKg, heightCm, age, gender, activityLevel, goalId]
+      properties:
+        weightKg:
+          type: number
+        heightCm:
+          type: number
+        age:
+          type: integer
+        gender:
+          type: string
+          enum: [male, female]
+        activityLevel:
+          type: number
+        goalId:
+          type: string
+          format: uuid
+    ParameterHistoryCreate:
+      type: object
+      required: [weightKg, heightCm, age, activityLevel]
+      properties:
+        weightKg:
+          type: number
+        heightCm:
+          type: number
+        age:
+          type: integer
+        activityLevel:
+          type: number
+    ParameterHistoryItem:
+      allOf:
+        - $ref: "#/components/schemas/ParameterHistoryCreate"
+        - type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            recordedAt:
+              type: string
+              format: date-time
+    FitnessGoal:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: Набор мышечной массы
+        calorieDelta:
+          type: integer
+          example: 300
+        description:
+          type: string
+    RestrictionCreate:
+      type: object
+      required: [sourceText]
+      properties:
+        sourceText:
+          type: string
+          example: арахис
+        ingredientId:
+          type: string
+          format: uuid
+          nullable: true
+        allergenId:
+          type: string
+          format: uuid
+          nullable: true
+    UserRestriction:
+      allOf:
+        - $ref: "#/components/schemas/RestrictionCreate"
+        - type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            normalizedName:
+              type: string
+            type:
+              type: string
+              enum: [ingredient, allergen]
+    AllergenInput:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+    Allergen:
+      allOf:
+        - $ref: "#/components/schemas/AllergenInput"
+        - type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+    IngredientInput:
+      type: object
+      required: [name, categoryId, protein100g, fat100g, carbs100g, calories100g]
+      properties:
+        name:
+          type: string
+        categoryId:
+          type: string
+          format: uuid
+          nullable: true
+        protein100g:
+          type: number
+        fat100g:
+          type: number
+        carbs100g:
+          type: number
+        calories100g:
+          type: number
+        isComposite:
+          type: boolean
+          default: false
+        synonyms:
+          type: array
+          items:
+            type: string
+        allergenIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+    Ingredient:
+      allOf:
+        - $ref: "#/components/schemas/IngredientInput"
+        - type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            categoryName:
+              type: string
+            allergens:
+              type: array
+              items:
+                $ref: "#/components/schemas/Allergen"
+    AvailableIngredientInput:
+      type: object
+      required: [ingredientId]
+      properties:
+        ingredientId:
+          type: string
+          format: uuid
+        availableQtyG:
+          type: number
+          nullable: true
+    AvailableIngredient:
+      allOf:
+        - $ref: "#/components/schemas/AvailableIngredientInput"
+        - type: object
+          properties:
+            ingredient:
+              $ref: "#/components/schemas/Ingredient"
+            updatedAt:
+              type: string
+              format: date-time
+    GenerateRecipeRequest:
+      type: object
+      required: [goalId, variantsCount, mealShare]
+      properties:
+        goalId:
+          type: string
+          format: uuid
+        variantsCount:
+          type: integer
+          minimum: 1
+          maximum: 3
+          default: 1
+        mealShare:
+          type: number
+          example: 0.333
+        difficulty:
+          type: string
+          enum: [low, medium, high]
+        comment:
+          type: string
+          nullable: true
+    GenerateRecipeResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [generated, failed]
+        recipes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Recipe"
+        failureReason:
+          type: string
+          nullable: true
+        recommendedIngredients:
+          type: array
+          items:
+            type: string
+    RecipeSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        goalName:
+          type: string
+        caloriesTotal:
+          type: number
+        proteinTotal:
+          type: number
+        fatTotal:
+          type: number
+        carbsTotal:
+          type: number
+        isAllowed:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        rating:
+          type: integer
+          nullable: true
+    Recipe:
+      allOf:
+        - $ref: "#/components/schemas/RecipeSummary"
+        - type: object
+          properties:
+            requestId:
+              type: string
+              format: uuid
+              nullable: true
+            servings:
+              type: integer
+            instructions:
+              type: array
+              items:
+                type: string
+            ingredients:
+              type: array
+              items:
+                $ref: "#/components/schemas/RecipeIngredient"
+            violationReasons:
+              type: array
+              items:
+                type: string
+    RecipeIngredient:
+      type: object
+      properties:
+        ingredientId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        massG:
+          type: number
+        position:
+          type: integer
+    RatingCreate:
+      type: object
+      required: [score]
+      properties:
+        score:
+          type: integer
+          minimum: 1
+          maximum: 5
+        comment:
+          type: string
+          nullable: true
+    RecipeRating:
+      allOf:
+        - $ref: "#/components/schemas/RatingCreate"
+        - type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            recipeId:
+              type: string
+              format: uuid
+            createdAt:
+              type: string
+              format: date-time
+    NutritionReport:
+      type: object
+      properties:
+        reportId:
+          type: string
+          format: uuid
+        dateFrom:
+          type: string
+          format: date
+        dateTo:
+          type: string
+          format: date
+        averageCalories:
+          type: number
+        totalProtein:
+          type: number
+        totalFat:
+          type: number
+        totalCarbs:
+          type: number
+        dailyCalories:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              calories:
+                type: number
+    NutritionAnalysis:
+      type: object
+      properties:
+        dateFrom:
+          type: string
+          format: date
+        dateTo:
+          type: string
+          format: date
+        goalName:
+          type: string
+        target:
+          $ref: "#/components/schemas/NutritionTotals"
+        actual:
+          $ref: "#/components/schemas/NutritionTotals"
+        deviation:
+          $ref: "#/components/schemas/NutritionTotals"
+        calculatedWeightTrend:
+          type: array
+          items:
+            type: object
+            properties:
+              day:
+                type: integer
+              weightKg:
+                type: number
+        recommendations:
+          type: array
+          items:
+            $ref: "#/components/schemas/AnalysisRecommendation"
+    NutritionTotals:
+      type: object
+      properties:
+        calories:
+          type: number
+        protein:
+          type: number
+        fat:
+          type: number
+        carbs:
+          type: number
+    AnalysisRecommendation:
+      type: object
+      properties:
+        priority:
+          type: string
+          enum: [high, medium, low]
+        text:
+          type: string
+        reason:
+          type: string

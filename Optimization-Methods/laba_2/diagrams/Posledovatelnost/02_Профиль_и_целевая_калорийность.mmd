@@ -1,0 +1,32 @@
+sequenceDiagram
+    autonumber
+    actor U as Пользователь
+    participant Web as Web-интерфейс
+    participant API as REST API
+    participant Profile as ProfileService
+    participant Calories as CalorieService
+    participant DB as PostgreSQL
+
+    U->>Web: Открыть страницу профиля
+    Web->>API: GET /profile
+    API->>Profile: Получить профиль пользователя
+    Profile->>DB: Прочитать параметры, активность и цель
+    DB-->>Profile: Профиль и текущий фитнес-ориентир
+    Profile-->>API: Данные профиля
+    API-->>Web: 200 OK
+    Web-->>U: Показать вес, рост, возраст, пол, активность и ориентир
+
+    U->>Web: Изменить параметры и нажать Сохранить
+    Web->>API: PUT /profile
+    API->>Profile: Обновить профиль
+    Profile->>Calories: Рассчитать BMR по полу, весу, росту и возрасту
+    Calories-->>Profile: BMR
+    Profile->>Calories: Рассчитать TDEE по активности
+    Calories-->>Profile: TDEE
+    Profile->>Calories: Рассчитать целевую норму по фитнес-ориентиру
+    Calories-->>Profile: Целевая калорийность
+    Profile->>DB: Сохранить профиль, BMR, TDEE и целевую норму
+    DB-->>Profile: Профиль сохранён
+    Profile-->>API: Обновлённый профиль
+    API-->>Web: 200 OK
+    Web-->>U: Показать обновлённую целевую калорийность

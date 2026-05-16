@@ -1,0 +1,44 @@
+sequenceDiagram
+    autonumber
+    actor U as Пользователь
+    participant Web as Web-интерфейс
+    participant API as REST API
+    participant History as RecipeHistoryService
+    participant Rating as RatingService
+    participant DB as PostgreSQL
+
+    U->>Web: Открыть историю рецептов
+    Web->>API: GET /recipes
+    API->>History: Получить архив рецептов
+    History->>DB: Прочитать рецепты, цели, ккал, БЖУ и оценки
+    DB-->>History: Список рецептов
+    History-->>API: Архив рецептов
+    API-->>Web: 200 OK
+    Web-->>U: Показать таблицу истории и фильтр целей
+
+    U->>Web: Выбрать фильтр цели
+    Web->>API: GET /recipes с фильтром goalId
+    API->>History: Отфильтровать архив
+    History->>DB: Прочитать рецепты выбранной цели
+    DB-->>History: Отфильтрованные рецепты
+    History-->>API: Список рецептов
+    API-->>Web: 200 OK
+    Web-->>U: Обновить архив рецептов
+
+    U->>Web: Нажать Открыть у рецепта
+    Web->>API: GET /recipes/{recipeId}
+    API->>History: Получить подробную карточку
+    History->>DB: Прочитать состав, массу ингредиентов, БЖУ и инструкцию
+    DB-->>History: Карточка рецепта
+    History-->>API: Данные рецепта
+    API-->>Web: 200 OK
+    Web-->>U: Показать состав выбранного рецепта
+
+    U->>Web: Выбрать оценку 1-5 и ввести комментарий
+    Web->>API: POST /recipes/{recipeId}/rating
+    API->>Rating: Сохранить оценку рецепта
+    Rating->>DB: Записать балл и комментарий
+    DB-->>Rating: Оценка сохранена
+    Rating-->>API: Обновлённая оценка
+    API-->>Web: 201 Created
+    Web-->>U: Показать сохранённую оценку

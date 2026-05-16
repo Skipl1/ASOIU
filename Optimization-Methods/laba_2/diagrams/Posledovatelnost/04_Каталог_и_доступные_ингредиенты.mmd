@@ -1,0 +1,40 @@
+sequenceDiagram
+    autonumber
+    actor U as Пользователь
+    participant Web as Web-интерфейс
+    participant API as REST API
+    participant Ingredients as IngredientService
+    participant DB as PostgreSQL
+
+    U->>Web: Открыть каталог ингредиентов
+    Web->>API: GET /ingredients
+    API->>Ingredients: Получить каталог продуктов
+    Ingredients->>DB: Прочитать ингредиенты, категории, БЖУ, ккал и аллергены
+    DB-->>Ingredients: Каталог ингредиентов
+    Ingredients-->>API: Список ингредиентов
+    API-->>Web: 200 OK
+    Web->>API: GET /ingredients/available
+    API->>Ingredients: Получить доступные ингредиенты пользователя
+    Ingredients->>DB: Прочитать выбранный набор
+    DB-->>Ingredients: Доступные ингредиенты
+    Ingredients-->>API: Выбранный набор
+    API-->>Web: 200 OK
+    Web-->>U: Показать таблицу каталога и отмеченные ингредиенты
+
+    U->>Web: Отфильтровать по категории или аллергенам
+    Web->>API: GET /ingredients с параметрами фильтра
+    API->>Ingredients: Применить фильтр каталога
+    Ingredients->>DB: Найти ингредиенты по категории и аллергенам
+    DB-->>Ingredients: Отфильтрованный список
+    Ingredients-->>API: Результат фильтрации
+    API-->>Web: 200 OK
+    Web-->>U: Обновить таблицу ингредиентов
+
+    U->>Web: Отметить доступные ингредиенты и нажать Сохранить набор
+    Web->>API: PUT /ingredients/available
+    API->>Ingredients: Обновить набор доступных ингредиентов
+    Ingredients->>DB: Сохранить выбранные ingredientId
+    DB-->>Ingredients: Набор сохранён
+    Ingredients-->>API: Актуальный набор
+    API-->>Web: 200 OK
+    Web-->>U: Показать сохранённый набор

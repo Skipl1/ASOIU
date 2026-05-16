@@ -1,0 +1,38 @@
+sequenceDiagram
+    autonumber
+    actor U as Пользователь
+    participant Web as Web-интерфейс
+    participant API as REST API
+    participant Restrict as RestrictionService
+    participant Match as MatchService
+    participant DB as PostgreSQL
+
+    U->>Web: Открыть страницу запретов
+    Web->>API: GET /restrictions
+    API->>Restrict: Получить текущие ограничения
+    Restrict->>DB: Прочитать запреты пользователя
+    DB-->>Restrict: Список запретов
+    Restrict-->>API: Запреты пользователя
+    API-->>Web: 200 OK
+    Web-->>U: Показать текущие ограничения
+
+    U->>Web: Ввести продукт или вещество
+    Web->>API: POST /restrictions
+    API->>Restrict: Нормализовать название
+    Restrict->>Match: Найти соответствие ингредиенту или аллергену
+    Match->>DB: Поиск по ингредиентам и аллергенам
+    DB-->>Match: Найденные варианты соответствия
+    Match-->>Restrict: Аллерген или ингредиент
+    Restrict->>DB: Сохранить ограничение пользователя
+    DB-->>Restrict: Ограничение сохранено
+    Restrict-->>API: Обновлённый список запретов
+    API-->>Web: 201 Created
+    Web-->>U: Показать запрет в списке
+
+    Web->>API: GET /ingredients/available
+    API->>Restrict: Проверить выбранный набор ингредиентов
+    Restrict->>DB: Получить ингредиенты, аллергены и запреты
+    DB-->>Restrict: Данные для проверки
+    Restrict-->>API: Допустимые, требующие замены и исключённые позиции
+    API-->>Web: Результаты проверки
+    Web-->>U: Показать таблицу проверки ингредиентов

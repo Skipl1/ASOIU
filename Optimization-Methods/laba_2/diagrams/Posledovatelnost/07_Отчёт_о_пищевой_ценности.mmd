@@ -1,0 +1,34 @@
+sequenceDiagram
+    autonumber
+    actor U as Пользователь
+    participant Web as Web-интерфейс
+    participant API as REST API
+    participant Reports as ReportService
+    participant DB as PostgreSQL
+    participant Export as ExportService
+
+    U->>Web: Открыть раздел отчётов
+    Web-->>U: Показать период, формат и цель
+    U->>Web: Указать начало, конец периода, формат и цель
+    U->>Web: Нажать Сформировать
+    Web->>API: GET /reports/nutrition
+    API->>Reports: Сформировать отчёт за период
+    Reports->>DB: Получить историю рецептов и целевые нормы
+    DB-->>Reports: Рецепты, ккал, БЖУ и цель
+    Reports->>Reports: Рассчитать среднюю ккал, БЖУ, баланс и отклонение
+    Reports->>DB: Сохранить сводный отчёт nutrition_reports
+    DB-->>Reports: reportId
+    Reports-->>API: Данные отчёта
+    API-->>Web: 200 OK
+    Web-->>U: Показать карточки, график по дням, макробаланс и таблицу
+
+    U->>Web: Выбрать PDF, XLSX или CSV
+    Web->>API: POST /reports/nutrition/export
+    API->>Reports: Подготовить данные экспорта
+    Reports->>DB: Получить сохранённый отчёт и показатели
+    DB-->>Reports: Данные отчёта
+    Reports->>Export: Сформировать файл выбранного формата
+    Export-->>Reports: downloadUrl
+    Reports-->>API: Ссылка на файл
+    API-->>Web: 200 OK
+    Web-->>U: Показать ссылку на файл отчёта

@@ -1,0 +1,45 @@
+C4Component
+  title C4 Component. Backend REST API АС ГРСН
+
+  Container(web, "Web-интерфейс", "React", "Клиент пользователя и администратора")
+  ContainerDb(db, "База данных", "PostgreSQL", "Основное хранилище данных")
+  System_Ext(ai_model, "Модель генерации", "Создаёт варианты рецептов")
+  System_Ext(file_storage, "Хранилище отчётов", "Хранит экспортированные файлы")
+
+  Container_Boundary(api, "REST API FastAPI") {
+    Component(router, "API Router", "FastAPI routes", "Маршрутизирует REST-запросы")
+    Component(auth, "AuthService", "FastAPI service", "Регистрация, вход, bcrypt и JWT")
+    Component(profile, "ProfileService", "FastAPI service", "Профиль, BMR, TDEE и цель")
+    Component(restrictions, "RestrictionService", "FastAPI service", "Запреты, аллергены и сопоставление")
+    Component(ingredients, "IngredientService", "FastAPI service", "Каталог и доступный набор")
+    Component(recipe, "RecipeGenerationService", "FastAPI service", "Генерация и проверка рецепта")
+    Component(history, "RecipeHistoryService", "FastAPI service", "История рецептов и оценка")
+    Component(reports, "ReportService", "FastAPI service", "Пищевые отчёты и экспорт")
+    Component(analysis, "AnalysisService", "FastAPI service", "Сравнение с целью и рекомендации")
+    Component(admin, "AdminService", "FastAPI service", "Администрирование и backup")
+  }
+
+  Rel(web, router, "Вызывает REST API", "JSON/HTTPS")
+  Rel(router, auth, "/auth")
+  Rel(router, profile, "/profile")
+  Rel(router, restrictions, "/restrictions")
+  Rel(router, ingredients, "/ingredients")
+  Rel(router, recipe, "/recipes/generate")
+  Rel(router, history, "/recipes")
+  Rel(router, reports, "/reports")
+  Rel(router, analysis, "/analysis")
+  Rel(router, admin, "/admin")
+
+  Rel(auth, db, "Пользователи и пароли", "SQL")
+  Rel(profile, db, "Профили и цели", "SQL")
+  Rel(restrictions, db, "Запреты и аллергены", "SQL")
+  Rel(ingredients, db, "Каталог ингредиентов", "SQL")
+  Rel(recipe, db, "Данные генерации", "SQL")
+  Rel(recipe, ai_model, "Контекст рецепта", "API")
+  Rel(history, db, "Рецепты и оценки", "SQL")
+  Rel(reports, db, "nutrition_reports", "SQL")
+  Rel(reports, file_storage, "PDF, XLSX, CSV")
+  Rel(analysis, db, "Профиль и история", "SQL")
+  Rel(admin, db, "Справочники и логи", "SQL")
+
+  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")

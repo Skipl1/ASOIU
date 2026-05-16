@@ -1,0 +1,25 @@
+sequenceDiagram
+    autonumber
+    actor U as Пользователь
+    participant Web as Web-интерфейс
+    participant API as REST API
+    participant Analysis as AnalysisService
+    participant DB as PostgreSQL
+
+    U->>Web: Открыть раздел анализа
+    Web-->>U: Показать период 14 дней и кнопку обновления
+    U->>Web: Нажать Обновить анализ
+    Web->>API: GET /analysis/nutrition
+    API->>Analysis: Получить анализ соответствия цели
+    Analysis->>DB: Прочитать профиль, цель и целевую калорийность
+    DB-->>Analysis: Целевые значения
+    Analysis->>DB: Прочитать историю рецептов за период
+    DB-->>Analysis: Фактические ккал и БЖУ рецептов
+    Analysis->>DB: Прочитать ограничения пользователя
+    DB-->>Analysis: Запрещённые продукты и аллергены
+    Analysis->>Analysis: Сравнить цель, факт и отклонение
+    Analysis->>Analysis: Рассчитать тренд веса за 14 дней
+    Analysis->>Analysis: Сформировать рекомендации по корректировке
+    Analysis-->>API: NutritionAnalysis
+    API-->>Web: 200 OK
+    Web-->>U: Показать исходные данные, сравнение, тренд веса и рекомендации

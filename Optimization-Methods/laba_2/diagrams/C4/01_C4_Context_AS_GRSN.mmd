@@ -1,0 +1,19 @@
+C4Context
+  title C4 Context. АС ГРСН
+
+  Person(user, "Пользователь", "Ведёт профиль, запреты, ингредиенты, рецепты и отчёты")
+  Person(admin, "Администратор", "Управляет пользователями, справочниками, логами и backup")
+
+  System_Boundary(system_boundary, "АС ГРСН") {
+    System(grsn, "АС ГРСН", "Генерация персонализированных рецептов спортивного питания")
+  }
+
+  System_Ext(ai_model, "Модель генерации", "Создаёт варианты рецептов")
+  System_Ext(file_storage, "Хранилище отчётов", "Хранит PDF, XLSX и CSV")
+
+  Rel(user, grsn, "Использует функции питания", "HTTPS")
+  Rel(admin, grsn, "Администрирует систему", "HTTPS")
+  Rel(grsn, ai_model, "Запрашивает рецепт", "API")
+  Rel(grsn, file_storage, "Экспортирует отчёты", "PDF/XLSX/CSV")
+
+  UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")

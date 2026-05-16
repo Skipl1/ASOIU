@@ -1,0 +1,34 @@
+sequenceDiagram
+    autonumber
+    actor U as Пользователь
+    participant Web as Web-интерфейс
+    participant API as REST API
+    participant Recipe as RecipeGenerationService
+    participant DB as PostgreSQL
+    participant Model as Модель генерации
+    participant Check as NutritionValidator
+
+    U->>Web: Открыть страницу генерации
+    Web->>API: GET /profile, /restrictions, /ingredients/available
+    API->>Recipe: Подготовить данные генерации
+    Recipe->>DB: Получить профиль, цель, запреты и доступные ингредиенты
+    DB-->>Recipe: Данные пользователя
+    Recipe-->>API: Данные для формы
+    API-->>Web: 200 OK
+    Web-->>U: Показать параметры генерации
+
+    U->>Web: Выбрать цель, число вариантов, долю дня, сложность и пожелания
+    U->>Web: Нажать Сгенерировать
+    Web->>API: POST /recipes/generate
+    API->>Recipe: Сформировать запрос на рецепт
+    Recipe->>DB: Получить актуальные ограничения и ингредиенты
+    DB-->>Recipe: Профиль, запреты, доступный набор
+    Recipe->>Model: Передать ограничения, цель и пожелания
+    Model-->>Recipe: Вариант рецепта, состав и инструкция
+    Recipe->>Check: Проверить БЖУ, ккал и запреты после генерации
+    Check-->>Recipe: Результат проверки
+    Recipe->>DB: Сохранить рецепт и параметры генерации
+    DB-->>Recipe: recipeId
+    Recipe-->>API: Сгенерированный рецепт
+    API-->>Web: 201 Created
+    Web-->>U: Показать рецепт, проверку результата и инструкцию приготовления

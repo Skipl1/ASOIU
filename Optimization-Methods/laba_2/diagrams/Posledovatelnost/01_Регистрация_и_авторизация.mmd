@@ -1,0 +1,42 @@
+sequenceDiagram
+    autonumber
+    actor U as Пользователь
+    participant Web as Web-интерфейс
+    participant API as REST API
+    participant Auth as AuthService
+    participant DB as PostgreSQL
+
+    U->>Web: Открыть форму входа или регистрации
+    Web-->>U: Показать поля e-mail и пароль
+
+    alt Регистрация нового пользователя
+        U->>Web: Ввести имя, e-mail, пароль и повтор пароля
+        Web->>API: POST /auth/register
+        API->>Auth: Проверить e-mail и пароль
+        Auth->>DB: Найти пользователя по e-mail
+        DB-->>Auth: Пользователь не найден
+        Auth->>Auth: Хешировать пароль bcrypt
+        Auth->>DB: Создать запись пользователя
+        DB-->>Auth: Пользователь создан
+        Auth-->>API: Регистрация выполнена
+        API-->>Web: 201 Created
+        Web-->>U: Перейти к форме входа
+    else Авторизация существующего пользователя
+        U->>Web: Ввести e-mail и пароль
+        Web->>API: POST /auth/login
+        API->>Auth: Проверить учётные данные
+        Auth->>DB: Получить пользователя по e-mail
+        DB-->>Auth: Данные пользователя и хеш пароля
+        Auth->>Auth: Сравнить пароль с bcrypt-хешем
+        Auth->>Auth: Выпустить JWT-токен
+        Auth-->>API: JWT и данные профиля
+        API-->>Web: 200 OK, accessToken
+        Web->>Web: Сохранить токен в клиенте
+        Web-->>U: Открыть личный кабинет
+    end
+
+    opt Ошибка e-mail или пароля
+        Auth-->>API: Ошибка авторизации или регистрации
+        API-->>Web: 400/401 с текстом ошибки
+        Web-->>U: Показать сообщение об ошибке
+    end

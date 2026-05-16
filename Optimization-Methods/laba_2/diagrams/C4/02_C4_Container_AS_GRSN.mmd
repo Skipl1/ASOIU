@@ -1,0 +1,28 @@
+C4Container
+  title C4 Container. АС ГРСН
+
+  Person(user, "Пользователь", "Работает с пользовательскими функциями")
+  Person(admin, "Администратор", "Управляет справочниками и backup")
+
+  System_Ext(ai_model, "Модель генерации", "Создаёт варианты рецептов")
+  System_Ext(file_storage, "Хранилище отчётов", "Хранит PDF, XLSX и CSV")
+
+  Container_Boundary(grsn_boundary, "АС ГРСН") {
+    Container(web, "Web-интерфейс", "React", "Пользовательские и административные страницы")
+    Container(api, "REST API", "FastAPI, OpenAPI, JWT", "Авторизация и бизнес-логика модулей")
+    ContainerDb(db, "База данных", "PostgreSQL", "Пользователи, профили, НСИ, рецепты, отчёты и логи")
+    Container(exporter, "Сервис экспорта", "Backend component", "Формирует PDF, XLSX и CSV")
+    Container(backup, "Сервис backup", "Backend component", "Создаёт резервные копии")
+  }
+
+  Rel(user, web, "Использует", "HTTPS")
+  Rel(admin, web, "Администрирует", "HTTPS")
+  Rel(web, api, "Вызывает", "JSON/HTTPS")
+  Rel(api, db, "Читает и пишет", "SQL")
+  Rel(api, ai_model, "Генерирует рецепт", "API")
+  Rel(api, exporter, "Передаёт отчёт")
+  Rel(exporter, file_storage, "Сохраняет файл")
+  Rel(api, backup, "Запускает backup")
+  Rel(backup, db, "Считывает данные", "SQL")
+
+  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")

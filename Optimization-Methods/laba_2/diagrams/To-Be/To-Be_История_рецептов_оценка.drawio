@@ -1,0 +1,193 @@
+<mxfile host="65bd71144e">
+    <diagram id="fwPI-8by9npRiO6v4O2V" name="Page-1">
+        <mxGraphModel dx="872" dy="649" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="740" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="To-Be. История рецептов, оценка и отчётность" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="10" width="780" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="pool" value="АС ГРСН" style="swimlane;html=1;horizontal=1;startSize=22;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="50" width="1740" height="620" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_user" value="Пользователь" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="72" width="1740" height="115" as="geometry"/>
+                </mxCell>
+                <mxCell id="enter_rating" value="Выставить балл и комментарий" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_user" vertex="1">
+                    <mxGeometry x="1040" y="28.5" width="130" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="click_save_rating" value="Нажать «Сохранить оценку»" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_user" vertex="1">
+                    <mxGeometry x="1210" y="29" width="135" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="e15" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="lane_user" source="enter_rating" target="click_save_rating" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_web" value="Web-интерфейс" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="187" width="1740" height="135" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_archive" value="Показать архив, метрики и фильтры" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_web" vertex="1">
+                    <mxGeometry x="500" y="34" width="145" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="send_rating" value="Передать оценку рецепта" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_web" vertex="1">
+                    <mxGeometry x="1210" y="34" width="135" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_api" value="REST API" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="322" width="1740" height="155" as="geometry"/>
+                </mxCell>
+                <mxCell id="validate_rating" value="Принять оценку рецепта" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_api" vertex="1">
+                    <mxGeometry x="1205" y="33" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_db" value="База данных" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="477" width="1740" height="193" as="geometry"/>
+                </mxCell>
+                <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="112" width="36" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="start_label" value="Открыт раздел истории" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="150" width="82" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="open_history" value="Открыть историю рецептов" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="125" y="101" width="130" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="set_filters" value="Задать поиск и цель рецепта" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="101" width="130" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="open_recipe" value="Открыть выбранный рецепт" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="101" width="130" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_success" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="1690" y="109" width="36" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_success_label" value="История обновлена" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="1664" y="150" width="92" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="request_history" value="Запросить архив рецептов и метрики" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="225" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="request_recipe" value="Запросить карточку рецепта" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="225" width="130" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_recipe" value="Показать состав рецепта и форму оценки" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1030" y="215" width="145" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_updated" value="Обновить оценку, средний балл и метрики" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1520" y="275" width="145" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="get_history" value="Получить историю рецептов пользователя" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="355" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="calc_report" value="Сформировать отчётные метрики истории" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="355" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="get_recipe" value="Получить подробную карточку рецепта" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="355" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="read_history" value="Прочитать рецепты, оценки и статусы нарушений" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="520" width="165" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="read_recipe" value="Прочитать состав, БЖУ, ккал и инструкцию" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="520" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="save_rating" value="Сохранить оценку и комментарий" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1340" y="520" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="recalc_metrics" value="Пересчитать среднюю оценку и отчётные показатели" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1520" y="590" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="start" target="open_history" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="open_history" target="request_history" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="278" y="130"/>
+                            <mxPoint x="278" y="254"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e3" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="request_history" target="get_history" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="get_history" target="read_history" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" parent="1" source="read_history" target="calc_report" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="593" y="549"/>
+                            <mxPoint x="593" y="413"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e6" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="calc_report" target="show_archive" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="show_archive" target="set_filters" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="set_filters" target="open_recipe" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="open_recipe" target="request_recipe" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="request_recipe" target="get_recipe" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e12" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="get_recipe" target="read_recipe" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e13" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" parent="1" source="read_recipe" target="show_recipe" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1103" y="549"/>
+                            <mxPoint x="1103" y="269"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e14" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="show_recipe" target="enter_rating" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1103" y="180"/>
+                            <mxPoint x="1125" y="180"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e16" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="click_save_rating" target="send_rating" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e17" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="send_rating" target="validate_rating" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e18" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="validate_rating" target="save_rating" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e23" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="save_rating" target="recalc_metrics" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1500" y="549"/>
+                            <mxPoint x="1500" y="619"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e25" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" parent="1" source="show_updated" target="end_success" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1708" y="295"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e24" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.462;exitY=-0.014;entryX=0.549;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="recalc_metrics" target="show_updated" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1592" y="350"/>
+                            <mxPoint x="1600" y="350"/>
+                        </Array>
+                        <mxPoint x="1592.33" y="645" as="sourcePoint"/>
+                        <mxPoint x="1592.55" y="370" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

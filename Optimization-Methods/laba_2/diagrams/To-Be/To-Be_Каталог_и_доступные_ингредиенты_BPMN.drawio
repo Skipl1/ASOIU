@@ -1,0 +1,232 @@
+<mxfile host="65bd71144e">
+    <diagram id="3qgWcvy9lZnccg1igm56" name="Page-1">
+        <mxGraphModel dx="1480" dy="916" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="680" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="To-Be. Работа с каталогом и доступными ингредиентами" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="10" width="820" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="pool" value="АС ГРСН" style="swimlane;html=1;horizontal=1;startSize=22;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="50" width="1640" height="585" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_user" value="Пользователь" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="72" width="1640" height="115" as="geometry"/>
+                </mxCell>
+                <mxCell id="select_items" value="Выбрать доступные ингредиенты" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_user" vertex="1">
+                    <mxGeometry x="810" y="25" width="140" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="click_save" value="Нажать «Сохранить набор»" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_user" vertex="1">
+                    <mxGeometry x="1100" y="25" width="135" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="e13" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitDx=0;exitDy=0;" parent="lane_user" source="select_items" target="click_save" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1120.0000000000002" y="53.999999999999886" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="end_error_label" value="Набор не сохранён" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="lane_user" vertex="1">
+                    <mxGeometry x="1470" y="8" width="88" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_web" value="Web-интерфейс" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="187" width="1640" height="135" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_catalog" value="Показать каталог с БЖУ, ккал и аллергенами" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_web" vertex="1">
+                    <mxGeometry x="460" y="23" width="145" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="request_catalog" value="Запросить каталог, категории и ограничения" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_web" vertex="1">
+                    <mxGeometry x="260" y="23" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_filtered" value="Показать отфильтрованный каталог и метрики" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_web" vertex="1">
+                    <mxGeometry x="820" y="23" width="145" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="send_selection" value="&lt;p data-pm-slice=&quot;1 1 []&quot;&gt;Передать выбранный набор ингредиентов&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_web" vertex="1">
+                    <mxGeometry x="1112.5" y="23" width="140" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_validation_error" value="&lt;p data-pm-slice=&quot;1 1 []&quot;&gt;Показать ошибку запрета&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_web" vertex="1">
+                    <mxGeometry x="1390" y="33" width="140" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_api" value="REST API" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="322" width="1640" height="155" as="geometry"/>
+                </mxCell>
+                <mxCell id="load_catalog" value="Получить каталог с категориями, аллергенами и запретами" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_api" vertex="1">
+                    <mxGeometry x="270" y="34" width="160" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_db" value="База данных" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="477" width="1640" height="158" as="geometry"/>
+                </mxCell>
+                <mxCell id="db_catalog" value="Прочитать ингредиенты, категории, аллергены и ограничения" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_db" vertex="1">
+                    <mxGeometry x="270" y="43" width="170" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="111" width="36" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="start_label" value="Открыт раздел ингредиентов" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="28" y="149" width="86" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="open_section" value="Открыть каталог ингредиентов" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="125" y="100" width="135" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="set_filters" value="Задать поиск, категорию и фильтр аллергенов" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="565" y="100" width="140" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg_error" value="Сообщение об ошибке" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=catching;symbol=message;fontSize=11;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="1440" y="105" width="42" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_error" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="1515" y="108" width="36" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_success" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="1585" y="108" width="36" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_success_label" value="Набор сохранён" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="1560" y="149" width="88" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="send_filters" value="Передать параметры фильтрации" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="220" width="140" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_saved" value="Показать сохранённый набор и метрики" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1440" y="285" width="140" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="filter_catalog" value="Отфильтровать по категории, поиску и аллергенам" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="355" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="validate_set" value="&lt;p data-pm-slice=&quot;1 1 []&quot;&gt;Проверить выбранные ингредиенты на запреты&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1125" y="355" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="gw_valid" value="X" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontSize=26;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1325" y="356" width="54" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="gw_valid_label" value="Набор корректен?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="1302" y="412" width="100" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="db_filter" value="Получить подходящие ингредиенты" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="520" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="db_save_set" value="Сохранить набор доступных ингредиентов" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1320" y="520" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="start" target="open_section" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="open_section" target="request_catalog" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="270" y="129"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e3" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="request_catalog" target="load_catalog" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="load_catalog" target="db_catalog" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="db_catalog" target="show_catalog" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="470" y="549"/>
+                            <mxPoint x="470" y="238"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e6" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.75;exitY=0;entryX=0.5;entryY=1;exitDx=0;exitDy=0;" parent="1" source="show_catalog" target="set_filters" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="599" y="180"/>
+                            <mxPoint x="635" y="180"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e7" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;entryX=0.5;entryY=0;" parent="1" target="send_filters" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="670" y="158" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="670" y="158"/>
+                            <mxPoint x="670" y="189"/>
+                            <mxPoint x="720" y="189"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e8" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="send_filters" target="filter_catalog" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="filter_catalog" target="db_filter" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="db_filter" target="show_filtered" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="820" y="549"/>
+                            <mxPoint x="820" y="238"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e11" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="1" source="show_filtered" target="select_items" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="913" y="180"/>
+                            <mxPoint x="935" y="180"/>
+                        </Array>
+                        <mxPoint x="960" y="158" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e14" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="click_save" target="send_selection" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1188" y="180"/>
+                            <mxPoint x="1203" y="180"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e15" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="send_selection" target="validate_set" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1203" y="278"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e16" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="validate_set" target="gw_valid" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e17" value="Да" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=9;" parent="1" source="gw_valid" target="db_save_set" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1352" y="445"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e18" value="Нет" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.3;entryX=0;entryY=0.5;fontSize=9;" parent="1" source="gw_valid" target="show_validation_error" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1371" y="372"/>
+                            <mxPoint x="1400" y="372"/>
+                            <mxPoint x="1400" y="249"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e19" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="show_validation_error" target="msg_error" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e20" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="msg_error" target="end_error" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e21" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" parent="1" source="db_save_set" target="show_saved" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1590" y="549"/>
+                            <mxPoint x="1590" y="301"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e22" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" parent="1" source="show_saved" target="end_success" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1580" y="290"/>
+                            <mxPoint x="1603" y="290"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

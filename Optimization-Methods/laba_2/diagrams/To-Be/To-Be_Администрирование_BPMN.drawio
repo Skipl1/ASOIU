@@ -1,0 +1,206 @@
+<mxfile host="65bd71144e">
+    <diagram id="admin-tobe" name="Page-1">
+        <mxGraphModel dx="1046" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="740" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="To-Be. Администрирование" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="10" width="650" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="pool" value="АС ГРСН" style="swimlane;html=1;horizontal=1;startSize=22;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="50" width="1740" height="620" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_admin" value="Администратор" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="72" width="1740" height="115" as="geometry"/>
+                </mxCell>
+                <mxCell id="msg_error" value="Сообщение об ошибке" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=catching;symbol=message;fontSize=11;rounded=0;" parent="lane_admin" vertex="1">
+                    <mxGeometry x="1476.5" y="34" width="42" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_web" value="Web-интерфейс" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="187" width="1740" height="135" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_api" value="REST API" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="322" width="1740" height="155" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_db" value="База данных / резервные копии" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="477" width="1740" height="193" as="geometry"/>
+                </mxCell>
+                <mxCell id="read_metrics" value="Проверить целостность справочников и ошибки данных" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="lane_db" vertex="1">
+                    <mxGeometry x="590" y="67.5" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="112" width="36" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="start_label" value="Открыт раздел администрирования" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="24" y="150" width="92" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="open_admin" value="Открыть модуль администрирования" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="125" y="101" width="140" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="choose_operation" value="Выбрать вкладку и действие" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="690" y="101" width="135" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="edit_data" value="Изменить пользователя, ингредиент или аллерген" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="101" width="150" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="backup_action" value="Создать или восстановить резервную копию" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1045" y="101" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_error" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="1588" y="109" width="36" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_error_label" value="Операция не выполнена" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="1555" y="150" width="104" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_success" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="1690" y="109" width="36" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_success_label" value="Администрирование выполнено" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="1652" y="150" width="112" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="request_dashboard" value="Запросить административную панель" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="225" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_dashboard" value="Показать вкладки, метрики и таблицу пользователей" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="215" width="150" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="send_command" value="Передать команду администрирования" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1045" y="225" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_error" value="Показать ошибку доступа" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1445" y="215" width="145" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_updated" value="Обновить таблицы, метрики и контроль системы" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1445" y="275" width="145" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="check_role" value="Проверить роль администратора" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="355" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="gw_admin" value="X" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;fontSize=26;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="357" width="54" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="gw_admin_label" value="Есть права администратора?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="452" y="413" width="110" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="prepare_dashboard" value="Сформировать метрики, вкладки и контроль данных" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="355" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="validate_command" value="Обработать выбранное действие" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1045" y="355" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="write_log" value="Записать действие администратора в журнал" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1445" y="355" width="145" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="read_admin_data" value="Прочитать пользователей, справочники, логи и сведения о копиях" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="520" width="180" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="apply_changes" value="Обновить пользователя / ингредиент / аллерген или запустить backup" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1045" y="520" width="170" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="save_admin_log" value="Сохранить журнал операции и статус выполнения" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1445" y="590" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="start" target="open_admin" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="open_admin" target="request_dashboard" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="280" y="130"/>
+                            <mxPoint x="280" y="254"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e3" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="request_dashboard" target="check_role" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="check_role" target="gw_admin" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" value="Нет" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=0;entryX=0;entryY=0.75;fontSize=9;entryDx=0;entryDy=0;" parent="1" source="gw_admin" target="show_error" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="507" y="330"/>
+                            <mxPoint x="1430" y="330"/>
+                            <mxPoint x="1430" y="256"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e6" value="Да" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontSize=9;" parent="1" source="gw_admin" target="prepare_dashboard" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="prepare_dashboard" target="read_metrics" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0;exitY=0.5;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="read_metrics" target="read_admin_data" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" parent="1" source="read_admin_data" target="show_dashboard" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="595" y="549"/>
+                            <mxPoint x="595" y="273"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e10" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="show_dashboard" target="choose_operation" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="758" y="215"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e11" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="choose_operation" target="edit_data" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e12" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="edit_data" target="backup_action" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e13" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="backup_action" target="send_command" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e14" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="send_command" target="validate_command" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e15" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="validate_command" target="apply_changes" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e18" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="apply_changes" target="write_log" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1360" y="549"/>
+                            <mxPoint x="1360" y="384"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e19" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="write_log" target="save_admin_log" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e20" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" parent="1" source="save_admin_log" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1625" y="605"/>
+                            <mxPoint x="1625" y="300"/>
+                        </Array>
+                        <mxPoint x="1520" y="590" as="sourcePoint"/>
+                        <mxPoint x="1590" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e21" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" parent="1" source="show_updated" target="end_success" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1590" y="280"/>
+                            <mxPoint x="1708" y="280"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e22" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="show_error" target="msg_error" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e23" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="msg_error" target="end_error" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

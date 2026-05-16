@@ -1,0 +1,210 @@
+<mxfile host="65bd71144e">
+    <diagram id="Xy32vPKZygOYHZjZgrgF" name="Страница-1">
+        <mxGraphModel dx="867" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="600" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="Концептуальная модель данных АС ГРСН" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#111827;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="10" width="760" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend" value="Синий - пользовательский контур   Жёлтый - генерация   Зелёный - ингредиенты   Красный - запреты/аллергены   Фиолетовый - отчёты/оценки" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#4b5563;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="38" width="760" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_profile" value="Профиль пользователя" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="90" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user" value="Пользователь" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="230" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_report" value="Отчёт о пищевой ценности" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="410" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_rating" value="Оценка рецепта" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="180" y="410" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_goal" value="Фитнес-ориентир" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="90" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_request" value="Запрос генерации" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="230" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe" value="Рецепт" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="180" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_available" value="Доступный ингредиент" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="335" y="422" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_restriction" value="Запрет пользователя" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="335" y="500" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_recipe_ingredient" value="Состав рецепта" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="120" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_category" value="Категория ингредиента" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="670" y="90" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient" value="Ингредиент" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="670" y="230" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ingredient_allergen" value="Аллерген ингредиента" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="780" y="340" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_allergen" value="Аллерген" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#000000;fontSize=10;fontStyle=1;align=center;verticalAlign=middle;spacing=4;strokeWidth=1.3;" parent="1" vertex="1">
+                    <mxGeometry x="670" y="500" width="120" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_profile_user" value="1:1 имеет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_user" target="e_profile" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="100" y="175"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_goal_profile" value="1:N используется" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_goal" target="e_profile" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_user_report" value="1:N получает" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_user" target="e_report" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="100" y="330"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_user_rating" value="1:N оставляет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_user" target="e_rating" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="110" y="320"/>
+                            <mxPoint x="170" y="320"/>
+                            <mxPoint x="170" y="400"/>
+                            <mxPoint x="240" y="400"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_recipe_rating" value="1:N оценивается" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_recipe" target="e_rating" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="450" y="330"/>
+                            <mxPoint x="300" y="330"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_user_request" value="1:N создаёт" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_user" target="e_request" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="130" y="220"/>
+                            <mxPoint x="300" y="220"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_goal_request" value="1:N задаёт цель" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_goal" target="e_request" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="380" y="170"/>
+                            <mxPoint x="330" y="170"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_request_recipe" value="1:0..3 формирует" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_request" target="e_recipe" edge="1">
+                    <mxGeometry x="0.648" y="-10" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_user_recipe" value="1:N получает" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_user" target="e_recipe" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="200" y="251"/>
+                            <mxPoint x="200" y="300"/>
+                            <mxPoint x="410" y="300"/>
+                            <mxPoint x="410" y="201"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_goal_recipe" value="1:N соответствует" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_goal" target="e_recipe" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="450" y="110"/>
+                            <mxPoint x="450" y="205"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_recipe_composition" value="1:N состоит из" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_recipe" target="e_recipe_ingredient" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="590" y="200"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_ingredient_composition" value="1:N используется" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_ingredient" target="e_recipe_ingredient" edge="1">
+                    <mxGeometry x="0.0216" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                        <Array as="points">
+                            <mxPoint x="630" y="251"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_category_ingredient" value="1:N группирует" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_category" target="e_ingredient" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="730" y="170"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_ingredient_allergen" value="1:N содержит" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="e_ingredient" target="e_ingredient_allergen" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="840" y="251"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_allergen_bridge" value="1:N относится к" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_allergen" target="e_ingredient_allergen" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="730" y="462"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_user_available" value="1:N задаёт" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_user" target="e_available" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="180" y="270"/>
+                            <mxPoint x="180" y="340"/>
+                            <mxPoint x="450" y="340"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_ingredient_available" value="1:N доступен" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_ingredient" target="e_available" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="710" y="340"/>
+                            <mxPoint x="450" y="340"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_user_restriction" value="1:N задаёт" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_user" target="e_restriction" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="20" y="252"/>
+                            <mxPoint x="20" y="522"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_ingredient_restriction" value="1:N может быть запрещён" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_ingredient" target="e_restriction" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="660" y="251"/>
+                            <mxPoint x="660" y="480"/>
+                            <mxPoint x="450" y="480"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_allergen_restriction" value="1:N может быть запрещён" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.3;strokeColor=#666666;fontSize=9;fontColor=#111827;labelBackgroundColor=#ffffff;" parent="1" source="e_allergen" target="e_restriction" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="560" y="521"/>
+                            <mxPoint x="560" y="521"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

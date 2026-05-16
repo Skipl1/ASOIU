@@ -1,0 +1,1741 @@
+{
+  "tables": [
+    {
+      "id": "tbl_users",
+      "name": "users",
+      "x": 620,
+      "y": 260,
+      "locked": false,
+      "fields": [
+        {
+          "name": "user_id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_users_user_id"
+        },
+        {
+          "name": "email",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": true,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_users_email",
+          "size": "255"
+        },
+        {
+          "name": "password_hash",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_users_password_hash"
+        },
+        {
+          "name": "role",
+          "type": "VARCHAR",
+          "default": "'user'",
+          "check": "role IN ('user', 'admin')",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_users_role",
+          "size": "30"
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR",
+          "default": "'active'",
+          "check": "status IN ('active', 'blocked')",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_users_status",
+          "size": "30"
+        },
+        {
+          "name": "registered_at",
+          "type": "TIMESTAMP",
+          "default": "now()",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_users_registered_at"
+        }
+      ],
+      "comment": "Учётные записи пользователей системы.",
+      "indices": [
+        {
+          "id": "idx_users_email",
+          "name": "idx_users_email",
+          "unique": true,
+          "fields": [
+            "email"
+          ]
+        }
+      ],
+      "color": "#dae8fc"
+    },
+    {
+      "id": "tbl_user_profiles",
+      "name": "user_profiles",
+      "x": 80,
+      "y": 60,
+      "locked": false,
+      "fields": [
+        {
+          "name": "profile_id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_profiles_profile_id"
+        },
+        {
+          "name": "user_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": true,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_profiles_user_id"
+        },
+        {
+          "name": "fitness_goal_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_profiles_fitness_goal_id"
+        },
+        {
+          "name": "weight_kg",
+          "type": "NUMERIC",
+          "default": "",
+          "check": "weight_kg > 0",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_profiles_weight_kg",
+          "size": "5,2"
+        },
+        {
+          "name": "height_cm",
+          "type": "NUMERIC",
+          "default": "",
+          "check": "height_cm > 0",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_profiles_height_cm",
+          "size": "5,2"
+        },
+        {
+          "name": "age",
+          "type": "INTEGER",
+          "default": "",
+          "check": "age > 0",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_profiles_age"
+        },
+        {
+          "name": "sex",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_profiles_sex",
+          "size": "20"
+        },
+        {
+          "name": "activity_level",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_profiles_activity_level",
+          "size": "30"
+        }
+      ],
+      "comment": "Антропометрия, активность и выбранная цель пользователя.",
+      "indices": [
+        {
+          "id": "idx_user_profiles_goal",
+          "name": "idx_user_profiles_goal",
+          "unique": false,
+          "fields": [
+            "fitness_goal_id"
+          ]
+        }
+      ],
+      "color": "#dae8fc"
+    },
+    {
+      "id": "tbl_user_restrictions",
+      "name": "user_restrictions",
+      "x": 1218.6494704727172,
+      "y": 1199.0829587841033,
+      "locked": false,
+      "fields": [
+        {
+          "name": "restriction_id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_restrictions_restriction_id"
+        },
+        {
+          "name": "user_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_restrictions_user_id"
+        },
+        {
+          "name": "ingredient_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_restrictions_ingredient_id"
+        },
+        {
+          "name": "allergen_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_restrictions_allergen_id"
+        },
+        {
+          "name": "original_name",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_user_restrictions_original_name",
+          "size": "255"
+        }
+      ],
+      "comment": "Запрещённые продукты, аллергены и пользовательские ограничения.",
+      "indices": [
+        {
+          "id": "idx_restrictions_user",
+          "name": "idx_restrictions_user",
+          "unique": false,
+          "fields": [
+            "user_id"
+          ]
+        },
+        {
+          "id": "idx_restrictions_ingredient",
+          "name": "idx_restrictions_ingredient",
+          "unique": false,
+          "fields": [
+            "ingredient_id"
+          ]
+        },
+        {
+          "id": "idx_restrictions_allergen",
+          "name": "idx_restrictions_allergen",
+          "unique": false,
+          "fields": [
+            "allergen_id"
+          ]
+        }
+      ],
+      "color": "#f8cecc"
+    },
+    {
+      "id": "tbl_available_ingredients",
+      "name": "available_ingredients",
+      "x": 1319.9417074317937,
+      "y": 1008.737057702255,
+      "locked": false,
+      "fields": [
+        {
+          "name": "user_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_available_ingredients_user_id"
+        },
+        {
+          "name": "ingredient_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_available_ingredients_ingredient_id"
+        },
+        {
+          "name": "available_amount_g",
+          "type": "NUMERIC",
+          "default": "",
+          "check": "available_amount_g >= 0",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_available_ingredients_available_amount_g",
+          "size": "8,2"
+        },
+        {
+          "name": "updated_at",
+          "type": "TIMESTAMP",
+          "default": "now()",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_available_ingredients_updated_at"
+        }
+      ],
+      "comment": "Ингредиенты, доступные пользователю для генерации рецептов.",
+      "indices": [
+        {
+          "id": "idx_available_ingredient",
+          "name": "idx_available_ingredient",
+          "unique": false,
+          "fields": [
+            "ingredient_id"
+          ]
+        }
+      ],
+      "color": "#dae8fc"
+    },
+    {
+      "id": "tbl_nutrition_reports",
+      "name": "nutrition_reports",
+      "x": 80,
+      "y": 440,
+      "locked": false,
+      "fields": [
+        {
+          "name": "report_id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_nutrition_reports_report_id"
+        },
+        {
+          "name": "user_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_nutrition_reports_user_id"
+        },
+        {
+          "name": "period_start",
+          "type": "DATE",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_nutrition_reports_period_start"
+        },
+        {
+          "name": "period_end",
+          "type": "DATE",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_nutrition_reports_period_end"
+        },
+        {
+          "name": "export_format",
+          "type": "VARCHAR",
+          "default": "'pdf'",
+          "check": "export_format IN ('pdf', 'csv')",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_nutrition_reports_export_format",
+          "size": "20"
+        },
+        {
+          "name": "total_calories",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_nutrition_reports_total_calories",
+          "size": "10,2"
+        },
+        {
+          "name": "total_protein_g",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_nutrition_reports_total_protein_g",
+          "size": "10,2"
+        },
+        {
+          "name": "total_fat_g",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_nutrition_reports_total_fat_g",
+          "size": "10,2"
+        },
+        {
+          "name": "total_carb_g",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_nutrition_reports_total_carb_g",
+          "size": "10,2"
+        },
+        {
+          "name": "formed_at",
+          "type": "TIMESTAMP",
+          "default": "now()",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_nutrition_reports_formed_at"
+        }
+      ],
+      "comment": "Сводный отчёт по пищевой ценности за период.",
+      "indices": [
+        {
+          "id": "idx_reports_user_period",
+          "name": "idx_reports_user_period",
+          "unique": false,
+          "fields": [
+            "user_id",
+            "period_start",
+            "period_end"
+          ]
+        }
+      ],
+      "color": "#e1d5e7"
+    },
+    {
+      "id": "tbl_fitness_goals",
+      "name": "fitness_goals",
+      "x": 1220,
+      "y": 60,
+      "locked": false,
+      "fields": [
+        {
+          "name": "fitness_goal_id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_fitness_goals_fitness_goal_id"
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": true,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_fitness_goals_name",
+          "size": "80"
+        },
+        {
+          "name": "calorie_correction",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_fitness_goals_calorie_correction",
+          "size": "6,2"
+        },
+        {
+          "name": "description",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_fitness_goals_description"
+        }
+      ],
+      "comment": "Справочник фитнес-ориентиров и правил коррекции рациона.",
+      "indices": [],
+      "color": "#fff2cc"
+    },
+    {
+      "id": "tbl_generation_requests",
+      "name": "generation_requests",
+      "x": 1220,
+      "y": 360,
+      "locked": false,
+      "fields": [
+        {
+          "name": "generation_request_id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_generation_requests_generation_request_id"
+        },
+        {
+          "name": "user_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_generation_requests_user_id"
+        },
+        {
+          "name": "fitness_goal_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_generation_requests_fitness_goal_id"
+        },
+        {
+          "name": "variant_count",
+          "type": "INTEGER",
+          "default": "1",
+          "check": "variant_count BETWEEN 1 AND 3",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_generation_requests_variant_count"
+        },
+        {
+          "name": "daily_norm_share",
+          "type": "NUMERIC",
+          "default": "",
+          "check": "daily_norm_share > 0",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_generation_requests_daily_norm_share",
+          "size": "4,2"
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR",
+          "default": "'created'",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_generation_requests_status",
+          "size": "30"
+        },
+        {
+          "name": "rejection_reason",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_generation_requests_rejection_reason"
+        },
+        {
+          "name": "recommended_ingredients",
+          "type": "JSONB",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_generation_requests_recommended_ingredients"
+        },
+        {
+          "name": "requested_at",
+          "type": "TIMESTAMP",
+          "default": "now()",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_generation_requests_requested_at"
+        }
+      ],
+      "comment": "Запрос пользователя на генерацию рецептов.",
+      "indices": [
+        {
+          "id": "idx_requests_user_date",
+          "name": "idx_requests_user_date",
+          "unique": false,
+          "fields": [
+            "user_id",
+            "requested_at"
+          ]
+        },
+        {
+          "id": "idx_requests_goal",
+          "name": "idx_requests_goal",
+          "unique": false,
+          "fields": [
+            "fitness_goal_id"
+          ]
+        }
+      ],
+      "color": "#fff2cc"
+    },
+    {
+      "id": "tbl_recipes",
+      "name": "recipes",
+      "x": 758.190912770462,
+      "y": 766.2359457431793,
+      "locked": false,
+      "fields": [
+        {
+          "name": "recipe_id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_recipe_id"
+        },
+        {
+          "name": "generation_request_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_generation_request_id"
+        },
+        {
+          "name": "user_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_user_id"
+        },
+        {
+          "name": "fitness_goal_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_fitness_goal_id"
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_name",
+          "size": "150"
+        },
+        {
+          "name": "generation_status",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_generation_status",
+          "size": "30"
+        },
+        {
+          "name": "matches_restrictions",
+          "type": "BOOLEAN",
+          "default": "true",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_matches_restrictions"
+        },
+        {
+          "name": "mismatch_reasons",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_mismatch_reasons"
+        },
+        {
+          "name": "protein_total_g",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_protein_total_g",
+          "size": "8,2"
+        },
+        {
+          "name": "fat_total_g",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_fat_total_g",
+          "size": "8,2"
+        },
+        {
+          "name": "carb_total_g",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_carb_total_g",
+          "size": "8,2"
+        },
+        {
+          "name": "calories_kcal",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_calories_kcal",
+          "size": "8,2"
+        },
+        {
+          "name": "servings",
+          "type": "INTEGER",
+          "default": "1",
+          "check": "servings > 0",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_servings"
+        },
+        {
+          "name": "cooking_instruction",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_cooking_instruction"
+        },
+        {
+          "name": "created_at",
+          "type": "TIMESTAMP",
+          "default": "now()",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipes_created_at"
+        }
+      ],
+      "comment": "Сгенерированный рецепт и рассчитанная пищевая ценность.",
+      "indices": [
+        {
+          "id": "idx_recipes_user_date",
+          "name": "idx_recipes_user_date",
+          "unique": false,
+          "fields": [
+            "user_id",
+            "created_at"
+          ]
+        },
+        {
+          "id": "idx_recipes_request",
+          "name": "idx_recipes_request",
+          "unique": false,
+          "fields": [
+            "generation_request_id"
+          ]
+        },
+        {
+          "id": "idx_recipes_goal",
+          "name": "idx_recipes_goal",
+          "unique": false,
+          "fields": [
+            "fitness_goal_id"
+          ]
+        }
+      ],
+      "color": "#fff2cc"
+    },
+    {
+      "id": "tbl_recipe_ratings",
+      "name": "recipe_ratings",
+      "x": 421.46726304092397,
+      "y": 782.1592877704619,
+      "locked": false,
+      "fields": [
+        {
+          "name": "rating_id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipe_ratings_rating_id"
+        },
+        {
+          "name": "user_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipe_ratings_user_id"
+        },
+        {
+          "name": "recipe_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipe_ratings_recipe_id"
+        },
+        {
+          "name": "score",
+          "type": "INTEGER",
+          "default": "",
+          "check": "score BETWEEN 1 AND 5",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipe_ratings_score"
+        },
+        {
+          "name": "comment",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipe_ratings_comment"
+        },
+        {
+          "name": "rated_at",
+          "type": "TIMESTAMP",
+          "default": "now()",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipe_ratings_rated_at"
+        }
+      ],
+      "comment": "Оценки и отзывы пользователей о рецептах.",
+      "indices": [
+        {
+          "id": "uq_recipe_ratings_user_recipe",
+          "name": "uq_recipe_ratings_user_recipe",
+          "unique": true,
+          "fields": [
+            "user_id",
+            "recipe_id"
+          ]
+        },
+        {
+          "id": "idx_recipe_ratings_recipe",
+          "name": "idx_recipe_ratings_recipe",
+          "unique": false,
+          "fields": [
+            "recipe_id"
+          ]
+        }
+      ],
+      "color": "#e1d5e7"
+    },
+    {
+      "id": "tbl_ingredient_categories",
+      "name": "ingredient_categories",
+      "x": 1840,
+      "y": 60,
+      "locked": false,
+      "fields": [
+        {
+          "name": "category_id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredient_categories_category_id"
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": true,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredient_categories_name",
+          "size": "100"
+        },
+        {
+          "name": "description",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredient_categories_description"
+        }
+      ],
+      "comment": "Справочник категорий продуктов.",
+      "indices": [],
+      "color": "#d5e8d4"
+    },
+    {
+      "id": "tbl_ingredients",
+      "name": "ingredients",
+      "x": 1840,
+      "y": 360,
+      "locked": false,
+      "fields": [
+        {
+          "name": "ingredient_id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredients_ingredient_id"
+        },
+        {
+          "name": "category_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredients_category_id"
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": true,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredients_name",
+          "size": "150"
+        },
+        {
+          "name": "protein_per_100g",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredients_protein_per_100g",
+          "size": "8,2"
+        },
+        {
+          "name": "fat_per_100g",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredients_fat_per_100g",
+          "size": "8,2"
+        },
+        {
+          "name": "carb_per_100g",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredients_carb_per_100g",
+          "size": "8,2"
+        },
+        {
+          "name": "calories_per_100g",
+          "type": "NUMERIC",
+          "default": "0",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredients_calories_per_100g",
+          "size": "8,2"
+        },
+        {
+          "name": "is_composite",
+          "type": "BOOLEAN",
+          "default": "false",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredients_is_composite"
+        },
+        {
+          "name": "name_synonyms",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredients_name_synonyms"
+        },
+        {
+          "name": "composition_description",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredients_composition_description"
+        }
+      ],
+      "comment": "Справочник ингредиентов и их пищевой ценности.",
+      "indices": [
+        {
+          "id": "idx_ingredients_category",
+          "name": "idx_ingredients_category",
+          "unique": false,
+          "fields": [
+            "category_id"
+          ]
+        }
+      ],
+      "color": "#d5e8d4"
+    },
+    {
+      "id": "tbl_recipe_ingredients",
+      "name": "recipe_ingredients",
+      "x": 1281.4672630409239,
+      "y": 754.0808832431794,
+      "locked": false,
+      "fields": [
+        {
+          "name": "recipe_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipe_ingredients_recipe_id"
+        },
+        {
+          "name": "ingredient_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipe_ingredients_ingredient_id"
+        },
+        {
+          "name": "mass_g",
+          "type": "NUMERIC",
+          "default": "",
+          "check": "mass_g > 0",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipe_ingredients_mass_g",
+          "size": "8,2"
+        },
+        {
+          "name": "list_order",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_recipe_ingredients_list_order"
+        }
+      ],
+      "comment": "Состав рецепта: ингредиенты, масса и порядок отображения.",
+      "indices": [
+        {
+          "id": "idx_recipe_ingredients_ingredient",
+          "name": "idx_recipe_ingredients_ingredient",
+          "unique": false,
+          "fields": [
+            "ingredient_id"
+          ]
+        }
+      ],
+      "color": "#fff2cc"
+    },
+    {
+      "id": "tbl_ingredient_allergens",
+      "name": "ingredient_allergens",
+      "x": 1840,
+      "y": 900,
+      "locked": false,
+      "fields": [
+        {
+          "name": "ingredient_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredient_allergens_ingredient_id"
+        },
+        {
+          "name": "allergen_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_ingredient_allergens_allergen_id"
+        }
+      ],
+      "comment": "Связь ингредиентов с аллергенами.",
+      "indices": [
+        {
+          "id": "idx_ingredient_allergens_allergen",
+          "name": "idx_ingredient_allergens_allergen",
+          "unique": false,
+          "fields": [
+            "allergen_id"
+          ]
+        }
+      ],
+      "color": "#f8cecc"
+    },
+    {
+      "id": "tbl_allergens",
+      "name": "allergens",
+      "x": 1840,
+      "y": 1180,
+      "locked": false,
+      "fields": [
+        {
+          "name": "allergen_id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_allergens_allergen_id"
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": true,
+          "unsigned": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": "fld_allergens_name",
+          "size": "120"
+        },
+        {
+          "name": "description",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "unsigned": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": "fld_allergens_description"
+        }
+      ],
+      "comment": "Справочник аллергенов.",
+      "indices": [],
+      "color": "#f8cecc"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel_profile_user",
+      "name": "fk_user_profiles_user",
+      "startTableId": "tbl_user_profiles",
+      "startFieldId": "fld_user_profiles_user_id",
+      "endTableId": "tbl_users",
+      "endFieldId": "fld_users_user_id",
+      "cardinality": "one_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    },
+    {
+      "id": "rel_profile_goal",
+      "name": "fk_user_profiles_fitness_goal",
+      "startTableId": "tbl_user_profiles",
+      "startFieldId": "fld_user_profiles_fitness_goal_id",
+      "endTableId": "tbl_fitness_goals",
+      "endFieldId": "fld_fitness_goals_fitness_goal_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Restrict"
+    },
+    {
+      "id": "rel_restriction_user",
+      "name": "fk_user_restrictions_user",
+      "startTableId": "tbl_user_restrictions",
+      "startFieldId": "fld_user_restrictions_user_id",
+      "endTableId": "tbl_users",
+      "endFieldId": "fld_users_user_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    },
+    {
+      "id": "rel_restriction_ingredient",
+      "name": "fk_user_restrictions_ingredient",
+      "startTableId": "tbl_user_restrictions",
+      "startFieldId": "fld_user_restrictions_ingredient_id",
+      "endTableId": "tbl_ingredients",
+      "endFieldId": "fld_ingredients_ingredient_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Set null"
+    },
+    {
+      "id": "rel_restriction_allergen",
+      "name": "fk_user_restrictions_allergen",
+      "startTableId": "tbl_user_restrictions",
+      "startFieldId": "fld_user_restrictions_allergen_id",
+      "endTableId": "tbl_allergens",
+      "endFieldId": "fld_allergens_allergen_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Set null"
+    },
+    {
+      "id": "rel_available_user",
+      "name": "fk_available_ingredients_user",
+      "startTableId": "tbl_available_ingredients",
+      "startFieldId": "fld_available_ingredients_user_id",
+      "endTableId": "tbl_users",
+      "endFieldId": "fld_users_user_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    },
+    {
+      "id": "rel_available_ingredient",
+      "name": "fk_available_ingredients_ingredient",
+      "startTableId": "tbl_available_ingredients",
+      "startFieldId": "fld_available_ingredients_ingredient_id",
+      "endTableId": "tbl_ingredients",
+      "endFieldId": "fld_ingredients_ingredient_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    },
+    {
+      "id": "rel_report_user",
+      "name": "fk_nutrition_reports_user",
+      "startTableId": "tbl_nutrition_reports",
+      "startFieldId": "fld_nutrition_reports_user_id",
+      "endTableId": "tbl_users",
+      "endFieldId": "fld_users_user_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    },
+    {
+      "id": "rel_request_user",
+      "name": "fk_generation_requests_user",
+      "startTableId": "tbl_generation_requests",
+      "startFieldId": "fld_generation_requests_user_id",
+      "endTableId": "tbl_users",
+      "endFieldId": "fld_users_user_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    },
+    {
+      "id": "rel_request_goal",
+      "name": "fk_generation_requests_fitness_goal",
+      "startTableId": "tbl_generation_requests",
+      "startFieldId": "fld_generation_requests_fitness_goal_id",
+      "endTableId": "tbl_fitness_goals",
+      "endFieldId": "fld_fitness_goals_fitness_goal_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Restrict"
+    },
+    {
+      "id": "rel_recipe_request",
+      "name": "fk_recipes_generation_request",
+      "startTableId": "tbl_recipes",
+      "startFieldId": "fld_recipes_generation_request_id",
+      "endTableId": "tbl_generation_requests",
+      "endFieldId": "fld_generation_requests_generation_request_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Set null"
+    },
+    {
+      "id": "rel_recipe_user",
+      "name": "fk_recipes_user",
+      "startTableId": "tbl_recipes",
+      "startFieldId": "fld_recipes_user_id",
+      "endTableId": "tbl_users",
+      "endFieldId": "fld_users_user_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    },
+    {
+      "id": "rel_recipe_goal",
+      "name": "fk_recipes_fitness_goal",
+      "startTableId": "tbl_recipes",
+      "startFieldId": "fld_recipes_fitness_goal_id",
+      "endTableId": "tbl_fitness_goals",
+      "endFieldId": "fld_fitness_goals_fitness_goal_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Restrict"
+    },
+    {
+      "id": "rel_rating_user",
+      "name": "fk_recipe_ratings_user",
+      "startTableId": "tbl_recipe_ratings",
+      "startFieldId": "fld_recipe_ratings_user_id",
+      "endTableId": "tbl_users",
+      "endFieldId": "fld_users_user_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    },
+    {
+      "id": "rel_rating_recipe",
+      "name": "fk_recipe_ratings_recipe",
+      "startTableId": "tbl_recipe_ratings",
+      "startFieldId": "fld_recipe_ratings_recipe_id",
+      "endTableId": "tbl_recipes",
+      "endFieldId": "fld_recipes_recipe_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    },
+    {
+      "id": "rel_category_ingredient",
+      "name": "fk_ingredients_category",
+      "startTableId": "tbl_ingredients",
+      "startFieldId": "fld_ingredients_category_id",
+      "endTableId": "tbl_ingredient_categories",
+      "endFieldId": "fld_ingredient_categories_category_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Set null"
+    },
+    {
+      "id": "rel_recipe_ingredient_recipe",
+      "name": "fk_recipe_ingredients_recipe",
+      "startTableId": "tbl_recipe_ingredients",
+      "startFieldId": "fld_recipe_ingredients_recipe_id",
+      "endTableId": "tbl_recipes",
+      "endFieldId": "fld_recipes_recipe_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    },
+    {
+      "id": "rel_recipe_ingredient_ingredient",
+      "name": "fk_recipe_ingredients_ingredient",
+      "startTableId": "tbl_recipe_ingredients",
+      "startFieldId": "fld_recipe_ingredients_ingredient_id",
+      "endTableId": "tbl_ingredients",
+      "endFieldId": "fld_ingredients_ingredient_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Restrict"
+    },
+    {
+      "id": "rel_ingredient_allergen_ingredient",
+      "name": "fk_ingredient_allergens_ingredient",
+      "startTableId": "tbl_ingredient_allergens",
+      "startFieldId": "fld_ingredient_allergens_ingredient_id",
+      "endTableId": "tbl_ingredients",
+      "endFieldId": "fld_ingredients_ingredient_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    },
+    {
+      "id": "rel_ingredient_allergen_allergen",
+      "name": "fk_ingredient_allergens_allergen",
+      "startTableId": "tbl_ingredient_allergens",
+      "startFieldId": "fld_ingredient_allergens_allergen_id",
+      "endTableId": "tbl_allergens",
+      "endFieldId": "fld_allergens_allergen_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "Cascade",
+      "deleteConstraint": "Cascade"
+    }
+  ],
+  "notes": [],
+  "subjectAreas": [],
+  "database": "postgresql",
+  "types": [],
+  "enums": [],
+  "title": "Физическая модель данных АС ГРСН"
+}

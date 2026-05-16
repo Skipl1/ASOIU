@@ -1,0 +1,141 @@
+<mxfile host="65bd71144e">
+    <diagram id="nutrition-analysis-tobe" name="Page-1">
+        <mxGraphModel dx="1053" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="760" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="To-Be. Анализ соответствия рациона цели" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="10" width="680" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="pool" value="АС ГРСН" style="swimlane;html=1;horizontal=1;startSize=22;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="48" width="1840" height="650" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_user" value="Пользователь" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="70" width="1840" height="125" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_web" value="Web-интерфейс" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="195" width="1840" height="145" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_api" value="REST API" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="340" width="1840" height="165" as="geometry"/>
+                </mxCell>
+                <mxCell id="lane_db" value="База данных PostgreSQL" style="swimlane;html=1;horizontal=0;startSize=28;fillColor=none;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="505" width="1840" height="193" as="geometry"/>
+                </mxCell>
+                <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="52" y="114" width="36" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="start_label" value="Открыт раздел анализа" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="152" width="82" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="open_analysis" value="Открыть раздел анализа" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="125" y="105" width="145" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="select_period" value="Выбрать период анализа: 14 дней" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="315" y="105" width="150" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="click_update" value="Нажать «Обновить анализ»" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="105" width="155" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_success" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="1770" y="112" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="end_success_label" value="Анализ просмотрен" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="1750" y="154" width="82" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_period" value="Показать выбранный период и кнопку обновления" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="315" y="235" width="155" height="64" as="geometry"/>
+                </mxCell>
+                <mxCell id="send_request" value="Передать период анализа в REST API" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="238" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="show_analysis" value="Показать исходные данные, сравнение, тренд веса и рекомендации" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1460" y="228" width="190" height="76" as="geometry"/>
+                </mxCell>
+                <mxCell id="prepare_request" value="Сформировать запрос GET /analysis/nutrition" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="388" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="calc_actual" value="Рассчитать фактические ккал и БЖУ за период" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="835" y="382" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="compare_goal" value="Сравнить цель, факт и отклонение" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1035" y="388" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="build_trend" value="Рассчитать тренд веса по калорийности" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1230" y="388" width="155" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="make_recs" value="Сформировать рекомендации по корректировке" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1460" y="388" width="165" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="read_profile" value="Прочитать профиль: цель и целевая калорийность" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="558" width="165" height="64" as="geometry"/>
+                </mxCell>
+                <mxCell id="read_history" value="Прочитать историю рецептов за период" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="865" y="558" width="160" height="64" as="geometry"/>
+                </mxCell>
+                <mxCell id="read_restrictions" value="Прочитать ограничения пользователя" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1065" y="558" width="160" height="64" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="start" target="open_analysis" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="open_analysis" target="select_period" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="select_period" target="click_update" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="select_period" target="show_period" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="click_update" target="send_request" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="send_request" target="prepare_request" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" parent="1" source="prepare_request" target="read_profile" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="588" y="590"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e8" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="read_profile" target="read_history" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="read_history" target="read_restrictions" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="read_restrictions" target="calc_actual" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1145" y="525"/>
+                            <mxPoint x="915" y="525"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e11" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="calc_actual" target="compare_goal" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e12" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="compare_goal" target="build_trend" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e13" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="build_trend" target="make_recs" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e14" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="make_recs" target="show_analysis" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e15" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=3 3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="show_analysis" target="end_success" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1695" y="266"/>
+                            <mxPoint x="1695" y="132"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

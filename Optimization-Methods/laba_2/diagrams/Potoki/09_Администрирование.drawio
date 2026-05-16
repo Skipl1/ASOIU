@@ -1,0 +1,78 @@
+<mxfile host="65bd71144e">
+    <diagram id="zfdcCgCuhCmJCcPorXNh" name="Page-1">
+        <mxGraphModel dx="1053" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="900" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="t" value="Диаграмма потоков данных. Администрирование" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="30" width="750" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="admin" value="Администратор" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="55" y="125" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1" value="9.1 Управлять пользователями" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="390" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="p2" value="9.2 Обновить справочники" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="190" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="p3" value="9.3 Просмотреть журналы" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="310" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="p4" value="9.4 Создать резервную копию" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="1050" y="390" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="d1" value="D1 Пользователи" style="shape=partialRectangle;right=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;spacingLeft=12;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="690" width="220" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="d2" value="D2 Справочники НСИ" style="shape=partialRectangle;right=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;spacingLeft=12;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="690" width="220" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="d3" value="D3 Журналы событий" style="shape=partialRectangle;right=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;spacingLeft=12;" parent="1" vertex="1">
+                    <mxGeometry x="670" y="690" width="220" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="d4" value="D4 Резервные копии" style="shape=partialRectangle;right=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;spacingLeft=12;" parent="1" vertex="1">
+                    <mxGeometry x="960" y="690" width="220" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" value="Команда пользователя" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.65;entryX=0.5;entryY=0;" parent="1" source="admin" target="p1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="250" y="210"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e2" value="Данные пользователей" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="p1" target="d1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" value="Команда НСИ" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.45;entryX=0;entryY=0.45;" parent="1" source="p1" target="p2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" value="Ингредиенты, аллергены, категории" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="p2" target="d2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" value="Запрос журналов" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.45;entryX=0;entryY=0.45;" parent="1" source="p2" target="p3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" value="Логи системы" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="d3" target="p3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" value="Команда backup" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.45;entryX=0;entryY=0.45;" parent="1" source="p3" target="p4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" value="Снимок данных" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="p4" target="d4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" value="Статус операции" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.25;entryX=1;entryY=0.35;" parent="1" source="p4" target="admin" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="930" y="290"/>
+                            <mxPoint x="930" y="90"/>
+                            <mxPoint x="260" y="90"/>
+                            <mxPoint x="260" y="146"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

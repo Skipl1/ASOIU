@@ -36,16 +36,16 @@
       </header>
 
       <section class="layout grid-3">
-        <div class="metric"><span>Всего рецептов</span><strong>34</strong></div>
-        <div class="metric"><span>Средняя оценка</span><strong>4.6</strong></div>
-        <div class="metric"><span>Без нарушений</span><strong>31</strong></div>
+        <div class="metric"><span>Всего рецептов</span><strong>количество</strong></div>
+        <div class="metric"><span>Средняя оценка</span><strong>значение</strong></div>
+        <div class="metric"><span>Без нарушений</span><strong>количество</strong></div>
       </section>
 
       <section class="panel" style="margin-top:18px">
         <div class="panel-header">
           <h2>Архив рецептов</h2>
           <div class="toolbar-right">
-            <input class="search" value="протеиновый">
+            <input class="search" placeholder="поиск по названию">
             <select>
               <option selected>Все цели</option>
               <option>Набор массы</option>
@@ -60,10 +60,9 @@
                 <tr><th>Дата</th><th>Рецепт</th><th>Цель</th><th>Ккал</th><th>БЖУ</th><th>Оценка</th><th>Действия</th></tr>
               </thead>
               <tbody>
-                <tr><td>14.05.2026</td><td>Протеиновый боул с рисом</td><td>Набор массы</td><td>620</td><td>42 / 14 / 78</td><td>5</td><td><button class="btn small">Открыть</button></td></tr>
-                <tr><td>13.05.2026</td><td>Омлет с овощами</td><td>Поддержание</td><td>410</td><td>31 / 20 / 18</td><td>4</td><td><button class="btn small">Открыть</button></td></tr>
-                <tr><td>12.05.2026</td><td>Гречневая тарелка с курицей</td><td>Набор массы</td><td>690</td><td>48 / 18 / 86</td><td>5</td><td><button class="btn small">Открыть</button></td></tr>
-                <tr><td>11.05.2026</td><td>Смузи на воде с бананом</td><td>Выносливость</td><td>360</td><td>20 / 7 / 54</td><td>4</td><td><button class="btn small">Открыть</button></td></tr>
+                <tr><td>Дата</td><td>Название рецепта</td><td>Фитнес-цель</td><td>ккал</td><td>БЖУ</td><td>оценка</td><td><button class="btn small">Открыть</button></td></tr>
+                <tr><td>Дата</td><td>Название рецепта</td><td>Фитнес-цель</td><td>ккал</td><td>БЖУ</td><td>оценка</td><td><button class="btn small">Открыть</button></td></tr>
+                <tr><td>Дата</td><td>Название рецепта</td><td>Фитнес-цель</td><td>ккал</td><td>БЖУ</td><td>оценка</td><td><button class="btn small">Открыть</button></td></tr>
               </tbody>
             </table>
           </div>
@@ -77,11 +76,11 @@
             <form class="form">
               <div class="field">
                 <label for="score">Балл</label>
-                <select id="score"><option selected>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+                <select id="score"><option selected>Выберите оценку</option><option>Оценка из списка</option></select>
               </div>
               <div class="field">
                 <label for="comment">Комментарий</label>
-                <textarea id="comment">Подходит после вечерней тренировки, оставить в рекомендациях.</textarea>
+                <textarea id="comment" placeholder="комментарий пользователя"></textarea>
               </div>
               <button class="btn primary">Сохранить оценку</button>
             </form>
@@ -91,9 +90,9 @@
           <div class="panel-header"><h2>Состав выбранного рецепта</h2><span>Масса ингредиентов</span></div>
           <div class="panel-body">
             <div class="list">
-              <div class="row-item"><div class="row-main"><strong>Куриная грудка</strong><span>Белковый продукт</span></div><strong>140 г</strong></div>
-              <div class="row-item"><div class="row-main"><strong>Бурый рис</strong><span>Крупа</span></div><strong>110 г</strong></div>
-              <div class="row-item"><div class="row-main"><strong>Банан</strong><span>Фрукт</span></div><strong>120 г</strong></div>
+              <div class="row-item"><div class="row-main"><strong>Название ингредиента</strong><span>Категория</span></div><strong>масса</strong></div>
+              <div class="row-item"><div class="row-main"><strong>Название ингредиента</strong><span>Категория</span></div><strong>масса</strong></div>
+              <div class="row-item"><div class="row-main"><strong>Название ингредиента</strong><span>Категория</span></div><strong>масса</strong></div>
             </div>
           </div>
         </div>

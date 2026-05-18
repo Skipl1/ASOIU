@@ -45,14 +45,14 @@
             <form class="form">
               <div class="field">
                 <label for="restriction">Продукт или вещество</label>
-                <input id="restriction" value="арахис">
+                <input id="restriction" placeholder="название продукта или вещества">
               </div>
               <div class="field">
                 <label for="match">Найденное соответствие</label>
                 <select id="match">
-                  <option selected>Аллерген: арахис</option>
-                  <option>Ингредиент: арахисовая паста</option>
-                  <option>Ингредиент: смесь ореховая</option>
+                  <option selected>Найденный аллерген или ингредиент</option>
+                  <option>Ингредиент из справочника</option>
+                  <option>Аллерген из справочника</option>
                 </select>
               </div>
               <button class="btn primary">Добавить в список</button>
@@ -63,15 +63,13 @@
         <div class="panel">
           <div class="panel-header">
             <h2>Текущие ограничения</h2>
-            <span>5 записей</span>
+            <span>список пользователя</span>
           </div>
           <div class="panel-body">
             <div class="list">
-              <div class="row-item"><div class="row-main"><strong>Арахис</strong><span>Аллерген</span></div><span class="tag red">запрещён</span></div>
-              <div class="row-item"><div class="row-main"><strong>Молоко</strong><span>Аллерген</span></div><span class="tag red">запрещён</span></div>
-              <div class="row-item"><div class="row-main"><strong>Глютен</strong><span>Вещество</span></div><span class="tag amber">контроль</span></div>
-              <div class="row-item"><div class="row-main"><strong>Креветки</strong><span>Ингредиент</span></div><span class="tag red">запрещён</span></div>
-              <div class="row-item"><div class="row-main"><strong>Соевый белок</strong><span>Ингредиент</span></div><span class="tag red">запрещён</span></div>
+              <div class="row-item"><div class="row-main"><strong>Название ограничения</strong><span>Аллерген</span></div><span class="tag red">запрещён</span></div>
+              <div class="row-item"><div class="row-main"><strong>Название ограничения</strong><span>Ингредиент</span></div><span class="tag red">запрещён</span></div>
+              <div class="row-item"><div class="row-main"><strong>Название ограничения</strong><span>Вещество</span></div><span class="tag amber">контроль</span></div>
             </div>
           </div>
         </div>
@@ -89,9 +87,9 @@
                 <tr><th>Ингредиент</th><th>Связанные аллергены</th><th>Результат</th><th>Причина</th></tr>
               </thead>
               <tbody>
-                <tr><td>Овсяные хлопья</td><td>глютен</td><td><span class="status warn">требует замены</span></td><td>Совпадение с веществом из списка запретов</td></tr>
-                <tr><td>Банан</td><td>-</td><td><span class="status ok">допустим</span></td><td>-</td></tr>
-                <tr><td>Сывороточный протеин</td><td>молоко</td><td><span class="status bad">исключён</span></td><td>Содержит запрещённый аллерген</td></tr>
+                <tr><td>Ингредиент из набора</td><td>Связанный аллерген</td><td><span class="status warn">требует замены</span></td><td>Совпадение со списком запретов</td></tr>
+                <tr><td>Ингредиент из набора</td><td>-</td><td><span class="status ok">допустим</span></td><td>-</td></tr>
+                <tr><td>Ингредиент из набора</td><td>Связанный аллерген</td><td><span class="status bad">исключён</span></td><td>Содержит запрещённый аллерген</td></tr>
               </tbody>
             </table>
           </div>

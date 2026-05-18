@@ -23,7 +23,7 @@
         <a href="analysis.html">Анализ</a>
         <a href="admin.html">Администрирование</a>
       </nav>
-      <div class="sidebar-footer">Пользователь: Дмитрий Привалихин<br>Роль: спортсмен</div>
+      <div class="sidebar-footer">Пользователь: имя пользователя<br>Роль: роль пользователя</div>
     </aside>
 
     <main class="main">
@@ -39,10 +39,10 @@
       </header>
 
       <section class="layout grid-4">
-        <div class="metric"><span>Вес</span><strong>78 кг</strong></div>
-        <div class="metric"><span>Рост</span><strong>182 см</strong></div>
-        <div class="metric"><span>BMR</span><strong>1846</strong></div>
-        <div class="metric"><span>Цель</span><strong>2800</strong></div>
+        <div class="metric"><span>Вес</span><strong>значение</strong></div>
+        <div class="metric"><span>Рост</span><strong>значение</strong></div>
+        <div class="metric"><span>BMR</span><strong>расчёт</strong></div>
+        <div class="metric"><span>Цель</span><strong>норма</strong></div>
       </section>
 
       <section class="layout grid-2" style="margin-top:18px">
@@ -56,20 +56,21 @@
               <div class="form-grid">
                 <div class="field">
                   <label for="weight">Вес, кг</label>
-                  <input id="weight" value="78">
+                  <input id="weight" placeholder="значение веса">
                 </div>
                 <div class="field">
                   <label for="height">Рост, см</label>
-                  <input id="height" value="182">
+                  <input id="height" placeholder="значение роста">
                 </div>
                 <div class="field">
                   <label for="age">Возраст</label>
-                  <input id="age" value="21">
+                  <input id="age" placeholder="возраст">
                 </div>
                 <div class="field">
                   <label for="gender">Пол</label>
                   <select id="gender">
-                    <option selected>Мужской</option>
+                    <option selected>Выберите пол</option>
+                    <option>Мужской</option>
                     <option>Женский</option>
                   </select>
                 </div>
@@ -77,9 +78,10 @@
               <div class="field">
                 <label for="activity">Уровень активности</label>
                 <select id="activity">
+                  <option selected>Выберите уровень активности</option>
                   <option>Сидячий образ жизни</option>
                   <option>Лёгкая активность</option>
-                  <option selected>Средняя активность, тренировки 3-5 раз в неделю</option>
+                  <option>Средняя активность</option>
                   <option>Высокая активность</option>
                   <option>Экстремальная активность</option>
                 </select>
@@ -101,7 +103,7 @@
                   <strong>Снижение веса</strong>
                   <span>Дефицит калорий</span>
                 </div>
-                <span class="tag amber">-500 ккал</span>
+                <span class="tag amber">коррекция</span>
               </label>
               <label class="choice-card">
                 <input type="radio" name="fitness-goal">
@@ -109,15 +111,15 @@
                   <strong>Поддержание формы</strong>
                   <span>Без изменения нормы</span>
                 </div>
-                <span class="tag blue">0 ккал</span>
+                <span class="tag blue">коррекция</span>
               </label>
               <label class="choice-card">
-                <input type="radio" name="fitness-goal" checked>
+                <input type="radio" name="fitness-goal">
                 <div class="choice-card-text">
                   <strong>Набор мышечной массы</strong>
-                  <span>Выбранный ориентир</span>
+                  <span>Вариант ориентира</span>
                 </div>
-                <span class="tag green">+300 ккал</span>
+                <span class="tag green">коррекция</span>
               </label>
               <label class="choice-card">
                 <input type="radio" name="fitness-goal">
@@ -125,7 +127,7 @@
                   <strong>Повышение выносливости</strong>
                   <span>Умеренная прибавка энергии</span>
                 </div>
-                <span class="tag teal">+200 ккал</span>
+                <span class="tag teal">коррекция</span>
               </label>
             </div>
           </div>

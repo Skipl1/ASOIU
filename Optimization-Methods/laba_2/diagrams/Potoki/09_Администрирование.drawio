@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="zfdcCgCuhCmJCcPorXNh" name="Page-1">
-        <mxGraphModel dx="1053" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="900" math="0" shadow="0">
+        <mxGraphModel dx="1639" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="900" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -31,13 +31,15 @@
                 <mxCell id="d3" value="D3 Журналы событий" style="shape=partialRectangle;right=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;spacingLeft=12;" parent="1" vertex="1">
                     <mxGeometry x="670" y="690" width="220" height="55" as="geometry"/>
                 </mxCell>
-                <mxCell id="d4" value="D4 Резервные копии" style="shape=partialRectangle;right=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;spacingLeft=12;" parent="1" vertex="1">
-                    <mxGeometry x="960" y="690" width="220" height="55" as="geometry"/>
+                <mxCell id="d4" value="D4 Файловое хранилище backup&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" style="shape=partialRectangle;right=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;spacingLeft=12;" parent="1" vertex="1">
+                    <mxGeometry x="940" y="690" width="300" height="55" as="geometry"/>
                 </mxCell>
                 <mxCell id="e1" value="Команда пользователя" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.65;entryX=0.5;entryY=0;" parent="1" source="admin" target="p1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="250" y="210"/>
+                            <mxPoint x="250" y="164"/>
+                            <mxPoint x="250" y="350"/>
+                            <mxPoint x="230" y="350"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
@@ -59,7 +61,7 @@
                 <mxCell id="e7" value="Команда backup" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.45;entryX=0;entryY=0.45;" parent="1" source="p3" target="p4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="e8" value="Снимок данных" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="p4" target="d4" edge="1">
+                <mxCell id="e8" value="Архив резервной копии БД" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="p4" target="d4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="e9" value="Статус операции" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.25;entryX=1;entryY=0.35;" parent="1" source="p4" target="admin" edge="1">

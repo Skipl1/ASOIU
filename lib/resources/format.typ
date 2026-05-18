@@ -123,6 +123,7 @@
   show heading: reset-counter(counter(figure.where(kind: image)), levels: 2)
 
   // Настройка таблиц
+  show figure.where(kind: table): set figure.caption(position: top)
   show figure.where(kind: table): set block(
     breakable: true,
   )

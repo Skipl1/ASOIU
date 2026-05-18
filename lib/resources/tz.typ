@@ -7,6 +7,8 @@
   student: "Л.А. Демонов",
   teacher: "Р.Д. Гутгарц",
   year: "2026",
+  title_text: [ТЕХНИЧЕСКОЕ ЗАДАНИЕ],
+  institute_caption: [наименование организации – разработчика ТЗ на АС],
   body
 ) = {
   set page(margin: (left: 3cm, right: 1.5cm, top: 2cm, bottom: 2cm))
@@ -51,7 +53,7 @@
     #v(0.28em)
   ]
 
-  central_field(institute, "наименование организации – разработчика ТЗ на АС")
+  central_field(institute, institute_caption)
   central_field(type_as, "Наименование вида АС")
   central_field(object, "наименование объекта автоматизации")
   central_field(short_name, "сокращенное наименование АС")
@@ -59,7 +61,7 @@
   v(1cm)
 
   align(center)[
-    #text(size: 14pt, weight: "bold")[ТЕХНИЧЕСКОЕ ЗАДАНИЕ] \
+    #text(size: 14pt, weight: "bold")[#title_text] \
     #v(0.28em)
     На \_\_\_листах \
     #v(0.28em)

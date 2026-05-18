@@ -1,10 +1,10 @@
 <mxfile host="65bd71144e">
     <diagram id="er-as-grsn-simplified" name="ER-модель">
-        <mxGraphModel dx="2379" dy="2029" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1250" math="0" shadow="0">
+        <mxGraphModel dx="2464" dy="2029" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1250" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="title" value="ER-модель АС генерации персонализированных рецептов спортивного питания" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;" parent="1" vertex="1">
+                <mxCell id="title" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Логическая модель данных АС ГРСН&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;" parent="1" vertex="1">
                     <mxGeometry x="70" y="-340" width="1500" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="legend" value="&lt;b&gt;Обозначения&lt;/b&gt;&lt;br&gt;&lt;u&gt;Подчёркнуто&lt;/u&gt; - первичный ключ&lt;br&gt;Внешний ключ - связь с другой сущностью&lt;br&gt;Уникальное - значение не повторяется&lt;br&gt;Необязательно - поле может быть пустым" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" parent="1" vertex="1">

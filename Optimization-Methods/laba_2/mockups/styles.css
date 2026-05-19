@@ -224,6 +224,18 @@ textarea {
   background: var(--bg);
 }
 
+.auth-page.compact {
+  grid-template-columns: minmax(320px, 460px);
+  justify-content: center;
+  align-content: center;
+}
+
+.auth-page.compact .auth-panel {
+  min-height: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
 .auth-panel {
   padding: 46px;
   background: var(--surface);
@@ -283,6 +295,14 @@ textarea {
 .preview-tile strong {
   display: block;
   margin-bottom: 12px;
+}
+
+.message-box {
+  padding: 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: #0f141d;
+  color: #cbd5e1;
 }
 
 .form {

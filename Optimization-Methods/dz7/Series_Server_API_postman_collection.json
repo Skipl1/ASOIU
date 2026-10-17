@@ -1,0 +1,363 @@
+{
+	"info": {
+		"_postman_id": "b8c9778d-31bb-46f9-a2b7-6516f671b974",
+		"name": "Series Server API",
+		"description": "Series Server API предоставляет информацию о всех сериалах, доступных в данный момент на платформе Otium.\n\n**Как использовать**\n\n- Каждая операция API содержит данные о запросе (Request Headers, Request Body) и пример ответа (Request Body Example, Response Example):\n    - _Request Headers_ содержит информацию о заголовках, которые используются при вызове запроса.\n    - _Request Body_ содержит информацию о теле запроса, которое передаётся при вызове запроса.\n    - Раздел _Example_ содержит информацию с примером ответа на запрос (_Response_). Напротив названия раздела Example есть выпадающий список, в котором можно выбрать разные примеры ответов.\n- Прочитайте названия операций, которые предоставляет API.\n- Найдите Response и определите формат представления данных.\n- В примере ответа/-ов найдите данные, которые позволяют определить, что сериал эксклюзивно представлен на площадке Otium.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3630344",
+		"_collection_link": "https://galactic-trinity-544238.postman.co/workspace/Homework-(9-sprint)~b6495d86-c5fc-4227-9504-4debb617f8fa/collection/3630344-b8c9778d-31bb-46f9-a2b7-6516f671b974?action=share&source=collection_link&creator=3630344"
+	},
+	"item": [
+		{
+			"name": "Список сериалов",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "SOAPAction",
+						"value": "\"#POST\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetList/></GetList>\n\t</soap:Body>\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SeriesServer}}/series/list",
+					"host": [
+						"{{SeriesServer}}"
+					],
+					"path": [
+						"series",
+						"list"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Список всех сериалов на платформе"
+			},
+			"response": [
+				{
+					"name": "Список сериалов (все)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetList></GetList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SeriesServer}}/series/list",
+							"host": [
+								"{{SeriesServer}}"
+							],
+							"path": [
+								"series",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetListResponse>\n            <main>\n                <contents>\n                    <content type=\"serie\" id=\"201\">\n                        <title>Индийский океан и я</title>\n                        <description>Погрузитесь в веселые приключения на берегу Индийского океана, где дети вместе с местными животными учатся ценить природу и дружбу.</description>\n                        <imageUrl>https://otium.imagestorage.ru/IndianOceanAndI.img</imageUrl>\n                        <previewUrl>https://otium.previewstorage.ru/IndianOceanAndI.mov</previewUrl>\n                        <recordUrl>https://otium.recordstorage.ru/IndianOceanAndI.mov</recordUrl>\n                        <genre>\n                            <genreValue>kids</genreValue>\n                            <genreValue>reality</genreValue>\n                        </genre>\n                        <recommended>true</recommended>\n                        <exclusive>true</exclusive>\n                        <details>\n                            <yearOfIssue>2015</yearOfIssue>\n                            <episodesCount>4</episodesCount>\n                            <country>\n                                <countryValue>Индонезия</countryValue>\n                            </country>\n                            <ageRate>6+</ageRate>\n                        </details>\n                        <language>\n                            <original>\n                                <originalValue>бахаса</originalValue>\n                            </original>\n                            <sound>\n                                <soundValue>русский</soundValue>\n                                <soundValue>английский</soundValue>\n                            </sound>\n                            <subtitle>\n                                <subtitleValue>русский</subtitleValue>\n                                <subtitleValue>английский</subtitleValue>\n                                <subtitleValue>бахаса</subtitleValue>\n                            </subtitle>\n                        </language>\n                        <rating>9.4</rating>\n                        <favorites>true</favorites>    \n                    </content>\n                    <content type=\"serie\" id=\"202\">\n                        <title>Городские путешественники</title>\n                        <description>Приготовьтесь к эмоциональной гонке по улицам Самары, где команды соперничают, решают сложные задания и раскрывают тайны этого захватывающего региона.</description>\n                        <imageUrl>https://otium.imagestorage.ru/CityTravellers.img</imageUrl>\n                        <previewUrl>https://otium.previewstorage.ru/CityTravellers.mov</previewUrl>\n                        <recordUrl>https://otium.recordstorage.ru/CityTravellers.mov</recordUrl>\n                        <genre>\n                            <genreValue>action</genreValue>\n                            <genreValue>reality</genreValue>\n                        </genre>\n                        <recommended>true</recommended>\n                        <exclusive>false</exclusive>\n                        <details>\n                            <yearOfIssue>2005</yearOfIssue>\n                            <episodesCount>18</episodesCount>\n                            <country>\n                                <countryValue>Россия</countryValue>\n                            </country>\n                            <ageRate>16+</ageRate>\n                        </details>\n                        <language>\n                            <original>\n                                <originalValue>русский</originalValue>\n                            </original>\n                            <sound>\n                                <soundValue>русский</soundValue>\n                            </sound>\n                            <subtitle></subtitle>\n                        </language>\n                        <rating>5.9</rating>\n                        <favorites>false</favorites>\n                    </content>\n                    <content type=\"serie\" id=\"203\">\n                        <title>В магических лапках</title>\n                        <description>В мире, где коты владеют волшебством, трое маленьких котят отправляются в захватывающие приключения, используя свои магические способности для спасения своего волшебного родного города.</description>\n                        <imageUrl>https://otium.imagestorage.ru/InFluffyPaws.img</imageUrl>\n                        <previewUrl>https://otium.previewstorage.ru/IInFluffyPaws.mov</previewUrl>\n                        <recordUrl>https://otium.recordstorage.ru/InFluffyPaws.mov</recordUrl>\n                        <genre>\n                            <genreValue>kids</genreValue>\n                            <genreValue>action</genreValue>\n                        </genre>\n                        <recommended>true</recommended>\n                        <exclusive>false</exclusive>\n                        <details>\n                            <yearOfIssue>2021</yearOfIssue>\n                            <episodesCount>12</episodesCount>\n                            <country>\n                                <countryValue>Италия</countryValue>\n                                <countryValue>США</countryValue>\n                            </country>\n                            <ageRate>4+</ageRate>\n                        </details>\n                        <language>\n                            <original>\n                                <originalValue>итальянский</originalValue>\n                            </original>\n                            <sound>\n                                <soundValue>русский</soundValue>\n                                <soundValue>английский</soundValue>\n                                <soundValue>итальянский</soundValue>\n                            </sound>\n                            <subtitle>\n                                <subtitleValue>русский</subtitleValue>\n                                <subtitleValue>английский</subtitleValue>\n                                <subtitleValue>итальянский</subtitleValue>\n                            </subtitle>\n                        </language>\n                        <rating>8.8</rating>\n                        <favorites>true</favorites>   \n                    </content>\n                    <content type=\"serie\" id=\"204\">\n                        <title>Кухня за гранью</title>\n                        <description>Приготовьтесь к горячим соревнованиям, взрывам вкуса и кулинарным искушениям в этом захватывающем реалити-шоу, где повара-любители сражаются за звание гурманского чемпиона.</description>\n                        <imageUrl>https://otium.imagestorage.ru/KitchenOutOfBoarders.img</imageUrl>\n                        <previewUrl>https://otium.previewstorage.ru/KitchenOutOfBoarders.mov</previewUrl>\n                        <recordUrl>https://otium.recordstorage.ru/KitchenOutOfBoarders.mov</recordUrl>\n                        <genre>\n                            <genreValue>reality</genreValue>\n                        </genre>\n                        <recommended>false</recommended>\n                        <exclusive>true</exclusive>\n                        <details>\n                            <yearOfIssue>2009</yearOfIssue>\n                            <episodesCount>34</episodesCount>\n                            <country>\n                                <countryValue>Великобритания</countryValue>\n                            </country>\n                            <ageRate>12+</ageRate>\n                        </details>\n                        <language>\n                            <original>\n                                <originalValue>английский</originalValue>\n                            </original>\n                            <sound>\n                                <soundValue>русский</soundValue>\n                                <soundValue>английский</soundValue>\n                            </sound>\n                            <subtitle>\n                                <subtitleValue>русский</subtitleValue>\n                                <subtitleValue>английский</subtitleValue>\n                            </subtitle>\n                        </language>\n                        <rating>7.7</rating>\n                        <favorites>false</favorites>\n                    </content>\n                </contents>\n            </main>\n        </GetListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				}
+			]
+		},
+		{
+			"name": "Описание сериала",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "SOAPAction",
+						"value": "\"#POST\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetDetails>\n\t\t\t<content type=\"serie\" id=\"201\"/>\n\t\t</GetDetails>\n\t</soap:Body>\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SeriesServer}}/series",
+					"host": [
+						"{{SeriesServer}}"
+					],
+					"path": [
+						"series"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Детальное описание сериала по id"
+			},
+			"response": [
+				{
+					"name": "Описание сериала (id=201)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetDetails>\n\t\t\t<content type=\"serie\" id=\"201\"/>\n\t\t</GetDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SeriesServer}}/series",
+							"host": [
+								"{{SeriesServer}}"
+							],
+							"path": [
+								"series"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding\">\n    <soap:Body>\n        <GetDetailsResponse>\n            <main>\n                <content type=\"serie\" id=\"201\">\n                    <title>Индийский океан и я</title>\n                    <description>Погрузитесь в веселые приключения на берегу Индийского океана, где дети вместе с местными животными учатся ценить природу и дружбу.</description>\n                    <imageUrl>https://otium.imagestorage.ru/IndianOceanAndI.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IndianOceanAndI.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/IndianOceanAndI.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <exclusive>true</exclusive>\n                    <details>\n                        <yearOfIssue>2015</yearOfIssue>\n                        <episodesCount>4</episodesCount>\n                        <country>\n                            <countryValue>Индонезия</countryValue>\n                        </country>\n                        <ageRate>6+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>бахаса</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                            <subtitleValue>бахаса</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <rating>9.4</rating>\n                    <favorites>true</favorites>\n                </content>\n            </main>\n        </GetDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "Описание сериала (id=202)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetDetails>\n\t\t\t<content type=\"serie\" id=\"202\"/>\n\t\t</GetDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SeriesServer}}/series",
+							"host": [
+								"{{SeriesServer}}"
+							],
+							"path": [
+								"series"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding\">\n    <soap:Body>\n        <GetDetailsResponse>\n            <main>\n                <content type=\"serie\" id=\"202\">\n                    <title>Городские путешественники</title>\n                    <description>Приготовьтесь к эмоциональной гонке по улицам Самары, где команды соперничают, решают сложные задания и раскрывают тайны этого захватывающего региона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/CityTravellers.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/CityTravellers.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/CityTravellers.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <exclusive>false</exclusive>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <episodesCount>18</episodesCount>\n                        <country>\n                            <countryValue>Россия</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>русский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                        </sound>\n                        <subtitle></subtitle>\n                    </language>\n                    <rating>5.9</rating>\n                    <favorites>false</favorites>\n                </content>\n            </main>\n        </GetDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "Описание сериала (id=203)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetDetails>\n\t\t\t<content type=\"serie\" id=\"203\"/>\n\t\t</GetDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SeriesServer}}/series",
+							"host": [
+								"{{SeriesServer}}"
+							],
+							"path": [
+								"series"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding\">\n    <soap:Body>\n        <GetDetailsResponse>\n            <main>\n                <content type=\"serie\" id=\"203\">\n                    <title>В магических лапках</title>\n                    <description>В мире, где коты владеют волшебством, трое маленьких котят отправляются в захватывающие приключения, используя свои магические способности для спасения своего волшебного родного города.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InFluffyPaws.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IInFluffyPaws.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InFluffyPaws.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <exclusive>false</exclusive>\n                    <details>\n                        <yearOfIssue>2021</yearOfIssue>\n                        <episodesCount>12</episodesCount>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>4+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>итальянский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                            <soundValue>итальянский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                            <subtitleValue>итальянский</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <rating>8.8</rating>\n                    <favorites>true</favorites>\n                </content>\n            </main>\n        </GetDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "Описание сериала (id=204)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetDetails>\n\t\t\t<content type=\"film\" id=\"204\"/>\n\t\t</GetDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SeriesServer}}/series",
+							"host": [
+								"{{SeriesServer}}"
+							],
+							"path": [
+								"series"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding\">\n    <soap:Body>\n        <GetDetailsResponse>\n            <main>\n                <content type=\"serie\" id=\"204\">\n                    <title>Кухня за гранью</title>\n                    <description>Приготовьтесь к горячим соревнованиям, взрывам вкуса и кулинарным искушениям в этом захватывающем реалити-шоу, где повара-любители сражаются за звание гурманского чемпиона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/KitchenOutOfBoarders.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/KitchenOutOfBoarders.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/KitchenOutOfBoarders.mov</recordUrl>\n                    <genre>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>false</recommended>\n                    <exclusive>true</exclusive>\n                    <details>\n                        <yearOfIssue>2009</yearOfIssue>\n                        <episodesCount>34</episodesCount>\n                        <country>\n                            <countryValue>Великобритания</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>английский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <rating>7.7</rating>\n                    <favorites>false</favorites>\n                </content>\n            </main>\n        </GetDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				}
+			]
+		}
+	]
+}

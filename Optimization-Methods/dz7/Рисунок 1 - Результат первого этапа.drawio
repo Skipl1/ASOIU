@@ -1,0 +1,40 @@
+<mxfile host="65bd71144e">
+    <diagram id="KIM1CLms-8q8iJofOeSI" name="Страница — 1">
+        <mxGraphModel dx="760" dy="819" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="600" math="0" shadow="0" adaptiveColors="auto">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="client_head" value="Клиент" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="170" y="40" width="30" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="client_line" style="endArrow=none;dashed=1;html=1;rounded=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="184.5" y="120" as="sourcePoint"/>
+                        <mxPoint x="185" y="490" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="aggregator" value="Сайт-агрегатор" style="shape=umlLifeline;perimeter=lifelinePerimeter;size=60;html=1;whiteSpace=wrap;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="40" width="80" height="450" as="geometry"/>
+                </mxCell>
+                <mxCell id="dobrolet" value="API авиакомпании «Добролёт»" style="shape=umlLifeline;perimeter=lifelinePerimeter;size=60;html=1;whiteSpace=wrap;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="40" width="90" height="450" as="geometry"/>
+                </mxCell>
+                <mxCell id="chistoe_nebo" value="API авиакомпании «Чистое небо»" style="shape=umlLifeline;perimeter=lifelinePerimeter;size=60;html=1;whiteSpace=wrap;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="40" width="90" height="450" as="geometry"/>
+                </mxCell>
+                <mxCell id="avionika" value="API авиакомпании «Авионика»" style="shape=umlLifeline;perimeter=lifelinePerimeter;size=60;html=1;whiteSpace=wrap;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="40" width="90" height="450" as="geometry"/>
+                </mxCell>
+                <mxCell id="legkie_platezhi" value="Платёжный сервис «Лёгкие платежи»" style="shape=umlLifeline;perimeter=lifelinePerimeter;size=60;html=1;whiteSpace=wrap;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="40" width="90" height="450" as="geometry"/>
+                </mxCell>
+                <mxCell id="bank_ekvaer" value="API «Банк эквайер»" style="shape=umlLifeline;perimeter=lifelinePerimeter;size=60;html=1;whiteSpace=wrap;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="40" width="100" height="450" as="geometry"/>
+                </mxCell>
+                <mxCell id="bank_emitent" value="API «Банк эмитент»" style="shape=umlLifeline;perimeter=lifelinePerimeter;size=60;html=1;whiteSpace=wrap;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="880" y="40" width="90" height="450" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

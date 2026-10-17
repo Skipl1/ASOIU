@@ -1,0 +1,1508 @@
+{
+	"info": {
+		"_postman_id": "70444a32-4411-4b9f-bfa9-8c88f0dd3228",
+		"name": "Web Server API",
+		"description": "Web Server API предоставляет является промежуточным слоем API между клиентами и сервисами Otium.\n\n**Как использовать**\n\n- Каждая операция API содержит данные о запросе (Request Headers, Request Body) и пример ответа (Request Body Example, Response Example):\n    - _Request Headers_ содержит информацию о заголовках, которые используются при вызове запроса.\n    - _Request Body_ содержит информацию о теле запроса, которое передаётся при вызове запроса.\n    - Раздел _Example_ содержит информацию с примером ответа на запрос (_Response_). Напротив названия раздела Example есть выпадающий список, в котором можно выбрать разные примеры ответов.\n- Прочитайте названия операций, которые предоставляет API.\n- Найдите Response и определите формат представления данных.\n- В примере ответа/-ов найдите данные, которые позволяют выполнить фильтрацию списка фильмов и сериалов по разным признакам.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3630344",
+		"_collection_link": "https://galactic-trinity-544238.postman.co/workspace/Homework-(9-sprint)~b6495d86-c5fc-4227-9504-4debb617f8fa/collection/3630344-70444a32-4411-4b9f-bfa9-8c88f0dd3228?action=share&source=collection_link&creator=3630344"
+	},
+	"item": [
+		{
+			"name": "Список всех фильмов и сериалов",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "SOAPAction",
+						"value": "\"#POST\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType></contentType>\n            <genreValue></genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{WebServer}}/content/list",
+					"host": [
+						"{{WebServer}}"
+					],
+					"path": [
+						"content",
+						"list"
+					]
+				},
+				"description": "Список всех фильмов на платформе"
+			},
+			"response": [
+				{
+					"name": "Список всех фильмов и сериалов",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType></contentType>\n            <genreValue></genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 26 Jun 2023 15:45:45 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=bde219199b981b69"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=ba397eab9386cc66"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "120"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "119"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1687794405"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"0-2jmj7l5rSw0yVb/vlWAYkK/YBwk\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>101</contentId>\n                    <title>Хосэ Каньон</title>\n                    <description>Хосэ Каньон — добрый и открытый парень — устроился в офис электриком и рассказывает коллегам историю своей необыкновенной жизни.</description>\n                    <imageUrl>https://otium.imagestorage.ru/JoseCanyon.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/JoseCanyon.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/JoseCanyon.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                        <genreValue>history</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>1995</yearOfIssue>\n                        <duration>152</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Джулия Блэйк</castValue>\n                        </cast>\n                        <dubbingTeam></dubbingTeam>\n                    </team>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>102</contentId>\n                    <title>Вестибюль</title>\n                    <description>Александр Павловски оказался на международном вокзале Буэнос-Айреса с паспортом другого человека. История полная загадок и случайных совпадений.</description>\n                    <imageUrl>https://otium.imagestorage.ru/TheLobby.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/TheLobby.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/TheLobby.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <duration>134</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Виолетта Липа</castValue>\n                        </cast>\n                    </team>\n                    <rating>8.9</rating>\n                </content>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>103</contentId>\n                    <title>В руках тьмы</title>\n                    <description>Учёный Ханс вместе со своей напарницей Анджелой Морэ начинает расследование преступления, которое приводит его к тайному могущественному братству.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InTheHandsOfDarkness.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/InTheHandsOfDarkness.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InTheHandsOfDarkness.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2010</yearOfIssue>\n                        <duration>143</duration>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                        </cast>\n                    </team>\n                    <rating>6.8</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>201</contentId>\n                    <title>Индийский океан и я</title>\n                    <description>Погрузитесь в веселые приключения на берегу Индийского океана, где дети вместе с местными животными учатся ценить природу и дружбу.</description>\n                    <imageUrl>https://otium.imagestorage.ru/IndianOceanAndI.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IndianOceanAndI.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/IndianOceanAndI.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2015</yearOfIssue>\n                        <episodesCount>4</episodesCount>\n                        <country>\n                            <countryValue>Индонезия</countryValue>\n                        </country>\n                        <ageRate>6+</ageRate>\n                    </details>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>202</contentId>\n                    <title>Городские путешественники</title>\n                    <description>Приготовьтесь к эмоциональной гонке по улицам Самары, где команды соперничают, решают сложные задания и раскрывают тайны этого захватывающего региона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/CityTravellers.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/CityTravellers.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/CityTravellers.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <episodesCount>18</episodesCount>\n                        <country>\n                            <countryValue>Россия</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <rating>5.9</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>203</contentId>\n                    <title>В магических лапках</title>\n                    <description>В мире, где коты владеют волшебством, трое маленьких котят отправляются в захватывающие приключения, используя свои магические способности для спасения своего волшебного родного города.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InFluffyPaws.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IInFluffyPaws.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InFluffyPaws.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2021</yearOfIssue>\n                        <episodesCount>12</episodesCount>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>4+</ageRate>\n                    </details>\n                    <rating>8.8</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>204</contentId>\n                    <title>Кухня за гранью</title>\n                    <description>Приготовьтесь к горячим соревнованиям, взрывам вкуса и кулинарным искушениям в этом захватывающем реалити-шоу, где повара-любители сражаются за звание гурманского чемпиона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/KitchenOutOfBoarders.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/KitchenOutOfBoarders.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/KitchenOutOfBoarders.mov</recordUrl>\n                    <genre>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>false</recommended>\n                    <details>\n                        <yearOfIssue>2009</yearOfIssue>\n                        <episodesCount>34</episodesCount>\n                        <country>\n                            <countryValue>Великобритания</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <rating>7.7</rating>\n                </content>               \n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу (фильмы)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>film</contentType>\n            <genreValue></genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>101</contentId>\n                    <title>Хосэ Каньон</title>\n                    <description>Хосэ Каньон — добрый и открытый парень — устроился в офис электриком и рассказывает коллегам историю своей необыкновенной жизни.</description>\n                    <imageUrl>https://otium.imagestorage.ru/JoseCanyon.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/JoseCanyon.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/JoseCanyon.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                        <genreValue>history</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>1995</yearOfIssue>\n                        <duration>152</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Джулия Блэйк</castValue>\n                        </cast>\n                    </team>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>102</contentId>\n                    <title>Вестибюль</title>\n                    <description>Александр Павловски оказался на международном вокзале Буэнос-Айреса с паспортом другого человека. История полная загадок и случайных совпадений.</description>\n                    <imageUrl>https://otium.imagestorage.ru/TheLobby.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/TheLobby.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/TheLobby.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <duration>134</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Виолетта Липа</castValue>\n                        </cast>\n                    </team>\n                    <rating>8.9</rating>\n                </content>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>103</contentId>\n                    <title>В руках тьмы</title>\n                    <description>Учёный Ханс вместе со своей напарницей Анджелой Морэ начинает расследование преступления, которое приводит его к тайному могущественному братству.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InTheHandsOfDarkness.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/InTheHandsOfDarkness.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InTheHandsOfDarkness.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2010</yearOfIssue>\n                        <duration>143</duration>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                        </cast>                    \n                    </team>\n                    <rating>6.8</rating>\n                </content>              \n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу (сериалы)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>serie</contentType>\n            <genreValue></genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>201</contentId>\n                    <title>Индийский океан и я</title>\n                    <description>Погрузитесь в веселые приключения на берегу Индийского океана, где дети вместе с местными животными учатся ценить природу и дружбу.</description>\n                    <imageUrl>https://otium.imagestorage.ru/IndianOceanAndI.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IndianOceanAndI.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/IndianOceanAndI.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2015</yearOfIssue>\n                        <episodesCount>4</episodesCount>\n                        <country>\n                            <countryValue>Индонезия</countryValue>\n                        </country>\n                        <ageRate>6+</ageRate>\n                    </details>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>202</contentId>\n                    <title>Городские путешественники</title>\n                    <description>Приготовьтесь к эмоциональной гонке по улицам Самары, где команды соперничают, решают сложные задания и раскрывают тайны этого захватывающего региона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/CityTravellers.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/CityTravellers.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/CityTravellers.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <episodesCount>18</episodesCount>\n                        <country>\n                            <countryValue>Россия</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <rating>5.9</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>203</contentId>\n                    <title>В магических лапках</title>\n                    <description>В мире, где коты владеют волшебством, трое маленьких котят отправляются в захватывающие приключения, используя свои магические способности для спасения своего волшебного родного города.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InFluffyPaws.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IInFluffyPaws.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InFluffyPaws.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2021</yearOfIssue>\n                        <episodesCount>12</episodesCount>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>4+</ageRate>\n                    </details>\n                    <rating>8.8</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>204</contentId>\n                    <title>Кухня за гранью</title>\n                    <description>Приготовьтесь к горячим соревнованиям, взрывам вкуса и кулинарным искушениям в этом захватывающем реалити-шоу, где повара-любители сражаются за звание гурманского чемпиона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/KitchenOutOfBoarders.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/KitchenOutOfBoarders.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/KitchenOutOfBoarders.mov</recordUrl>\n                    <genre>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>false</recommended>\n                    <details>\n                        <yearOfIssue>2009</yearOfIssue>\n                        <episodesCount>34</episodesCount>\n                        <country>\n                            <countryValue>Великобритания</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <rating>7.7</rating>\n                </content>               \n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По жанрам (комедия)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n        \t<contentType></contentType>\n            <genreValue>comedy</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>101</contentId>\n                    <title>Хосэ Каньон</title>\n                    <description>Хосэ Каньон — добрый и открытый парень — устроился в офис электриком и рассказывает коллегам историю своей необыкновенной жизни.</description>\n                    <imageUrl>https://otium.imagestorage.ru/JoseCanyon.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/JoseCanyon.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/JoseCanyon.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                        <genreValue>history</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>1995</yearOfIssue>\n                        <duration>152</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Джулия Блэйк</castValue>\n                        </cast>\n                    </team>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>102</contentId>\n                    <title>Вестибюль</title>\n                    <description>Александр Павловски оказался на международном вокзале Буэнос-Айреса с паспортом другого человека. История полная загадок и случайных совпадений.</description>\n                    <imageUrl>https://otium.imagestorage.ru/TheLobby.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/TheLobby.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/TheLobby.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <duration>134</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Виолетта Липа</castValue>\n                        </cast>\n                    </team>\n                    <rating>8.9</rating>\n                </content>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По жанрам (драма)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType></contentType>\n            <genreValue>drama</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>101</contentId>\n                    <title>Хосэ Каньон</title>\n                    <description>Хосэ Каньон — добрый и открытый парень — устроился в офис электриком и рассказывает коллегам историю своей необыкновенной жизни.</description>\n                    <imageUrl>https://otium.imagestorage.ru/JoseCanyon.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/JoseCanyon.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/JoseCanyon.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                        <genreValue>history</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>1995</yearOfIssue>\n                        <duration>152</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Джулия Блэйк</castValue>\n                        </cast>\n                    </team>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>102</contentId>\n                    <title>Вестибюль</title>\n                    <description>Александр Павловски оказался на международном вокзале Буэнос-Айреса с паспортом другого человека. История полная загадок и случайных совпадений.</description>\n                    <imageUrl>https://otium.imagestorage.ru/TheLobby.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/TheLobby.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/TheLobby.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <duration>134</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Виолетта Липа</castValue>\n                        </cast>\n                    </team>\n                    <rating>8.9</rating>\n                </content>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По жанрам (приключения)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType></contentType>\n            <genreValue>action</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>103</contentId>\n                    <title>В руках тьмы</title>\n                    <description>Учёный Ханс вместе со своей напарницей Анджелой Морэ начинает расследование преступления, которое приводит его к тайному могущественному братству.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InTheHandsOfDarkness.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/InTheHandsOfDarkness.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InTheHandsOfDarkness.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2010</yearOfIssue>\n                        <duration>143</duration>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                        </cast>\n                    </team>\n                    <rating>6.8</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>202</contentId>\n                    <title>Городские путешественники</title>\n                    <description>Приготовьтесь к эмоциональной гонке по улицам Самары, где команды соперничают, решают сложные задания и раскрывают тайны этого захватывающего региона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/CityTravellers.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/CityTravellers.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/CityTravellers.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <episodesCount>18</episodesCount>\n                        <country>\n                            <countryValue>Россия</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <rating>5.9</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>203</contentId>\n                    <title>В магических лапках</title>\n                    <description>В мире, где коты владеют волшебством, трое маленьких котят отправляются в захватывающие приключения, используя свои магические способности для спасения своего волшебного родного города.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InFluffyPaws.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IInFluffyPaws.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InFluffyPaws.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2021</yearOfIssue>\n                        <episodesCount>12</episodesCount>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>4+</ageRate>\n                    </details>\n                    <rating>8.8</rating>\n                </content>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По жанрам (для детей)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType></contentType>\n            <genreValue>kids</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>201</contentId>\n                    <title>Индийский океан и я</title>\n                    <description>Погрузитесь в веселые приключения на берегу Индийского океана, где дети вместе с местными животными учатся ценить природу и дружбу.</description>\n                    <imageUrl>https://otium.imagestorage.ru/IndianOceanAndI.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IndianOceanAndI.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/IndianOceanAndI.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2015</yearOfIssue>\n                        <episodesCount>4</episodesCount>\n                        <country>\n                            <countryValue>Индонезия</countryValue>\n                        </country>\n                        <ageRate>6+</ageRate>\n                    </details>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>203</contentId>\n                    <title>В магических лапках</title>\n                    <description>В мире, где коты владеют волшебством, трое маленьких котят отправляются в захватывающие приключения, используя свои магические способности для спасения своего волшебного родного города.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InFluffyPaws.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IInFluffyPaws.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InFluffyPaws.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2021</yearOfIssue>\n                        <episodesCount>12</episodesCount>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>4+</ageRate>\n                    </details>\n                    <rating>8.8</rating>\n                </content>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По жанрам (документальный)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							},
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType></contentType>\n            <genreValue>reality</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>201</contentId>\n                    <title>Индийский океан и я</title>\n                    <description>Погрузитесь в веселые приключения на берегу Индийского океана, где дети вместе с местными животными учатся ценить природу и дружбу.</description>\n                    <imageUrl>https://otium.imagestorage.ru/IndianOceanAndI.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IndianOceanAndI.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/IndianOceanAndI.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2015</yearOfIssue>\n                        <episodesCount>4</episodesCount>\n                        <country>\n                            <countryValue>Индонезия</countryValue>\n                        </country>\n                        <ageRate>6+</ageRate>\n                    </details>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>202</contentId>\n                    <title>Городские путешественники</title>\n                    <description>Приготовьтесь к эмоциональной гонке по улицам Самары, где команды соперничают, решают сложные задания и раскрывают тайны этого захватывающего региона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/CityTravellers.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/CityTravellers.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/CityTravellers.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <episodesCount>18</episodesCount>\n                        <country>\n                            <countryValue>Россия</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <rating>5.9</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>204</contentId>\n                    <title>Кухня за гранью</title>\n                    <description>Приготовьтесь к горячим соревнованиям, взрывам вкуса и кулинарным искушениям в этом захватывающем реалити-шоу, где повара-любители сражаются за звание гурманского чемпиона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/KitchenOutOfBoarders.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/KitchenOutOfBoarders.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/KitchenOutOfBoarders.mov</recordUrl>\n                    <genre>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>false</recommended>\n                    <details>\n                        <yearOfIssue>2009</yearOfIssue>\n                        <episodesCount>34</episodesCount>\n                        <country>\n                            <countryValue>Великобритания</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <rating>7.7</rating>\n                </content>               \n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу и жанрам (фильмы/комедия)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>film</contentType>\n            <genreValue>comedy</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>101</contentId>\n                    <title>Хосэ Каньон</title>\n                    <description>Хосэ Каньон — добрый и открытый парень — устроился в офис электриком и рассказывает коллегам историю своей необыкновенной жизни.</description>\n                    <imageUrl>https://otium.imagestorage.ru/JoseCanyon.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/JoseCanyon.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/JoseCanyon.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                        <genreValue>history</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>1995</yearOfIssue>\n                        <duration>152</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Джулия Блэйк</castValue>\n                        </cast>\n                    </team>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>102</contentId>\n                    <title>Вестибюль</title>\n                    <description>Александр Павловски оказался на международном вокзале Буэнос-Айреса с паспортом другого человека. История полная загадок и случайных совпадений.</description>\n                    <imageUrl>https://otium.imagestorage.ru/TheLobby.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/TheLobby.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/TheLobby.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <duration>134</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Виолетта Липа</castValue>\n                        </cast>\n                    </team>\n                    <rating>8.9</rating>\n                </content>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу и жанрам (фильмы, драма)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>film</contentType>\n            <genreValue>drama</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>101</contentId>\n                    <title>Хосэ Каньон</title>\n                    <description>Хосэ Каньон — добрый и открытый парень — устроился в офис электриком и рассказывает коллегам историю своей необыкновенной жизни.</description>\n                    <imageUrl>https://otium.imagestorage.ru/JoseCanyon.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/JoseCanyon.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/JoseCanyon.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                        <genreValue>history</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>1995</yearOfIssue>\n                        <duration>152</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Джулия Блэйк</castValue>\n                        </cast>\n                    </team>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>102</contentId>\n                    <title>Вестибюль</title>\n                    <description>Александр Павловски оказался на международном вокзале Буэнос-Айреса с паспортом другого человека. История полная загадок и случайных совпадений.</description>\n                    <imageUrl>https://otium.imagestorage.ru/TheLobby.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/TheLobby.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/TheLobby.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <duration>134</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Виолетта Липа</castValue>\n                        </cast>\n                    </team>\n                    <rating>8.9</rating>\n                </content>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу и жанрам (фильмы/приключения)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>film</contentType>\n            <genreValue>action</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>103</contentId>\n                    <title>В руках тьмы</title>\n                    <description>Учёный Ханс вместе со своей напарницей Анджелой Морэ начинает расследование преступления, которое приводит его к тайному могущественному братству.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InTheHandsOfDarkness.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/InTheHandsOfDarkness.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InTheHandsOfDarkness.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2010</yearOfIssue>\n                        <duration>143</duration>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                        </cast>\n                    </team>\n                    <rating>6.8</rating>\n                </content>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу и жанрам (фильмы/для детей)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>film</contentType>\n            <genreValue>kids</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу и жанрам (фильмы/документальный)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>film</contentType>\n            <genreValue>reality</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу и жанрам (сериалы/комедия)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>serie</contentType>\n            <genreValue>comedy</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу и жанрам (сериалы, драма)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>serie</contentType>\n            <genreValue>drama</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу и жанрам (сериалы/приключения)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>serie</contentType>\n            <genreValue>action</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>202</contentId>\n                    <title>Городские путешественники</title>\n                    <description>Приготовьтесь к эмоциональной гонке по улицам Самары, где команды соперничают, решают сложные задания и раскрывают тайны этого захватывающего региона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/CityTravellers.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/CityTravellers.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/CityTravellers.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <episodesCount>18</episodesCount>\n                        <country>\n                            <countryValue>Россия</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <rating>5.9</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>203</contentId>\n                    <title>В магических лапках</title>\n                    <description>В мире, где коты владеют волшебством, трое маленьких котят отправляются в захватывающие приключения, используя свои магические способности для спасения своего волшебного родного города.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InFluffyPaws.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IInFluffyPaws.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InFluffyPaws.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2021</yearOfIssue>\n                        <episodesCount>12</episodesCount>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>4+</ageRate>\n                    </details>\n                    <rating>8.8</rating>\n                </content>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу и жанрам (сериалы/для детей)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>serie</contentType>\n            <genreValue>kids</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>201</contentId>\n                    <title>Индийский океан и я</title>\n                    <description>Погрузитесь в веселые приключения на берегу Индийского океана, где дети вместе с местными животными учатся ценить природу и дружбу.</description>\n                    <imageUrl>https://otium.imagestorage.ru/IndianOceanAndI.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IndianOceanAndI.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/IndianOceanAndI.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2015</yearOfIssue>\n                        <episodesCount>4</episodesCount>\n                        <country>\n                            <countryValue>Индонезия</countryValue>\n                        </country>\n                        <ageRate>6+</ageRate>\n                    </details>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>203</contentId>\n                    <title>В магических лапках</title>\n                    <description>В мире, где коты владеют волшебством, трое маленьких котят отправляются в захватывающие приключения, используя свои магические способности для спасения своего волшебного родного города.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InFluffyPaws.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IInFluffyPaws.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InFluffyPaws.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2021</yearOfIssue>\n                        <episodesCount>12</episodesCount>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>4+</ageRate>\n                    </details>\n                    <rating>8.8</rating>\n                </content>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "По типу и жанрам (сериалы/документальный)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentList>\n\t\t\t<contentType>serie</contentType>\n            <genreValue>reality</genreValue>\n\t\t</GetContentList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/list",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentListResponse>\n            <contentList>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>201</contentId>\n                    <title>Индийский океан и я</title>\n                    <description>Погрузитесь в веселые приключения на берегу Индийского океана, где дети вместе с местными животными учатся ценить природу и дружбу.</description>\n                    <imageUrl>https://otium.imagestorage.ru/IndianOceanAndI.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IndianOceanAndI.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/IndianOceanAndI.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2015</yearOfIssue>\n                        <episodesCount>4</episodesCount>\n                        <country>\n                            <countryValue>Индонезия</countryValue>\n                        </country>\n                        <ageRate>6+</ageRate>\n                    </details>\n                    <rating>9.4</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>202</contentId>\n                    <title>Городские путешественники</title>\n                    <description>Приготовьтесь к эмоциональной гонке по улицам Самары, где команды соперничают, решают сложные задания и раскрывают тайны этого захватывающего региона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/CityTravellers.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/CityTravellers.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/CityTravellers.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <episodesCount>18</episodesCount>\n                        <country>\n                            <countryValue>Россия</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <rating>5.9</rating>\n                </content>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>204</contentId>\n                    <title>Кухня за гранью</title>\n                    <description>Приготовьтесь к горячим соревнованиям, взрывам вкуса и кулинарным искушениям в этом захватывающем реалити-шоу, где повара-любители сражаются за звание гурманского чемпиона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/KitchenOutOfBoarders.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/KitchenOutOfBoarders.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/KitchenOutOfBoarders.mov</recordUrl>\n                    <genre>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>false</recommended>\n                    <details>\n                        <yearOfIssue>2009</yearOfIssue>\n                        <episodesCount>34</episodesCount>\n                        <country>\n                            <countryValue>Великобритания</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <rating>7.7</rating>\n                </content>\n            </contentList>\n        </GetContentListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				}
+			]
+		},
+		{
+			"name": "Детальное описание фильма или сериала",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "SOAPAction",
+						"value": "\"#POST\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentDetails>\n\t\t\t<contentType>film</contentType>\n            <contentId>101</contentId>\n\t\t</GetContentDetails>\n\t</soap:Body>\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{WebServer}}/content/details",
+					"host": [
+						"{{WebServer}}"
+					],
+					"path": [
+						"content",
+						"details"
+					]
+				},
+				"description": "Детальное описание фильма по id"
+			},
+			"response": [
+				{
+					"name": "Описание фильма (id=101)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentDetails>\n\t\t\t<contentType>film</contentType>\n            <contentId>101</contentId>\n\t\t</GetContentDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/details",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentDetailsResponse>\n            <contents>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>101</contentId>\n                    <title>Хосэ Каньон</title>\n                    <description>Хосэ Каньон — добрый и открытый парень — устроился в офис электриком и рассказывает коллегам историю своей необыкновенной жизни.</description>\n                    <imageUrl>https://otium.imagestorage.ru/JoseCanyon.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/JoseCanyon.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/JoseCanyon.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                        <genreValue>history</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>1995</yearOfIssue>\n                        <duration>152</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>английский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Джулия Блэйк</castValue>\n                        </cast>\n                        <dubbingTeam></dubbingTeam>\n                    </team>\n                    <rating>9.4</rating>\n                </content>\n            </contents>\n        </GetContentDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "Описание фильма (id=102)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentDetails>\n\t\t\t<contentType>film</contentType>\n            <contentId>102</contentId>\n\t\t</GetContentDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/details",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentDetailsResponse>\n            <contents>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>102</contentId>\n                    <title>Вестибюль</title>\n                    <description>Александр Павловски оказался на международном вокзале Буэнос-Айреса с паспортом другого человека. История полная загадок и случайных совпадений.</description>\n                    <imageUrl>https://otium.imagestorage.ru/TheLobby.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/TheLobby.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/TheLobby.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <duration>134</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>английский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                            <soundValue>испанский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                            <subtitleValue>испанский</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Виолетта Липа</castValue>\n                        </cast>\n                        <dubbingTeam></dubbingTeam>\n                    </team>\n                    <rating>8.9</rating>\n                </content>\n            </contents>\n        </GetContentDetailsResponse>\n    </soap:Body>\n</soap:Envelope>\n\n"
+				},
+				{
+					"name": "Описание фильма (id=103)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentDetails>\n\t\t\t<contentType>film</contentType>\n            <contentId>103</contentId>\n\t\t</GetContentDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/details",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentDetailsResponse>\n            <contents>\n                <content>\n                    <contentType>film</contentType>\n                    <contentId>103</contentId>\n                    <title>В руках тьмы</title>\n                    <description>Учёный Ханс вместе со своей напарницей Анджелой Морэ начинает расследование преступления, которое приводит его к тайному могущественному братству.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InTheHandsOfDarkness.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/InTheHandsOfDarkness.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InTheHandsOfDarkness.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2010</yearOfIssue>\n                        <duration>143</duration>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>английский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                            <soundValue>итальянский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                            <subtitleValue>итальянский</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                        </cast>\n                        <dubbingTeam></dubbingTeam>\n                    </team>\n                    <rating>6.8</rating>\n                </content>\n            </contents>\n        </GetContentDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "Описание сериала (id=201)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentDetails>\n\t\t\t<contentType>serie</contentType>\n            <contentId>201</contentId>\n\t\t</GetContentDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/details",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentDetailsResponse>\n            <contents>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>201</contentId>\n                    <title>Индийский океан и я</title>\n                    <description>Погрузитесь в веселые приключения на берегу Индийского океана, где дети вместе с местными животными учатся ценить природу и дружбу.</description>\n                    <imageUrl>https://otium.imagestorage.ru/IndianOceanAndI.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IndianOceanAndI.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/IndianOceanAndI.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2015</yearOfIssue>\n                        <episodesCount>4</episodesCount>\n                        <country>\n                            <countryValue>Индонезия</countryValue>\n                        </country>\n                        <ageRate>6+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>бахаса</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                            <subtitleValue>бахаса</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <rating>9.4</rating>\n                </content>\n            </contents>\n        </GetContentDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "Описание сериала (id=202)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentDetails>\n\t\t\t<contentType>serie</contentType>\n            <contentId>202</contentId>\n\t\t</GetContentDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/details",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentDetailsResponse>\n            <contents>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>202</contentId>\n                    <title>Городские путешественники</title>\n                    <description>Приготовьтесь к эмоциональной гонке по улицам Самары, где команды соперничают, решают сложные задания и раскрывают тайны этого захватывающего региона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/CityTravellers.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/CityTravellers.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/CityTravellers.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <episodesCount>18</episodesCount>\n                        <country>\n                            <countryValue>Россия</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>русский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                        </sound>\n                        <subtitle></subtitle>\n                    </language>\n                    <rating>5.9</rating>\n                </content>\n            </contents>\n        </GetContentDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "Описание сериала (id=203)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentDetails>\n\t\t\t<contentType>serie</contentType>\n            <contentId>203</contentId>\n\t\t</GetContentDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/details",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentDetailsResponse>\n            <contents>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>203</contentId>\n                    <title>В магических лапках</title>\n                    <description>В мире, где коты владеют волшебством, трое маленьких котят отправляются в захватывающие приключения, используя свои магические способности для спасения своего волшебного родного города.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InFluffyPaws.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/IInFluffyPaws.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InFluffyPaws.mov</recordUrl>\n                    <genre>\n                        <genreValue>kids</genreValue>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <details>\n                        <yearOfIssue>2021</yearOfIssue>\n                        <episodesCount>12</episodesCount>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>4+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>итальянский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                            <soundValue>итальянский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                            <subtitleValue>итальянский</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <rating>8.8</rating>\n                </content>\n            </contents>\n        </GetContentDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "Описание сериала (id=204)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							},
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetContentDetails>\n\t\t\t<contentType>serie</contentType>\n            <contentId>204</contentId>\n\t\t</GetContentDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WebServer}}/content/details",
+							"host": [
+								"{{WebServer}}"
+							],
+							"path": [
+								"content",
+								"details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetContentDetailsResponse>\n            <contents>\n                <content>\n                    <contentType>serie</contentType>\n                    <contentId>204</contentId>\n                    <title>Кухня за гранью</title>\n                    <description>Приготовьтесь к горячим соревнованиям, взрывам вкуса и кулинарным искушениям в этом захватывающем реалити-шоу, где повара-любители сражаются за звание гурманского чемпиона.</description>\n                    <imageUrl>https://otium.imagestorage.ru/KitchenOutOfBoarders.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/KitchenOutOfBoarders.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/KitchenOutOfBoarders.mov</recordUrl>\n                    <genre>\n                        <genreValue>reality</genreValue>\n                    </genre>\n                    <recommended>false</recommended>\n                    <details>\n                        <yearOfIssue>2009</yearOfIssue>\n                        <episodesCount>34</episodesCount>\n                        <country>\n                            <countryValue>Великобритания</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>английский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <rating>7.7</rating>\n                </content>\n            </contents>\n        </GetContentDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				}
+			]
+		}
+	]
+}

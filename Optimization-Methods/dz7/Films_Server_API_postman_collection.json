@@ -1,0 +1,315 @@
+{
+	"info": {
+		"_postman_id": "9660390c-ed5b-4f9c-a2a7-c45f3092c4f8",
+		"name": "Films Server API",
+		"description": "Films Server API предоставляет информацию о всех фильмах, доступных в данный момент на платформе Otium.\n\n**Как использовать**\n\n- Каждая операция API содержит данные о запросе (Request Headers, Request Body) и пример ответа (Request Body Example, Response Example):\n    - _Request Headers_ содержит информацию о заголовках, которые используются при вызове запроса.\n    - _Request Body_ содержит информацию о теле запроса, которое передаётся при вызове запроса.\n    - Раздел _Example_ содержит информацию с примером ответа на запрос (_Response_). Напротив названия раздела Example есть выпадающий список, в котором можно выбрать разные примеры ответов.\n- Прочитайте названия операций, которые предоставляет API.\n- Найдите Response и определите формат представления данных.\n- В примере ответа/-ов найдите данные, которые позволяют определить, что фильм эксклюзивно представлен на площадке Otium.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3630344",
+		"_collection_link": "https://galactic-trinity-544238.postman.co/workspace/Homework-(9-sprint)~b6495d86-c5fc-4227-9504-4debb617f8fa/collection/3630344-9660390c-ed5b-4f9c-a2a7-c45f3092c4f8?action=share&source=collection_link&creator=3630344"
+	},
+	"item": [
+		{
+			"name": "Список фильмов",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "SOAPAction",
+						"value": "\"#POST\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetList></GetList>\n\t</soap:Body>\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{FilmsServer}}/films/list",
+					"host": [
+						"{{FilmsServer}}"
+					],
+					"path": [
+						"films",
+						"list"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Список всех фильмов на платформе"
+			},
+			"response": [
+				{
+					"name": "Список фильмов (все)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetList></GetList>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{FilmsServer}}/films/list",
+							"host": [
+								"{{FilmsServer}}"
+							],
+							"path": [
+								"films",
+								"list"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetListResponse>\n            <main>\n                <contents>\n                    <content type=\"film\" id=\"101\">\n                        <title>Хосэ Каньон</title>\n                        <description>Хосэ Каньон — добрый и открытый парень — устроился в офис электриком и рассказывает коллегам историю своей необыкновенной жизни.</description>\n                        <imageUrl>https://otium.imagestorage.ru/JoseCanyon.img</imageUrl>\n                        <previewUrl>https://otium.previewstorage.ru/JoseCanyon.mov</previewUrl>\n                        <recordUrl>https://otium.recordstorage.ru/JoseCanyon.mov</recordUrl>\n                        <genre>\n                            <genreValue>comedy</genreValue>\n                            <genreValue>drama</genreValue>\n                            <genreValue>history</genreValue>\n                        </genre>\n                        <recommended>true</recommended>\n                        <exclusive>false</exclusive>\n                        <details>\n                            <yearOfIssue>1995</yearOfIssue>\n                            <duration>152</duration>\n                            <country>\n                                <countryValue>США</countryValue>\n                                <countryValue>Аргентина</countryValue>\n                            </country>\n                            <ageRate>16+</ageRate>\n                        </details>\n                        <language>\n                            <original>\n                                <originalValue>английский</originalValue>\n                            </original>\n                            <sound>\n                                <soundValue>русский</soundValue>\n                                <soundValue>английский</soundValue>\n                            </sound>\n                            <subtitle>\n                                <subtitleValue>русский</subtitleValue>\n                                <subtitleValue>английский</subtitleValue>\n                            </subtitle>\n                        </language>\n                        <team>\n                            <cast>\n                                <castValue>Джон Джэксон</castValue>\n                                <castValue>Джулия Блэйк</castValue>\n                            </cast>\n                            <dubbingTeam></dubbingTeam>\n                        </team>\n                        <rating>9.4</rating>\n                        <favorites>true</favorites>\n                    </content>\n                    <content type=\"film\" id=\"102\">\n                        <title>Вестибюль</title>\n                        <description>Александр Павловски оказался на международном вокзале Буэнос-Айреса с паспортом другого человека. История полная загадок и случайных совпадений.</description>\n                        <imageUrl>https://otium.imagestorage.ru/TheLobby.img</imageUrl>\n                        <previewUrl>https://otium.previewstorage.ru/TheLobby.mov</previewUrl>\n                        <recordUrl>https://otium.recordstorage.ru/TheLobby.mov</recordUrl>\n                        <genre>\n                            <genreValue>comedy</genreValue>\n                            <genreValue>drama</genreValue>\n                        </genre>\n                        <recommended>true</recommended>\n                        <exclusive>true</exclusive>\n                        <details>\n                            <yearOfIssue>2005</yearOfIssue>\n                            <duration>134</duration>\n                            <country>\n                                <countryValue>США</countryValue>\n                                <countryValue>Аргентина</countryValue>\n                            </country>\n                            <ageRate>12+</ageRate>\n                        </details>\n                        <language>\n                            <original>\n                                <originalValue>английский</originalValue>\n                            </original>\n                            <sound>\n                                <soundValue>русский</soundValue>\n                                <soundValue>английский</soundValue>\n                                <soundValue>испанский</soundValue>\n                            </sound>\n                            <subtitle>\n                                <subtitleValue>русский</subtitleValue>\n                                <subtitleValue>английский</subtitleValue>\n                                <subtitleValue>испанский</subtitleValue>\n                            </subtitle>\n                        </language>\n                        <team>\n                            <cast>\n                                <castValue>Джон Джэксон</castValue>\n                                <castValue>Виолетта Липа</castValue>\n                            </cast>\n                            <dubbingTeam></dubbingTeam>\n                        </team>\n                        <rating>8.9</rating>\n                        <favorites>false</favorites>\n                    </content> \n                    <content type=\"film\" id=\"103\">\n                        <title>В руках тьмы</title>\n                        <description>Учёный Ханс вместе со своей напарницей Анджелой Морэ начинает расследование преступления, которое приводит его к тайному могущественному братству.</description>\n                        <imageUrl>https://otium.imagestorage.ru/InTheHandsOfDarkness.img</imageUrl>\n                        <previewUrl>https://otium.previewstorage.ru/InTheHandsOfDarkness.mov</previewUrl>\n                        <recordUrl>https://otium.recordstorage.ru/InTheHandsOfDarkness.mov</recordUrl>\n                        <genre>\n                            <genreValue>action</genreValue>\n                        </genre>\n                        <recommended>true</recommended>\n                        <exclusive>false</exclusive>\n                        <details>\n                            <yearOfIssue>2010</yearOfIssue>\n                            <duration>143</duration>\n                            <country>\n                                <countryValue>Италия</countryValue>\n                                <countryValue>США</countryValue>\n                            </country>\n                            <ageRate>12+</ageRate>\n                        </details>\n                        <language>\n                            <original>\n                                <originalValue>английский</originalValue>\n                            </original>\n                            <sound>\n                                <soundValue>русский</soundValue>\n                                <soundValue>английский</soundValue>\n                                <soundValue>итальянский</soundValue>\n                            </sound>\n                            <subtitle>\n                                <subtitleValue>русский</subtitleValue>\n                                <subtitleValue>английский</subtitleValue>\n                                <subtitleValue>итальянский</subtitleValue>\n                            </subtitle>\n                        </language>\n                        <team>\n                            <cast>\n                                <castValue>Джон Джэксон</castValue>\n                            </cast>\n                            <dubbingTeam></dubbingTeam>\n                        </team>\n                        <rating>6.8</rating>\n                        <favorites>false</favorites>\n                    </content>                                      \n                </contents>\n            </main>\n        </GetListResponse>\n    </soap:Body>\n</soap:Envelope>"
+				}
+			]
+		},
+		{
+			"name": "Описание фильма",
+			"protocolProfileBehavior": {
+				"insecureHTTPParser": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "SOAPAction",
+						"value": "\"#POST\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"hhttp://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetDetails>\n\t\t\t<content id=\"101\"/>\n\t\t</GetDetails>\n\t</soap:Body>\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{FilmsServer}}/film",
+					"host": [
+						"{{FilmsServer}}"
+					],
+					"path": [
+						"film"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Детальное описание фильма по id"
+			},
+			"response": [
+				{
+					"name": "Описание фильма (id=101)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							},
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetDetails>\n\t\t\t<content type=\"film\" id=\"101\"/>\n\t\t</GetDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{FilmsServer}}/films",
+							"host": [
+								"{{FilmsServer}}"
+							],
+							"path": [
+								"films"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetDetailsResponse>\n            <main>\n                <content type=\"film\" id=\"101\">\n                    <title>Хосэ Каньон</title>\n                    <description>Хосэ Каньон — добрый и открытый парень — устроился в офис электриком и рассказывает коллегам историю своей необыкновенной жизни.</description>\n                    <imageUrl>https://otium.imagestorage.ru/JoseCanyon.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/JoseCanyon.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/JoseCanyon.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                        <genreValue>history</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <exclusive>false</exclusive>\n                    <details>\n                        <yearOfIssue>1995</yearOfIssue>\n                        <duration>152</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>16+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>английский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Джулия Блэйк</castValue>\n                        </cast>\n                        <dubbingTeam></dubbingTeam>\n                    </team>\n                    <rating>9.4</rating>\n                    <favorites>true</favorites>\n                </content>\n            </main>\n        </GetDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "Описание фильма (id=102)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							},
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetDetails>\n\t\t\t<content type=\"film\" id=\"102\"/>\n\t\t</GetDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{FilmsServer}}/films",
+							"host": [
+								"{{FilmsServer}}"
+							],
+							"path": [
+								"films"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetDetailsResponse>\n            <main>\n                <content type=\"film\" id=\"102\">\n                    <title>Вестибюль</title>\n                    <description>Александр Павловски оказался на международном вокзале Буэнос-Айреса с паспортом другого человека. История полная загадок и случайных совпадений.</description>\n                    <imageUrl>https://otium.imagestorage.ru/TheLobby.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/TheLobby.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/TheLobby.mov</recordUrl>\n                    <genre>\n                        <genreValue>comedy</genreValue>\n                        <genreValue>drama</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <exclusive>true</exclusive>\n                    <details>\n                        <yearOfIssue>2005</yearOfIssue>\n                        <duration>134</duration>\n                        <country>\n                            <countryValue>США</countryValue>\n                            <countryValue>Аргентина</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>английский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                            <soundValue>испанский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                            <subtitleValue>испанский</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                            <castValue>Виолетта Липа</castValue>\n                        </cast>\n                        <dubbingTeam></dubbingTeam>\n                    </team>\n                    <rating>8.9</rating>\n                    <favorites>false</favorites>\n                </content>\n            </main>\n        </GetDetailsResponse>\n    </soap:Body>\n</soap:Envelope>"
+				},
+				{
+					"name": "Описание фильма (id=103)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							},
+							{
+								"key": "SOAPAction",
+								"value": "\"#POST\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\">\n  <soap:Body>\n\t\t<GetDetails>\n\t\t\t<content type=\"film\" id=\"103\"/>\n\t\t</GetDetails>\n\t</soap:Body>\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{FilmsServer}}/films",
+							"host": [
+								"{{FilmsServer}}"
+							],
+							"path": [
+								"films"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope/\" soap:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\">\n    <soap:Body>\n        <GetDetailsResponse>\n            <main>\n                <content type=\"film\" id=\"103\">\n                    <title>В руках тьмы</title>\n                    <description>Учёный Ханс вместе со своей напарницей Анджелой Морэ начинает расследование преступления, которое приводит его к тайному могущественному братству.</description>\n                    <imageUrl>https://otium.imagestorage.ru/InTheHandsOfDarkness.img</imageUrl>\n                    <previewUrl>https://otium.previewstorage.ru/InTheHandsOfDarkness.mov</previewUrl>\n                    <recordUrl>https://otium.recordstorage.ru/InTheHandsOfDarkness.mov</recordUrl>\n                    <genre>\n                        <genreValue>action</genreValue>\n                    </genre>\n                    <recommended>true</recommended>\n                    <exclusive>false</exclusive>\n                    <details>\n                        <yearOfIssue>2010</yearOfIssue>\n                        <duration>143</duration>\n                        <country>\n                            <countryValue>Италия</countryValue>\n                            <countryValue>США</countryValue>\n                        </country>\n                        <ageRate>12+</ageRate>\n                    </details>\n                    <language>\n                        <original>\n                            <originalValue>английский</originalValue>\n                        </original>\n                        <sound>\n                            <soundValue>русский</soundValue>\n                            <soundValue>английский</soundValue>\n                            <soundValue>итальянский</soundValue>\n                        </sound>\n                        <subtitle>\n                            <subtitleValue>русский</subtitleValue>\n                            <subtitleValue>английский</subtitleValue>\n                            <subtitleValue>итальянский</subtitleValue>\n                        </subtitle>\n                    </language>\n                    <team>\n                        <cast>\n                            <castValue>Джон Джэксон</castValue>\n                        </cast>\n                        <dubbingTeam></dubbingTeam>\n                    </team>\n                    <rating>6.8</rating>\n                    <favorites>false</favorites>\n                </content>\n            </main>\n        </GetDetailsResponse>\n    </soap:Body>\n</soap:Envelope>{\n"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,5338 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "АС ГРСН API",
+    "description": "REST API автоматизированной системы генерации персонализированных рецептов спортивного питания.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/auth/register": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Регистрация пользователя",
+        "operationId": "register_api_v1_auth_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "E-mail уже зарегистрирован"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Авторизация пользователя",
+        "operationId": "login_api_v1_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Неверный логин или пароль"
+          },
+          "423": {
+            "description": "Вход временно заблокирован"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/refresh": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Продление сессии активного пользователя",
+        "operationId": "refresh_api_v1_auth_refresh_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Завершение пользовательской сессии",
+        "operationId": "logout_api_v1_auth_logout_post",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/auth/me": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Текущий пользователь",
+        "operationId": "me_api_v1_auth_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/profile": {
+      "get": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Получить профиль текущего пользователя",
+        "operationId": "read_profile_api_v1_profile_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileOut"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Обновить профиль и текущий фитнес-ориентир",
+        "operationId": "update_profile_api_v1_profile_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/profile/parameter-history": {
+      "get": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "История физических параметров",
+        "operationId": "parameter_history_api_v1_profile_parameter_history_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ParameterHistoryItem"
+                  },
+                  "type": "array",
+                  "title": "Response Parameter History Api V1 Profile Parameter History Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Добавить замер физических параметров",
+        "operationId": "add_parameter_api_v1_profile_parameter_history_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParameterHistoryCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParameterHistoryItem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/goals": {
+      "get": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Справочник фитнес-ориентиров",
+        "operationId": "goals_api_v1_goals_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/FitnessGoalOut"
+                  },
+                  "type": "array",
+                  "title": "Response Goals Api V1 Goals Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/activity-levels": {
+      "get": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Коэффициенты физической активности",
+        "operationId": "activity_levels_api_v1_activity_levels_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ActivityLevelOut"
+                  },
+                  "type": "array",
+                  "title": "Response Activity Levels Api V1 Activity Levels Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/restrictions": {
+      "get": {
+        "tags": [
+          "restrictions"
+        ],
+        "summary": "Запреты текущего пользователя",
+        "operationId": "list_restrictions_api_v1_restrictions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/UserRestrictionOut"
+                  },
+                  "type": "array",
+                  "title": "Response List Restrictions Api V1 Restrictions Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "restrictions"
+        ],
+        "summary": "Добавить запрет пользователя",
+        "operationId": "add_restriction_api_v1_restrictions_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestrictionCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRestrictionOut"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Неоднозначное соответствие — требуется выбор из вариантов"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "restrictions"
+        ],
+        "summary": "Очистить список запретов",
+        "operationId": "clear_restrictions_api_v1_restrictions_delete",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/restrictions/match": {
+      "get": {
+        "tags": [
+          "restrictions"
+        ],
+        "summary": "Нормализация ввода и поиск соответствий в справочниках",
+        "operationId": "match_api_v1_restrictions_match_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160,
+              "title": "Q"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/restrictions/{restriction_id}": {
+      "delete": {
+        "tags": [
+          "restrictions"
+        ],
+        "summary": "Удалить запрет пользователя",
+        "operationId": "delete_restriction_api_v1_restrictions__restriction_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "restriction_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Restriction Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/restrictions/check-available": {
+      "get": {
+        "tags": [
+          "restrictions"
+        ],
+        "summary": "Проверка выбранного набора ингредиентов перед генерацией",
+        "operationId": "check_available_api_v1_restrictions_check_available_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AvailableCheckItem"
+                  },
+                  "type": "array",
+                  "title": "Response Check Available Api V1 Restrictions Check Available Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/ingredients": {
+      "get": {
+        "tags": [
+          "ingredients"
+        ],
+        "summary": "Каталог ингредиентов с фильтрацией",
+        "operationId": "catalog_api_v1_ingredients_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Search"
+            }
+          },
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Categoryid"
+            }
+          },
+          {
+            "name": "allowedOnly",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Allowedonly"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IngredientOut"
+                  },
+                  "title": "Response Catalog Api V1 Ingredients Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ingredients/{ingredient_id}": {
+      "get": {
+        "tags": [
+          "ingredients"
+        ],
+        "summary": "Карточка ингредиента",
+        "operationId": "ingredient_card_api_v1_ingredients__ingredient_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "ingredient_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Ingredient Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngredientOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/categories": {
+      "get": {
+        "tags": [
+          "ingredients"
+        ],
+        "summary": "Справочник категорий ингредиентов",
+        "operationId": "categories_api_v1_categories_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryOut"
+                  },
+                  "type": "array",
+                  "title": "Response Categories Api V1 Categories Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/allergens": {
+      "get": {
+        "tags": [
+          "ingredients"
+        ],
+        "summary": "Справочник аллергенов",
+        "operationId": "allergens_api_v1_allergens_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AllergenOut"
+                  },
+                  "type": "array",
+                  "title": "Response Allergens Api V1 Allergens Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/available-ingredients": {
+      "get": {
+        "tags": [
+          "ingredients"
+        ],
+        "summary": "Доступные ингредиенты пользователя",
+        "operationId": "get_available_api_v1_available_ingredients_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AvailableIngredientOut"
+                  },
+                  "type": "array",
+                  "title": "Response Get Available Api V1 Available Ingredients Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "ingredients"
+        ],
+        "summary": "Обновить набор доступных ингредиентов",
+        "operationId": "put_available_api_v1_available_ingredients_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AvailableIngredientsUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AvailableIngredientOut"
+                  },
+                  "type": "array",
+                  "title": "Response Put Available Api V1 Available Ingredients Put"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/recipes/generate": {
+      "post": {
+        "tags": [
+          "recipes"
+        ],
+        "summary": "Сгенерировать персонализированный рецепт",
+        "operationId": "generate_api_v1_recipes_generate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateRecipeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateRecipeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/recipes": {
+      "get": {
+        "tags": [
+          "recipes"
+        ],
+        "summary": "История рецептов пользователя",
+        "operationId": "history_api_v1_recipes_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Datefrom"
+            }
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dateto"
+            }
+          },
+          {
+            "name": "goalId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Goalid"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Search"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecipeSummary"
+                  },
+                  "title": "Response History Api V1 Recipes Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recipes/{recipe_id}": {
+      "get": {
+        "tags": [
+          "recipes"
+        ],
+        "summary": "Подробная карточка рецепта",
+        "operationId": "card_api_v1_recipes__recipe_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "recipe_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Recipe Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "recipes"
+        ],
+        "summary": "Редактировать сохранённый рецепт",
+        "operationId": "edit_api_v1_recipes__recipe_id__patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "recipe_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Recipe Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecipeUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "recipes"
+        ],
+        "summary": "Удалить рецепт из истории",
+        "operationId": "remove_api_v1_recipes__recipe_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "recipe_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Recipe Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recipes/{recipe_id}/rating": {
+      "post": {
+        "tags": [
+          "recipes"
+        ],
+        "summary": "Сохранить оценку рецепта",
+        "operationId": "rate_api_v1_recipes__recipe_id__rating_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "recipe_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Recipe Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RatingCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RatingOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reports/nutrition": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Отчёт о пищевой ценности за период",
+        "operationId": "nutrition_report_api_v1_reports_nutrition_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "Datefrom"
+            }
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "Dateto"
+            }
+          },
+          {
+            "name": "goalId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Goalid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NutritionReportOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reports/nutrition/export": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Экспорт отчёта в PDF / XLSX / CSV",
+        "operationId": "export_report_api_v1_reports_nutrition_export_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportExportRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportExportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "История сохранённых отчётов",
+        "operationId": "saved_reports_api_v1_reports_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SavedReportOut"
+                  },
+                  "type": "array",
+                  "title": "Response Saved Reports Api V1 Reports Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports/{report_id}/download": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Скачать файл отчёта",
+        "operationId": "download_report_api_v1_reports__report_id__download_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Report Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/analysis/nutrition": {
+      "get": {
+        "tags": [
+          "reports",
+          "analysis"
+        ],
+        "summary": "Анализ соответствия рациона цели",
+        "operationId": "nutrition_analysis_api_v1_analysis_nutrition_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "Datefrom"
+            }
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "Dateto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NutritionAnalysis"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/stats": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Сводные показатели системы",
+        "operationId": "stats_api_v1_admin_stats_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminStats"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/users": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Список пользователей",
+        "operationId": "users_api_v1_admin_users_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Search"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AdminUserOut"
+                  },
+                  "title": "Response Users Api V1 Admin Users Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users/{user_id}": {
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Изменить роль или статус пользователя",
+        "operationId": "update_user_api_v1_admin_users__user_id__patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminUserUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminUserOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Удалить учётную запись пользователя",
+        "operationId": "delete_user_api_v1_admin_users__user_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/logs": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Журнал событий системы",
+        "operationId": "logs_api_v1_admin_logs_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Action"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Userid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 1000,
+              "minimum": 1,
+              "default": 200,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditLogOut"
+                  },
+                  "title": "Response Logs Api V1 Admin Logs Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users/{user_id}/activity": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Активность пользователя",
+        "operationId": "user_activity_api_v1_admin_users__user_id__activity_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditLogOut"
+                  },
+                  "title": "Response User Activity Api V1 Admin Users  User Id  Activity Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/ingredients": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Добавить ингредиент в каталог",
+        "operationId": "create_ingredient_api_v1_admin_ingredients_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IngredientInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngredientOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/ingredients/{ingredient_id}": {
+      "put": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Изменить ингредиент",
+        "operationId": "update_ingredient_api_v1_admin_ingredients__ingredient_id__put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "ingredient_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Ingredient Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IngredientInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngredientOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Удалить ингредиент",
+        "operationId": "delete_ingredient_api_v1_admin_ingredients__ingredient_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "ingredient_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Ingredient Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/allergens": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Добавить аллерген",
+        "operationId": "create_allergen_api_v1_admin_allergens_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AllergenInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllergenOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/allergens/{allergen_id}": {
+      "put": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Изменить аллерген",
+        "operationId": "update_allergen_api_v1_admin_allergens__allergen_id__put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "allergen_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Allergen Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AllergenInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllergenOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Удалить аллерген",
+        "operationId": "delete_allergen_api_v1_admin_allergens__allergen_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "allergen_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Allergen Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/categories": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Добавить категорию ингредиентов",
+        "operationId": "create_category_api_v1_admin_categories_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/categories/{category_id}": {
+      "put": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Изменить категорию",
+        "operationId": "update_category_api_v1_admin_categories__category_id__put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "category_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Category Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Удалить категорию",
+        "operationId": "delete_category_api_v1_admin_categories__category_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "category_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Category Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/integrity": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Проверка корректности и целостности справочников",
+        "operationId": "integrity_api_v1_admin_integrity_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/IntegrityIssue"
+                  },
+                  "type": "array",
+                  "title": "Response Integrity Api V1 Admin Integrity Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/backups": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Список резервных копий",
+        "operationId": "backups_api_v1_admin_backups_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/BackupInfo"
+                  },
+                  "type": "array",
+                  "title": "Response Backups Api V1 Admin Backups Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Запустить резервное копирование БД",
+        "operationId": "create_backup_api_v1_admin_backups_post",
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskAccepted"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/backups/restore": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Восстановить БД из резервной копии",
+        "operationId": "restore_backup_api_v1_admin_backups_restore_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BackupRestoreRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskAccepted"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Проверка доступности API и базы данных",
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActivityLevelOut": {
+        "properties": {
+          "value": {
+            "type": "number",
+            "title": "Value"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "value",
+          "description"
+        ],
+        "title": "ActivityLevelOut"
+      },
+      "AdminStats": {
+        "properties": {
+          "users": {
+            "type": "integer",
+            "title": "Users"
+          },
+          "activeUsers": {
+            "type": "integer",
+            "title": "Activeusers"
+          },
+          "blockedUsers": {
+            "type": "integer",
+            "title": "Blockedusers"
+          },
+          "ingredients": {
+            "type": "integer",
+            "title": "Ingredients"
+          },
+          "allergens": {
+            "type": "integer",
+            "title": "Allergens"
+          },
+          "categories": {
+            "type": "integer",
+            "title": "Categories"
+          },
+          "recipes": {
+            "type": "integer",
+            "title": "Recipes"
+          },
+          "dataErrors": {
+            "type": "integer",
+            "title": "Dataerrors"
+          },
+          "dataWarnings": {
+            "type": "integer",
+            "title": "Datawarnings"
+          },
+          "failedLogins7d": {
+            "type": "integer",
+            "title": "Failedlogins7D"
+          },
+          "lastBackup": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lastbackup"
+          }
+        },
+        "type": "object",
+        "required": [
+          "users",
+          "activeUsers",
+          "blockedUsers",
+          "ingredients",
+          "allergens",
+          "categories",
+          "recipes",
+          "dataErrors",
+          "dataWarnings",
+          "failedLogins7d"
+        ],
+        "title": "AdminStats"
+      },
+      "AdminUserOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Createdat"
+          },
+          "lastLoginAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lastloginat"
+          },
+          "recipesCount": {
+            "type": "integer",
+            "title": "Recipescount",
+            "default": 0
+          },
+          "failedLoginCount": {
+            "type": "integer",
+            "title": "Failedlogincount",
+            "default": 0
+          },
+          "lockedUntil": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lockeduntil"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "email",
+          "role",
+          "status",
+          "createdAt"
+        ],
+        "title": "AdminUserOut"
+      },
+      "AdminUserUpdate": {
+        "properties": {
+          "role": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "user",
+                  "admin"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Role"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "blocked",
+                  "deleted"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "title": "AdminUserUpdate"
+      },
+      "AllergenInput": {
+        "properties": {
+          "code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 40
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "synonyms": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Synonyms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "AllergenInput"
+      },
+      "AllergenOut": {
+        "properties": {
+          "code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 40
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "synonyms": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Synonyms"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "id"
+        ],
+        "title": "AllergenOut"
+      },
+      "AllergenShort": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "AllergenShort"
+      },
+      "AnalysisRecommendation": {
+        "properties": {
+          "priority": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "title": "Priority"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "priority",
+          "text",
+          "reason"
+        ],
+        "title": "AnalysisRecommendation"
+      },
+      "AuditLogOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "userId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Userid"
+          },
+          "userEmail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Useremail"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action"
+          },
+          "actionTitle": {
+            "type": "string",
+            "title": "Actiontitle"
+          },
+          "entity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity"
+          },
+          "entityId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entityid"
+          },
+          "details": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Details"
+          },
+          "ip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ip"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Createdat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "userId",
+          "action",
+          "actionTitle",
+          "details",
+          "createdAt"
+        ],
+        "title": "AuditLogOut"
+      },
+      "AuthResponse": {
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "title": "Accesstoken"
+          },
+          "tokenType": {
+            "type": "string",
+            "title": "Tokentype",
+            "default": "bearer"
+          },
+          "expiresIn": {
+            "type": "integer",
+            "title": "Expiresin"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserOut"
+          }
+        },
+        "type": "object",
+        "required": [
+          "accessToken",
+          "expiresIn",
+          "user"
+        ],
+        "title": "AuthResponse"
+      },
+      "AvailableCheckItem": {
+        "properties": {
+          "ingredientId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Ingredientid"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "allergens": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Allergens"
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "allowed",
+              "excluded"
+            ],
+            "title": "Result"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reasons"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ingredientId",
+          "name",
+          "allergens",
+          "result",
+          "reasons"
+        ],
+        "title": "AvailableCheckItem"
+      },
+      "AvailableIngredientInput": {
+        "properties": {
+          "ingredientId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Ingredientid"
+          },
+          "availableQtyG": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 100000.0,
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Availableqtyg"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ingredientId"
+        ],
+        "title": "AvailableIngredientInput"
+      },
+      "AvailableIngredientOut": {
+        "properties": {
+          "ingredientId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Ingredientid"
+          },
+          "availableQtyG": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Availableqtyg"
+          },
+          "ingredient": {
+            "$ref": "#/components/schemas/IngredientOut"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updatedat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ingredientId",
+          "availableQtyG",
+          "ingredient",
+          "updatedAt"
+        ],
+        "title": "AvailableIngredientOut"
+      },
+      "AvailableIngredientsUpdate": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AvailableIngredientInput"
+            },
+            "type": "array",
+            "maxItems": 300,
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "AvailableIngredientsUpdate"
+      },
+      "BackupInfo": {
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "title": "Filename"
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "title": "Sizebytes"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Createdat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fileName",
+          "sizeBytes",
+          "createdAt"
+        ],
+        "title": "BackupInfo"
+      },
+      "BackupRestoreRequest": {
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 1,
+            "title": "Filename"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fileName"
+        ],
+        "title": "BackupRestoreRequest"
+      },
+      "CategoryInput": {
+        "properties": {
+          "code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 40
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "CategoryInput"
+      },
+      "CategoryOut": {
+        "properties": {
+          "code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 40
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "ingredientsCount": {
+            "type": "integer",
+            "title": "Ingredientscount",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "id"
+        ],
+        "title": "CategoryOut"
+      },
+      "DailyNutrition": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "calories": {
+            "type": "number",
+            "title": "Calories"
+          },
+          "protein": {
+            "type": "number",
+            "title": "Protein"
+          },
+          "fat": {
+            "type": "number",
+            "title": "Fat"
+          },
+          "carbs": {
+            "type": "number",
+            "title": "Carbs"
+          },
+          "recipes": {
+            "type": "integer",
+            "title": "Recipes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "calories",
+          "protein",
+          "fat",
+          "carbs",
+          "recipes"
+        ],
+        "title": "DailyNutrition"
+      },
+      "FitnessGoalOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "calorieDelta": {
+            "type": "number",
+            "title": "Caloriedelta"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "calcRule": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Calcrule"
+          },
+          "proteinPct": {
+            "type": "number",
+            "title": "Proteinpct"
+          },
+          "fatPct": {
+            "type": "number",
+            "title": "Fatpct"
+          },
+          "carbPct": {
+            "type": "number",
+            "title": "Carbpct"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "code",
+          "name",
+          "calorieDelta",
+          "proteinPct",
+          "fatPct",
+          "carbPct"
+        ],
+        "title": "FitnessGoalOut"
+      },
+      "GenerateRecipeRequest": {
+        "properties": {
+          "goalId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Goalid"
+          },
+          "variantsCount": {
+            "type": "integer",
+            "maximum": 3.0,
+            "minimum": 1.0,
+            "title": "Variantscount",
+            "default": 1
+          },
+          "mealShare": {
+            "type": "number",
+            "maximum": 1.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Mealshare"
+          },
+          "difficulty": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Difficulty"
+          },
+          "comment": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "goalId",
+          "mealShare"
+        ],
+        "title": "GenerateRecipeRequest"
+      },
+      "GenerateRecipeResponse": {
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Requestid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "generated",
+              "failed"
+            ],
+            "title": "Status"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          },
+          "durationMs": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Durationms"
+          },
+          "recipes": {
+            "items": {
+              "$ref": "#/components/schemas/RecipeOut"
+            },
+            "type": "array",
+            "title": "Recipes"
+          },
+          "failureReason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failurereason"
+          },
+          "conflicts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Conflicts"
+          },
+          "recommendedIngredients": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Recommendedingredients"
+          },
+          "suggestions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Suggestions"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "type": "object",
+        "required": [
+          "requestId",
+          "status",
+          "recipes"
+        ],
+        "title": "GenerateRecipeResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "IngredientInput": {
+        "properties": {
+          "code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 60
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "categoryId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Categoryid"
+          },
+          "protein100g": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Protein100G"
+          },
+          "fat100g": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Fat100G"
+          },
+          "carbs100g": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Carbs100G"
+          },
+          "calories100g": {
+            "type": "number",
+            "maximum": 950.0,
+            "minimum": 0.0,
+            "title": "Calories100G"
+          },
+          "isComposite": {
+            "type": "boolean",
+            "title": "Iscomposite",
+            "default": false
+          },
+          "synonyms": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Synonyms"
+          },
+          "allergenIds": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Allergenids"
+          },
+          "componentIds": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Componentids"
+          },
+          "compositionDescription": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Compositiondescription"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "protein100g",
+          "fat100g",
+          "carbs100g",
+          "calories100g"
+        ],
+        "title": "IngredientInput"
+      },
+      "IngredientOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "categoryId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Categoryid"
+          },
+          "categoryName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Categoryname"
+          },
+          "protein100g": {
+            "type": "number",
+            "title": "Protein100G"
+          },
+          "fat100g": {
+            "type": "number",
+            "title": "Fat100G"
+          },
+          "carbs100g": {
+            "type": "number",
+            "title": "Carbs100G"
+          },
+          "calories100g": {
+            "type": "number",
+            "title": "Calories100G"
+          },
+          "isComposite": {
+            "type": "boolean",
+            "title": "Iscomposite"
+          },
+          "synonyms": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Synonyms"
+          },
+          "compositionDescription": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Compositiondescription"
+          },
+          "allergens": {
+            "items": {
+              "$ref": "#/components/schemas/AllergenShort"
+            },
+            "type": "array",
+            "title": "Allergens"
+          },
+          "effectiveAllergens": {
+            "items": {
+              "$ref": "#/components/schemas/AllergenShort"
+            },
+            "type": "array",
+            "title": "Effectiveallergens"
+          },
+          "components": {
+            "items": {
+              "$ref": "#/components/schemas/IngredientShort"
+            },
+            "type": "array",
+            "title": "Components"
+          },
+          "isAllowed": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Isallowed"
+          },
+          "violationReasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Violationreasons"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "protein100g",
+          "fat100g",
+          "carbs100g",
+          "calories100g",
+          "isComposite",
+          "synonyms",
+          "allergens",
+          "effectiveAllergens"
+        ],
+        "title": "IngredientOut"
+      },
+      "IngredientShort": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "IngredientShort"
+      },
+      "IntegrityIssue": {
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": [
+              "error",
+              "warning"
+            ],
+            "title": "Severity"
+          },
+          "entity": {
+            "type": "string",
+            "title": "Entity"
+          },
+          "entityId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entityid"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "severity",
+          "entity",
+          "message"
+        ],
+        "title": "IntegrityIssue"
+      },
+      "LoginRequest": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 3,
+            "pattern": "^[^@\\s]+@[^@\\s]+$",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "LoginRequest"
+      },
+      "MatchCandidateOut": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "ingredient",
+              "allergen"
+            ],
+            "title": "Type"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "matchedBy": {
+            "type": "string",
+            "title": "Matchedby"
+          },
+          "exact": {
+            "type": "boolean",
+            "title": "Exact"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "name",
+          "matchedBy",
+          "exact"
+        ],
+        "title": "MatchCandidateOut"
+      },
+      "MatchResult": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query"
+          },
+          "normalized": {
+            "type": "string",
+            "title": "Normalized"
+          },
+          "unique": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchCandidateOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/MatchCandidateOut"
+            },
+            "type": "array",
+            "title": "Candidates"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "normalized",
+          "candidates"
+        ],
+        "title": "MatchResult"
+      },
+      "NutritionAnalysis": {
+        "properties": {
+          "dateFrom": {
+            "type": "string",
+            "format": "date",
+            "title": "Datefrom"
+          },
+          "dateTo": {
+            "type": "string",
+            "format": "date",
+            "title": "Dateto"
+          },
+          "goalName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goalname"
+          },
+          "targetCaloriesDay": {
+            "type": "number",
+            "title": "Targetcaloriesday"
+          },
+          "target": {
+            "$ref": "#/components/schemas/NutritionTotals"
+          },
+          "actual": {
+            "$ref": "#/components/schemas/NutritionTotals"
+          },
+          "deviation": {
+            "$ref": "#/components/schemas/NutritionTotals"
+          },
+          "deviationPercent": {
+            "$ref": "#/components/schemas/NutritionTotals"
+          },
+          "recipesAnalyzed": {
+            "type": "integer",
+            "title": "Recipesanalyzed"
+          },
+          "daysWithData": {
+            "type": "integer",
+            "title": "Dayswithdata"
+          },
+          "restrictionsCount": {
+            "type": "integer",
+            "title": "Restrictionscount"
+          },
+          "violationsFound": {
+            "type": "integer",
+            "title": "Violationsfound"
+          },
+          "averageRating": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Averagerating"
+          },
+          "ratingsCount": {
+            "type": "integer",
+            "title": "Ratingscount"
+          },
+          "complianceScore": {
+            "type": "number",
+            "title": "Compliancescore"
+          },
+          "startWeightKg": {
+            "type": "number",
+            "title": "Startweightkg"
+          },
+          "endWeightKg": {
+            "type": "number",
+            "title": "Endweightkg"
+          },
+          "weightChangeKg": {
+            "type": "number",
+            "title": "Weightchangekg"
+          },
+          "forecastWeight30dKg": {
+            "type": "number",
+            "title": "Forecastweight30Dkg"
+          },
+          "measuredTrendKgPerWeek": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Measuredtrendkgperweek"
+          },
+          "calculatedWeightTrend": {
+            "items": {
+              "$ref": "#/components/schemas/WeightPoint"
+            },
+            "type": "array",
+            "title": "Calculatedweighttrend"
+          },
+          "measuredWeights": {
+            "items": {
+              "$ref": "#/components/schemas/WeightPoint"
+            },
+            "type": "array",
+            "title": "Measuredweights"
+          },
+          "recommendations": {
+            "items": {
+              "$ref": "#/components/schemas/AnalysisRecommendation"
+            },
+            "type": "array",
+            "title": "Recommendations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dateFrom",
+          "dateTo",
+          "goalName",
+          "targetCaloriesDay",
+          "target",
+          "actual",
+          "deviation",
+          "deviationPercent",
+          "recipesAnalyzed",
+          "daysWithData",
+          "restrictionsCount",
+          "violationsFound",
+          "averageRating",
+          "ratingsCount",
+          "complianceScore",
+          "startWeightKg",
+          "endWeightKg",
+          "weightChangeKg",
+          "forecastWeight30dKg",
+          "measuredTrendKgPerWeek",
+          "calculatedWeightTrend",
+          "measuredWeights",
+          "recommendations"
+        ],
+        "title": "NutritionAnalysis"
+      },
+      "NutritionReportOut": {
+        "properties": {
+          "reportId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reportid"
+          },
+          "dateFrom": {
+            "type": "string",
+            "format": "date",
+            "title": "Datefrom"
+          },
+          "dateTo": {
+            "type": "string",
+            "format": "date",
+            "title": "Dateto"
+          },
+          "goalName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goalname"
+          },
+          "recipesCount": {
+            "type": "integer",
+            "title": "Recipescount"
+          },
+          "daysWithData": {
+            "type": "integer",
+            "title": "Dayswithdata"
+          },
+          "averageCalories": {
+            "type": "number",
+            "title": "Averagecalories"
+          },
+          "totalCalories": {
+            "type": "number",
+            "title": "Totalcalories"
+          },
+          "totalProtein": {
+            "type": "number",
+            "title": "Totalprotein"
+          },
+          "totalFat": {
+            "type": "number",
+            "title": "Totalfat"
+          },
+          "totalCarbs": {
+            "type": "number",
+            "title": "Totalcarbs"
+          },
+          "macroPercent": {
+            "$ref": "#/components/schemas/NutritionTotals"
+          },
+          "targetCalories": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Targetcalories"
+          },
+          "deviationCalories": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deviationcalories"
+          },
+          "deviationStatus": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deviationstatus"
+          },
+          "dailyCalories": {
+            "items": {
+              "$ref": "#/components/schemas/DailyNutrition"
+            },
+            "type": "array",
+            "title": "Dailycalories"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dateFrom",
+          "dateTo",
+          "recipesCount",
+          "daysWithData",
+          "averageCalories",
+          "totalCalories",
+          "totalProtein",
+          "totalFat",
+          "totalCarbs",
+          "macroPercent",
+          "dailyCalories"
+        ],
+        "title": "NutritionReportOut"
+      },
+      "NutritionTotals": {
+        "properties": {
+          "calories": {
+            "type": "number",
+            "title": "Calories"
+          },
+          "protein": {
+            "type": "number",
+            "title": "Protein"
+          },
+          "fat": {
+            "type": "number",
+            "title": "Fat"
+          },
+          "carbs": {
+            "type": "number",
+            "title": "Carbs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "calories",
+          "protein",
+          "fat",
+          "carbs"
+        ],
+        "title": "NutritionTotals"
+      },
+      "ParameterHistoryCreate": {
+        "properties": {
+          "weightKg": {
+            "type": "number",
+            "maximum": 300.0,
+            "minimum": 30.0,
+            "title": "Weightkg"
+          },
+          "heightCm": {
+            "type": "number",
+            "maximum": 250.0,
+            "minimum": 100.0,
+            "title": "Heightcm"
+          },
+          "age": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 14.0,
+            "title": "Age"
+          },
+          "activityLevel": {
+            "type": "number",
+            "title": "Activitylevel"
+          }
+        },
+        "type": "object",
+        "required": [
+          "weightKg",
+          "heightCm",
+          "age",
+          "activityLevel"
+        ],
+        "title": "ParameterHistoryCreate"
+      },
+      "ParameterHistoryItem": {
+        "properties": {
+          "weightKg": {
+            "type": "number",
+            "maximum": 300.0,
+            "minimum": 30.0,
+            "title": "Weightkg"
+          },
+          "heightCm": {
+            "type": "number",
+            "maximum": 250.0,
+            "minimum": 100.0,
+            "title": "Heightcm"
+          },
+          "age": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 14.0,
+            "title": "Age"
+          },
+          "activityLevel": {
+            "type": "number",
+            "title": "Activitylevel"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Recordedat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "weightKg",
+          "heightCm",
+          "age",
+          "activityLevel",
+          "id",
+          "recordedAt"
+        ],
+        "title": "ParameterHistoryItem"
+      },
+      "ProfileOut": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Userid"
+          },
+          "isComplete": {
+            "type": "boolean",
+            "title": "Iscomplete"
+          },
+          "weightKg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weightkg"
+          },
+          "heightCm": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heightcm"
+          },
+          "age": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age"
+          },
+          "gender": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gender"
+          },
+          "activityLevel": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Activitylevel"
+          },
+          "goal": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FitnessGoalOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "bmr": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bmr"
+          },
+          "tdee": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tdee"
+          },
+          "targetCalories": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Targetcalories"
+          },
+          "dailyTargets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NutritionTotals"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "updatedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updatedat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "userId",
+          "isComplete"
+        ],
+        "title": "ProfileOut"
+      },
+      "ProfileUpdate": {
+        "properties": {
+          "weightKg": {
+            "type": "number",
+            "maximum": 300.0,
+            "minimum": 30.0,
+            "title": "Weightkg"
+          },
+          "heightCm": {
+            "type": "number",
+            "maximum": 250.0,
+            "minimum": 100.0,
+            "title": "Heightcm"
+          },
+          "age": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 14.0,
+            "title": "Age"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "male",
+              "female"
+            ],
+            "title": "Gender"
+          },
+          "activityLevel": {
+            "type": "number",
+            "title": "Activitylevel"
+          },
+          "goalId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Goalid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "weightKg",
+          "heightCm",
+          "age",
+          "gender",
+          "activityLevel",
+          "goalId"
+        ],
+        "title": "ProfileUpdate"
+      },
+      "RatingCreate": {
+        "properties": {
+          "score": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Score"
+          },
+          "comment": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "score"
+        ],
+        "title": "RatingCreate"
+      },
+      "RatingOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "recipeId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipeid"
+          },
+          "score": {
+            "type": "integer",
+            "title": "Score"
+          },
+          "comment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comment"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Createdat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "recipeId",
+          "score",
+          "createdAt"
+        ],
+        "title": "RatingOut"
+      },
+      "RecipeCheck": {
+        "properties": {
+          "indicator": {
+            "type": "string",
+            "title": "Indicator"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "warn",
+              "bad"
+            ],
+            "title": "Status"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "comment": {
+            "type": "string",
+            "title": "Comment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "indicator",
+          "status",
+          "label",
+          "comment"
+        ],
+        "title": "RecipeCheck"
+      },
+      "RecipeIngredientOut": {
+        "properties": {
+          "ingredientId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Ingredientid"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "categoryName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Categoryname"
+          },
+          "massG": {
+            "type": "number",
+            "title": "Massg"
+          },
+          "position": {
+            "type": "integer",
+            "title": "Position"
+          },
+          "protein": {
+            "type": "number",
+            "title": "Protein"
+          },
+          "fat": {
+            "type": "number",
+            "title": "Fat"
+          },
+          "carbs": {
+            "type": "number",
+            "title": "Carbs"
+          },
+          "calories": {
+            "type": "number",
+            "title": "Calories"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ingredientId",
+          "name",
+          "massG",
+          "position",
+          "protein",
+          "fat",
+          "carbs",
+          "calories"
+        ],
+        "title": "RecipeIngredientOut"
+      },
+      "RecipeItemUpdate": {
+        "properties": {
+          "ingredientId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Ingredientid"
+          },
+          "massG": {
+            "type": "number",
+            "maximum": 5000.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Massg"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ingredientId",
+          "massG"
+        ],
+        "title": "RecipeItemUpdate"
+      },
+      "RecipeOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "goalId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goalid"
+          },
+          "goalName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goalname"
+          },
+          "caloriesTotal": {
+            "type": "number",
+            "title": "Caloriestotal"
+          },
+          "proteinTotal": {
+            "type": "number",
+            "title": "Proteintotal"
+          },
+          "fatTotal": {
+            "type": "number",
+            "title": "Fattotal"
+          },
+          "carbsTotal": {
+            "type": "number",
+            "title": "Carbstotal"
+          },
+          "isAllowed": {
+            "type": "boolean",
+            "title": "Isallowed"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Createdat"
+          },
+          "rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rating"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          },
+          "requestId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requestid"
+          },
+          "servings": {
+            "type": "integer",
+            "title": "Servings"
+          },
+          "servingMassG": {
+            "type": "number",
+            "title": "Servingmassg"
+          },
+          "instructions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Instructions"
+          },
+          "ingredients": {
+            "items": {
+              "$ref": "#/components/schemas/RecipeIngredientOut"
+            },
+            "type": "array",
+            "title": "Ingredients"
+          },
+          "violationReasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Violationreasons"
+          },
+          "cookingTimeMin": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cookingtimemin"
+          },
+          "difficulty": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Difficulty"
+          },
+          "tips": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Tips"
+          },
+          "mealShare": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mealshare"
+          },
+          "targetCalories": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Targetcalories"
+          },
+          "deviationKcal": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deviationkcal"
+          },
+          "macroPercent": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NutritionTotals"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "checks": {
+            "items": {
+              "$ref": "#/components/schemas/RecipeCheck"
+            },
+            "type": "array",
+            "title": "Checks"
+          },
+          "myRating": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RatingOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "updatedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updatedat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "caloriesTotal",
+          "proteinTotal",
+          "fatTotal",
+          "carbsTotal",
+          "isAllowed",
+          "createdAt",
+          "servings",
+          "servingMassG",
+          "instructions",
+          "ingredients",
+          "violationReasons",
+          "tips",
+          "checks"
+        ],
+        "title": "RecipeOut"
+      },
+      "RecipeSummary": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "goalId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goalid"
+          },
+          "goalName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goalname"
+          },
+          "caloriesTotal": {
+            "type": "number",
+            "title": "Caloriestotal"
+          },
+          "proteinTotal": {
+            "type": "number",
+            "title": "Proteintotal"
+          },
+          "fatTotal": {
+            "type": "number",
+            "title": "Fattotal"
+          },
+          "carbsTotal": {
+            "type": "number",
+            "title": "Carbstotal"
+          },
+          "isAllowed": {
+            "type": "boolean",
+            "title": "Isallowed"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Createdat"
+          },
+          "rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rating"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "caloriesTotal",
+          "proteinTotal",
+          "fatTotal",
+          "carbsTotal",
+          "isAllowed",
+          "createdAt"
+        ],
+        "title": "RecipeSummary"
+      },
+      "RecipeUpdate": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "servings": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 20.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Servings"
+          },
+          "ingredients": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/RecipeItemUpdate"
+                },
+                "type": "array",
+                "maxItems": 20,
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ingredients"
+          },
+          "instructions": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "maxItems": 20,
+                "minItems": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instructions"
+          }
+        },
+        "type": "object",
+        "title": "RecipeUpdate"
+      },
+      "RegisterRequest": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 8,
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "title": "RegisterRequest"
+      },
+      "ReportExportRequest": {
+        "properties": {
+          "dateFrom": {
+            "type": "string",
+            "format": "date",
+            "title": "Datefrom"
+          },
+          "dateTo": {
+            "type": "string",
+            "format": "date",
+            "title": "Dateto"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "pdf",
+              "xlsx",
+              "csv"
+            ],
+            "title": "Format"
+          },
+          "goalId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goalid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dateFrom",
+          "dateTo",
+          "format"
+        ],
+        "title": "ReportExportRequest"
+      },
+      "ReportExportResponse": {
+        "properties": {
+          "reportId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Reportid"
+          },
+          "downloadUrl": {
+            "type": "string",
+            "title": "Downloadurl"
+          },
+          "fileName": {
+            "type": "string",
+            "title": "Filename"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reportId",
+          "downloadUrl",
+          "fileName"
+        ],
+        "title": "ReportExportResponse"
+      },
+      "RestrictionCreate": {
+        "properties": {
+          "sourceText": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Sourcetext"
+          },
+          "ingredientId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ingredientid"
+          },
+          "allergenId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allergenid"
+          },
+          "asSubstance": {
+            "type": "boolean",
+            "title": "Assubstance",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "sourceText"
+        ],
+        "title": "RestrictionCreate"
+      },
+      "SavedReportOut": {
+        "properties": {
+          "reportId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Reportid"
+          },
+          "dateFrom": {
+            "type": "string",
+            "format": "date",
+            "title": "Datefrom"
+          },
+          "dateTo": {
+            "type": "string",
+            "format": "date",
+            "title": "Dateto"
+          },
+          "format": {
+            "type": "string",
+            "title": "Format"
+          },
+          "goalName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goalname"
+          },
+          "formedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Formedat"
+          },
+          "averageCalories": {
+            "type": "number",
+            "title": "Averagecalories"
+          },
+          "totalProtein": {
+            "type": "number",
+            "title": "Totalprotein"
+          },
+          "totalFat": {
+            "type": "number",
+            "title": "Totalfat"
+          },
+          "totalCarbs": {
+            "type": "number",
+            "title": "Totalcarbs"
+          },
+          "recipesCount": {
+            "type": "integer",
+            "title": "Recipescount"
+          },
+          "fileAvailable": {
+            "type": "boolean",
+            "title": "Fileavailable"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reportId",
+          "dateFrom",
+          "dateTo",
+          "format",
+          "formedAt",
+          "averageCalories",
+          "totalProtein",
+          "totalFat",
+          "totalCarbs",
+          "recipesCount",
+          "fileAvailable"
+        ],
+        "title": "SavedReportOut"
+      },
+      "TaskAccepted": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "fileName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filename"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "message"
+        ],
+        "title": "TaskAccepted"
+      },
+      "UserOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "email",
+          "role",
+          "status"
+        ],
+        "title": "UserOut"
+      },
+      "UserRestrictionOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "sourceText": {
+            "type": "string",
+            "title": "Sourcetext"
+          },
+          "normalizedName": {
+            "type": "string",
+            "title": "Normalizedname"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ingredient",
+              "allergen",
+              "substance"
+            ],
+            "title": "Type"
+          },
+          "ingredientId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ingredientid"
+          },
+          "allergenId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allergenid"
+          },
+          "targetName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Targetname"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Createdat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "sourceText",
+          "normalizedName",
+          "type",
+          "createdAt"
+        ],
+        "title": "UserRestrictionOut"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "WeightPoint": {
+        "properties": {
+          "day": {
+            "type": "integer",
+            "title": "Day"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "weightKg": {
+            "type": "number",
+            "title": "Weightkg"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day",
+          "date",
+          "weightKg"
+        ],
+        "title": "WeightPoint"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

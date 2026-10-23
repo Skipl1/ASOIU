@@ -1,0 +1,88 @@
+# АС ГРСН — развёртывание: PostgreSQL, REST API (FastAPI), web-клиент + Nginx (HTTP/HTTPS), резервное копирование (cron + pg_dump)
+name: grsn
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-grsn}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Задайте POSTGRES_PASSWORD в .env}
+      POSTGRES_DB: ${POSTGRES_DB:-grsn}
+      TZ: ${APP_TIMEZONE:-Europe/Moscow}
+    ports:
+      - "127.0.0.1:${DB_PORT:-5432}:5432"  # доступ к БД только с этого компьютера (SQLTools, DBeaver, pgAdmin)
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-grsn}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-grsn}
+      STORAGE_DIR: /data/storage
+      BACKUP_DIR: /data/backups
+      CORS_ORIGINS: '[]'
+      TZ: ${APP_TIMEZONE:-Europe/Moscow}
+    volumes:
+      - storage:/data/storage
+      - backups:/data/backups
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      ENABLE_HTTPS: ${ENABLE_HTTPS:-false}
+      HTTPS_PUBLIC_PORT: ${HTTPS_PORT:-8443}
+      SERVER_NAME: ${SERVER_NAME:-localhost}
+    ports:
+      - "${HTTP_PORT:-8080}:80"
+      - "${HTTPS_PORT:-8443}:443"
+    volumes:
+      - ./frontend/nginx/certs:/etc/nginx/certs
+
+  backup:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PGHOST: db
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER:-grsn}
+      POSTGRES_DB: ${POSTGRES_DB:-grsn}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-30}
+      TZ: ${APP_TIMEZONE:-Europe/Moscow}
+    volumes:
+      - backups:/backups
+      - ./scripts/backup.sh:/scripts/backup.sh:ro
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        mkdir -p /backups && chown 1001:1001 /backups
+        echo "${BACKUP_CRON:-0 3 * * *} sh /scripts/backup.sh >> /proc/1/fd/1 2>&1" > /etc/crontabs/root
+        echo "Расписание резервного копирования: ${BACKUP_CRON:-0 3 * * *}"
+        exec crond -f -l 8
+
+volumes:
+  pgdata:
+  storage:
+  backups:

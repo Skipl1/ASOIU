@@ -5,3 +5,4 @@
 Dockerfile text eol=lf
 *.mako text eol=lf
 .env.example text eol=lf
+*.bat text eol=crlf

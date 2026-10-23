@@ -847,17 +847,6 @@ tr:last-child td {
   font-size: 22px;
 }
 
-.trend-note {
-  margin: 12px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.trend-note b {
-  color: var(--text, #e2e8f0);
-}
-
 .forecast-track {
   position: relative;
   height: 12px;

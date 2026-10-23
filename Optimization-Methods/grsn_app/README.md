@@ -27,6 +27,8 @@ bash scripts/setup.sh
 
 С ключом GigaChat: `scripts\setup.ps1 -GigaChatKey "<ключ>"` или `bash scripts/setup.sh --gigachat-key "<ключ>"`. Без ключа всё работает, рецепты составляет локальный генератор. Первая сборка занимает 5–15 минут. Для автоматической установки помощником Claude есть отдельная пошаговая инструкция: [SETUP_FOR_CLAUDE.md](SETUP_FOR_CLAUDE.md).
 
+Данные для проверки: `scripts\fill_admin.bat` (двойной щелчок) или `powershell -ExecutionPolicy Bypass -File scripts\fill_admin.ps1` (Linux/macOS: `bash scripts/fill_admin.sh`) заполняют аккаунт администратора историей за месяц (профиль, замеры веса, около 120 рецептов). Ключ `-Demo` (`--demo`) заодно пересоздаёт историю демо-пользователя. Запускать после установки, повторный запуск безопасен.
+
 Вручную (то же самое без скрипта):
 
 ```bash

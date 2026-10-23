@@ -116,11 +116,6 @@ export default function Analysis() {
                 <div><span>Прогноз по питанию, скорость</span><strong>{a.calculatedTrendKgPerWeek != null ? `${fmtSigned(a.calculatedTrendKgPerWeek, 2)} кг/нед` : "—"}</strong></div>
                 <div><span>По замерам веса, скорость</span><strong>{a.measuredTrendKgPerWeek !== null ? `${fmtSigned(a.measuredTrendKgPerWeek, 2)} кг/нед` : "—"}</strong></div>
               </div>
-              <p className="muted trend-note">
-                <b>Прогноз по питанию</b> — как должен меняться вес при таком рационе: съеденные калории минус расход (7700 ккал ≈ 1 кг).
-                {a.weightChangeKg != null && <> За выбранный период это {fmtSigned(a.weightChangeKg, 2)} кг.</>}{" "}
-                <b>По замерам</b> — как вес менялся на самом деле по вашим взвешиваниям. Если цифры близки, рацион работает как задумано; если расходятся, на вес влияют вода, тренировки или неточность взвешивания.
-              </p>
               {!a.trendSufficient && (
                 <Message kind="info">
                   Расчётный тренд и прогноз по калориям не строятся: в рационе есть рецепты за {a.daysWithData} {a.daysWithData === 1 ? "день" : "дня"},

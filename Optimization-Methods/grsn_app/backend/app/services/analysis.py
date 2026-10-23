@@ -14,6 +14,7 @@ from app.services.reports import build_report, local_date, tz
 from app.services.restrictions import check_ingredients, load_forbidden
 
 MIN_TREND_SPAN_DAYS = 3  # фактическая динамика веса считается по замерам минимум за 3 дня
+MIN_TREND_DAYS = 3  # расчётный тренд и прогноз — только если рецепты в рационе есть минимум за 3 дня
 PRIORITY_ORDER = {"high": 0, "medium": 1, "low": 2}
 KEYS = ("calories", "protein", "fat", "carbs")
 
@@ -53,22 +54,28 @@ def analyze(db: Session, user: User, date_from: date, date_to: date) -> schemas.
     history = list(db.scalars(select(ParameterHistory).where(ParameterHistory.user_id == user.user_id).order_by(ParameterHistory.recorded_at)))
     before = [h for h in history if as_utc(h.recorded_at) < period_start]
     inside = [h for h in history if period_start <= as_utc(h.recorded_at) < period_end]
-    start_weight = before[-1].weight_kg if before else inside[0].weight_kg if inside else profile.weight_kg
-
-    trend: list[schemas.WeightPoint] = []
-    weight = start_weight
-    avg_intake = actual["calories"] if n_days else energy.tdee
-    for i, day in enumerate(report.daily_calories, start=1):
-        intake = day.calories if day.recipes else avg_intake
-        weight += (intake - energy.tdee) / nutrition.KCAL_PER_KG_BODY_WEIGHT
-        trend.append(schemas.WeightPoint(day=i, date=day.date, weight_kg=round(weight, 2)))
-    end_weight = trend[-1].weight_kg if trend else start_weight
-    forecast_30 = end_weight + 30 * (avg_intake - energy.tdee) / nutrition.KCAL_PER_KG_BODY_WEIGHT
 
     # Один замер на день (последний): несколько замеров за минуты не должны давать «тренд» в тысячи кг/нед
     per_day: dict[date, float] = {}
     for h in ([before[-1]] if before else []) + inside:
         per_day[local_date(h.recorded_at)] = h.weight_kg
+    # Начало расчётной линии — первый замер периода, чтобы линия и точки замеров начинались с одного значения
+    start_weight = per_day[min(per_day)] if per_day else profile.weight_kg
+
+    # Расчётный тренд: вес += (съедено − TDEE) / 7700 по дням, для которых есть рецепты в рационе.
+    # Дни без данных считаются нейтральными (вес не меняется) — они не «досчитываются» средним.
+    trend_sufficient = n_days >= MIN_TREND_DAYS
+    trend: list[schemas.WeightPoint] = []
+    end_weight = weight_change = forecast_30 = None
+    if trend_sufficient:
+        weight = start_weight
+        for i, day in enumerate(report.daily_calories, start=1):
+            if day.recipes:
+                weight += (day.calories - energy.tdee) / nutrition.KCAL_PER_KG_BODY_WEIGHT
+            trend.append(schemas.WeightPoint(day=i, date=day.date, weight_kg=round(weight, 2)))
+        end_weight = trend[-1].weight_kg
+        weight_change = round(end_weight - start_weight, 2)
+        forecast_30 = round(end_weight + 30 * (actual["calories"] - energy.tdee) / nutrition.KCAL_PER_KG_BODY_WEIGHT, 2)
     measured = [
         schemas.WeightPoint(day=(d - date_from).days + 1, date=d, weight_kg=w) for d, w in sorted(per_day.items())
     ]
@@ -90,7 +97,7 @@ def analyze(db: Session, user: User, date_from: date, date_to: date) -> schemas.
         penalty = 0.5 * abs(deviation_pct["calories"]) + 0.2 * abs(deviation_pct["protein"]) + 0.15 * abs(deviation_pct["fat"]) + 0.15 * abs(deviation_pct["carbs"])
         compliance = round(max(0.0, 100 - penalty), 1)
 
-    recs = _recommendations(goal.code, n_days, deviation_pct, end_weight - start_weight, measured_trend, violations, avg_rating, restrictions_count)
+    recs = _recommendations(goal.code, n_days, deviation_pct, weight_change or 0.0, measured_trend, violations, avg_rating, restrictions_count)
 
     return schemas.NutritionAnalysis(
         date_from=date_from,
@@ -109,9 +116,10 @@ def analyze(db: Session, user: User, date_from: date, date_to: date) -> schemas.
         ratings_count=len(scores),
         compliance_score=compliance,
         start_weight_kg=round(start_weight, 2),
-        end_weight_kg=round(end_weight, 2),
-        weight_change_kg=round(end_weight - start_weight, 2),
-        forecast_weight_30d_kg=round(forecast_30, 2),
+        end_weight_kg=end_weight,
+        weight_change_kg=weight_change,
+        forecast_weight_30d_kg=forecast_30,
+        trend_sufficient=trend_sufficient,
         measured_trend_kg_per_week=measured_trend,
         calculated_weight_trend=trend,
         measured_weights=measured,

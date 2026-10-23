@@ -204,7 +204,9 @@ def test_reports_and_analysis(client, user_token):
 
     analysis = client.get(f"{API}/analysis/nutrition", headers=h, params=params).json()
     assert analysis["recipesAnalyzed"] == 3 and analysis["recommendations"]
-    assert len(analysis["calculatedWeightTrend"]) == 7
+    # рецепты в рационе только за один день — расчётный тренд и прогноз не строятся
+    assert analysis["trendSufficient"] is False and analysis["calculatedWeightTrend"] == []
+    assert analysis["forecastWeight30dKg"] is None and analysis["endWeightKg"] is None
     bad = client.get(f"{API}/reports/nutrition", headers=h, params={"dateFrom": "2026-05-10", "dateTo": "2026-05-01"})
     assert bad.status_code == 422
 
@@ -340,3 +342,65 @@ def test_measured_trend_ignores_measurements_minutes_apart(client, user_token):
                    params={"dateFrom": (today - timedelta(days=6)).isoformat(), "dateTo": today.isoformat()}).json()
     assert a["measuredTrendKgPerWeek"] is None
     assert len(a["measuredWeights"]) == 1 and a["measuredWeights"][0]["weightKg"] == 77.5
+
+
+class _NameBasedModel:
+    """Модель называет продукты по названию, а название блюда придумывает с продуктом, которого нет в составе."""
+
+    name = "gigachat"
+
+    def generate(self, ctx):
+        from app.services.llm.base import LLMRecipe
+
+        return [LLMRecipe(
+            name="Индейка с бананом и бурым рисом",
+            ingredients=[{"name": "куриная грудка", "massG": 150}, {"name": "ГРЕЧКА", "massG": 70}, {"name": "Брокколи", "massG": 150}],
+            steps=[
+                "Отварите гречку в подсоленной воде 15 минут.",
+                "Запеките куриную грудку 20 минут при 200 градусах.",
+                "Нарежьте банан и выложите рядом с блюдом.",
+                "Приготовьте брокколи на пару 6 минут до мягкости.",
+                "Выложите всё в тарелку и подавайте горячим.",
+            ])]
+
+
+def test_ingredients_by_name_and_title_matches_composition(client, user_token, monkeypatch):
+    from app.services import generation
+
+    monkeypatch.setattr(generation, "get_primary_provider", lambda: _NameBasedModel())
+    h = auth(user_token)
+    goal, _ = _fill_profile(client, user_token, "goal_maintain")
+    catalog = _ingredients(client, user_token)
+    items = [{"ingredientId": catalog[c]["id"]} for c in
+             ("ing_chicken_breast", "ing_buckwheat", "ing_broccoli", "ing_banana", "ing_brown_rice", "ing_turkey")]
+    client.put(f"{API}/available-ingredients", headers=h, json={"items": items})
+
+    body = client.post(f"{API}/recipes/generate", headers=h, json={"goalId": goal["id"], "variantsCount": 1, "mealShare": 0.35}).json()
+    recipe = body["recipes"][0]
+    names = {i["name"] for i in recipe["ingredients"]}
+    assert {"Куриная грудка", "Гречка", "Брокколи"} <= names           # разрешены регистр и нестрогая запись названия
+    assert "банан" not in recipe["name"].lower() and "рис" not in recipe["name"].lower()
+    assert any("заменено" in w for w in body["warnings"])               # несоответствующее название заменено
+    assert not any("банан" in s.lower() for s in recipe["instructions"])  # шаг с продуктом не из состава удалён
+    assert len(recipe["instructions"]) >= 3
+
+
+def test_nul_byte_is_rejected_not_500(client, user_token, admin_token):
+    r = client.post(f"{API}/auth/register", content=b'{"name":"a\u0000b","email":"nul@test.ru","password":"Passw0rd1"}',
+                    headers={"Content-Type": "application/json"})
+    assert r.status_code == 422
+    r = client.post(f"{API}/auth/register", content=b'{"name":"a\x00b","email":"nul@test.ru","password":"Passw0rd1"}',
+                    headers={"Content-Type": "application/json"})
+    assert r.status_code == 422
+    assert client.get(f"{API}/admin/users?search=%00", headers=auth(admin_token)).status_code == 422
+    assert client.get(f"{API}/admin/logs?action=%00", headers=auth(admin_token)).status_code == 422
+    # обычные запросы не затронуты
+    assert client.get(f"{API}/admin/users?search=test", headers=auth(admin_token)).status_code == 200
+    assert client.post(f"{API}/auth/login", json={"email": "admin@grsn.local", "password": "Admin12345"}).status_code == 200
+
+
+def test_ingredient_exposes_allergen_ids(client, user_token):
+    items = client.get(f"{API}/ingredients", headers=auth(user_token)).json()
+    peanut = next(i for i in items if i["code"] == "ing_peanut")
+    assert set(peanut["allergenIds"]) == {a["id"] for a in peanut["allergens"]} and len(peanut["allergenIds"]) == 2
+

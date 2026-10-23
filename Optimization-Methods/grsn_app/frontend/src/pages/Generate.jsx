@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { api } from "../api.js";
 import RecipeView from "../components/RecipeView.jsx";
 import { Button, ErrorBox, Loading, Message, PageHeader, Panel, useLoad, useToast } from "../components/ui.jsx";
-import { fmt, MEAL_SHARES, MEAL_TYPES, SOURCE } from "../format.js";
+import { fmt, MEAL_SHARES, MEAL_TYPES, nearestShare, SOURCE } from "../format.js";
 
 const DRAFT_KEY = "grsn.generateDraft";
 
@@ -22,7 +22,10 @@ export default function Generate() {
     const [goals, profile, available] = await Promise.all([api("/goals"), api("/profile"), api("/available-ingredients")]);
     return { goals, profile, available };
   });
-  const [form, setForm] = useState(() => ({ goalId: "", mealType: "", variantsCount: 1, mealShare: 0.333, difficulty: "", comment: "", ...readDraft() }));
+  const [form, setForm] = useState(() => {
+    const draft = { goalId: "", mealType: "", variantsCount: 1, mealShare: 0.333, difficulty: "", comment: "", ...readDraft() };
+    return { ...draft, mealShare: nearestShare(Number(draft.mealShare)) };
+  });
   const [result, setResult] = useState(null);
   const [active, setActive] = useState(0);
   const [busy, setBusy] = useState(false);
@@ -150,7 +153,7 @@ export default function Generate() {
                 </select>
               </div>
               <div className="field">
-                <label htmlFor="meal">Доля суточной нормы</label>
+                <label htmlFor="meal">Сколько суточной нормы калорий занимает блюдо</label>
                 <select id="meal" value={form.mealShare} onChange={set("mealShare")}>
                   {MEAL_SHARES.map((m) => <option key={m.value} value={m.value}>{m.label}</option>)}
                 </select>

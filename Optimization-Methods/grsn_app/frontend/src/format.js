@@ -26,17 +26,17 @@ export const PRIORITY = { high: ["red", "высокий приоритет"], me
 export const SOURCE = { gigachat: "GigaChat", mock: "локальный генератор" };
 
 export const MEAL_SHARES = [
-  { value: 0.333, label: "1/3 нормы — 3 приёма пищи в день" },
-  { value: 0.25, label: "25 % — завтрак / 4 приёма пищи" },
-  { value: 0.35, label: "35 % — обед" },
-  { value: 0.3, label: "30 % — ужин" },
-  { value: 0.2, label: "20 % — 5 приёмов пищи" },
-  { value: 0.15, label: "15 % — большой перекус" },
-  { value: 0.1, label: "10 % — перекус" },
-  { value: 0.4, label: "40 % — основной приём пищи" },
-  { value: 0.5, label: "1/2 нормы" },
-  { value: 1, label: "Вся суточная норма" },
+  { value: 0.25, label: "Завтрак — 25 % суточной нормы" },
+  { value: 0.35, label: "Обед — 35 % суточной нормы" },
+  { value: 0.3, label: "Ужин — 30 % суточной нормы" },
+  { value: 0.1, label: "Перекус — 10 % суточной нормы" },
+  { value: 0.333, label: "Одна треть — питание 3 раза в день" },
+  { value: 1, label: "Вся суточная норма — одно блюдо на день" },
 ];
+
+// Ближайшая допустимая доля (старые сохранённые черновики могут содержать значения, которых больше нет в списке)
+export const nearestShare = (value) =>
+  MEAL_SHARES.reduce((best, m) => (Math.abs(m.value - value) < Math.abs(best.value - value) ? m : best)).value;
 
 // Приём пищи: подпись и доля суточной нормы по умолчанию
 export const MEAL_TYPES = [

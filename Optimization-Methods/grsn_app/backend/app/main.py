@@ -11,6 +11,7 @@ from sqlalchemy import text
 
 from app.config import get_settings
 from app.db import engine
+from app.middleware import RejectNulMiddleware
 from app.routers import admin, auth, ingredients, profile, recipes, reports, restrictions
 from app.services.llm.gigachat_provider import start_keepalive
 
@@ -37,6 +38,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+app.add_middleware(RejectNulMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,

@@ -968,6 +968,22 @@
             }
           },
           {
+            "name": "inDiet",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Indiet"
+            }
+          },
+          {
             "name": "search",
             "in": "query",
             "required": false,
@@ -1141,6 +1157,100 @@
         "responses": {
           "204": {
             "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recipes/{recipe_id}/diet": {
+      "post": {
+        "tags": [
+          "recipes"
+        ],
+        "summary": "Добавить рецепт в рацион (учитывается в отчётах и анализе)",
+        "operationId": "add_to_diet_api_v1_recipes__recipe_id__diet_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "recipe_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Recipe Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "recipes"
+        ],
+        "summary": "Убрать рецепт из рациона (останется в истории)",
+        "operationId": "remove_from_diet_api_v1_recipes__recipe_id__diet_delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "recipe_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Recipe Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeOut"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -3229,6 +3339,23 @@
               }
             ],
             "title": "Comment"
+          },
+          "mealType": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "breakfast",
+                  "lunch",
+                  "dinner",
+                  "snack"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mealtype"
           }
         },
         "type": "object",
@@ -3532,6 +3659,14 @@
             ],
             "title": "Compositiondescription"
           },
+          "allergenIds": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Allergenids"
+          },
           "allergens": {
             "items": {
               "$ref": "#/components/schemas/AllergenShort"
@@ -3820,16 +3955,41 @@
             "title": "Startweightkg"
           },
           "endWeightKg": {
-            "type": "number",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Endweightkg"
           },
           "weightChangeKg": {
-            "type": "number",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Weightchangekg"
           },
           "forecastWeight30dKg": {
-            "type": "number",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Forecastweight30Dkg"
+          },
+          "trendSufficient": {
+            "type": "boolean",
+            "title": "Trendsufficient"
           },
           "measuredTrendKgPerWeek": {
             "anyOf": [
@@ -3885,6 +4045,7 @@
           "endWeightKg",
           "weightChangeKg",
           "forecastWeight30dKg",
+          "trendSufficient",
           "measuredTrendKgPerWeek",
           "calculatedWeightTrend",
           "measuredWeights",
@@ -4587,6 +4748,22 @@
             ],
             "title": "Source"
           },
+          "inDiet": {
+            "type": "boolean",
+            "title": "Indiet",
+            "default": false
+          },
+          "mealType": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mealtype"
+          },
           "requestId": {
             "anyOf": [
               {
@@ -4830,6 +5007,22 @@
               }
             ],
             "title": "Source"
+          },
+          "inDiet": {
+            "type": "boolean",
+            "title": "Indiet",
+            "default": false
+          },
+          "mealType": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mealtype"
           }
         },
         "type": "object",

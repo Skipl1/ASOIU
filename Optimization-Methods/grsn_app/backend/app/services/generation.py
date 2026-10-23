@@ -34,7 +34,15 @@ from app.services.llm.base import ContextIngredient
 from app.services.llm.mock_provider import solve_masses
 from app.services.meals import MEAL_GENITIVE, MIN_SUITABLE, comment_with_meal, suits_meal
 from app.services.profile import energy_for, get_profile
-from app.services.restrictions import ForbiddenSet, check_ingredients, forbidden_terms, load_forbidden, text_mentions
+from app.services.restrictions import (
+    ForbiddenSet,
+    _match_score,
+    check_ingredients,
+    forbidden_terms,
+    load_forbidden,
+    normalize_text,
+    text_mentions,
+)
 
 logger = logging.getLogger("grsn.generation")
 
@@ -194,6 +202,29 @@ def _optimize_masses(
     return result, added
 
 
+def _resolve_item(item, code_map: dict, name_index: dict):
+    """Ингредиент из ответа модели → запись набора пользователя: по коду, точному названию или близкому названию."""
+    if item.code and (entry := code_map.get(item.code.strip().upper())):
+        return entry
+    key = normalize_text(item.name or "")
+    if not key:
+        return None
+    if key in name_index:
+        return name_index[key]
+    scored = sorted(((max(_match_score(key, k), 0), k) for k in name_index), reverse=True)
+    if scored and scored[0][0] >= 2 and (len(scored) == 1 or scored[1][0] < scored[0][0]):
+        return name_index[scored[0][1]]
+    return None
+
+
+def _title_from_composition(items: list[tuple[Ingredient, float]]) -> str:
+    """Название по фактическому составу: «Главный продукт с гарниром: …»."""
+    body = [(i, m) for i, m in items if "масло" not in i.name.lower()] or items
+    main = max(body, key=lambda x: x[0].protein_per_100g * x[1])[0]
+    side = [i.name.lower() for i, _ in sorted(body, key=lambda x: -x[1]) if i is not main][:3]
+    return main.name + (" с гарниром: " + ", ".join(side) if side else "")
+
+
 def _post_process(
     raw: LLMRecipe,
     code_map: dict[str, tuple[Ingredient, float | None]],
@@ -201,14 +232,16 @@ def _post_process(
     warnings: list[str],
     optimize: bool = True,
     banned_terms: list[str] | None = None,
+    name_index: dict | None = None,
 ) -> tuple[BuiltRecipe | None, str | None]:
     masses: dict[uuid.UUID, float] = {}
     order: list[Ingredient] = []
     unknown: list[str] = []
+    name_index = name_index or {}
     for item in raw.ingredients:
-        entry = code_map.get(item.code.strip().upper())
+        entry = _resolve_item(item, code_map, name_index)
         if entry is None:
-            unknown.append(item.code)
+            unknown.append(item.name or item.code or "?")
             continue
         ingredient, _ = entry
         if ingredient.ingredient_id not in masses:
@@ -242,6 +275,12 @@ def _post_process(
         if mentioned:
             warnings.append(f"Из инструкции «{raw.name}» удалены шаги с упоминанием запрещённых продуктов: {', '.join(sorted(mentioned))}")
         steps = safe_steps
+    # Шаги не должны упоминать продукты набора, которых нет в составе рецепта (кроме масла и специй)
+    foreign_terms = [normalize_text(i.name) for i, _ in code_map.values() if i not in order and "масло" not in i.name.lower()]
+    foreign_dropped = [s for s in steps if text_mentions(s, foreign_terms)]
+    if foreign_dropped:
+        steps = [s for s in steps if s not in foreign_dropped]
+        warnings.append(f"Из инструкции «{raw.name}» удалены шаги с продуктами, которых нет в составе: {len(foreign_dropped)}")
     if len(steps) < 3:
         return None, f"«{raw.name}»: инструкция содержит меньше трёх шагов"
 
@@ -271,8 +310,14 @@ def _post_process(
         if not any("хран" in s.lower() for s in steps):
             steps.append(STORAGE_STEP)
 
+    # Название должно соответствовать итоговому составу: упоминание продукта, которого нет в рецепте, — ошибка модели
+    final_items = [(i, masses[i.ingredient_id]) for i in order]
+    final_name = raw.name.strip()
+    if text_mentions(final_name, foreign_terms):
+        final_name = _title_from_composition(final_items)
+        warnings.append(f"Название «{raw.name.strip()}» не соответствовало составу и заменено на «{final_name}»")
     return BuiltRecipe(
-        name=raw.name.strip(),
+        name=final_name,
         servings=raw.servings,
         steps=steps,
         items=[(i, masses[i.ingredient_id]) for i in order],
@@ -381,6 +426,15 @@ def generate_recipes(
             available_g=a.available_amount_g,
         ))
 
+    # Индекс для разрешения ингредиентов из ответа модели по названию (включая синонимы)
+    name_index: dict[str, tuple[Ingredient, float | None]] = {}
+    for ing, qty in code_map.values():
+        for label in (ing.name, *(ing.name_synonyms or [])):
+            name_index.setdefault(normalize_text(label), (ing, qty))
+    recent = list(db.scalars(
+        select(Recipe.name).where(Recipe.user_id == user.user_id).order_by(Recipe.created_at.desc()).limit(6)
+    ))
+
     rated = db.execute(
         select(Recipe.name, RecipeRating.score)
         .join(RecipeRating, RecipeRating.recipe_id == Recipe.recipe_id)
@@ -403,6 +457,7 @@ def generate_recipes(
         disliked=[name for name, score in rated if score <= 2],
         seed=random.randrange(1 << 30),
         meal_type=meal_type,
+        recent=recent,
     )
 
     request.status = "processing"
@@ -414,7 +469,7 @@ def generate_recipes(
         built: list[BuiltRecipe] = []
         for raw in raw_recipes:
             recipe, problem = _post_process(raw, code_map, meal_target, outcome.warnings, optimize=provider.name != "mock",
-                                            banned_terms=banned_terms)
+                                            banned_terms=banned_terms, name_index=name_index)
             if recipe is None:
                 outcome.warnings.append(problem)
                 continue

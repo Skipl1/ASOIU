@@ -31,7 +31,8 @@ def backup_dir() -> Path:
 
 
 def _pg_args() -> tuple[list[str], dict]:
-    url = make_url(get_settings().database_url)
+    settings = get_settings()
+    url = make_url(settings.owner_database_url or settings.database_url)
     if not url.drivername.startswith("postgresql"):
         raise BackupError("Резервное копирование поддерживается только для PostgreSQL")
     args = ["-h", url.host or "localhost", "-p", str(url.port or 5432), "-U", url.username or "postgres"]

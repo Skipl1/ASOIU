@@ -50,6 +50,7 @@ def ingredient_out(ingredient: Ingredient, forbidden: ForbiddenSet | None = None
         is_composite=ingredient.is_composite,
         synonyms=list(ingredient.name_synonyms or []),
         composition_description=ingredient.composition_description,
+        allergen_ids=[a.allergen_id for a in ingredient.allergens],
         allergens=[schemas.AllergenShort(id=a.allergen_id, name=a.name) for a in ingredient.allergens],
         effective_allergens=[schemas.AllergenShort(id=a.allergen_id, name=a.name) for a in effective_allergens(ingredient)],
         components=[schemas.IngredientShort(id=c.ingredient_id, name=c.name) for c in ingredient.components],

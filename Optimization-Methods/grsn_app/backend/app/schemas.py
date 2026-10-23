@@ -196,6 +196,7 @@ class IngredientOut(Schema):
     is_composite: bool
     synonyms: list[str]
     composition_description: str | None = None
+    allergen_ids: list[uuid.UUID] = Field(default_factory=list)
     allergens: list[AllergenShort]
     effective_allergens: list[AllergenShort]
     components: list[IngredientShort] = Field(default_factory=list)
@@ -459,9 +460,10 @@ class NutritionAnalysis(Schema):
     ratings_count: int
     compliance_score: float
     start_weight_kg: float
-    end_weight_kg: float
-    weight_change_kg: float
-    forecast_weight_30d_kg: float = Field(alias="forecastWeight30dKg")
+    end_weight_kg: float | None
+    weight_change_kg: float | None
+    forecast_weight_30d_kg: float | None = Field(alias="forecastWeight30dKg")
+    trend_sufficient: bool
     measured_trend_kg_per_week: float | None
     calculated_weight_trend: list[WeightPoint]
     measured_weights: list[WeightPoint]

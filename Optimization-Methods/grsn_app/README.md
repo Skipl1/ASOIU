@@ -13,6 +13,22 @@
 
 ## Быстрый запуск (Docker)
 
+Нужны только **Git** и **Docker Desktop** (Windows / macOS) или Docker Engine (Linux). Всё остальное делает скрипт установки: создаёт `.env` со случайными паролем БД и секретом JWT, подбирает свободные порты, собирает контейнеры, ждёт готовности и открывает сайт.
+
+```bash
+git clone --branch 2.0mb_norm --single-branch https://github.com/Skipl1/ASOIU.git
+cd ASOIU/Optimization-Methods/grsn_app
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy Bypass -File scripts\setup.ps1
+# Linux / macOS / Git Bash
+bash scripts/setup.sh
+```
+
+С ключом GigaChat: `scripts\setup.ps1 -GigaChatKey "<ключ>"` или `bash scripts/setup.sh --gigachat-key "<ключ>"`. Без ключа всё работает, рецепты составляет локальный генератор. Первая сборка занимает 5–15 минут. Для автоматической установки помощником Claude есть отдельная пошаговая инструкция: [SETUP_FOR_CLAUDE.md](SETUP_FOR_CLAUDE.md).
+
+Вручную (то же самое без скрипта):
+
 ```bash
 cp .env.example .env        # задайте POSTGRES_PASSWORD, JWT_SECRET, GIGACHAT_CREDENTIALS
 docker compose up -d --build
@@ -54,6 +70,16 @@ docker compose up -d --build
 - **Время ответа.** TCP- и TLS-соединение с серверами Сбера и получение OAuth-токена занимают от нескольких до 15–20 секунд. Поэтому каждый процесс API при старте и затем раз в `GIGACHAT_KEEPALIVE_SECONDS` (30 с) делает служебный запрос списка моделей: токены он не расходует, а соединение и токен остаются «прогретыми». Если сервер всё же закрыл соединение, запрос один раз повторяется на новом. API запускается в 2 процессах (`API_WORKERS=2`): этого хватает для 100 одновременных пользователей, а служебных запросов к Сберу остаётся около 40 за 10 минут.
 - **Резервный генератор.** Если ключ не задан или модель недоступна, рецепт формирует локальный генератор (`LLM_FALLBACK_TO_MOCK=true`), и пользователь видит предупреждение. Массы ингредиентов в нём подбираются задачей оптимизации: взвешенный МНК с ограничениями-коридорами, решаемый методом проекции градиента (`app/services/llm/mock_provider.py`).
 
+## Права в базе данных (ТЗ 4.3)
+
+Приложение подключается к PostgreSQL **отдельной ограниченной учётной записью `grsn_app`**, а не владельцем базы:
+
+- у неё только `SELECT`, `INSERT`, `UPDATE`, `DELETE` в схеме `public`, а создавать, изменять и удалять таблицы, очищать их (`TRUNCATE`), управлять ролями и базой нельзя; таблица `alembic_version` ей недоступна;
+- миграции, наполнение справочников, резервное копирование и восстановление выполняются под владельцем (`OWNER_DATABASE_URL`): при старте backend сам создаёт роль (`app/db_roles.py`, идемпотентно), права на таблицы, создаваемые позже (миграции, `pg_restore`), выдаются автоматически;
+- пароль роли задаётся `APP_DB_PASSWORD` в `.env`, а если он не задан, выводится из `POSTGRES_PASSWORD`.
+
+Проверка: `docker compose exec -e PGPASSWORD=<пароль роли> db psql -h 127.0.0.1 -U grsn_app -d grsn -c "DROP TABLE users"` → `must be owner of table users`.
+
 ## Локальная разработка
 
 ```bash
@@ -79,7 +105,7 @@ npm run dev            # http://localhost:5173
 
 ```bash
 cd backend
-.venv/Scripts/python -m pytest -q                     # 31 тест: формулы 4.6, правило 4.7.2, сценарии ТЗ 7.1 и 7.3, GigaChat
+.venv/Scripts/python -m pytest -q                     # 36 тестов: формулы 4.6, правило 4.7.2, сценарии ТЗ 7.1 и 7.3, GigaChat
 .venv/Scripts/python ../scripts/load_test.py --base http://localhost:8080 --users 100   # нагрузочная проверка ТЗ 7.2
 ```
 

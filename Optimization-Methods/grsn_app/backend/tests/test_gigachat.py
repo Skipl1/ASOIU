@@ -50,7 +50,9 @@ def provider(monkeypatch):
 
 def test_prompt_contains_context():
     prompt = gp.build_user_prompt(_ctx())
-    assert "I1 | Куриная грудка" in prompt and "800 ккал" in prompt and "без лука" in prompt
+    # продукты в промпте перечислены по названиям, без внутренних кодов
+    assert "Куриная грудка | Белковые | 23/2/0 | 110" in prompt and "I1 |" not in prompt
+    assert "800 ккал" in prompt and "без лука" in prompt
 
 
 def test_parses_fenced_json(provider, monkeypatch):

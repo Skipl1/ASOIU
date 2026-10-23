@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Scatter, Tooltip, XAxis, YAxis } from "recharts";
 import { api } from "../api.js";
 import { Button, CHART_COLORS, ErrorBox, Loading, Message, Metric, PageHeader, Panel, useLoad } from "../components/ui.jsx";
-import { daysAgo, fmt, fmtDate, fmtSigned, PRIORITY } from "../format.js";
+import { daysAgo, fmt, fmtDate, fmtSigned, isoDate, PRIORITY } from "../format.js";
 
 const ROWS = [["calories", "Калорийность", "ккал"], ["protein", "Белки", "г"], ["fat", "Жиры", "г"], ["carbs", "Углеводы", "г"]];
 
@@ -26,12 +26,17 @@ export default function Analysis() {
   };
 
   const a = analysis.data;
-  const chart = a ? a.calculatedWeightTrend.map((p) => ({
-    day: p.day,
-    date: fmtDate(p.date),
-    calc: p.weightKg,
-    measured: a.measuredWeights.find((m) => m.day === p.day)?.weightKg ?? null,
-  })) : [];
+  // Ось X — все дни периода; расчётная линия есть только при данных минимум за 3 дня, замеры — когда они вносились
+  const chart = [];
+  if (a) {
+    const calc = Object.fromEntries(a.calculatedWeightTrend.map((p) => [p.date, p.weightKg]));
+    const measured = Object.fromEntries(a.measuredWeights.map((m) => [m.date, m.weightKg]));
+    for (let d = new Date(`${a.dateFrom}T00:00:00`); isoDate(d) <= a.dateTo; d.setDate(d.getDate() + 1)) {
+      const key = isoDate(d);
+      chart.push({ date: fmtDate(key), calc: calc[key] ?? null, measured: measured[key] ?? null });
+    }
+  }
+  const kg = (v, digits) => (v === null || v === undefined ? "—" : `${fmt(v, digits)} кг`);
 
   return (
     <>
@@ -81,7 +86,8 @@ export default function Analysis() {
           <section className="layout grid-3 mt-16">
             <Metric label="Соответствие цели" value={`${fmt(a.complianceScore)} / 100`} hint="интегральная оценка по отклонениям" />
             <Metric label="Факт, ккал в день" value={fmt(a.actual.calories)} hint={`цель ${fmt(a.target.calories)}`} />
-            <Metric label="Прогноз веса через 30 дней" value={`${fmt(a.forecastWeight30dKg, 1)} кг`} hint="при сохранении текущего рациона" />
+            <Metric label="Прогноз веса через 30 дней" value={kg(a.forecastWeight30dKg, 1)}
+                    hint={a.trendSufficient ? "при сохранении текущего рациона" : "нужны рецепты в рационе минимум за 3 дня"} />
           </section>
 
           <Panel className="mt-16" title="2. Сравнение факта с целью" hint="среднее в день за выбранный период">
@@ -105,11 +111,17 @@ export default function Analysis() {
           <Panel className="mt-16" title="3. Тренд веса за выбранный период" hint="расчёт по калорийности рецептов">
             <div className="trend-panel">
               <div className="forecast-summary">
-                <div><span>Начальный вес периода</span><strong>{fmt(a.startWeightKg, 1)} кг</strong></div>
-                <div><span>Расчётный вес на конец периода</span><strong>{fmt(a.endWeightKg, 2)} кг</strong></div>
-                <div><span>Изменение по калориям</span><strong>{fmtSigned(a.weightChangeKg, 2)} кг</strong></div>
+                <div><span>Вес на начало периода</span><strong>{kg(a.startWeightKg, 1)}</strong></div>
+                <div><span>Расчётный вес на конец периода</span><strong>{kg(a.endWeightKg, 2)}</strong></div>
+                <div><span>Изменение по калориям</span><strong>{a.weightChangeKg === null ? "—" : `${fmtSigned(a.weightChangeKg, 2)} кг`}</strong></div>
                 <div><span>Фактическая динамика (замеры)</span><strong>{a.measuredTrendKgPerWeek !== null ? `${fmtSigned(a.measuredTrendKgPerWeek, 2)} кг/нед` : "—"}</strong></div>
               </div>
+              {!a.trendSufficient && (
+                <Message kind="info">
+                  Расчётный тренд и прогноз по калориям не строятся: в рационе есть рецепты за {a.daysWithData} {a.daysWithData === 1 ? "день" : "дня"},
+                  а нужно минимум за 3 дня. Добавляйте рецепты в рацион на страницах «Генерация» и «История». Показаны только фактические замеры веса.
+                </Message>
+              )}
               <div className="chart-box">
                 <ResponsiveContainer>
                   <ComposedChart data={chart} margin={{ top: 10, right: 16, left: -6, bottom: 0 }}>
@@ -118,13 +130,16 @@ export default function Analysis() {
                     <YAxis stroke={CHART_COLORS.axis} fontSize={12} domain={["dataMin - 0.5", "dataMax + 0.5"]} tickFormatter={(v) => fmt(v, 1)} />
                     <Tooltip formatter={(v, n) => [`${fmt(v, 2)} кг`, n]} />
                     <Legend wrapperStyle={{ fontSize: 12 }} />
-                    <Line isAnimationActive={false} name="Расчётный тренд веса" type="monotone" dataKey="calc" stroke={CHART_COLORS.line} strokeWidth={3} dot={false} />
+                    {a.trendSufficient && (
+                      <Line isAnimationActive={false} name="Расчётный тренд веса" type="monotone" dataKey="calc" stroke={CHART_COLORS.line} strokeWidth={3} dot={false} />
+                    )}
                     <Scatter isAnimationActive={false} name="Замеры" dataKey="measured" fill={CHART_COLORS.protein} />
                   </ComposedChart>
                 </ResponsiveContainer>
               </div>
-              <div className="chart-legend">
-                <span>Основание: Δm = (E<sub>факт</sub> − TDEE) / 7700 ккал на кг за каждый день периода</span>
+              <div className="chart-legend" style={{ display: "grid", gap: 6 }}>
+                <span>Расчётная линия: Δm = (E<sub>факт</sub> − TDEE) / 7700 ккал на кг за каждый день, в который в рационе есть рецепты; остальные дни не меняют вес.</span>
+                <span>Точки — замеры веса из профиля (один на день). Это независимые источники: расчёт по калориям не учитывает воду и другие факторы, поэтому они могут расходиться.</span>
               </div>
             </div>
           </Panel>

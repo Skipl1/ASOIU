@@ -346,7 +346,7 @@ function IngredientsTab({ onChanged }) {
                 ))}
               </div>
             )}
-            <div className="checkbox-grid" style={{ maxHeight: 160, overflow: "auto" }}>
+            <div className="checkbox-grid scroll">
               {componentOptions.slice(0, 60).map((i) => (
                 <label key={i.id}><input type="checkbox" checked={form.componentIds.includes(i.id)} onChange={() => toggleIn("componentIds", i.id)} />{i.name}</label>
               ))}

@@ -1,1 +1,7 @@
+# Files executed or read inside Linux containers always keep LF line endings
 *.sh text eol=lf
+*.conf text eol=lf
+*.inc text eol=lf
+Dockerfile text eol=lf
+*.mako text eol=lf
+.env.example text eol=lf

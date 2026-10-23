@@ -8,14 +8,17 @@ export function useLoad(loader, deps = []) {
   const loaderRef = useRef(loader);
   loaderRef.current = loader;
 
+  const requestId = useRef(0);
+
   const reload = useCallback(async () => {
+    const id = ++requestId.current;  // ответ на устаревший запрос (например, при вводе в поиск) не должен перезаписывать новый
     setState((s) => ({ ...s, loading: true, error: null }));
     try {
       const data = await loaderRef.current();
-      setState({ data, loading: false, error: null });
+      if (id === requestId.current) setState({ data, loading: false, error: null });
       return data;
     } catch (error) {
-      setState((s) => ({ ...s, loading: false, error }));
+      if (id === requestId.current) setState((s) => ({ ...s, loading: false, error }));
       return null;
     }
   }, []);

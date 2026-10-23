@@ -5,14 +5,17 @@
 
 import logging
 import random
-from datetime import timedelta
+from datetime import datetime, time, timedelta, timezone
+from zoneinfo import ZoneInfo
 
-from sqlalchemy import select
+from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
 from app.config import get_settings
 from app.db import SessionLocal
 from app.models import (
+    GenerationRequest,
+    as_utc,
     RECIPE_ACCEPTED,
     Allergen,
     AvailableIngredient,
@@ -205,12 +208,34 @@ DEMO_EMAIL = "demo@grsn.local"
 DEMO_PASSWORD = "Demo12345"
 
 
-def ensure_demo(db: Session) -> None:
-    """Демо-пользователь с профилем, запретами, набором ингредиентов и историей рецептов за неделю."""
-    if db.scalar(select(User).where(User.email == DEMO_EMAIL)):
-        return
+DEMO_DAYS = 14  # сколько дней истории рецептов у демо-пользователя
+
+
+def _seed_demo_recipes(db: Session, user: User, goal_id, days: int) -> None:
+    """Рецепты демо за последние `days` дней: три приёма пищи в день, включены в рацион, часть с оценками."""
     from app.services.generation import generate_recipes
 
+    now = utcnow()
+    rng = random.Random(42)
+    provider = MockProvider()
+    for day in range(days, 0, -1):
+        for meal_share, meal_type, hour in ((0.3, "breakfast", 8), (0.4, "lunch", 13), (0.3, "dinner", 19)):
+            outcome = generate_recipes(db, user, goal_id, 1, meal_share, None, None, provider=provider, meal_type=meal_type)
+            for recipe in outcome.recipes:
+                recipe.generation_status = RECIPE_ACCEPTED
+                recipe.created_at = (now - timedelta(days=day)).replace(hour=hour - 3, minute=rng.randint(0, 50))
+                outcome.request.requested_at = recipe.created_at
+                outcome.request.completed_at = recipe.created_at
+                if rng.random() < 0.7:
+                    db.add(RecipeRating(user_id=user.user_id, recipe_id=recipe.recipe_id, score=rng.choice([3, 4, 4, 5, 5]),
+                                        rated_at=recipe.created_at + timedelta(hours=1)))
+            db.commit()
+
+
+def ensure_demo(db: Session) -> None:
+    """Демо-пользователь с профилем, запретами, набором ингредиентов и историей рецептов за DEMO_DAYS дней."""
+    if db.scalar(select(User).where(User.email == DEMO_EMAIL)):
+        return
     goals = {g.code: g for g in db.scalars(select(FitnessGoal))}
     ings = {i.code: i for i in db.scalars(select(Ingredient))}
     allergens = {a.code: a for a in db.scalars(select(Allergen))}
@@ -236,31 +261,63 @@ def ensure_demo(db: Session) -> None:
         db.add(AvailableIngredient(user_id=user.user_id, ingredient_id=ings[code].ingredient_id, available_amount_g=qty))
     db.commit()
 
-    rng = random.Random(42)
-    provider = MockProvider()
-    for day in range(7, 0, -1):
-        for meal, hour in ((0.3, 8), (0.4, 13), (0.3, 19)):
-            outcome = generate_recipes(db, user, goals["goal_gain"].fitness_goal_id, 1, meal, None, None, provider=provider)
-            for recipe in outcome.recipes:
-                recipe.generation_status = RECIPE_ACCEPTED
-                recipe.created_at = (now - timedelta(days=day)).replace(hour=hour - 3, minute=rng.randint(0, 50))
-                if rng.random() < 0.7:
-                    db.add(RecipeRating(user_id=user.user_id, recipe_id=recipe.recipe_id, score=rng.choice([3, 4, 4, 5, 5]),
-                                        rated_at=recipe.created_at + timedelta(hours=1)))
-            db.commit()
+    _seed_demo_recipes(db, user, goals["goal_gain"].fitness_goal_id, days=DEMO_DAYS)
     logger.info("Создан демо-пользователь %s (%s рецептов)", DEMO_EMAIL,
                 len(db.scalars(select(Recipe).where(Recipe.user_id == user.user_id)).all()))
 
 
-def run() -> None:
+def refresh_demo(db: Session) -> None:
+    """Пересоздаёт историю демо-пользователя относительно сегодняшней даты.
+
+    Рецепты, запросы генерации и оценки удаляются и создаются заново за последние DEMO_DAYS дней (при этом исчезают
+    тестовые генерации, накопленные в демо-аккаунте). Замеры веса пересоздаются раз в 2 дня за 4 недели:
+    рост 76,8 → 78,0 кг, около +0,3 кг в неделю, в согласии с питанием демо-пользователя (калорийность рациона
+    немного выше его TDEE). Благодаря этому отчёты и анализ за любой недавний период показывают полноценные данные.
+    """
+    user = db.scalar(select(User).where(User.email == DEMO_EMAIL))
+    if user is None:
+        logger.info("Демо-пользователь не найден — обновлять нечего")
+        return
+    tz = ZoneInfo(get_settings().app_timezone)
+    today = datetime.now(tz).date()
+
+    db.execute(delete(Recipe).where(Recipe.user_id == user.user_id))
+    db.execute(delete(GenerationRequest).where(GenerationRequest.user_id == user.user_id))
+    db.commit()
+    goal = db.scalar(select(FitnessGoal).where(FitnessGoal.code == "goal_gain"))
+    _seed_demo_recipes(db, user, goal.fitness_goal_id, days=DEMO_DAYS)
+    logger.info("Рецепты демо-пользователя созданы заново (%s дн.)", DEMO_DAYS)
+
+    db.execute(delete(ParameterHistory).where(ParameterHistory.user_id == user.user_id))
+    rng = random.Random(7)
+    profile = db.scalar(select(UserProfile).where(UserProfile.user_id == user.user_id))
+    height, age, activity = (profile.height_cm, profile.age, profile.activity_level) if profile else (182, 21, 1.55)
+    span = 28
+    for offset in range(span, -1, -2):
+        day = today - timedelta(days=offset)
+        moment = datetime.combine(day, time(8, 0), tzinfo=tz).astimezone(timezone.utc)
+        weight = 76.8 + (span - offset) / span * 1.2 + (0 if offset == 0 else rng.uniform(-0.15, 0.15))
+        db.add(ParameterHistory(user_id=user.user_id, weight_kg=round(weight, 1), height_cm=height, age=age,
+                                activity_level=activity, recorded_at=moment))
+    if profile:
+        profile.weight_kg = 78.0
+    db.commit()
+    logger.info("Замеры веса демо-пользователя пересозданы (%s записей)", span // 2 + 1)
+
+
+def run(refresh: bool = False) -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     with SessionLocal() as db:
         upsert_dictionaries(db)
         ensure_admin(db)
         if get_settings().seed_demo:
             ensure_demo(db)
+            if refresh:
+                refresh_demo(db)
     logger.info("Начальное наполнение завершено")
 
 
 if __name__ == "__main__":
-    run()
+    import sys
+
+    run(refresh="--refresh-demo" in sys.argv)

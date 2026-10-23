@@ -4,7 +4,7 @@ import uuid
 from dataclasses import dataclass, field
 from typing import Literal, Protocol
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 
 class LLMError(Exception):
@@ -45,6 +45,7 @@ class GenerationContext:
     disliked: list[str] = field(default_factory=list)
     seed: int = 0
     meal_type: str | None = None  # breakfast | lunch | dinner | snack
+    recent: list[str] = field(default_factory=list)  # последние рецепты пользователя — не повторять
 
 
 DIFFICULTY_SYNONYMS = {
@@ -55,8 +56,17 @@ DIFFICULTY_SYNONYMS = {
 
 
 class LLMRecipeItem(BaseModel):
-    code: str = Field(description="Код ингредиента из списка, например I3")
+    """Ингредиент рецепта: по названию из списка (GigaChat) или по внутреннему коду (локальный генератор)."""
+
+    code: str | None = Field(default=None, description="Внутренний код ингредиента, например I3")
+    name: str | None = Field(default=None, description="Название ингредиента из списка")
     massG: float = Field(gt=0, description="Масса в граммах")
+
+    @model_validator(mode="after")
+    def _has_identifier(self):
+        if not (self.code or self.name):
+            raise ValueError("у ингредиента не указано название")
+        return self
 
 
 class LLMRecipe(BaseModel):

@@ -39,7 +39,15 @@ Set-Location $root
 function Step([string]$text) { Write-Host ""; Write-Host "==> $text" -ForegroundColor Cyan }
 function Fail([string]$text) { Write-Host ""; Write-Host "ОШИБКА: $text" -ForegroundColor Red; exit 1 }
 
+function Get-ListeningPorts {
+    try {
+        return @([System.Net.NetworkInformation.IPGlobalProperties]::GetIPGlobalProperties().GetActiveTcpListeners() | ForEach-Object { $_.Port })
+    } catch { return @() }
+}
+
 function Test-PortFree([int]$port) {
+    # Список слушаемых портов: пробный слушатель на «всех адресах» ошибается, если порт уже занят на 127.0.0.1 (так делает Docker)
+    if ((Get-ListeningPorts) -contains $port) { return $false }
     try {
         $listener = New-Object System.Net.Sockets.TcpListener([System.Net.IPAddress]::Any, $port)
         $listener.Start(); $listener.Stop(); return $true

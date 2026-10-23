@@ -34,6 +34,7 @@ from app.models import (
     utcnow,
 )
 from app.security import hash_password
+from app.services import nutrition
 from app.services.llm import MockProvider
 from app.services.restrictions import normalize_text
 
@@ -218,15 +219,16 @@ DEMO_PASSWORD = "Demo12345"
 DEMO_DAYS = 14  # сколько дней истории рецептов у демо-пользователя
 
 
-DEMO_MEALS = ((0.3, "breakfast", 8), (0.4, "lunch", 13), (0.3, "dinner", 19))
+# Доли в сумме чуть больше 100 %: локальный генератор даёт около 94 % цели, с перекусом рацион набора массы дотягивает до цели
+DEMO_MEALS = ((0.3, "breakfast", 8), (0.4, "lunch", 13), (0.08, "snack", 16), (0.3, "dinner", 19))
 
 
 def _seed_demo_recipes(db: Session, user: User, goal_id, days: int, meals=DEMO_MEALS,
                        skip_days: frozenset = frozenset(), not_in_diet: float = 0.0) -> None:
-    """Рецепты за последние `days` дней: приёмы пищи из `meals`, по умолчанию включены в рацион, часть с оценками.
+    """Рецепты за последние `days` дней: приёмы пищи из `meals`, включены в рацион, часть с оценками.
 
-    skip_days — дни (сколько дней назад), в которые пользователь ничего не готовил; not_in_diet — доля
-    сгенерированных рецептов, которые пользователь не добавил в рацион."""
+    skip_days — дни (сколько дней назад), в которые пользователь ничего не готовил; not_in_diet — доля приёмов пищи,
+    для которых пользователь сгенерировал ещё один вариант и не добавил его в рацион (рацион остаётся полным)."""
     from app.services.generation import generate_recipes
 
     now = utcnow()
@@ -236,17 +238,51 @@ def _seed_demo_recipes(db: Session, user: User, goal_id, days: int, meals=DEMO_M
         if day in skip_days:
             continue
         for meal_share, meal_type, hour in meals:
-            outcome = generate_recipes(db, user, goal_id, 1, meal_share, None, None, provider=provider, meal_type=meal_type)
-            for recipe in outcome.recipes:
-                skipped = not_in_diet and rng.random() < not_in_diet
-                recipe.generation_status = RECIPE_GENERATED if skipped else RECIPE_ACCEPTED
-                recipe.created_at = (now - timedelta(days=day)).replace(hour=hour - 3, minute=rng.randint(0, 50))
-                outcome.request.requested_at = recipe.created_at
-                outcome.request.completed_at = recipe.created_at
-                if not skipped and rng.random() < 0.7:
-                    db.add(RecipeRating(user_id=user.user_id, recipe_id=recipe.recipe_id, score=rng.choice([3, 4, 4, 5, 5]),
-                                        rated_at=recipe.created_at + timedelta(hours=1)))
-            db.commit()
+            extra = bool(not_in_diet) and rng.random() < not_in_diet
+            for in_diet in ((False, True) if extra else (True,)):
+                outcome = generate_recipes(db, user, goal_id, 1, meal_share, None, None, provider=provider, meal_type=meal_type)
+                for recipe in outcome.recipes:
+                    recipe.generation_status = RECIPE_ACCEPTED if in_diet else RECIPE_GENERATED
+                    recipe.created_at = (now - timedelta(days=day)).replace(hour=hour - 3, minute=rng.randint(0, 50))
+                    outcome.request.requested_at = recipe.created_at
+                    outcome.request.completed_at = recipe.created_at
+                    if in_diet and rng.random() < 0.7:
+                        db.add(RecipeRating(user_id=user.user_id, recipe_id=recipe.recipe_id, score=rng.choice([3, 4, 4, 5, 5]),
+                                            rated_at=recipe.created_at + timedelta(hours=1)))
+                db.commit()
+
+
+def _seed_weights(db: Session, user: User, goal: FitnessGoal, end_weight: float, days: int) -> int:
+    """Ежедневные утренние замеры веса, согласованные с питанием пользователя.
+
+    Вес в день меняется так же, как считает анализ: (съедено по рецептам из рациона − TDEE) / 7700 кг, в дни без рецептов вес
+    не меняется. Последний замер — текущий вес профиля. Поэтому «прогноз по питанию» и «замеры» на экране анализа совпадают
+    (замеры округлены до 0,1 кг, как на реальных весах)."""
+    from app.services.profile import energy_for, get_profile
+    from app.services.reports import build_report
+
+    tz = ZoneInfo(get_settings().app_timezone)
+    today = datetime.now(tz).date()
+    db.execute(delete(ParameterHistory).where(ParameterHistory.user_id == user.user_id))
+    profile = get_profile(db, user.user_id)
+    profile.weight_kg = end_weight
+    db.commit()
+    tdee = energy_for(profile, goal).tdee
+    daily = build_report(db, user, today - timedelta(days=days), today).out.daily_calories
+    delta = {d.date: (d.calories - tdee) / nutrition.KCAL_PER_KG_BODY_WEIGHT if d.recipes else 0.0 for d in daily}
+    rng = random.Random(7)
+    weight, count = end_weight, 0
+    for day in sorted(delta, reverse=True):
+        moment = datetime.combine(day, time(7, 30), tzinfo=tz).astimezone(timezone.utc)
+        if day == today:
+            moment = utcnow() - timedelta(minutes=1)
+        noise = 0.0 if day == today else rng.uniform(-0.04, 0.04)
+        db.add(ParameterHistory(user_id=user.user_id, weight_kg=round(weight + noise, 1), height_cm=profile.height_cm,
+                                age=profile.age, activity_level=profile.activity_level, recorded_at=moment))
+        weight -= delta[day]
+        count += 1
+    db.commit()
+    return count
 
 
 def ensure_demo(db: Session) -> None:
@@ -262,10 +298,6 @@ def ensure_demo(db: Session) -> None:
     db.flush()
     db.add(UserProfile(user_id=user.user_id, fitness_goal_id=goals["goal_gain"].fitness_goal_id,
                        weight_kg=78, height_cm=182, age=21, sex="male", activity_level=1.55))
-    now = utcnow()
-    for weeks_ago, weight in ((4, 76.4), (3, 76.9), (2, 77.3), (1, 77.6), (0, 78.0)):
-        db.add(ParameterHistory(user_id=user.user_id, weight_kg=weight, height_cm=182, age=21, activity_level=1.55,
-                                recorded_at=now - timedelta(days=7 * weeks_ago, hours=1)))
     lactose = allergens["allergen_lactose"]
     db.add(UserRestriction(user_id=user.user_id, allergen_id=lactose.allergen_id, original_name="Молочные продукты",
                            normalized_name=normalize_text("Молочные продукты"), restriction_type="allergen"))
@@ -279,6 +311,7 @@ def ensure_demo(db: Session) -> None:
     db.commit()
 
     _seed_demo_recipes(db, user, goals["goal_gain"].fitness_goal_id, days=DEMO_DAYS)
+    _seed_weights(db, user, goals["goal_gain"], end_weight=78.0, days=DEMO_DAYS + 7)
     logger.info("Создан демо-пользователь %s (%s рецептов)", DEMO_EMAIL,
                 len(db.scalars(select(Recipe).where(Recipe.user_id == user.user_id)).all()))
 
@@ -287,16 +320,14 @@ def refresh_demo(db: Session) -> None:
     """Пересоздаёт историю демо-пользователя относительно сегодняшней даты.
 
     Рецепты, запросы генерации и оценки удаляются и создаются заново за последние DEMO_DAYS дней (при этом исчезают
-    тестовые генерации, накопленные в демо-аккаунте). Замеры веса пересоздаются раз в 2 дня за 4 недели:
-    рост 76,8 → 78,0 кг, около +0,3 кг в неделю, в согласии с питанием демо-пользователя (калорийность рациона
-    немного выше его TDEE). Благодаря этому отчёты и анализ за любой недавний период показывают полноценные данные.
+    тестовые генерации, накопленные в демо-аккаунте). Замеры веса пересоздаются каждый день и согласуются с питанием
+    (см. _seed_weights): набор около +0,3 кг в неделю. Благодаря этому отчёты и анализ за любой недавний период
+    показывают полноценные данные, а расчёт по калориям совпадает с замерами.
     """
     user = db.scalar(select(User).where(User.email == DEMO_EMAIL))
     if user is None:
         logger.info("Демо-пользователь не найден — обновлять нечего")
         return
-    tz = ZoneInfo(get_settings().app_timezone)
-    today = datetime.now(tz).date()
 
     db.execute(delete(Recipe).where(Recipe.user_id == user.user_id))
     db.execute(delete(GenerationRequest).where(GenerationRequest.user_id == user.user_id))
@@ -305,21 +336,8 @@ def refresh_demo(db: Session) -> None:
     _seed_demo_recipes(db, user, goal.fitness_goal_id, days=DEMO_DAYS)
     logger.info("Рецепты демо-пользователя созданы заново (%s дн.)", DEMO_DAYS)
 
-    db.execute(delete(ParameterHistory).where(ParameterHistory.user_id == user.user_id))
-    rng = random.Random(7)
-    profile = db.scalar(select(UserProfile).where(UserProfile.user_id == user.user_id))
-    height, age, activity = (profile.height_cm, profile.age, profile.activity_level) if profile else (182, 21, 1.55)
-    span = 28
-    for offset in range(span, -1, -2):
-        day = today - timedelta(days=offset)
-        moment = datetime.combine(day, time(8, 0), tzinfo=tz).astimezone(timezone.utc)
-        weight = 76.8 + (span - offset) / span * 1.2 + (0 if offset == 0 else rng.uniform(-0.15, 0.15))
-        db.add(ParameterHistory(user_id=user.user_id, weight_kg=round(weight, 1), height_cm=height, age=age,
-                                activity_level=activity, recorded_at=moment))
-    if profile:
-        profile.weight_kg = 78.0
-    db.commit()
-    logger.info("Замеры веса демо-пользователя пересозданы (%s записей)", span // 2 + 1)
+    count = _seed_weights(db, user, goal, end_weight=78.0, days=DEMO_DAYS + 7)
+    logger.info("Замеры веса демо-пользователя пересозданы (%s записей, согласованы с питанием)", count)
 
 
 ADMIN_DAYS = 30
@@ -337,15 +355,13 @@ ADMIN_AVAILABLE = [
 def fill_admin_history(db: Session, days: int = ADMIN_DAYS) -> None:
     """Заполняет учётную запись администратора так, будто он месяц пользуется системой (для проверки и показа).
 
-    Профиль, замеры веса (снижение около 0,4 кг в неделю — в согласии с дефицитом цели «Снижение веса»), запрет на орехи,
+    Профиль, ежедневные замеры веса (согласованы с питанием: около −0,45 кг в неделю при дефиците цели «Снижение веса»), запрет на орехи,
     набор ингредиентов, рецепты за `days` дней: четыре приёма пищи в день, часть дней пропущена, часть рецептов не добавлена
     в рацион, часть с оценками. Существующие данные администратора как пользователя заменяются; повторный запуск безопасен."""
     admin = ensure_admin(db)
     goal = db.scalar(select(FitnessGoal).where(FitnessGoal.code == "goal_loss"))
     ings = {i.code: i for i in db.scalars(select(Ingredient))}
     nuts = db.scalar(select(Allergen).where(Allergen.code == "allergen_nuts"))
-    tz = ZoneInfo(get_settings().app_timezone)
-    today = datetime.now(tz).date()
 
     for model in (Recipe, GenerationRequest, ParameterHistory, UserRestriction, AvailableIngredient):
         db.execute(delete(model).where(model.user_id == admin.user_id))
@@ -359,16 +375,11 @@ def fill_admin_history(db: Session, days: int = ADMIN_DAYS) -> None:
                            normalized_name=normalize_text("Орехи"), restriction_type="allergen"))
     for code, qty in ADMIN_AVAILABLE:
         db.add(AvailableIngredient(user_id=admin.user_id, ingredient_id=ings[code].ingredient_id, available_amount_g=qty))
-    rng = random.Random(11)
-    for offset in range(days, -1, -3):
-        moment = datetime.combine(today - timedelta(days=offset), time(7, 30), tzinfo=tz).astimezone(timezone.utc)
-        weight = 86.0 - (days - offset) / days * 2.4 + (0 if offset == 0 else rng.uniform(-0.2, 0.2))
-        db.add(ParameterHistory(user_id=admin.user_id, weight_kg=round(weight, 1), height_cm=178, age=29,
-                                activity_level=1.375, recorded_at=moment))
     db.commit()
 
     skipped = frozenset({days - 5, days - 6, 12, 13, 21})  # пара «выходных без записей» и отдельные пропущенные дни
     _seed_demo_recipes(db, admin, goal.fitness_goal_id, days, meals=ADMIN_MEALS, skip_days=skipped, not_in_diet=0.2)
+    _seed_weights(db, admin, goal, end_weight=83.6, days=days)
     logger.info("Учётная запись администратора заполнена историей за %s дн.: %s рецептов", days,
                 db.scalar(select(func.count()).select_from(Recipe).where(Recipe.user_id == admin.user_id)))
 

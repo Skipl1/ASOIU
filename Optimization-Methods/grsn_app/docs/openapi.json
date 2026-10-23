@@ -4002,6 +4002,17 @@
             ],
             "title": "Measuredtrendkgperweek"
           },
+          "calculatedTrendKgPerWeek": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Calculatedtrendkgperweek"
+          },
           "calculatedWeightTrend": {
             "items": {
               "$ref": "#/components/schemas/WeightPoint"

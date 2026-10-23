@@ -465,6 +465,7 @@ class NutritionAnalysis(Schema):
     forecast_weight_30d_kg: float | None = Field(alias="forecastWeight30dKg")
     trend_sufficient: bool
     measured_trend_kg_per_week: float | None
+    calculated_trend_kg_per_week: float | None = None
     calculated_weight_trend: list[WeightPoint]
     measured_weights: list[WeightPoint]
     recommendations: list[AnalysisRecommendation]

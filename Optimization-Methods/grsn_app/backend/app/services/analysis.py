@@ -66,7 +66,7 @@ def analyze(db: Session, user: User, date_from: date, date_to: date) -> schemas.
     # Дни без данных считаются нейтральными (вес не меняется) — они не «досчитываются» средним.
     trend_sufficient = n_days >= MIN_TREND_DAYS
     trend: list[schemas.WeightPoint] = []
-    end_weight = weight_change = forecast_30 = None
+    end_weight = weight_change = forecast_30 = calculated_trend = None
     if trend_sufficient:
         weight = start_weight
         for i, day in enumerate(report.daily_calories, start=1):
@@ -75,6 +75,9 @@ def analyze(db: Session, user: User, date_from: date, date_to: date) -> schemas.
             trend.append(schemas.WeightPoint(day=i, date=day.date, weight_kg=round(weight, 2)))
         end_weight = trend[-1].weight_kg
         weight_change = round(end_weight - start_weight, 2)
+        # Скорость в кг/нед — тем же способом (наклон линии по дням), что и по замерам, чтобы цифры можно было сравнивать
+        slope_calc = _linear_slope([(p.day, p.weight_kg) for p in trend])
+        calculated_trend = round(slope_calc * 7, 2) if slope_calc is not None else None
         forecast_30 = round(end_weight + 30 * (actual["calories"] - energy.tdee) / nutrition.KCAL_PER_KG_BODY_WEIGHT, 2)
     measured = [
         schemas.WeightPoint(day=(d - date_from).days + 1, date=d, weight_kg=w) for d, w in sorted(per_day.items())
@@ -121,6 +124,7 @@ def analyze(db: Session, user: User, date_from: date, date_to: date) -> schemas.
         forecast_weight_30d_kg=forecast_30,
         trend_sufficient=trend_sufficient,
         measured_trend_kg_per_week=measured_trend,
+        calculated_trend_kg_per_week=calculated_trend,
         calculated_weight_trend=trend,
         measured_weights=measured,
         recommendations=recs,

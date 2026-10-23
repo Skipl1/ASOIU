@@ -468,6 +468,21 @@ def test_title_with_catalog_product_missing_in_composition_is_replaced(client, u
     assert any("заменено" in w for w in body["warnings"])
 
 
+def test_seeded_history_calculated_and_measured_trends_agree(client, admin_token, db):
+    """Данные для проверки: прогноз по питанию и замеры веса совпадают по знаку и величине (кг/нед)."""
+    from app.seed import fill_admin_history
+
+    fill_admin_history(db, days=12)
+    today = date.today()
+    a = client.get(f"{API}/analysis/nutrition", headers=auth(admin_token),
+                   params={"dateFrom": (today - timedelta(days=8)).isoformat(), "dateTo": today.isoformat()}).json()
+    calc, measured = a["calculatedTrendKgPerWeek"], a["measuredTrendKgPerWeek"]
+    assert a["trendSufficient"] and calc is not None and measured is not None
+    assert calc < 0 and measured < 0               # цель «Снижение веса»: вес падает и по расчёту, и по замерам
+    assert abs(calc - measured) <= 0.25
+    assert -1.0 < measured < -0.2                  # реалистичная скорость, а не килограммы в неделю
+
+
 def test_nul_byte_is_rejected_not_500(client, user_token, admin_token):
     r = client.post(f"{API}/auth/register", content=b'{"name":"a\u0000b","email":"nul@test.ru","password":"Passw0rd1"}',
                     headers={"Content-Type": "application/json"})

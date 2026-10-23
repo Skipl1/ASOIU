@@ -105,7 +105,7 @@ npm run dev            # http://localhost:5173
 
 ```bash
 cd backend
-.venv/Scripts/python -m pytest -q                     # 42 теста: формулы 4.6, правило 4.7.2, сценарии ТЗ 7.1 и 7.3, пожелания к рецепту, GigaChat
+.venv/Scripts/python -m pytest -q                     # 43 теста: формулы 4.6, правило 4.7.2, сценарии ТЗ 7.1 и 7.3, пожелания к рецепту, GigaChat
 .venv/Scripts/python ../scripts/load_test.py --base http://localhost:8080 --users 100   # нагрузочная проверка ТЗ 7.2
 ```
 

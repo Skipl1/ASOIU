@@ -225,6 +225,96 @@ def _title_from_composition(items: list[tuple[Ingredient, float]]) -> str:
     return main.name + (" с гарниром: " + ", ".join(side) if side else "")
 
 
+_WITHOUT = re.compile(r"\bбез\s+\w+")
+MAX_WISHED = 3
+WISH_MASS = 50.0  # начальная масса продукта из пожеланий, если модель его не включила, г
+# Продукты, которых нет в каталоге: пожелание на них учесть нельзя, а упоминание в названии или шагах — ошибка модели
+EXTRA_FOODS = ["креветки", "кальмары", "мидии", "бекон", "пельмени", "пицца", "бургер", "шоколад", "конфеты", "мороженое",
+               "майонез", "кетчуп", "сметана", "сливки", "сгущёнка", "печенье", "торт", "сухарики", "чипсы", "сало"]
+
+
+def _label_terms(ingredient: Ingredient) -> list[str]:
+    return [t for label in (ingredient.name, *(ingredient.name_synonyms or []))
+            if (t := " ".join(w for w in normalize_text(label).split() if w.isalpha() and len(w) >= 3))]
+
+
+def _wished_ingredients(
+    comment: str | None, catalog: list[Ingredient], forbidden: ForbiddenSet, own_ids: set[uuid.UUID]
+) -> tuple[list[Ingredient], list[str], list[str]]:
+    """Продукты, названные в пожеланиях пользователя («хочу с колбасой»).
+
+    Возвращает: продукты, которые есть в наборе пользователя (они обязательны в составе); названия продуктов,
+    которых в наборе нет (рецепт составляется без них, модели запрещено их упоминать); пояснения для пользователя.
+    Продукт после «без» не считается пожеланием. Если названию соответствует несколько продуктов («колбаса»),
+    берётся тот, что есть в наборе."""
+    if not comment:
+        return [], [], []
+    text = _WITHOUT.sub(" ", normalize_text(comment))
+    groups: dict[str, list[Ingredient]] = {}
+    for ing in catalog:
+        for term in _label_terms(ing):
+            if text_mentions(text, [term]):
+                groups.setdefault(term, []).append(ing)
+    wished: list[Ingredient] = []
+    missing: list[str] = []
+    notes: list[str] = []
+    chosen: set[uuid.UUID] = set()
+    for term, ings in sorted(groups.items(), key=lambda kv: (-len(kv[0].split()), kv[0])):
+        if any(i.ingredient_id in chosen for i in ings):
+            continue
+        chosen.update(i.ingredient_id for i in ings)
+        ok = [i for i in ings if check_ingredients([i], forbidden)[0]]
+        if not ok:
+            notes.append(f"Пожелание «{term}» не учтено: продукт запрещён вашими ограничениями")
+            continue
+        in_set = sorted((i for i in ok if i.ingredient_id in own_ids), key=lambda i: i.name)
+        if in_set:
+            wished.append(in_set[0])
+        else:
+            missing.append(term)
+            notes.append(f"Продукта «{term}» нет в вашем наборе доступных ингредиентов — рецепт составлен без него. "
+                         "Добавьте продукт на странице «Ингредиенты» и повторите генерацию.")
+    for term in text_mentions(text, EXTRA_FOODS):
+        missing.append(term)
+        notes.append(f"Продукта «{term}» нет в каталоге — рецепт составлен без него (администратор может добавить продукт в каталог).")
+    return wished[:MAX_WISHED], missing, notes
+
+
+def _excluded_by_wish(comment: str | None, catalog: list[Ingredient]) -> tuple[set[uuid.UUID], list[str]]:
+    """Продукты, которые пользователь исключил пожеланием («без колбасы»): их id и названия."""
+    if not comment:
+        return set(), []
+    ids: set[uuid.UUID] = set()
+    terms: list[str] = []
+    for phrase in _WITHOUT.findall(normalize_text(comment)):
+        word = phrase.split(None, 1)[1]
+        for ing in catalog:
+            for term in _label_terms(ing):
+                if text_mentions(word, [term]):
+                    ids.add(ing.ingredient_id)
+                    if term not in terms:
+                        terms.append(term)
+    return ids, terms
+
+
+def _foreign_terms(catalog: list[Ingredient], order: list[Ingredient]) -> list[str]:
+    """Названия продуктов, которых нет в составе рецепта: их нельзя упоминать в названии и шагах.
+    Термины, совпадающие с названиями продуктов состава («рис» при буром рисе), исключаются."""
+    in_order = {i.ingredient_id for i in order}
+    own = [t for i in order for t in _label_terms(i)]
+    terms: set[str] = set(EXTRA_FOODS)
+    for ing in catalog:
+        if ing.ingredient_id in in_order or "масло" in ing.name.lower():
+            continue
+        terms.update(t for t in _label_terms(ing) if len(t) >= 4)
+    return sorted(t for t in terms if not any(text_mentions(o, [t]) or text_mentions(t, [o]) for o in own))
+
+
+def _wish_step(ingredient: Ingredient, mass: float) -> str:
+    return (f"{ingredient.name} ({mass:.0f} г): нарежьте небольшими кусочками, при необходимости прогрейте 2–3 минуты "
+            "на сковороде и добавьте в блюдо перед подачей.")
+
+
 def _post_process(
     raw: LLMRecipe,
     code_map: dict[str, tuple[Ingredient, float | None]],
@@ -233,6 +323,8 @@ def _post_process(
     optimize: bool = True,
     banned_terms: list[str] | None = None,
     name_index: dict | None = None,
+    must_have: list[Ingredient] | None = None,
+    catalog: list[Ingredient] | None = None,
 ) -> tuple[BuiltRecipe | None, str | None]:
     masses: dict[uuid.UUID, float] = {}
     order: list[Ingredient] = []
@@ -250,6 +342,12 @@ def _post_process(
         masses[ingredient.ingredient_id] += item.massG
     if unknown:
         warnings.append(f"Модель указала ингредиенты вне доступного набора ({', '.join(unknown[:5])}) — они исключены")
+    # Продукт из пожеланий обязан быть в составе: если модель его пропустила, он добавляется
+    forced = [i for i in (must_have or []) if i.ingredient_id not in masses]
+    for ingredient in forced:
+        order.append(ingredient)
+        masses[ingredient.ingredient_id] = WISH_MASS
+    optimize = optimize or bool(forced)
 
     available = {e[0].ingredient_id: e[1] for e in code_map.values()}
 
@@ -276,7 +374,7 @@ def _post_process(
             warnings.append(f"Из инструкции «{raw.name}» удалены шаги с упоминанием запрещённых продуктов: {', '.join(sorted(mentioned))}")
         steps = safe_steps
     # Шаги не должны упоминать продукты набора, которых нет в составе рецепта (кроме масла и специй)
-    foreign_terms = [normalize_text(i.name) for i, _ in code_map.values() if i not in order and "масло" not in i.name.lower()]
+    foreign_terms = _foreign_terms(catalog or [i for i, _ in code_map.values()], order)
     foreign_dropped = [s for s in steps if text_mentions(s, foreign_terms)]
     if foreign_dropped:
         steps = [s for s in steps if s not in foreign_dropped]
@@ -301,6 +399,9 @@ def _post_process(
             order.append(added)
             steps.insert(max(len(steps) - 1, 0), _fat_source_step(added, masses[added.ingredient_id]))
             tips.append(f"Для баланса БЖУ добавлен источник жиров из вашего набора: «{added.name}»")
+        for ingredient in forced:
+            steps.insert(max(len(steps) - 1, 0), _wish_step(ingredient, masses[ingredient.ingredient_id]))
+            tips.append(f"Продукт из вашего пожелания «{ingredient.name}» добавлен в рецепт автоматически")
         if any(abs(masses[k] - v) > max(10.0, 0.1 * v) for k, v in before.items()):
             tips.append("Массы ингредиентов оптимизированы под целевые калорийность и БЖУ приёма пищи")
         totals = totals_for(masses)
@@ -402,6 +503,17 @@ def generate_recipes(
         outcome.suggestions = SUGGESTIONS
         return outcome
 
+    # Продукты, исключённые пожеланием («без колбасы»), не передаются модели и не упоминаются в рецепте
+    catalog = list(db.scalars(select(Ingredient)))
+    excluded_ids, excluded_terms = _excluded_by_wish(comment, catalog)
+    if excluded_ids:
+        kept = [a for a in allowed if a.ingredient_id not in excluded_ids]
+        if len(kept) >= MIN_ALLOWED_INGREDIENTS and any(a.ingredient.protein_per_100g >= MIN_PROTEIN_SOURCE for a in kept):
+            allowed = kept
+        else:
+            excluded_terms = []
+            outcome.warnings.append("Пожелание «без …» не учтено: без этих продуктов в наборе не хватает ингредиентов для рецепта")
+
     # 2. Контекст для модели генерации
     code_map: dict[str, tuple[Ingredient, float | None]] = {}
     ctx_items: list[ContextIngredient] = []
@@ -417,6 +529,23 @@ def generate_recipes(
     for n, a in enumerate(sorted(context_allowed, key=lambda a: a.ingredient.name), start=1):
         ing = a.ingredient
         code = f"I{n}"
+        code_map[code] = (ing, a.available_amount_g)
+        ctx_items.append(ContextIngredient(
+            code=code, id=ing.ingredient_id, name=ing.name,
+            category_code=ing.category.code if ing.category else None,
+            category=ing.category.name if ing.category else None,
+            protein=ing.protein_per_100g, fat=ing.fat_per_100g, carbs=ing.carb_per_100g, calories=ing.calories_per_100g,
+            available_g=a.available_amount_g,
+        ))
+
+    # Продукты из пожеланий («хочу с колбасой»): из набора пользователя — обязательны в составе;
+    # которых в наборе нет — в рецепт не попадают, пользователь получает пояснение
+    wished, missing_wishes, wish_notes = _wished_ingredients(comment, catalog, forbidden, {a.ingredient_id for a in allowed})
+    outcome.warnings.extend(wish_notes)
+    in_context = {ing.ingredient_id for ing, _ in code_map.values()}
+    for n, a in enumerate((a for a in allowed if a.ingredient in wished and a.ingredient_id not in in_context), start=1):
+        ing = a.ingredient  # продукт из пожеланий мог быть отсеян по приёму пищи — возвращаем его в контекст
+        code = f"W{n}"
         code_map[code] = (ing, a.available_amount_g)
         ctx_items.append(ContextIngredient(
             code=code, id=ing.ingredient_id, name=ing.name,
@@ -458,6 +587,8 @@ def generate_recipes(
         seed=random.randrange(1 << 30),
         meal_type=meal_type,
         recent=recent,
+        must_include=[ing.name for ing in wished],
+        unavailable=[*missing_wishes, *excluded_terms],
     )
 
     request.status = "processing"
@@ -469,7 +600,7 @@ def generate_recipes(
         built: list[BuiltRecipe] = []
         for raw in raw_recipes:
             recipe, problem = _post_process(raw, code_map, meal_target, outcome.warnings, optimize=provider.name != "mock",
-                                            banned_terms=banned_terms, name_index=name_index)
+                                            banned_terms=banned_terms, name_index=name_index, must_have=wished, catalog=catalog)
             if recipe is None:
                 outcome.warnings.append(problem)
                 continue

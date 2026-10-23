@@ -172,10 +172,14 @@ def forbidden_terms(db: Session, forbidden: ForbiddenSet) -> list[str]:
     if forbidden.is_empty:
         return []
     terms: set[str] = set(forbidden.substances)
+    safe_labels: set[str] = set()
     for ingredient in db.scalars(select(Ingredient)):
         if check_ingredient(ingredient, forbidden):
             terms.add(ingredient.name)
             terms.update(ingredient.name_synonyms or [])
+        else:  # общее название («колбаса») не должно запрещаться из-за одного небезопасного продукта
+            safe_labels.update(normalize_text(label) for label in (ingredient.name, *(ingredient.name_synonyms or [])))
+    terms = {t for t in terms if t in forbidden.substances or normalize_text(t) not in safe_labels}
     if forbidden.allergen_ids:
         for allergen in db.scalars(select(Allergen).where(Allergen.allergen_id.in_(list(forbidden.allergen_ids)))):
             terms.add(allergen.name)

@@ -385,6 +385,89 @@ def test_ingredients_by_name_and_title_matches_composition(client, user_token, m
     assert len(recipe["instructions"]) >= 3
 
 
+def _wish_setup(client, user_token, extra=()):
+    h = auth(user_token)
+    goal, _ = _fill_profile(client, user_token, "goal_maintain")
+    catalog = _ingredients(client, user_token)
+    codes = ("ing_chicken_breast", "ing_buckwheat", "ing_broccoli", "ing_tomato", "ing_cucumber", "ing_wholegrain_bread", *extra)
+    client.put(f"{API}/available-ingredients", headers=h, json={"items": [{"ingredientId": catalog[c]["id"]} for c in codes]})
+    return h, goal
+
+
+def test_wished_product_from_set_is_included(client, user_token):
+    """«Хочу с колбасой», колбаса есть в наборе: она обязательно попадает в состав и в инструкцию."""
+    h, goal = _wish_setup(client, user_token, extra=("ing_sausage_chicken",))
+    body = client.post(f"{API}/recipes/generate", headers=h, json={
+        "goalId": goal["id"], "variantsCount": 1, "mealShare": 0.25, "mealType": "snack", "comment": "хочу с колбасой"}).json()
+    recipe = body["recipes"][0]
+    assert any("колбас" in i["name"].lower() for i in recipe["ingredients"])
+    assert abs(recipe["caloriesTotal"] - recipe["targetCalories"]) <= 0.1 * recipe["targetCalories"] + 5
+    assert not any("нет в вашем наборе" in w for w in body["warnings"])
+
+
+def test_wished_product_not_in_set_is_not_used(client, user_token):
+    """Колбасы в наборе нет: рецепт составляется без неё, нигде не упоминает её, пользователь получает пояснение."""
+    h, goal = _wish_setup(client, user_token)
+    body = client.post(f"{API}/recipes/generate", headers=h, json={
+        "goalId": goal["id"], "variantsCount": 1, "mealShare": 0.35, "mealType": "snack", "comment": "хочу с колбасой"}).json()
+    recipe = body["recipes"][0]
+    text = " ".join([recipe["name"], *recipe["instructions"], *recipe["tips"], *(i["name"] for i in recipe["ingredients"])]).lower()
+    assert "колбас" not in text
+    assert any("колбаса" in w and "нет в вашем наборе" in w and "Ингредиенты" in w for w in body["warnings"])
+
+
+def test_unknown_food_in_wish_is_reported(client, user_token):
+    h, goal = _wish_setup(client, user_token)
+    body = client.post(f"{API}/recipes/generate", headers=h, json={
+        "goalId": goal["id"], "variantsCount": 1, "mealShare": 0.35, "comment": "хочу с креветками"}).json()
+    text = " ".join([body["recipes"][0]["name"], *body["recipes"][0]["instructions"]]).lower()
+    assert "креветк" not in text
+    assert any("креветки" in w and "нет в каталоге" in w for w in body["warnings"])
+
+
+def test_wish_after_without_is_not_forced(client, user_token):
+    h, goal = _wish_setup(client, user_token, extra=("ing_sausage_chicken",))
+    body = client.post(f"{API}/recipes/generate", headers=h, json={
+        "goalId": goal["id"], "variantsCount": 1, "mealShare": 0.35, "comment": "без колбасы и без сыра"}).json()
+    assert not any("колбас" in i["name"].lower() for i in body["recipes"][0]["ingredients"])
+
+
+def test_wished_product_respects_restrictions(client, user_token):
+    """Молочная «докторская» запрещена при непереносимости молока — выбирается колбаса без молочных компонентов."""
+    h, goal = _wish_setup(client, user_token, extra=("ing_sausage_doctor", "ing_sausage_chicken"))
+    r = client.post(f"{API}/restrictions", headers=h, json={"sourceText": "молоко"})
+    lactose = next(c for c in r.json()["candidates"] if c["type"] == "allergen")
+    client.post(f"{API}/restrictions", headers=h, json={"sourceText": "молоко", "allergenId": lactose["id"]})
+    body = client.post(f"{API}/recipes/generate", headers=h, json={
+        "goalId": goal["id"], "variantsCount": 1, "mealShare": 0.35, "comment": "хочу колбасу"}).json()
+    names = [i["name"] for i in body["recipes"][0]["ingredients"]]
+    assert "Колбаса куриная диетическая" in names and "Колбаса варёная докторская" not in names
+
+
+def test_title_with_catalog_product_missing_in_composition_is_replaced(client, user_token, monkeypatch):
+    """Название «…с колбасой» при составе без колбасы заменяется, даже если колбасы нет в наборе пользователя."""
+    from app.services import generation
+    from app.services.llm.base import LLMRecipe
+
+    class SausageTitleModel:
+        name = "gigachat"
+
+        def generate(self, ctx):
+            return [LLMRecipe(
+                name="Цельнозерновой бутерброд с колбасой и овощами",
+                ingredients=[{"name": "Хлеб цельнозерновой", "massG": 60}, {"name": "Помидор", "massG": 80}, {"name": "Огурец", "massG": 60}],
+                steps=["Нарежьте хлеб ломтиками и слегка подсушите.", "Нарежьте помидор и огурец кружками.",
+                       "Выложите овощи на хлеб, сверху положите кусочки колбасы.", "Подавайте сразу после приготовления."])]
+
+    monkeypatch.setattr(generation, "get_primary_provider", lambda: SausageTitleModel())
+    h, goal = _wish_setup(client, user_token)
+    body = client.post(f"{API}/recipes/generate", headers=h, json={"goalId": goal["id"], "variantsCount": 1, "mealShare": 0.25}).json()
+    recipe = body["recipes"][0]
+    assert "колбас" not in recipe["name"].lower()
+    assert not any("колбас" in s.lower() for s in recipe["instructions"])
+    assert any("заменено" in w for w in body["warnings"])
+
+
 def test_nul_byte_is_rejected_not_500(client, user_token, admin_token):
     r = client.post(f"{API}/auth/register", content=b'{"name":"a\u0000b","email":"nul@test.ru","password":"Passw0rd1"}',
                     headers={"Content-Type": "application/json"})

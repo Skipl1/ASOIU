@@ -90,7 +90,7 @@ docker run -d --name grsn-dev-db -e POSTGRES_USER=grsn -e POSTGRES_PASSWORD=grsn
 cd backend
 python -m venv .venv && .venv/Scripts/pip install -r requirements-dev.txt   # Linux/macOS: .venv/bin/...
 .venv/Scripts/alembic upgrade head
-.venv/Scripts/python -m app.seed
+.venv/Scripts/python -m app.seed                       # + --refresh-demo (история демо заново), --fill-admin (месяц истории у администратора)
 .venv/Scripts/uvicorn app.main:app --reload --port 8000
 
 # Frontend (прокси /api -> 127.0.0.1:8000)
@@ -105,7 +105,7 @@ npm run dev            # http://localhost:5173
 
 ```bash
 cd backend
-.venv/Scripts/python -m pytest -q                     # 36 тестов: формулы 4.6, правило 4.7.2, сценарии ТЗ 7.1 и 7.3, GigaChat
+.venv/Scripts/python -m pytest -q                     # 42 теста: формулы 4.6, правило 4.7.2, сценарии ТЗ 7.1 и 7.3, пожелания к рецепту, GigaChat
 .venv/Scripts/python ../scripts/load_test.py --base http://localhost:8080 --users 100   # нагрузочная проверка ТЗ 7.2
 ```
 
@@ -136,7 +136,7 @@ backend/app/
     analysis.py        анализ и прогноз: отклонения, тренд веса, рекомендации
     backup.py          pg_dump / pg_restore
     integrity.py       мониторинг корректности справочников
-  seed.py              НСИ: 4 цели, 6 категорий, 7 аллергенов, 61 ингредиент (3 составных)
+  seed.py              НСИ: 4 цели, 6 категорий, 7 аллергенов, 65 ингредиентов (3 составных)
 backend/alembic/       миграции
 frontend/src/pages/    10 экранов: вход, регистрация, профиль, запреты, ингредиенты, генерация,
                        история, отчёты, анализ, администрирование

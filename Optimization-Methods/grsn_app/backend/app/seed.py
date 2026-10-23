@@ -1,6 +1,8 @@
 """Начальное наполнение НСИ (по «Шаблонам справочников и НСИ» ТП), администратор и демо-пользователь.
 
 Запуск: python -m app.seed   (идемпотентно — повторный запуск обновляет справочники по кодам).
+  --refresh-demo   пересоздать историю демо-пользователя относительно сегодняшней даты;
+  --fill-admin     заполнить учётную запись администратора историей за месяц (для проверки).
 """
 
 import logging
@@ -17,6 +19,7 @@ from app.models import (
     GenerationRequest,
     as_utc,
     RECIPE_ACCEPTED,
+    RECIPE_GENERATED,
     Allergen,
     AvailableIngredient,
     FitnessGoal,
@@ -87,6 +90,10 @@ INGREDIENTS = [
     ("ing_red_lentils", "cat_protein", "Чечевица красная", 24, 1.5, 48, 300, [], ["чечевица"]),
     ("ing_chickpeas", "cat_protein", "Нут", 19.3, 6, 60.7, 364, [], ["турецкий горох"]),
     ("ing_whey", "cat_protein", "Протеин сывороточный", 75, 5, 8, 377, ["allergen_lactose"], ["протеин", "сывороточный белок", "whey"]),
+    ("ing_sausage_doctor", "cat_protein", "Колбаса варёная докторская", 12.8, 22.2, 1.5, 257, ["allergen_lactose"], ["колбаса", "докторская колбаса"]),
+    ("ing_sausage_chicken", "cat_protein", "Колбаса куриная диетическая", 14, 8, 2, 142, [], ["колбаса", "куриная колбаса"]),
+    ("ing_sausages", "cat_protein", "Сосиски молочные", 11, 23.9, 0.4, 266, ["allergen_lactose"], ["сосиски", "сосиска", "сардельки"]),
+    ("ing_ham_turkey", "cat_protein", "Ветчина из индейки", 17, 4, 1.5, 107, [], ["ветчина"]),
     # Крупы и зерновые
     ("ing_brown_rice", "cat_grains", "Бурый рис", 7, 2, 72, 350, [], ["коричневый рис"]),
     ("ing_white_rice", "cat_grains", "Рис белый", 6.7, 0.7, 78.9, 344, [], ["рис"]),
@@ -211,22 +218,32 @@ DEMO_PASSWORD = "Demo12345"
 DEMO_DAYS = 14  # сколько дней истории рецептов у демо-пользователя
 
 
-def _seed_demo_recipes(db: Session, user: User, goal_id, days: int) -> None:
-    """Рецепты демо за последние `days` дней: три приёма пищи в день, включены в рацион, часть с оценками."""
+DEMO_MEALS = ((0.3, "breakfast", 8), (0.4, "lunch", 13), (0.3, "dinner", 19))
+
+
+def _seed_demo_recipes(db: Session, user: User, goal_id, days: int, meals=DEMO_MEALS,
+                       skip_days: frozenset = frozenset(), not_in_diet: float = 0.0) -> None:
+    """Рецепты за последние `days` дней: приёмы пищи из `meals`, по умолчанию включены в рацион, часть с оценками.
+
+    skip_days — дни (сколько дней назад), в которые пользователь ничего не готовил; not_in_diet — доля
+    сгенерированных рецептов, которые пользователь не добавил в рацион."""
     from app.services.generation import generate_recipes
 
     now = utcnow()
     rng = random.Random(42)
     provider = MockProvider()
     for day in range(days, 0, -1):
-        for meal_share, meal_type, hour in ((0.3, "breakfast", 8), (0.4, "lunch", 13), (0.3, "dinner", 19)):
+        if day in skip_days:
+            continue
+        for meal_share, meal_type, hour in meals:
             outcome = generate_recipes(db, user, goal_id, 1, meal_share, None, None, provider=provider, meal_type=meal_type)
             for recipe in outcome.recipes:
-                recipe.generation_status = RECIPE_ACCEPTED
+                skipped = not_in_diet and rng.random() < not_in_diet
+                recipe.generation_status = RECIPE_GENERATED if skipped else RECIPE_ACCEPTED
                 recipe.created_at = (now - timedelta(days=day)).replace(hour=hour - 3, minute=rng.randint(0, 50))
                 outcome.request.requested_at = recipe.created_at
                 outcome.request.completed_at = recipe.created_at
-                if rng.random() < 0.7:
+                if not skipped and rng.random() < 0.7:
                     db.add(RecipeRating(user_id=user.user_id, recipe_id=recipe.recipe_id, score=rng.choice([3, 4, 4, 5, 5]),
                                         rated_at=recipe.created_at + timedelta(hours=1)))
             db.commit()
@@ -305,7 +322,58 @@ def refresh_demo(db: Session) -> None:
     logger.info("Замеры веса демо-пользователя пересозданы (%s записей)", span // 2 + 1)
 
 
-def run(refresh: bool = False) -> None:
+ADMIN_DAYS = 30
+ADMIN_MEALS = ((0.25, "breakfast", 8), (0.35, "lunch", 13), (0.1, "snack", 16), (0.3, "dinner", 19))
+ADMIN_AVAILABLE = [
+    ("ing_chicken_breast", 2000), ("ing_turkey", 1000), ("ing_beef_lean", 800), ("ing_salmon", 600), ("ing_pollock", 800),
+    ("ing_egg", 900), ("ing_cottage_cheese", 800), ("ing_greek_yogurt", 600), ("ing_kefir", 1000), ("ing_hard_cheese", 200),
+    ("ing_buckwheat", 1500), ("ing_brown_rice", 1200), ("ing_oatmeal", 1000), ("ing_pasta", 800), ("ing_wholegrain_bread", 600),
+    ("ing_broccoli", 1000), ("ing_tomato", 800), ("ing_cucumber", 600), ("ing_bell_pepper", 600), ("ing_carrot", 600),
+    ("ing_zucchini", 700), ("ing_spinach", 300), ("ing_mushrooms", 500), ("ing_apple", 800), ("ing_orange", 500),
+    ("ing_blueberry", 300), ("ing_olive_oil", 300), ("ing_avocado", 300),
+]
+
+
+def fill_admin_history(db: Session, days: int = ADMIN_DAYS) -> None:
+    """Заполняет учётную запись администратора так, будто он месяц пользуется системой (для проверки и показа).
+
+    Профиль, замеры веса (снижение около 0,4 кг в неделю — в согласии с дефицитом цели «Снижение веса»), запрет на орехи,
+    набор ингредиентов, рецепты за `days` дней: четыре приёма пищи в день, часть дней пропущена, часть рецептов не добавлена
+    в рацион, часть с оценками. Существующие данные администратора как пользователя заменяются; повторный запуск безопасен."""
+    admin = ensure_admin(db)
+    goal = db.scalar(select(FitnessGoal).where(FitnessGoal.code == "goal_loss"))
+    ings = {i.code: i for i in db.scalars(select(Ingredient))}
+    nuts = db.scalar(select(Allergen).where(Allergen.code == "allergen_nuts"))
+    tz = ZoneInfo(get_settings().app_timezone)
+    today = datetime.now(tz).date()
+
+    for model in (Recipe, GenerationRequest, ParameterHistory, UserRestriction, AvailableIngredient):
+        db.execute(delete(model).where(model.user_id == admin.user_id))
+    db.commit()
+
+    profile = db.scalar(select(UserProfile).where(UserProfile.user_id == admin.user_id)) or UserProfile(user_id=admin.user_id)
+    profile.fitness_goal_id = goal.fitness_goal_id
+    profile.weight_kg, profile.height_cm, profile.age, profile.sex, profile.activity_level = 83.6, 178, 29, "male", 1.375
+    db.add(profile)
+    db.add(UserRestriction(user_id=admin.user_id, allergen_id=nuts.allergen_id, original_name="Орехи",
+                           normalized_name=normalize_text("Орехи"), restriction_type="allergen"))
+    for code, qty in ADMIN_AVAILABLE:
+        db.add(AvailableIngredient(user_id=admin.user_id, ingredient_id=ings[code].ingredient_id, available_amount_g=qty))
+    rng = random.Random(11)
+    for offset in range(days, -1, -3):
+        moment = datetime.combine(today - timedelta(days=offset), time(7, 30), tzinfo=tz).astimezone(timezone.utc)
+        weight = 86.0 - (days - offset) / days * 2.4 + (0 if offset == 0 else rng.uniform(-0.2, 0.2))
+        db.add(ParameterHistory(user_id=admin.user_id, weight_kg=round(weight, 1), height_cm=178, age=29,
+                                activity_level=1.375, recorded_at=moment))
+    db.commit()
+
+    skipped = frozenset({days - 5, days - 6, 12, 13, 21})  # пара «выходных без записей» и отдельные пропущенные дни
+    _seed_demo_recipes(db, admin, goal.fitness_goal_id, days, meals=ADMIN_MEALS, skip_days=skipped, not_in_diet=0.2)
+    logger.info("Учётная запись администратора заполнена историей за %s дн.: %s рецептов", days,
+                db.scalar(select(func.count()).select_from(Recipe).where(Recipe.user_id == admin.user_id)))
+
+
+def run(refresh: bool = False, fill_admin: bool = False) -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     with SessionLocal() as db:
         upsert_dictionaries(db)
@@ -314,10 +382,12 @@ def run(refresh: bool = False) -> None:
             ensure_demo(db)
             if refresh:
                 refresh_demo(db)
+        if fill_admin:
+            fill_admin_history(db)
     logger.info("Начальное наполнение завершено")
 
 
 if __name__ == "__main__":
     import sys
 
-    run(refresh="--refresh-demo" in sys.argv)
+    run(refresh="--refresh-demo" in sys.argv, fill_admin="--fill-admin" in sys.argv)

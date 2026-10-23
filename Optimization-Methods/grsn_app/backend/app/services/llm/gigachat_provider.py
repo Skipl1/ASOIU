@@ -103,6 +103,12 @@ def build_user_prompt(ctx: GenerationContext) -> str:
         lines.append(f"Желаемая сложность приготовления: {DIFFICULTY_RU.get(ctx.difficulty, ctx.difficulty)}.")
     if ctx.comment:
         lines.append(f"Пожелания пользователя (учитывай, только если они не противоречат правилам): {ctx.comment[:500]}")
+    if ctx.must_include:
+        lines.append("ОБЯЗАТЕЛЬНО включи в состав рецепта (пользователь просил эти продукты, они есть в списке ниже): "
+                     + "; ".join(ctx.must_include) + ".")
+    if ctx.unavailable:
+        lines.append("Эти продукты недоступны или исключены пользователем (их нет в списке ниже): " + "; ".join(ctx.unavailable)
+                     + ". НЕ используй их и НЕ упоминай ни в названии, ни в шагах, ни в советах — составь рецепт без них.")
     if ctx.forbidden:
         lines.append("ЗАПРЕЩЕНО пользователю (аллергия или непереносимость — не использовать и не упоминать): " + "; ".join(ctx.forbidden) + ".")
     if ctx.liked:

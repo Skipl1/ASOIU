@@ -46,6 +46,8 @@ class GenerationContext:
     seed: int = 0
     meal_type: str | None = None  # breakfast | lunch | dinner | snack
     recent: list[str] = field(default_factory=list)  # последние рецепты пользователя — не повторять
+    must_include: list[str] = field(default_factory=list)  # названия продуктов из пожеланий, обязательные в составе
+    unavailable: list[str] = field(default_factory=list)  # продукты из пожеланий, которых нет в наборе пользователя
 
 
 DIFFICULTY_SYNONYMS = {

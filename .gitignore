@@ -1,5 +1,8 @@
 .npm-cache
 .tools
 images
-# Старые браузеры для проверки совместимости (локально, ~580 МБ)
-brouser/
+# Старые браузеры для проверки совместимости (сами браузеры локально, ~620 МБ; скачиваются скриптом brouser/install_browsers.ps1)
+brouser/*
+!brouser/README.md
+!brouser/*.ps1
+!brouser/*.bat

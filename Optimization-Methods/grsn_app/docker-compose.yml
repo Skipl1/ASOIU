@@ -1,4 +1,10 @@
 # АС ГРСН — развёртывание: PostgreSQL, REST API (FastAPI), web-клиент + Nginx (HTTP/HTTPS), резервное копирование (cron + pg_dump)
+#
+# Ресурсы (ТЗ, требования к серверу: процессор от 2 ядер, оперативная память от 4 ГБ). Контейнерам выделено в сумме
+# ровно 2 ядра и 4 ГБ — система работает в границах минимального сервера из ТЗ:
+#   db 0,75 ядра / 1,5 ГБ · backend 1 ядро / 1,75 ГБ · frontend 0,15 ядра / 256 МБ · backup 0,1 ядра / 512 МБ.
+# Посмотреть: scripts/show_limits.ps1 (Windows) или bash scripts/show_limits.sh, а также docker stats.
+# Изменить: переменные *_CPUS и *_MEMORY в .env.
 name: grsn
 
 services:
@@ -10,6 +16,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Задайте POSTGRES_PASSWORD в .env}
       POSTGRES_DB: ${POSTGRES_DB:-grsn}
       TZ: ${APP_TIMEZONE:-Europe/Moscow}
+    cpus: ${DB_CPUS:-0.75}
+    mem_limit: ${DB_MEMORY:-1536m}
     ports:
       - "127.0.0.1:${DB_PORT:-5432}:5432"  # доступ к БД только с этого компьютера (SQLTools, DBeaver, pgAdmin)
     volumes:
@@ -27,6 +35,8 @@ services:
       db:
         condition: service_healthy
     env_file: .env
+    cpus: ${BACKEND_CPUS:-1.0}
+    mem_limit: ${BACKEND_MEMORY:-1792m}
     environment:
       # Приложение работает под ограниченной ролью grsn_app (ТЗ 4.3); владелец БД нужен для миграций и резервных копий
       DATABASE_URL: postgresql+psycopg://grsn_app:${APP_DB_PASSWORD:-${POSTGRES_PASSWORD}_app}@db:5432/${POSTGRES_DB:-grsn}
@@ -51,6 +61,8 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+    cpus: ${FRONTEND_CPUS:-0.15}
+    mem_limit: ${FRONTEND_MEMORY:-256m}
     environment:
       ENABLE_HTTPS: ${ENABLE_HTTPS:-false}
       HTTPS_PUBLIC_PORT: ${HTTPS_PORT:-8443}
@@ -67,6 +79,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    cpus: ${BACKUP_CPUS:-0.1}
+    mem_limit: ${BACKUP_MEMORY:-512m}
     environment:
       PGHOST: db
       PGPASSWORD: ${POSTGRES_PASSWORD}

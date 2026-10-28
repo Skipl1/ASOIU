@@ -1,3 +1,4 @@
+%%{init: {"sequence": {"actorMargin": 18, "messageMargin": 22, "boxMargin": 6}}}%%
 sequenceDiagram
     autonumber
     actor U as Пользователь
@@ -17,19 +18,30 @@ sequenceDiagram
     Web-->>U: Показать текущие ограничения
 
     U->>Web: Ввести продукт или вещество
-    Web->>API: POST /restrictions
-    API->>Restrict: Нормализовать название
-    Restrict->>Match: Найти соответствие ингредиенту или аллергену
-    Match->>DB: Поиск по ингредиентам и аллергенам
+    Web->>API: GET /restrictions/match
+    API->>Match: Нормализовать название и найти соответствия
+    Match->>DB: Поиск по ингредиентам, аллергенам и синонимам
     DB-->>Match: Найденные варианты соответствия
-    Match-->>Restrict: Аллерген или ингредиент
-    Restrict->>DB: Сохранить ограничение пользователя
+    Match-->>API: Варианты из справочников
+    API-->>Web: 200 OK
+    Web-->>U: Показать найденные соответствия
+
+    alt Соответствие найдено в справочниках
+        U->>Web: Выбрать ингредиент или аллерген
+        Web->>API: POST /restrictions
+        API->>Restrict: Сохранить запрет по ID
+    else Продукта нет в справочниках
+        U->>Web: Выбрать запрет по названию
+        Web->>API: POST /restrictions (asSubstance)
+        API->>Restrict: Сохранить запрет по нормализованному названию
+    end
+    Restrict->>DB: Записать user_restrictions
     DB-->>Restrict: Ограничение сохранено
     Restrict-->>API: Обновлённый список запретов
     API-->>Web: 201 Created
     Web-->>U: Показать запрет в списке
 
-    Web->>API: GET /ingredients/available
+    Web->>API: GET /restrictions/check-available
     API->>Restrict: Проверить выбранный набор ингредиентов
     Restrict->>DB: Получить ингредиенты, аллергены и запреты
     DB-->>Restrict: Данные для проверки

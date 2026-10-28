@@ -2,155 +2,159 @@
     <diagram id="ZNqDin-gbxN0GAUyEumz" name="Page-1">
         <mxGraphModel dx="780" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1050" background="#ffffff" math="0" shadow="0">
             <root>
-                <mxCell id="0"/>
-                <mxCell id="1" parent="0"/>
+                <mxCell id="0" />
+                <mxCell id="1" parent="0" />
                 <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry width="1700" height="1050" as="geometry"/>
+                    <mxGeometry width="1700" height="1050" as="geometry" />
                 </mxCell>
                 <mxCell id="title" value="To-Be. Задача генерации персонализированного рецепта" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontStyle=1;" parent="1" vertex="1">
-                    <mxGeometry x="20" y="20" width="1660" height="40" as="geometry"/>
+                    <mxGeometry x="20" y="20" width="1660" height="40" as="geometry" />
                 </mxCell>
                 <mxCell id="pool" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;АС ГРСН&lt;/span&gt;" style="swimlane;html=1;horizontal=1;startSize=22;fillColor=#ffffff;strokeColor=#000000;whiteSpace=wrap;fontSize=11;fontStyle=1;" parent="1" vertex="1">
-                    <mxGeometry x="20" y="70" width="1660" height="930" as="geometry"/>
+                    <mxGeometry x="20" y="70" width="1660" height="930" as="geometry" />
                 </mxCell>
                 <mxCell id="lane_user" value="Пользователь" style="swimlane;html=1;horizontal=0;startSize=38;fillColor=#ffffff;strokeColor=#000000;whiteSpace=wrap;fontSize=10;fontStyle=1;" parent="1" vertex="1">
-                    <mxGeometry x="20" y="92" width="1660" height="190" as="geometry"/>
+                    <mxGeometry x="20" y="92" width="1660" height="190" as="geometry" />
                 </mxCell>
                 <mxCell id="lane_context" value="Модуль подготовки контекста генерации" style="swimlane;html=1;horizontal=0;startSize=38;fillColor=#ffffff;strokeColor=#000000;whiteSpace=wrap;fontSize=10;fontStyle=1;" parent="1" vertex="1">
-                    <mxGeometry x="20" y="282" width="1660" height="180" as="geometry"/>
+                    <mxGeometry x="20" y="282" width="1660" height="180" as="geometry" />
                 </mxCell>
                 <mxCell id="lane_generation" value="Модуль генерации рецепта" style="swimlane;html=1;horizontal=0;startSize=38;fillColor=#ffffff;strokeColor=#000000;whiteSpace=wrap;fontSize=10;fontStyle=1;" parent="1" vertex="1">
-                    <mxGeometry x="20" y="462" width="1660" height="170" as="geometry"/>
+                    <mxGeometry x="20" y="462" width="1660" height="170" as="geometry" />
                 </mxCell>
                 <mxCell id="lane_check" value="Модуль проверки рецепта" style="swimlane;html=1;horizontal=0;startSize=38;fillColor=#ffffff;strokeColor=#000000;whiteSpace=wrap;fontSize=10;fontStyle=1;" parent="1" vertex="1">
-                    <mxGeometry x="20" y="632" width="1660" height="175" as="geometry"/>
+                    <mxGeometry x="20" y="632" width="1660" height="175" as="geometry" />
                 </mxCell>
                 <mxCell id="lane_history" value="Модуль истории рецептов" style="swimlane;html=1;horizontal=0;startSize=38;fillColor=#ffffff;strokeColor=#000000;whiteSpace=wrap;fontSize=10;fontStyle=1;" parent="1" vertex="1">
-                    <mxGeometry x="20" y="807" width="1660" height="193" as="geometry"/>
+                    <mxGeometry x="20" y="807" width="1660" height="193" as="geometry" />
                 </mxCell>
                 <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="75" y="162" width="36" height="36" as="geometry"/>
+                    <mxGeometry x="75" y="162" width="36" height="36" as="geometry" />
                 </mxCell>
                 <mxCell id="start_label" value="Открыт раздел&lt;br&gt;генерации" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
-                    <mxGeometry x="50" y="203" width="90" height="30" as="geometry"/>
+                    <mxGeometry x="50" y="203" width="90" height="30" as="geometry" />
                 </mxCell>
                 <mxCell id="open_generate" value="Открыть страницу&lt;br&gt;генерации рецепта" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="155" y="148" width="165" height="65" as="geometry"/>
+                    <mxGeometry x="155" y="148" width="165" height="65" as="geometry" />
                 </mxCell>
-                <mxCell id="set_params" value="Указать параметры&lt;br&gt;генерации" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="370" y="148" width="170" height="65" as="geometry"/>
+                <mxCell id="set_params" value="Указать цель, приём пищи, число&lt;br&gt;вариантов, долю нормы,&lt;br&gt;сложность и пожелания" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="148" width="170" height="65" as="geometry" />
                 </mxCell>
                 <mxCell id="run_generation" value="Нажать&lt;br&gt;«Сгенерировать»" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="590" y="148" width="170" height="65" as="geometry"/>
+                    <mxGeometry x="590" y="148" width="170" height="65" as="geometry" />
                 </mxCell>
-                <mxCell id="show_error" value="Сообщение о невозможности генерации" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=catching;symbol=message;fontSize=11;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="1065" y="198" width="46" height="46" as="geometry"/>
+                <mxCell id="show_error" value="Сообщение: рецепт не сформирован (причины и рекомендации)" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=catching;symbol=message;fontSize=11;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="1065" y="198" width="46" height="46" as="geometry" />
                 </mxCell>
                 <mxCell id="end_fail" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
-                    <mxGeometry x="1170" y="130" width="40" height="40" as="geometry"/>
+                    <mxGeometry x="1170" y="130" width="40" height="40" as="geometry" />
                 </mxCell>
                 <mxCell id="end_fail_label" value="Рецепт не сохранён" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
-                    <mxGeometry x="1150" y="175" width="100" height="30" as="geometry"/>
+                    <mxGeometry x="1150" y="175" width="100" height="30" as="geometry" />
                 </mxCell>
-                <mxCell id="show_recipe" value="&lt;p data-pm-slice=&quot;1 1 []&quot;&gt;Просмотреть рецепт и инструкцию&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="1320" y="145" width="175" height="60" as="geometry"/>
+                <mxCell id="show_recipe" value="Просмотреть варианты&lt;br&gt;и добавить в рацион" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1320" y="145" width="175" height="60" as="geometry" />
                 </mxCell>
                 <mxCell id="end_success" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
-                    <mxGeometry x="1540" y="155" width="40" height="40" as="geometry"/>
+                    <mxGeometry x="1540" y="155" width="40" height="40" as="geometry" />
                 </mxCell>
                 <mxCell id="end_success_label" value="Рецепт сохранён" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
-                    <mxGeometry x="1510" y="198" width="100" height="30" as="geometry"/>
+                    <mxGeometry x="1510" y="198" width="100" height="30" as="geometry" />
                 </mxCell>
-                <mxCell id="ds_context" value="Получить профиль,&lt;br&gt;ограничения и ингредиенты" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="590" y="325" width="210" height="75" as="geometry"/>
+                <mxCell id="ds_context" value="Получить профиль, запреты&lt;br&gt;и набор ингредиентов" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="590" y="325" width="210" height="75" as="geometry" />
                 </mxCell>
-                <mxCell id="prepare_context" value="Подготовить контекст&lt;br&gt;для генерации" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="860" y="332" width="205" height="60" as="geometry"/>
+                <mxCell id="prepare_context" value="Подготовить контекст:&lt;br&gt;цель, запреты, набор,&lt;br&gt;пожелания и оценки" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="332" width="205" height="60" as="geometry" />
                 </mxCell>
-                <mxCell id="make_request" value="Сформировать запрос&lt;br&gt;к модели генерации" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="860" y="505" width="205" height="60" as="geometry"/>
+                <mxCell id="make_request" value="Запрос к GigaChat&lt;br&gt;(если недоступен —&lt;br&gt;локальный генератор)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="505" width="205" height="60" as="geometry" />
                 </mxCell>
-                <mxCell id="get_variant" value="Получить вариант&lt;br&gt;рецепта" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="1130" y="505" width="185" height="60" as="geometry"/>
+                <mxCell id="get_variant" value="Получить вариант рецепта,&lt;br&gt;исправить название и шаги" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1130" y="505" width="185" height="60" as="geometry" />
                 </mxCell>
-                <mxCell id="check_recipe" value="Проверить БЖУ,&lt;br&gt;ккал и запреты" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="1130" y="680" width="185" height="60" as="geometry"/>
+                <mxCell id="optimize_masses" value="Подобрать массы&lt;br&gt;ингредиентов&lt;br&gt;(оптимизация)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="880" y="680" width="185" height="60" as="geometry" />
+                </mxCell>
+                <mxCell id="check_recipe" value="Рассчитать БЖУ, проверить&lt;br&gt;запреты и отклонение" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;absoluteArcSize=1;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1130" y="680" width="185" height="60" as="geometry" />
                 </mxCell>
                 <mxCell id="gw_recipe_ok" value="X" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=24;fontStyle=1;" parent="1" vertex="1">
-                    <mxGeometry x="1380" y="680" width="60" height="60" as="geometry"/>
+                    <mxGeometry x="1380" y="680" width="60" height="60" as="geometry" />
                 </mxCell>
                 <mxCell id="gw_recipe_ok_label" value="Рецепт подходит?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=9;" parent="1" vertex="1">
-                    <mxGeometry x="1352" y="742" width="116" height="25" as="geometry"/>
+                    <mxGeometry x="1352" y="742" width="116" height="25" as="geometry" />
                 </mxCell>
-                <mxCell id="save_recipe" value="Сохранить рецепт&lt;br&gt;в историю" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="1350" y="855" width="185" height="75" as="geometry"/>
+                <mxCell id="save_recipe" value="Сохранить рецепты&lt;br&gt;в историю" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1350" y="855" width="185" height="75" as="geometry" />
                 </mxCell>
                 <mxCell id="e1" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="start" target="open_generate" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" as="geometry" />
                 </mxCell>
                 <mxCell id="e2" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="open_generate" target="set_params" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" as="geometry" />
                 </mxCell>
                 <mxCell id="e3" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="set_params" target="run_generation" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" as="geometry" />
                 </mxCell>
                 <mxCell id="e4" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="run_generation" target="ds_context" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="675" y="265"/>
+                            <mxPoint x="675" y="265" />
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="e5" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="ds_context" target="prepare_context" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" as="geometry" />
                 </mxCell>
                 <mxCell id="e6" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="prepare_context" target="make_request" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="963" y="445"/>
+                            <mxPoint x="963" y="445" />
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="e7" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="make_request" target="get_variant" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" as="geometry" />
                 </mxCell>
-                <mxCell id="e8" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="get_variant" target="check_recipe" edge="1">
+                <mxCell id="e8" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="get_variant" target="optimize_masses" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="1223" y="615"/>
-                        </Array>
-                    </mxGeometry>
+                        <Array as="points"><mxPoint x="1222.5" y="622" /><mxPoint x="972.5" y="622" /></Array></mxGeometry>
+                </mxCell>
+                <mxCell id="e_opt_check" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="optimize_masses" target="check_recipe" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        </mxGeometry>
                 </mxCell>
                 <mxCell id="e9" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="check_recipe" target="gw_recipe_ok" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" as="geometry" />
                 </mxCell>
                 <mxCell id="e10" value="Да" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;fontSize=10;entryX=0.357;entryY=0.027;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="gw_recipe_ok" target="save_recipe" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <Array as="points"/>
+                        <Array as="points" />
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="e11" value="Нет" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=6 6;exitX=0.5;exitY=0;entryX=0.5;entryY=1;fontSize=10;exitDx=0;exitDy=0;" parent="1" source="gw_recipe_ok" target="show_error" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="1410" y="340"/>
-                            <mxPoint x="1088" y="340"/>
+                            <mxPoint x="1410" y="340" />
+                            <mxPoint x="1088" y="340" />
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="e12" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="show_error" target="end_fail" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" as="geometry" />
                 </mxCell>
                 <mxCell id="e13" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="save_recipe" target="show_recipe" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="1470" y="855"/>
-                            <mxPoint x="1470" y="300"/>
-                            <mxPoint x="1408" y="300"/>
+                            <mxPoint x="1470" y="855" />
+                            <mxPoint x="1470" y="300" />
+                            <mxPoint x="1408" y="300" />
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="e14" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="show_recipe" target="end_success" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" as="geometry" />
                 </mxCell>
             </root>
         </mxGraphModel>

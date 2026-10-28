@@ -39,7 +39,7 @@ class Settings(BaseSettings):
 
     gigachat_credentials: str | None = None
     gigachat_scope: str = "GIGACHAT_API_PERS"
-    gigachat_model: str = "GigaChat-2"
+    gigachat_model: str = "GigaChat-2-Pro"
     gigachat_ca_bundle_file: str | None = str(BASE_DIR / "certs" / "russian_trusted_root_ca.crt")
     gigachat_verify_ssl_certs: bool = True
     gigachat_use_json_schema: bool = True

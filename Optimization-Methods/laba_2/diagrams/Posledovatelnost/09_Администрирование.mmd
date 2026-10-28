@@ -1,3 +1,4 @@
+%%{init: {"sequence": {"actorMargin": 18, "messageMargin": 22, "boxMargin": 6}}}%%
 sequenceDiagram
     autonumber
     actor A as Администратор
@@ -5,46 +6,32 @@ sequenceDiagram
     participant API as REST API
     participant Admin as AdminService
     participant DB as PostgreSQL
-    participant Backup as BackupService
 
     A->>Web: Открыть модуль администрирования
-    Web->>API: GET /admin/users
-    API->>Admin: Получить данные панели администратора
-    Admin->>DB: Прочитать пользователей, справочники, логи и сведения о копиях
-    DB-->>Admin: Таблицы и контрольные показатели
-    Admin-->>API: Пользователи, ингредиенты, аллергены, логи и метрики
+    Web->>API: GET /admin/users, /admin/stats
+    API->>Admin: Данные панели администратора
+    Admin->>DB: Пользователи, справочники, показатели
+    DB-->>Admin: Таблицы и показатели
+    Admin-->>API: Пользователи и метрики
     API-->>Web: 200 OK
-    Web-->>A: Показать вкладки, таблицу пользователей и контроль системы
+    Web-->>A: Показать вкладки и таблицу
 
     alt Изменение пользователя
-        A->>Web: Нажать Блокировать или Разблокировать
-        Web->>API: PATCH /admin/users/{userId}
-        API->>Admin: Изменить статус пользователя
-        Admin->>DB: Обновить статус и записать действие администратора
-        DB-->>Admin: Пользователь обновлён
+        A->>Web: Роль, блокировка или удаление
+        Web->>API: PATCH или DELETE /admin/users/#123;userId#125;
+        API->>Admin: Изменить учётную запись
+        Admin->>DB: Обновить users, записать audit_log
+        DB-->>Admin: Учётная запись обновлена
         Admin-->>API: Обновлённая запись
         API-->>Web: 200 OK
         Web-->>A: Обновить таблицу пользователей
-    else Редактирование ингредиента
-        A->>Web: Изменить название, категорию, белки или калорийность
-        Web->>API: PUT /admin/ingredients/{ingredientId}
-        API->>Admin: Сохранить ингредиент
-        Admin->>DB: Обновить каталог продуктов и журнал операции
-        DB-->>Admin: Ингредиент сохранён
-        Admin-->>API: Обновлённый ингредиент
+    else Справочники
+        A->>Web: Ингредиент, аллерген или категория
+        Web->>API: POST, PUT, DELETE /admin/ingredients, allergens, categories
+        API->>Admin: Проверить и сохранить справочник
+        Admin->>DB: Обновить НСИ, записать audit_log
+        DB-->>Admin: Справочник сохранён
+        Admin-->>API: Обновлённая запись
         API-->>Web: 200 OK
-        Web-->>A: Показать сохранённый ингредиент
-    else Создание резервной копии
-        A->>Web: Нажать Создать копию
-        Web->>API: POST /admin/backups
-        API->>Admin: Запустить резервное копирование
-        Admin->>Backup: Создать копию базы данных
-        Backup->>DB: Считать данные для backup
-        DB-->>Backup: Данные базы
-        Backup-->>Admin: Статус и путь к копии
-        Admin->>DB: Сохранить запись о backup и действие администратора
-        DB-->>Admin: Журнал обновлён
-        Admin-->>API: Backup запущен
-        API-->>Web: 200 OK
-        Web-->>A: Обновить контроль системы
+        Web-->>A: Показать сохранённую запись
     end

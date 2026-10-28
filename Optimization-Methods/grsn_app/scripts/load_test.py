@@ -2,7 +2,7 @@
 
 Каждый виртуальный пользователь открывает каталог ингредиентов, профиль и историю рецептов,
 а часть пользователей запускает генерацию рецепта. Выводится время отклика (медиана, p95, максимум)
-и сравнивается с требованиями: каталог ≤ 3 с, генерация ≤ 5 с.
+и сравнивается с требованиями ТЗ 7.2: каталог ≤ 5 с, генерация ≤ 60 с (одновременные запросы).
 
 Запуск (из каталога backend, нужен httpx):
     .venv/Scripts/python ../scripts/load_test.py --base http://localhost:8080 --users 100
@@ -15,7 +15,7 @@ import time
 
 import httpx
 
-LIMITS = {"GET /ingredients": 3.0, "POST /recipes/generate": 5.0}
+LIMITS = {"GET /ingredients": 5.0, "POST /recipes/generate": 60.0}  # ТЗ 7.2
 
 
 async def main() -> None:

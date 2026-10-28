@@ -157,7 +157,7 @@ def recipe_summary(recipe: Recipe, user_id: uuid.UUID, forbidden: ForbiddenSet |
 def recipe_out(recipe: Recipe, user_id: uuid.UUID, forbidden: ForbiddenSet | None = None) -> schemas.RecipeOut:
     allowed, reasons = _current_violations(recipe, forbidden)
     rating = _user_rating(recipe, user_id)
-    pct = nutrition.macro_percent(recipe.protein_total_g, recipe.fat_total_g, recipe.carb_total_g, recipe.calories_kcal)
+    pct = nutrition.macro_percent(recipe.protein_total_g, recipe.fat_total_g, recipe.carb_total_g)
     items = []
     for item in recipe.items:
         ing = item.ingredient

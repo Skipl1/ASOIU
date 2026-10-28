@@ -13,7 +13,7 @@ sequenceDiagram
     DB-->>Ingredients: Каталог ингредиентов
     Ingredients-->>API: Список ингредиентов
     API-->>Web: 200 OK
-    Web->>API: GET /ingredients/available
+    Web->>API: GET /available-ingredients
     API->>Ingredients: Получить доступные ингредиенты пользователя
     Ingredients->>DB: Прочитать выбранный набор
     DB-->>Ingredients: Доступные ингредиенты
@@ -31,7 +31,7 @@ sequenceDiagram
     Web-->>U: Обновить таблицу ингредиентов
 
     U->>Web: Отметить доступные ингредиенты и нажать Сохранить набор
-    Web->>API: PUT /ingredients/available
+    Web->>API: PUT /available-ingredients
     API->>Ingredients: Обновить набор доступных ингредиентов
     Ingredients->>DB: Сохранить выбранные ingredientId
     DB-->>Ingredients: Набор сохранён

@@ -47,7 +47,7 @@ services:
       TZ: ${APP_TIMEZONE:-Europe/Moscow}
     volumes:
       - storage:/data/storage
-      - backups:/data/backups
+      - ${BACKUP_PATH:-backups}:/data/backups  # копии: том Docker или папка на другом диске (BACKUP_PATH в .env)
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health')"]
       interval: 10s
@@ -89,12 +89,12 @@ services:
       BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-30}
       TZ: ${APP_TIMEZONE:-Europe/Moscow}
     volumes:
-      - backups:/backups
+      - ${BACKUP_PATH:-backups}:/backups
       - ./scripts/backup.sh:/scripts/backup.sh:ro
     entrypoint: ["/bin/sh", "-c"]
     command:
       - |
-        mkdir -p /backups && chown 1001:1001 /backups
+        mkdir -p /backups && (chown 1001:1001 /backups 2>/dev/null || true)
         echo "${BACKUP_CRON:-0 3 * * *} sh /scripts/backup.sh >> /proc/1/fd/1 2>&1" > /etc/crontabs/root
         echo "Расписание резервного копирования: ${BACKUP_CRON:-0 3 * * *}"
         exec crond -f -l 8

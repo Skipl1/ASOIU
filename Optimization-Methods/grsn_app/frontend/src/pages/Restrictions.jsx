@@ -109,7 +109,7 @@ export default function Restrictions() {
                     {TYPE_LABEL[c.type]}: {c.name}{c.exact ? "" : ` (по «${c.matchedBy}»)`}
                   </option>
                 ))}
-                {match && <option value="substance">Нет в справочниках — контролировать как вещество «{text.trim()}»</option>}
+                {match && <option value="substance">Нет в справочниках — запретить по названию «{text.trim()}»</option>}
               </select>
               {match && candidates.length > 1 && !match.unique && (
                 <span className="field-hint">Однозначного соответствия нет — выберите вариант из справочника.</span>
@@ -132,7 +132,7 @@ export default function Restrictions() {
                     <span>{TYPE_LABEL[r.type]}{r.targetName && r.targetName !== r.sourceText ? ` · ${r.targetName}` : ""}</span>
                   </div>
                   <div className="inline">
-                    <span className={`tag ${r.type === "substance" ? "amber" : "red"}`}>{r.type === "substance" ? "контроль" : "запрещён"}</span>
+                    <span className="tag red">запрещён</span>
                     <button type="button" className="btn small" onClick={() => remove(r)} aria-label={`Удалить запрет ${r.sourceText}`}>Удалить</button>
                   </div>
                 </div>

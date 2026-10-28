@@ -1,0 +1,38 @@
+%%{init: {"sequence": {"actorMargin": 18, "messageMargin": 22, "boxMargin": 6}}}%%
+sequenceDiagram
+    autonumber
+    actor U as Пользователь
+    participant Web as Web-интерфейс
+    participant API as REST API
+    participant History as RecipeHistoryService
+    participant Rating as RatingService
+    participant DB as PostgreSQL
+
+    alt Рацион
+        U->>Web: Добавить в рацион или убрать из рациона
+        Web->>API: POST или DELETE /recipes/#123;recipeId#125;/diet
+        API->>History: Изменить статус рецепта
+        History->>DB: generation_status: generated или accepted
+        DB-->>History: Статус обновлён
+        History-->>API: Обновлённый рецепт
+        API-->>Web: 200 OK
+        Web-->>U: Показать новый статус
+    else Редактирование
+        U->>Web: Изменить массы ингредиентов
+        Web->>API: PATCH /recipes/#123;recipeId#125;
+        API->>History: Пересчитать БЖУ, проверить запреты
+        History->>DB: Обновить recipes, recipe_ingredients
+        DB-->>History: Рецепт сохранён
+        History-->>API: Обновлённый рецепт
+        API-->>Web: 200 OK
+        Web-->>U: Показать пересчитанную ценность
+    else Оценка
+        U->>Web: Оценка 1-5 и комментарий
+        Web->>API: POST /recipes/#123;recipeId#125;/rating
+        API->>Rating: Сохранить оценку рецепта
+        Rating->>DB: Записать балл и комментарий
+        DB-->>Rating: Оценка сохранена
+        Rating-->>API: Обновлённая оценка
+        API-->>Web: 201 Created
+        Web-->>U: Показать сохранённую оценку
+    end

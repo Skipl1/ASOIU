@@ -1,0 +1,44 @@
+%%{init: {"sequence": {"actorMargin": 18, "messageMargin": 22, "boxMargin": 6}}}%%
+sequenceDiagram
+    autonumber
+    actor A as Администратор
+    participant Web as Web-интерфейс
+    participant API as REST API
+    participant Admin as AdminService
+    participant DB as PostgreSQL
+    participant Backup as BackupService
+
+    alt Контроль системы
+        A->>Web: Открыть логи или проверку целостности
+        Web->>API: GET /admin/logs, /admin/integrity
+        API->>Admin: Журнал и проверка справочников
+        Admin->>DB: audit_log, ссылки и значения
+        DB-->>Admin: Записи и замечания
+        Admin-->>API: Журнал и результат проверки
+        API-->>Web: 200 OK
+        Web-->>A: Показать логи и замечания
+    else Резервная копия
+        A->>Web: Нажать Создать копию
+        Web->>API: POST /admin/backups
+        API->>Admin: Запустить копирование
+        Admin->>Backup: pg_dump
+        Backup->>DB: Считать данные
+        DB-->>Backup: Данные базы
+        Backup-->>Admin: Файл на отдельном диске
+        Admin->>DB: Записать audit_log
+        Admin-->>API: Копирование запущено
+        API-->>Web: 200 OK
+        Web-->>A: Обновить список копий
+    else Восстановление из копии
+        A->>Web: Выбрать копию, Восстановить
+        Web->>API: POST /admin/backups/restore
+        API->>Admin: Восстановить базу данных
+        Admin->>Backup: pg_restore
+        Backup->>DB: Восстановить данные
+        DB-->>Backup: Данные восстановлены
+        Backup-->>Admin: Результат
+        Admin->>DB: Записать audit_log
+        Admin-->>API: Восстановление выполнено
+        API-->>Web: 200 OK
+        Web-->>A: Показать результат
+    end

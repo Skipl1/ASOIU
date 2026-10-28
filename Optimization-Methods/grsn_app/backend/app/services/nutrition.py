@@ -75,14 +75,18 @@ def deviation(e_total: float, meal_share: float, e_target: float) -> float:
     return e_total - meal_share * e_target
 
 
-def macro_percent(protein: float, fat: float, carbs: float, e_total: float) -> dict[str, float]:
-    """Доли макронутриентов в процентах от общей калорийности."""
-    if e_total <= 0:
+def macro_percent(protein: float, fat: float, carbs: float) -> dict[str, float]:
+    """Доли макронутриентов в процентах от калорийности по Атуотеру 4·P + 9·F + 4·C (ТЗ 4.6): сумма долей — 100 %.
+
+    Знаменатель — не калорийность по каталогу: она учитывает клетчатку, алкоголь и округления справочника,
+    поэтому доли от неё в сумме дают не 100 % (например, 33 + 22 + 48 = 103 %)."""
+    e_macro = KCAL_PER_G_PROTEIN * protein + KCAL_PER_G_FAT * fat + KCAL_PER_G_CARB * carbs
+    if e_macro <= 0:
         return {"protein": 0.0, "fat": 0.0, "carbs": 0.0}
     return {
-        "protein": round(KCAL_PER_G_PROTEIN * protein / e_total * 100, 1),
-        "fat": round(KCAL_PER_G_FAT * fat / e_total * 100, 1),
-        "carbs": round(KCAL_PER_G_CARB * carbs / e_total * 100, 1),
+        "protein": round(KCAL_PER_G_PROTEIN * protein / e_macro * 100, 1),
+        "fat": round(KCAL_PER_G_FAT * fat / e_macro * 100, 1),
+        "carbs": round(KCAL_PER_G_CARB * carbs / e_macro * 100, 1),
     }
 
 

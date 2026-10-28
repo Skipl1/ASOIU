@@ -1,3 +1,4 @@
+%%{init: {"sequence": {"actorMargin": 18, "messageMargin": 22, "boxMargin": 6}}}%%
 sequenceDiagram
     autonumber
     actor U as Пользователь
@@ -8,25 +9,32 @@ sequenceDiagram
     participant DB as PostgreSQL
 
     U->>Web: Открыть страницу профиля
-    Web->>API: GET /profile
-    API->>Profile: Получить профиль пользователя
-    Profile->>DB: Прочитать параметры, активность и цель
-    DB-->>Profile: Профиль и текущий фитнес-ориентир
+    Web->>API: GET /profile, /goals, /activity-levels, /profile/parameter-history
+    API->>Profile: Получить профиль, справочники и историю замеров
+    Profile->>DB: Прочитать user_profiles, fitness_goals, parameter_history
+    DB-->>Profile: Профиль, цели, замеры
+    Profile->>Calories: Рассчитать BMR, TDEE и целевую норму для отображения
+    Calories-->>Profile: BMR, TDEE, целевая калорийность
     Profile-->>API: Данные профиля
     API-->>Web: 200 OK
-    Web-->>U: Показать вес, рост, возраст, пол, активность и ориентир
+    Web-->>U: Показать параметры, ориентир, расчётную норму и историю замеров
 
     U->>Web: Изменить параметры и нажать Сохранить
     Web->>API: PUT /profile
-    API->>Profile: Обновить профиль
-    Profile->>Calories: Рассчитать BMR по полу, весу, росту и возрасту
-    Calories-->>Profile: BMR
-    Profile->>Calories: Рассчитать TDEE по активности
-    Calories-->>Profile: TDEE
-    Profile->>Calories: Рассчитать целевую норму по фитнес-ориентиру
-    Calories-->>Profile: Целевая калорийность
-    Profile->>DB: Сохранить профиль, BMR, TDEE и целевую норму
+    API->>Profile: Проверить диапазоны и обновить профиль
+    Profile->>DB: Сохранить user_profiles
     DB-->>Profile: Профиль сохранён
-    Profile-->>API: Обновлённый профиль
+    Profile->>Calories: Пересчитать BMR, TDEE и целевую норму
+    Calories-->>Profile: Целевая калорийность
+    Profile-->>API: Обновлённый профиль с расчётной нормой
     API-->>Web: 200 OK
     Web-->>U: Показать обновлённую целевую калорийность
+
+    U->>Web: Ввести новый замер веса и нажать Добавить замер
+    Web->>API: POST /profile/parameter-history
+    API->>Profile: Добавить замер физических параметров
+    Profile->>DB: Записать parameter_history и обновить вес в профиле
+    DB-->>Profile: Замер сохранён
+    Profile-->>API: Запись истории
+    API-->>Web: 201 Created
+    Web-->>U: Показать замер в истории и обновлённый вес

@@ -31,9 +31,12 @@ def test_recipe_totals_and_atwater():
 
 def test_deviation_and_percent():
     assert n.deviation(800, 1 / 3, 2700) == pytest.approx(-100)
-    pct = n.macro_percent(50, 20, 100, 780)
+    pct = n.macro_percent(50, 20, 100)  # 4·50 + 9·20 + 4·100 = 780 ккал
     assert pct == {"protein": round(200 / 780 * 100, 1), "fat": round(180 / 780 * 100, 1), "carbs": round(400 / 780 * 100, 1)}
-    assert n.macro_percent(0, 0, 0, 0)["protein"] == 0
+    assert n.macro_percent(0, 0, 0)["protein"] == 0
+    # доли считаются от 4P + 9F + 4C, а не от калорийности по каталогу, поэтому в сумме дают 100 %
+    pct = n.macro_percent(20.5, 6.0, 29.9)
+    assert sum(pct.values()) == pytest.approx(100, abs=0.2)
 
 
 def test_projected_gradient_hits_target():

@@ -99,7 +99,7 @@ def build_report(db: Session, user: User, date_from: date, date_to: date, goal_i
     total_c = sum(v["carbs"] for v in days.values())
     days_with_data = sum(1 for v in days.values() if v["recipes"])
     avg = total_cal / days_with_data if days_with_data else 0.0
-    pct = nutrition.macro_percent(total_p, total_f, total_c, total_cal)
+    pct = nutrition.macro_percent(total_p, total_f, total_c)
 
     target = deviation = None
     status_code = None
@@ -226,12 +226,24 @@ def export_xlsx(data: ReportData) -> bytes:
         cell.number_format = "DD.MM.YYYY"
     if data.out.daily_calories:
         chart = BarChart()
+        chart.type = "col"
         chart.title = "Калорийность по дням"
         chart.y_axis.title = "ккал"
+        chart.x_axis.title = "Дата"
         n = len(data.out.daily_calories) + 1
         chart.add_data(Reference(days, min_col=3, min_row=1, max_row=n), titles_from_data=True)
         chart.set_categories(Reference(days, min_col=1, min_row=2, max_row=n))
-        chart.width, chart.height = 22, 9
+        # openpyxl 3.1 не записывает delete=0 у осей, и Excel скрывает их: график выходит без подписей и делений
+        chart.x_axis.delete = False
+        chart.y_axis.delete = False
+        chart.x_axis.axPos, chart.y_axis.axPos = "b", "l"
+        chart.x_axis.number_format = "DD.MM"
+        chart.x_axis.majorTickMark = chart.y_axis.majorTickMark = "out"
+        chart.x_axis.tickLblPos = chart.y_axis.tickLblPos = "low"
+        chart.y_axis.scaling.min = 0
+        chart.legend = None  # один ряд — легенда только отнимает место
+        chart.gapWidth = 50
+        chart.width, chart.height = 24, 10
         days.add_chart(chart, "H2")
 
     rec = wb.create_sheet("Рецепты")

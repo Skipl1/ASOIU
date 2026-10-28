@@ -5,10 +5,9 @@ $mmdc = "C:\Users\kreck\AppData\Roaming\npm\mmdc.cmd"
 $imagesDir = Join-Path $root 'images'
 New-Item -ItemType Directory -Force -Path $imagesDir | Out-Null
 
+# C4-диаграммы (c4-context/c4-container/c4-component.png) строятся из diagrams/C4/C4_AS_GRSN_structurizr.dsl
+# в Structurizr (Export to PNG); файлы diagrams/C4/*.mmd устарели и здесь не используются.
 $mermaidMap = @{
-    'diagrams/C4/01_C4_Context_AS_GRSN.mmd'                               = 'c4-context.png'
-    'diagrams/C4/02_C4_Container_AS_GRSN.mmd'                             = 'c4-container.png'
-    'diagrams/C4/03_C4_Component_Backend_API.mmd'                         = 'c4-component.png'
     'diagrams/Posledovatelnost/01_Регистрация_и_авторизация.mmd'          = 'seq-auth.png'
     'diagrams/Posledovatelnost/02_Профиль_и_целевая_калорийность.mmd'     = 'seq-profile.png'
     'diagrams/Posledovatelnost/03_Управление_запретами_и_аллергенами.mmd' = 'seq-restrictions.png'

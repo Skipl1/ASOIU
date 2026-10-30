@@ -28,11 +28,6 @@
 ])
 #show raw.where(block: false): it => highlight(fill: luma(236), extent: 1.5pt, text(font: "Courier New", size: 13pt, it.text))
 
-// Нумерация таблиц в пределах раздела
-#show heading.where(level: 2): it => {
-  counter(figure.where(kind: table)).update(0)
-  it
-}
 
 #show figure.where(kind: table): set block(breakable: false)
 #show table: set text(size: 12pt)
@@ -68,12 +63,16 @@
   caption: [Состав контейнеров АС ГРСН],
   kind: table,
   supplement: [Таблица],
+  numbering: "1",
 ) <tbl:containers>
 
-#place(top, float: true, clearance: 12pt)[#figure(
+#figure(
+  kind: "ris",
+  supplement: [Рисунок],
+  numbering: "1",
   image("images/c4-container.png", width: 100%),
   caption: [Схема контейнеров АС ГРСН],
-) <fig:containers>]
+) <fig:containers>
 
 Внешняя система -- GigaChat API (ПАО «Сбербанк»): модель GigaChat-2-Pro формирует варианты рецептов. Если ключ доступа к GigaChat не задан или сервис недоступен, рецепты формирует встроенный резервный генератор, и система продолжает работать.
 
@@ -107,6 +106,7 @@
   caption: [Ресурсы контейнеров],
   kind: table,
   supplement: [Таблица],
+  numbering: "1",
 ) <tbl:limits>
 
 == 2 Установка системы
@@ -180,6 +180,7 @@ powershell -ExecutionPolicy Bypass -File scripts\setup.ps1
   caption: [Параметры скрипта установки],
   kind: table,
   supplement: [Таблица],
+  numbering: "1",
 ) <tbl:setup>
 
 Повторный запуск скрипта безопасен: существующий файл `.env` и данные не изменяются.
@@ -260,6 +261,7 @@ docker compose up -d --build
   caption: [Основные параметры файла `.env`],
   kind: table,
   supplement: [Таблица],
+  numbering: "1",
 ) <tbl:env>
 ]
 
@@ -358,10 +360,13 @@ docker compose logs backup
 docker compose exec backup sh /scripts/backup.sh
 ```
 
-#place(top, float: true, clearance: 12pt)[#figure(
-  image("images/admin-backups.png", width: 100%),
+#figure(
+  kind: "ris",
+  supplement: [Рисунок],
+  numbering: "1",
+  image("images/admin-backups.png", height: 12.5cm),
   caption: [Вкладка «Резервные копии»],
-) <fig:admin-backups>]
+) <fig:admin-backups>
 
 === 5.3 Восстановление базы данных
 
@@ -373,10 +378,13 @@ docker compose exec backup sh /scripts/backup.sh
 + В окне «Восстановление из резервной копии» (рисунок @fig:admin-restore) выберите копию в списке «Резервная копия».
 + Нажмите кнопку «Восстановить» и дождитесь сообщения о результате. Пользователям может потребоваться войти в систему заново.
 
-#place(top, float: true, clearance: 12pt)[#figure(
+#figure(
+  kind: "ris",
+  supplement: [Рисунок],
+  numbering: "1",
   image("images/admin-restore.png", width: 80%),
   caption: [Окно «Восстановление из резервной копии»],
-) <fig:admin-restore>]
+) <fig:admin-restore>
 
 Восстановление из консоли сервера (например, если веб-интерфейс недоступен):
 
@@ -401,10 +409,13 @@ docker compose restart backend
 
 База данных содержит 17 таблиц. Физическая модель базы данных представлена на рисунке @fig:db.
 
-#place(top, float: true, clearance: 12pt)[#figure(
-  image("images/db-physical.png", width: 100%),
+#figure(
+  kind: "ris",
+  supplement: [Рисунок],
+  numbering: "1",
+  image("images/db-physical.png", height: 12.5cm),
   caption: [Физическая модель базы данных],
-) <fig:db>]
+) <fig:db>
 
 == 7 Модуль администрирования
 
@@ -416,20 +427,29 @@ docker compose restart backend
 - «Резервные копии» -- список копий, создание копии и восстановление (раздел 5);
 - «Целостность» -- проверка корректности справочников: ингредиенты без категории, сумма белков, жиров и углеводов больше 100 г на 100 г продукта, расхождение калорийности с расчётом по белкам, жирам и углеводам, ошибки в составе составных продуктов, категории без ингредиентов, аллергены, не привязанные к ингредиентам, запреты пользователей без ссылки на справочник (рисунок @fig:admin-integrity).
 
-#place(top, float: true, clearance: 12pt)[#figure(
-  image("images/admin-users.png", width: 100%),
+#figure(
+  kind: "ris",
+  supplement: [Рисунок],
+  numbering: "1",
+  image("images/admin-users.png", height: 12.5cm),
   caption: [Раздел «Администрирование», вкладка «Пользователи»],
-) <fig:admin-users>]
+) <fig:admin-users>
 
-#place(top, float: true, clearance: 12pt)[#figure(
+#figure(
+  kind: "ris",
+  supplement: [Рисунок],
+  numbering: "1",
   image("images/admin-logs.png", width: 100%),
   caption: [Вкладка «Логи»],
-) <fig:admin-logs>]
+) <fig:admin-logs>
 
-#place(top, float: true, clearance: 12pt)[#figure(
+#figure(
+  kind: "ris",
+  supplement: [Рисунок],
+  numbering: "1",
   image("images/admin-integrity.png", width: 100%),
   caption: [Вкладка «Целостность»],
-) <fig:admin-integrity>]
+) <fig:admin-integrity>
 
 Сразу после установки рекомендуется:
 
@@ -461,6 +481,7 @@ docker compose restart backend
   caption: [Команды управления системой],
   kind: table,
   supplement: [Таблица],
+  numbering: "1",
 ) <tbl:commands>
 
 Перед обновлением системы создайте резервную копию (раздел 5.2). Контейнеры настроены на автоматический перезапуск при сбое и после перезагрузки сервера (политика `restart: unless-stopped`), если служба Docker запускается вместе с системой.
@@ -488,4 +509,5 @@ docker compose restart backend
   caption: [Типовые неисправности и способы их устранения],
   kind: table,
   supplement: [Таблица],
+  numbering: "1",
 ) <tbl:issues>

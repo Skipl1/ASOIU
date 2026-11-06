@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="logical-catalog" id="logical-catalog">
+    <mxGraphModel dx="980" dy="650" grid="1" gridSize="10" page="0" pageWidth="980" pageHeight="650" background="#FFFFFF" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="category" value="Категория" vertex="1" parent="1" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;swimlane;startSize=38;collapsible=0;container=1;pointerEvents=0;fontStyle=1;fontSize=21;whiteSpace=wrap;">
+          <mxGeometry x="20" y="35" width="260" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="category_body" value="Код категории (PK)&lt;br&gt;Уникальный код; название&lt;br&gt;Описание" vertex="1" parent="category" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;text;strokeColor=none;fillColor=none;fontStyle=0;fontSize=19;whiteSpace=wrap;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=10;">
+          <mxGeometry x="0" y="38" width="260" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="ingredient" value="Ингредиент" vertex="1" parent="1" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;swimlane;startSize=38;collapsible=0;container=1;pointerEvents=0;fontStyle=1;fontSize=21;whiteSpace=wrap;">
+          <mxGeometry x="360" y="35" width="260" height="205" as="geometry" />
+        </mxCell>
+        <mxCell id="ingredient_body" value="Код ингредиента (PK)&lt;br&gt;Категория (FK, необяз.)&lt;br&gt;Код; имя; БЖУ и ккал&lt;br&gt;Составной; синонимы" vertex="1" parent="ingredient" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;text;strokeColor=none;fillColor=none;fontStyle=0;fontSize=19;whiteSpace=wrap;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=10;">
+          <mxGeometry x="0" y="38" width="260" height="167" as="geometry" />
+        </mxCell>
+        <mxCell id="allergen" value="Аллерген" vertex="1" parent="1" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;swimlane;startSize=38;collapsible=0;container=1;pointerEvents=0;fontStyle=1;fontSize=21;whiteSpace=wrap;">
+          <mxGeometry x="700" y="35" width="260" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="allergen_body" value="Код аллергена (PK)&lt;br&gt;Код; название; описание&lt;br&gt;Синонимы" vertex="1" parent="allergen" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;text;strokeColor=none;fillColor=none;fontStyle=0;fontSize=19;whiteSpace=wrap;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=10;">
+          <mxGeometry x="0" y="38" width="260" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="component" value="Компонент ингредиента" vertex="1" parent="1" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;swimlane;startSize=38;collapsible=0;container=1;pointerEvents=0;fontStyle=1;fontSize=21;whiteSpace=wrap;">
+          <mxGeometry x="360" y="370" width="260" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="component_body" value="Составной продукт (PK, FK)&lt;br&gt;Продукт-компонент (PK, FK)" vertex="1" parent="component" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;text;strokeColor=none;fillColor=none;fontStyle=0;fontSize=19;whiteSpace=wrap;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=10;">
+          <mxGeometry x="0" y="38" width="260" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="link" value="Аллерген ингредиента" vertex="1" parent="1" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;swimlane;startSize=38;collapsible=0;container=1;pointerEvents=0;fontStyle=1;fontSize=21;whiteSpace=wrap;">
+          <mxGeometry x="700" y="370" width="260" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="link_body" value="Ингредиент (PK, FK)&lt;br&gt;Аллерген (PK, FK)" vertex="1" parent="link" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;text;strokeColor=none;fillColor=none;fontStyle=0;fontSize=19;whiteSpace=wrap;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=10;">
+          <mxGeometry x="0" y="38" width="260" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="category_ingredient" source="category" target="ingredient" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=none;fontSize=18;defaultLabelBackgroundColor=page;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.44;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="category_ingredient_m0" value="0..1" vertex="1" connectable="0" parent="category_ingredient" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeLabel;strokeColor=none;fillColor=#FFFFFF;resizable=0;fontSize=19;align=center;verticalAlign=middle;">
+          <mxGeometry x="-0.87" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="category_ingredient_m1" value="0..*" vertex="1" connectable="0" parent="category_ingredient" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeLabel;strokeColor=none;fillColor=#FFFFFF;resizable=0;fontSize=19;align=center;verticalAlign=middle;">
+          <mxGeometry x="0.87" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="allergen_link" source="allergen" target="link" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=none;fontSize=18;defaultLabelBackgroundColor=page;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="allergen_link_m0" value="1" vertex="1" connectable="0" parent="allergen_link" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeLabel;strokeColor=none;fillColor=#FFFFFF;resizable=0;fontSize=19;align=center;verticalAlign=middle;">
+          <mxGeometry x="-0.87" y="0" relative="1" as="geometry">
+            <mxPoint x="25" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="allergen_link_m1" value="0..*" vertex="1" connectable="0" parent="allergen_link" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeLabel;strokeColor=none;fillColor=#FFFFFF;resizable=0;fontSize=19;align=center;verticalAlign=middle;">
+          <mxGeometry x="0.87" y="0" relative="1" as="geometry">
+            <mxPoint x="25" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ingredient_link" source="ingredient" target="link" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=none;fontSize=18;defaultLabelBackgroundColor=page;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.85;entryX=0;entryY=0.7;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="660" y="209.25" />
+              <mxPoint x="660" y="496" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ingredient_link_m0" value="1" vertex="1" connectable="0" parent="ingredient_link" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeLabel;strokeColor=none;fillColor=#FFFFFF;resizable=0;fontSize=19;align=center;verticalAlign=middle;">
+          <mxGeometry x="-0.87" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ingredient_link_m1" value="0..*" vertex="1" connectable="0" parent="ingredient_link" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeLabel;strokeColor=none;fillColor=#FFFFFF;resizable=0;fontSize=19;align=center;verticalAlign=middle;">
+          <mxGeometry x="0.87" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="whole_component" source="ingredient" target="component" edge="1" parent="1" value="целое" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=none;fontSize=18;defaultLabelBackgroundColor=page;labelBackgroundColor=#FFFFFF;exitX=0.24;exitY=1;entryX=0.24;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="whole_component_m0" value="1" vertex="1" connectable="0" parent="whole_component" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeLabel;strokeColor=none;fillColor=#FFFFFF;resizable=0;fontSize=19;align=center;verticalAlign=middle;">
+          <mxGeometry x="-0.87" y="0" relative="1" as="geometry">
+            <mxPoint x="25" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="whole_component_m1" value="0..*" vertex="1" connectable="0" parent="whole_component" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeLabel;strokeColor=none;fillColor=#FFFFFF;resizable=0;fontSize=19;align=center;verticalAlign=middle;">
+          <mxGeometry x="0.87" y="0" relative="1" as="geometry">
+            <mxPoint x="25" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="part_component" source="ingredient" target="component" edge="1" parent="1" value="компонент" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=none;fontSize=18;defaultLabelBackgroundColor=page;labelBackgroundColor=#FFFFFF;exitX=0.76;exitY=1;entryX=0.76;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="part_component_m0" value="1" vertex="1" connectable="0" parent="part_component" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeLabel;strokeColor=none;fillColor=#FFFFFF;resizable=0;fontSize=19;align=center;verticalAlign=middle;">
+          <mxGeometry x="-0.87" y="0" relative="1" as="geometry">
+            <mxPoint x="25" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="part_component_m1" value="0..*" vertex="1" connectable="0" parent="part_component" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;edgeLabel;strokeColor=none;fillColor=#FFFFFF;resizable=0;fontSize=19;align=center;verticalAlign=middle;">
+          <mxGeometry x="0.87" y="0" relative="1" as="geometry">
+            <mxPoint x="25" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" value="Две отдельные связи состава отражают роли целого продукта и компонента.&lt;br&gt;Пищевая ценность относится к 100 г; полный словарь полей приведён в приложении Г." vertex="1" parent="1" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.3;text;strokeColor=none;fillColor=none;fontSize=18;align=center;whiteSpace=wrap;">
+          <mxGeometry x="15" y="585" width="950" height="55" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

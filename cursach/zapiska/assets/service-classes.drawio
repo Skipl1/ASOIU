@@ -1,0 +1,121 @@
+<mxfile host="app.diagrams.net" version="28.0.0" type="device">
+  <diagram name="Page-1" id="service-classes">
+    <mxGraphModel dx="960" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="960" pageHeight="850" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Сервисные ответственности АС ГРСН" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=23;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="920" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nutrition" value="NutritionCalculator" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;swimlane;startSize=42;fontSize=18;fontStyle=1;collapsible=0;container=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="25" y="85" width="270" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="nutritionresp" value="Расчёт энергии и БЖУ" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=2;align=center;verticalAlign=middle;" vertex="1" parent="nutrition">
+          <mxGeometry x="0" y="42" width="270" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="nutritionline" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;line;strokeWidth=1;fillColor=none;" vertex="1" parent="nutrition">
+          <mxGeometry x="0" y="84" width="270" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nutritionops" value="+ energy(profile)&lt;br&gt;+ totals(items)" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=0;align=left;verticalAlign=middle;spacingLeft=12;" vertex="1" parent="nutrition">
+          <mxGeometry x="0" y="86" width="270" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="generation" value="RecipeGenerationService" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;swimlane;startSize=42;fontSize=18;fontStyle=1;collapsible=0;container=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="345" y="85" width="270" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="generationresp" value="Оркестрация генерации" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=2;align=center;verticalAlign=middle;" vertex="1" parent="generation">
+          <mxGeometry x="0" y="42" width="270" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="generationline" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;line;strokeWidth=1;fillColor=none;" vertex="1" parent="generation">
+          <mxGeometry x="0" y="84" width="270" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="generationops" value="+ generate(context)&lt;br&gt;+ postProcess(recipe)" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=0;align=left;verticalAlign=middle;spacingLeft=12;" vertex="1" parent="generation">
+          <mxGeometry x="0" y="86" width="270" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="restrictions" value="RestrictionService" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;swimlane;startSize=42;fontSize=18;fontStyle=1;collapsible=0;container=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="665" y="85" width="270" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="restrictionsresp" value="Нормализация и запреты" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=2;align=center;verticalAlign=middle;" vertex="1" parent="restrictions">
+          <mxGeometry x="0" y="42" width="270" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="restrictionsline" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;line;strokeWidth=1;fillColor=none;" vertex="1" parent="restrictions">
+          <mxGeometry x="0" y="84" width="270" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="restrictionsops" value="+ normalize(text)&lt;br&gt;+ check(items, bans)" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=0;align=left;verticalAlign=middle;spacingLeft=12;" vertex="1" parent="restrictions">
+          <mxGeometry x="0" y="86" width="270" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="optimizer" value="MassOptimizer" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;swimlane;startSize=42;fontSize=18;fontStyle=1;collapsible=0;container=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="25" y="370" width="270" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="optimizerresp" value="Подбор масс ингредиентов" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=2;align=center;verticalAlign=middle;" vertex="1" parent="optimizer">
+          <mxGeometry x="0" y="42" width="270" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="optimizerline" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;line;strokeWidth=1;fillColor=none;" vertex="1" parent="optimizer">
+          <mxGeometry x="0" y="84" width="270" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="optimizerops" value="+ solveMasses(A, b, l, u)" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=0;align=left;verticalAlign=middle;spacingLeft=12;" vertex="1" parent="optimizer">
+          <mxGeometry x="0" y="86" width="270" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="provider" value="«interface»&lt;br&gt;RecipeProvider" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;swimlane;startSize=42;fontSize=18;fontStyle=1;collapsible=0;container=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="345" y="370" width="270" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="providerresp" value="Контракт генератора" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=2;align=center;verticalAlign=middle;" vertex="1" parent="provider">
+          <mxGeometry x="0" y="42" width="270" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="providerline" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;line;strokeWidth=1;fillColor=none;" vertex="1" parent="provider">
+          <mxGeometry x="0" y="84" width="270" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="providerops" value="+ generate(context)" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=0;align=left;verticalAlign=middle;spacingLeft=12;" vertex="1" parent="provider">
+          <mxGeometry x="0" y="86" width="270" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="giga" value="GigaChatProvider" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;swimlane;startSize=42;fontSize=18;fontStyle=1;collapsible=0;container=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="665" y="370" width="270" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="gigaresp" value="Запрос к внешней модели" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=2;align=center;verticalAlign=middle;" vertex="1" parent="giga">
+          <mxGeometry x="0" y="42" width="270" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="gigaline" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;line;strokeWidth=1;fillColor=none;" vertex="1" parent="giga">
+          <mxGeometry x="0" y="84" width="270" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gigaops" value="+ generate(context)" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=0;align=left;verticalAlign=middle;spacingLeft=12;" vertex="1" parent="giga">
+          <mxGeometry x="0" y="86" width="270" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="local" value="LocalGenerator" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;swimlane;startSize=42;fontSize=18;fontStyle=1;collapsible=0;container=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="25" y="655" width="270" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="localresp" value="Резервная генерация" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=2;align=center;verticalAlign=middle;" vertex="1" parent="local">
+          <mxGeometry x="0" y="42" width="270" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="localline" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;line;strokeWidth=1;fillColor=none;" vertex="1" parent="local">
+          <mxGeometry x="0" y="84" width="270" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="localops" value="+ generate(context)" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;fontStyle=0;align=left;verticalAlign=middle;spacingLeft=12;" vertex="1" parent="local">
+          <mxGeometry x="0" y="86" width="270" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;dashed=1;;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="generation" target="nutrition" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;dashed=1;;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="generation" target="restrictions" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;dashed=1;;exitX=0;exitY=1;entryX=1;entryY=0;" edge="1" source="generation" target="optimizer" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;dashed=1;;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="generation" target="provider" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;dashed=1;endArrow=block;endFill=0;endSize=20;;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="giga" target="provider" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;dashed=1;endArrow=block;endFill=0;endSize=20;;exitX=1;exitY=0;entryX=0;entryY=1;" edge="1" source="local" target="provider" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s7" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;dashed=1;;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" source="local" target="optimizer" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="Проектные сервисные элементы объединяют функции модулей.&lt;br&gt;Пунктир с открытой стрелкой — зависимость.&lt;br&gt;Пунктир с пустым треугольником — реализация интерфейса." style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="350" y="665" width="590" height="135" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

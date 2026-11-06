@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="28.0.0" type="device">
+  <diagram name="Page-1" id="as-is">
+    <mxGraphModel dx="940" dy="650" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="940" pageHeight="650" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Ручной подбор рецепта (As-Is)" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=23;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="25" y="10" width="890" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sources" value="Источники данных&lt;br&gt;рецепты, этикетки,&lt;br&gt;таблицы пищевой ценности" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;shape=note;size=20;fontSize=19;" vertex="1" parent="1">
+          <mxGeometry x="650" y="505" width="260" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="params" value="1. Определить цель&lt;br&gt;и норму питания" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="250" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="search" value="2. Найти рецепт&lt;br&gt;под доступные продукты" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="335" y="90" width="250" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="calc" value="3. Рассчитать массы,&lt;br&gt;калории и БЖУ" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="650" y="90" width="260" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="control" value="4. Проверить состав,&lt;br&gt;аллергены и норму" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="650" y="300" width="260" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="decision" value="Состав&lt;br&gt;подходит?" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;rhombus;" vertex="1" parent="1">
+          <mxGeometry x="365" y="285" width="185" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="cook" value="5. Приготовить&lt;br&gt;и записать рацион" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="305" width="245" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="feedback" value="6. Оценить результат&lt;br&gt;и скорректировать план" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="515" width="245" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="end" value="План уточнён" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;rounded=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="385" y="532.5" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="params" target="search" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="search" target="calc" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="calc" target="control" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="control" target="decision" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" value="Да" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="decision" target="cook" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" value="Нет: заменить состав" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" source="decision" target="search" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="cook" target="feedback" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a8" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="feedback" target="end" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a9" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;dashed=1;;exitX=1;exitY=0.5;entryX=1;entryY=0.5;jettySize=40;" edge="1" source="sources" target="calc" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a10" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;dashed=1;;exitX=0;exitY=0.5;entryX=0;entryY=0.5;jettySize=30;" edge="1" source="feedback" target="params" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="Сплошная стрелка — ход работы; пунктир — данные и обратная связь." style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="645" width="870" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

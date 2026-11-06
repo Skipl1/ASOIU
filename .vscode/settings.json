@@ -1,0 +1,15 @@
+{
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "ГРСН",
+            "database": "grsn",
+            "username": "grsn",
+            "password": "C64d-rNdFYWrFTStgeCm9hJo"
+        }
+    ]
+}

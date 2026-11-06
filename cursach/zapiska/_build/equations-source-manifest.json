@@ -1,0 +1,136 @@
+{
+  "source": "Optimization-Methods/lab2 copy/content.typ",
+  "section": "4.6–4.6.4",
+  "equations": [
+    {
+      "number": 1,
+      "source_expression": "BMR_m = 88.362 + 13.397*m + 4.799*h - 5.677*a",
+      "page": 19
+    },
+    {
+      "number": 2,
+      "source_expression": "BMR_f = 447.593 + 9.247*m + 3.098*h - 4.330*a",
+      "page": 19
+    },
+    {
+      "number": 3,
+      "source_expression": "TDEE = BMR*k",
+      "page": 19
+    },
+    {
+      "number": 4,
+      "source_expression": "E_target = TDEE + Delta",
+      "page": 19
+    },
+    {
+      "number": 5,
+      "source_expression": "E_meal = w*E_target",
+      "page": 19
+    },
+    {
+      "number": 6,
+      "source_expression": "P_total = sum_(i=1)^n (m_i*P_i)/100",
+      "page": 20
+    },
+    {
+      "number": 7,
+      "source_expression": "F_total = sum_(i=1)^n (m_i*F_i)/100",
+      "page": 20
+    },
+    {
+      "number": 8,
+      "source_expression": "C_total = sum_(i=1)^n (m_i*C_i)/100",
+      "page": 20
+    },
+    {
+      "number": 9,
+      "source_expression": "E_total = sum_(i=1)^n (m_i*E_i)/100",
+      "page": 20
+    },
+    {
+      "number": 10,
+      "source_expression": "E_total^БЖУ = 4*P_total + 9*F_total + 4*C_total",
+      "page": 20
+    },
+    {
+      "number": 11,
+      "source_expression": "percent_P = (4*P_total)/E_total^БЖУ*100%",
+      "page": 20
+    },
+    {
+      "number": 12,
+      "source_expression": "percent_F = (9*F_total)/E_total^БЖУ*100%",
+      "page": 20
+    },
+    {
+      "number": 13,
+      "source_expression": "percent_C = (4*C_total)/E_total^БЖУ*100%",
+      "page": 20
+    },
+    {
+      "number": 14,
+      "source_expression": "P_meal = (E_meal*p_P)/4",
+      "page": 21
+    },
+    {
+      "number": 15,
+      "source_expression": "F_meal = (E_meal*p_F)/9",
+      "page": 21
+    },
+    {
+      "number": 16,
+      "source_expression": "C_meal = (E_meal*p_C)/4",
+      "page": 21
+    },
+    {
+      "number": 17,
+      "source_expression": "delta = E_total - w*E_target",
+      "page": 21
+    },
+    {
+      "number": 18,
+      "source_expression": "Phi(x) = sum_(k in {E,P,F,C}) lambda_k*((sum_(i=1)^n a_ki*x_i/100 - b_k)/b_k)^2 -> min",
+      "page": 22
+    },
+    {
+      "number": 19,
+      "source_expression": "l_i <= x_i <= u_i, i=1,...,n",
+      "page": 22
+    },
+    {
+      "number": 20,
+      "source_expression": "l_i = min(max(5,0.4*x_i^0),u_i)",
+      "page": 22
+    },
+    {
+      "number": 21,
+      "source_expression": "x^(t+1) = Pi_[l,u](x^t - (1/L)*nabla Phi(x^t))",
+      "page": 22
+    },
+    {
+      "number": 22,
+      "source_expression": "m_d = m_(d-1) + (E_d - TDEE)/7700",
+      "page": 23
+    },
+    {
+      "number": 23,
+      "source_expression": "m_30 = m_end + 30*(E_bar - TDEE)/7700",
+      "page": 23
+    },
+    {
+      "number": 24,
+      "source_expression": "v = 7*sum_j((d_j-d_bar)*(m_j-m_bar))/sum_j((d_j-d_bar)^2) кг/нед",
+      "page": 23
+    },
+    {
+      "number": 25,
+      "source_expression": "d_X = (X_факт-X_цель)/X_цель*100%, X in {E,P,F,C}",
+      "page": 24
+    },
+    {
+      "number": 26,
+      "source_expression": "S = max(0,100-(0.5*abs(d_E)+0.2*abs(d_P)+0.15*abs(d_F)+0.15*abs(d_C)))",
+      "page": 24
+    }
+  ]
+}

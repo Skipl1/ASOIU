@@ -1,0 +1,268 @@
+{
+  "method": "Controlled scenario observation of the prototype REST API",
+  "observed_at_utc": "2026-11-06T14:09:51.959355+00:00",
+  "environment": {
+    "database": "temporary SQLite",
+    "llm": "mock / local generator",
+    "real_dotenv_reading": false,
+    "external_http_transport": "blocked",
+    "demo_data": false,
+    "python": "3.12.10",
+    "dependencies": {
+      "fastapi": "0.162.0",
+      "SQLAlchemy": "2.1.8",
+      "pydantic": "2.14.3",
+      "pydantic-settings": "2.16.2",
+      "httpx": "0.28.1",
+      "PyJWT": "2.15.1",
+      "bcrypt": "5.0.0",
+      "openpyxl": "3.1.5",
+      "reportlab": "5.1.0",
+      "gigachat": "0.2.4",
+      "tzdata": "2026.6"
+    },
+    "production_dependency_match": false
+  },
+  "limitations": [
+    "In-process API observation; no browser, Nginx, PostgreSQL or actual GigaChat calls.",
+    "A single controlled technical account; no interviews or observation of real people.",
+    "No load test, acceptance claim, production deployment result or human task timing.",
+    "SQLite schema was created through ORM metadata; Alembic migrations were not exercised."
+  ],
+  "steps": [
+    {
+      "sequence": 1,
+      "action": "Register a controlled technical account",
+      "http_status": 201,
+      "observed_result": {
+        "role": "user",
+        "status": "active",
+        "expiresIn": 1800
+      },
+      "required_operation": "Validate account data and create an authenticated user"
+    },
+    {
+      "sequence": 2,
+      "action": "Open the profile before it is filled",
+      "http_status": 200,
+      "observed_result": {
+        "isComplete": false
+      },
+      "required_operation": "Collect the required anthropometric parameters"
+    },
+    {
+      "sequence": 3,
+      "action": "Read available fitness goals",
+      "http_status": 200,
+      "observed_result": {
+        "count": 4,
+        "selectedCode": "goal_gain",
+        "calorieDelta": 300.0
+      },
+      "required_operation": "Select a fitness goal and its calorie correction"
+    },
+    {
+      "sequence": 4,
+      "action": "Attempt generation with an empty profile",
+      "http_status": 400,
+      "observed_result": {
+        "detail": "Заполните профиль: вес, рост, возраст, пол и уровень активности"
+      },
+      "required_operation": "Block generation until the required profile is complete"
+    },
+    {
+      "sequence": 5,
+      "action": "Save profile parameters and fitness goal",
+      "http_status": 200,
+      "observed_result": {
+        "isComplete": true,
+        "bmr": 1887.5,
+        "tdee": 2925.7,
+        "targetCalories": 3225.7,
+        "dailyTargets": {
+          "calories": 3225.7,
+          "protein": 201.6,
+          "fat": 89.6,
+          "carbs": 403.2
+        }
+      },
+      "required_operation": "Persist the profile and compute daily energy and macronutrient targets"
+    },
+    {
+      "sequence": 6,
+      "action": "Read the ingredient catalogue",
+      "http_status": 200,
+      "observed_result": {
+        "items": 65,
+        "allHaveNutrition": true
+      },
+      "required_operation": "Provide a catalogue with nutrition values and allergen relations"
+    },
+    {
+      "sequence": 7,
+      "action": "Add an ingredient restriction using a synonym",
+      "http_status": 201,
+      "observed_result": {
+        "type": "ingredient",
+        "normalizedName": "овсянка",
+        "targetName": "Овсяные хлопья"
+      },
+      "required_operation": "Normalize the entered term and save its catalogue reference"
+    },
+    {
+      "sequence": 8,
+      "action": "Reopen the catalogue after adding the restriction",
+      "http_status": 200,
+      "observed_result": {
+        "oatmealAllowed": false,
+        "granolaAllowed": false,
+        "excludedCount": 3
+      },
+      "required_operation": "Mark both the forbidden ingredient and affected composite products"
+    },
+    {
+      "sequence": 9,
+      "action": "Save an insufficient ingredient set",
+      "http_status": 200,
+      "observed_result": {
+        "selectedCount": 1
+      },
+      "required_operation": "Store the selected products separately from the full catalogue"
+    },
+    {
+      "sequence": 10,
+      "action": "Request a recipe from the insufficient set",
+      "http_status": 201,
+      "observed_result": {
+        "status": "failed",
+        "failureReason": "Рецепт не сформирован: доступных ингредиентов недостаточно с учётом запретов",
+        "conflicts": [
+          "После применения запретов допустимо ингредиентов: 1 (нужно не менее 3)",
+          "Среди допустимых ингредиентов нет источника белка (не менее 8 г белка на 100 г)"
+        ],
+        "recommendedIngredients": [
+          "Протеин сывороточный",
+          "Арахис",
+          "Булгур",
+          "Бурый рис",
+          "Батат",
+          "Брокколи"
+        ],
+        "suggestions": [
+          "Добавьте в набор доступных ингредиентов рекомендованные продукты",
+          "Выберите другой набор доступных ингредиентов",
+          "Измените фитнес-цель или долю суточной нормы"
+        ]
+      },
+      "required_operation": "Return a structured rejection with explanations and recommended products"
+    },
+    {
+      "sequence": 11,
+      "action": "Replace the set with four allowed ingredients",
+      "http_status": 200,
+      "observed_result": {
+        "selectedCount": 4
+      },
+      "required_operation": "Save a set containing protein, carbohydrate, vegetable and fat sources"
+    },
+    {
+      "sequence": 12,
+      "action": "Generate a recipe using the local provider",
+      "http_status": 201,
+      "observed_result": {
+        "status": "generated",
+        "provider": "mock",
+        "variants": 1,
+        "name": "Куриная грудка с гарниром: бурый рис, брокколи",
+        "ingredientCount": 4,
+        "steps": 7,
+        "isAllowed": true,
+        "inDiet": false,
+        "caloriesTotal": 1065.5,
+        "proteinTotal": 66.2,
+        "fatTotal": 28.3,
+        "carbsTotal": 130.7,
+        "targetCalories": 1074.2,
+        "checks": [
+          {
+            "indicator": "БЖУ",
+            "status": "ok",
+            "label": "в норме",
+            "comment": "Доли Б/Ж/У 25/24/50 % соответствуют цели 25/25/50 %"
+          },
+          {
+            "indicator": "Калорийность",
+            "status": "ok",
+            "label": "в диапазоне",
+            "comment": "1066 ккал при цели 1074 ккал (δ = -9 ккал, -1 %)"
+          },
+          {
+            "indicator": "Запреты",
+            "status": "ok",
+            "label": "не нарушены",
+            "comment": "Запрещённые ингредиенты и аллергены не найдены"
+          }
+        ],
+        "ingredientCaloriesSum": 1065.5
+      },
+      "required_operation": "Generate, verify, calculate and persist a recipe with an instruction"
+    },
+    {
+      "sequence": 13,
+      "action": "Build a report before including the recipe in the diet",
+      "http_status": 200,
+      "observed_result": {
+        "recipesCount": 0,
+        "daysWithData": 0
+      },
+      "required_operation": "Exclude unaccepted recipe variants from nutrition reporting"
+    },
+    {
+      "sequence": 14,
+      "action": "Include the recipe in the diet",
+      "http_status": 200,
+      "observed_result": {
+        "inDiet": true,
+        "isAllowed": true
+      },
+      "required_operation": "Recheck current restrictions and mark the recipe as accepted"
+    },
+    {
+      "sequence": 15,
+      "action": "Reopen saved recipe history",
+      "http_status": 200,
+      "observed_result": {
+        "items": 1,
+        "inDietCount": 1,
+        "sources": [
+          "mock"
+        ]
+      },
+      "required_operation": "Restore saved recipes and their diet statuses"
+    },
+    {
+      "sequence": 16,
+      "action": "Build the nutrition report after accepting the recipe",
+      "http_status": 200,
+      "observed_result": {
+        "recipesCount": 1,
+        "daysWithData": 1,
+        "averageCalories": 1065.5,
+        "totalCalories": 1065.5,
+        "totalProtein": 66.2,
+        "totalFat": 28.3,
+        "totalCarbs": 130.7
+      },
+      "required_operation": "Aggregate accepted recipes by period and compute summary indicators"
+    }
+  ],
+  "persisted_records": {
+    "users": 1,
+    "user_profiles": 1,
+    "user_restrictions": 1,
+    "generation_requests": 2,
+    "recipes": 1,
+    "recipe_ingredients": 4
+  },
+  "external_http_attempts": 0
+}

@@ -1,0 +1,705 @@
+{
+  "pages": [
+    {
+      "page": 1,
+      "label": "Титульный лист",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 2,
+      "label": "Задание",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 3,
+      "label": "Содержание",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 4,
+      "label": "Введение",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 5,
+      "label": "1 Характеристика объекта автоматизации",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 6,
+      "label": "Исходный процесс",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 7,
+      "label": "1.2 Обоснование необходимости автоматизации",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 8,
+      "label": "1.3 Назначение проектируемой системы",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 9,
+      "label": "1.4 Цели создания проектируемой системы",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 10,
+      "label": "2 Формирование требований к автоматизированной системе",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 11,
+      "label": "Аналоги: SuperCook и MyFitnessPal",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 12,
+      "label": "Аналоги: Cronometer и FatSecret",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 13,
+      "label": "Сопоставление аналогов",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 14,
+      "label": "2.2 Определение ролей пользователей",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 15,
+      "label": "2.3 Функциональные требования: методы обследования",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 16,
+      "label": "Функции пользователя",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 17,
+      "label": "Правила формирования рецепта",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 18,
+      "label": "Общие и административные функции",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 19,
+      "label": "Расчёт энергетической потребности",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 20,
+      "label": "Расчёт пищевой ценности рецепта",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 21,
+      "label": "Целевые показатели приёма пищи",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 22,
+      "label": "Подбор масс ингредиентов",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 23,
+      "label": "Расчётная динамика массы тела",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 24,
+      "label": "Оценка соответствия рациона цели",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 25,
+      "label": "2.4 Технические требования",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 26,
+      "label": "2.5 Организационно-технологические требования",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 27,
+      "label": "2.6 Требования к программному обеспечению",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 28,
+      "label": "3 Общесистемные проектные решения",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 29,
+      "label": "Авторизация и полномочия администратора",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 30,
+      "label": "3.2 Проектные решения для НСИ",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 31,
+      "label": "Значения целей и категорий",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 32,
+      "label": "Значения аллергенов и активности",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 33,
+      "label": "Значения ингредиентов",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 34,
+      "label": "Связи состава и системные перечисления",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 35,
+      "label": "Ведение НСИ",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 36,
+      "label": "3.3 Проектные решения для интерфейса",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 37,
+      "label": "Ввод профиля, ограничений и доступных продуктов",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 38,
+      "label": "История, отчёты и сообщения интерфейса",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 39,
+      "label": "3.4 Проектные решения для базы данных",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 40,
+      "label": "Связи и жизненный цикл данных",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 41,
+      "label": "Типы и ограничения физической модели",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 42,
+      "label": "Ограничения данных: продолжение",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 43,
+      "label": "3.5 Проектирование классов",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 44,
+      "label": "Сервисные обязанности",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 45,
+      "label": "Заключение",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 46,
+      "label": "Определения, обозначения и сокращения",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 47,
+      "label": "Список использованных источников",
+      "appendix": false,
+      "landscape": false
+    },
+    {
+      "page": 48,
+      "label": "Приложение А",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 49,
+      "label": "Приложение А",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 50,
+      "label": "Приложение Б",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 51,
+      "label": "Приложение Б",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 52,
+      "label": "Приложение В",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 53,
+      "label": "Приложение Г",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 54,
+      "label": "Приложение Г",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 55,
+      "label": "Приложение Г",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 56,
+      "label": "Приложение Г",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 57,
+      "label": "Приложение Г",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 58,
+      "label": "Приложение Г",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 59,
+      "label": "Приложение Д: Форма входа в систему",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 60,
+      "label": "Приложение Д: Форма регистрации",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 61,
+      "label": "Приложение Д: Профиль и фитнес-ориентир",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 62,
+      "label": "Приложение Д: История физических параметров",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 63,
+      "label": "Приложение Д: Запреты и аллергены",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 64,
+      "label": "Приложение Д: Каталог и доступные ингредиенты",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 65,
+      "label": "Приложение Д: Форма запроса рецепта",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 66,
+      "label": "Приложение Д: Результат генерации рецепта",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 67,
+      "label": "Приложение Д: История рецептов и оценки",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 68,
+      "label": "Приложение Д: Отчёт о пищевой ценности",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 69,
+      "label": "Приложение Д: Анализ соответствия рациона цели",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 70,
+      "label": "Приложение Д: Администрирование",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 71,
+      "label": "Приложение Д: Модель структуры интерфейса",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 72,
+      "label": "Приложение Е: Контекстная C4-модель АС ГРСН",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 73,
+      "label": "Приложение Е: Контейнерная C4-модель АС ГРСН",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 74,
+      "label": "Приложение Е: Компонентная C4-модель серверной части",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 75,
+      "label": "Приложение Ж: Концептуальная модель данных",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 76,
+      "label": "Приложение Ж: Модель «сущность–связь»",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 77,
+      "label": "Приложение Ж: Логическая модель данных",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 78,
+      "label": "Приложение Ж: Физическая модель данных",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 79,
+      "label": "Приложение И: Процесс предоставления доступа пользователю",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 80,
+      "label": "Приложение И: Последовательность регистрации и входа",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 81,
+      "label": "Приложение И: Процесс генерации персонализированного рецепта",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 82,
+      "label": "Приложение И: Последовательность генерации рецепта",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 83,
+      "label": "Приложение И: Последовательность административных операций",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 84,
+      "label": "Приложение И: Потоки данных при генерации рецепта",
+      "appendix": true,
+      "landscape": false
+    },
+    {
+      "page": 85,
+      "label": "Приложение И: Рацион, редактирование и оценка рецепта",
+      "appendix": true,
+      "landscape": true
+    },
+    {
+      "page": 86,
+      "label": "Приложение И: Процесс управления запретами и аллергенами",
+      "appendix": true,
+      "landscape": true
+    }
+  ],
+  "headings": [
+    [
+      "Введение",
+      1,
+      4,
+      "s2"
+    ],
+    [
+      "1 Характеристика объекта автоматизации",
+      1,
+      5,
+      "s3"
+    ],
+    [
+      "1.1 Описание деятельности объекта автоматизации",
+      2,
+      5,
+      "s4"
+    ],
+    [
+      "1.2 Обоснование необходимости автоматизации",
+      2,
+      7,
+      "s5"
+    ],
+    [
+      "1.3 Назначение проектируемой системы",
+      2,
+      8,
+      "s6"
+    ],
+    [
+      "1.4 Цели создания проектируемой системы",
+      2,
+      9,
+      "s7"
+    ],
+    [
+      "2 Формирование требований к автоматизированной системе",
+      1,
+      10,
+      "s8"
+    ],
+    [
+      "2.1 Анализ аналогичных систем",
+      2,
+      10,
+      "s9"
+    ],
+    [
+      "2.2 Определение ролей пользователей для проектируемой системы",
+      2,
+      14,
+      "s10"
+    ],
+    [
+      "2.3 Функциональные требования",
+      2,
+      15,
+      "s11"
+    ],
+    [
+      "2.4 Технические требования",
+      2,
+      25,
+      "s12"
+    ],
+    [
+      "2.5 Организационно-технологические требования",
+      2,
+      26,
+      "s13"
+    ],
+    [
+      "2.6 Требования к программному обеспечению",
+      2,
+      27,
+      "s14"
+    ],
+    [
+      "3 Общесистемные проектные решения",
+      1,
+      28,
+      "s15"
+    ],
+    [
+      "3.1 Порядок авторизации пользователя в системе",
+      2,
+      28,
+      "s16"
+    ],
+    [
+      "3.2 Проектные решения для нормативно-справочной информации",
+      2,
+      30,
+      "s17"
+    ],
+    [
+      "3.3 Проектные решения для интерфейса",
+      2,
+      36,
+      "s18"
+    ],
+    [
+      "3.4 Проектные решения для базы данных",
+      2,
+      39,
+      "s19"
+    ],
+    [
+      "3.5 Проектирование классов разрабатываемой системы",
+      2,
+      43,
+      "s20"
+    ],
+    [
+      "Заключение",
+      1,
+      45,
+      "s21"
+    ],
+    [
+      "Определения, обозначения и сокращения",
+      1,
+      46,
+      "s22"
+    ],
+    [
+      "Список использованных источников",
+      1,
+      47,
+      "s23"
+    ],
+    [
+      "Приложение А Материалы предпроектного анализа",
+      1,
+      48,
+      "s24"
+    ],
+    [
+      "Приложение Б Проверка предпроектных расчётных гипотез",
+      1,
+      50,
+      "s25"
+    ],
+    [
+      "Приложение В Подготовленное интервью для уточнения требований",
+      1,
+      52,
+      "s26"
+    ],
+    [
+      "Приложение Г Полный физический словарь данных",
+      1,
+      53,
+      "s27"
+    ],
+    [
+      "Приложение Д Макеты экранов",
+      1,
+      59,
+      "s28"
+    ],
+    [
+      "Приложение Е Архитектурные схемы",
+      1,
+      72,
+      "s29"
+    ],
+    [
+      "Приложение Ж Модели данных",
+      1,
+      75,
+      "s30"
+    ],
+    [
+      "Приложение И Процессы и последовательности взаимодействия",
+      1,
+      79,
+      "s31"
+    ]
+  ],
+  "figures": 30,
+  "tables": 26,
+  "models": 17
+}

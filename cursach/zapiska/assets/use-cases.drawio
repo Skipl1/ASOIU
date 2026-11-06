@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" version="28.0.0" type="device">
+  <diagram name="Page-1" id="use-cases">
+    <mxGraphModel dx="950" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="950" pageHeight="820" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="system" value="АС ГРСН" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;swimlane;startSize=40;fontSize=23;fontStyle=1;collapsible=0;container=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="180" y="30" width="610" height="715" as="geometry"/>
+        </mxCell>
+        <mxCell id="user" value="Пользователь" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;shape=umlActor;verticalLabelPosition=top;verticalAlign=bottom;fontSize=20;align=center;" vertex="1" parent="1">
+          <mxGeometry x="45" y="60" width="42" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="admin" value="Администратор" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;fontSize=20;align=center;" vertex="1" parent="1">
+          <mxGeometry x="850" y="760" width="42" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="profile" value="Вести профиль" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;ellipse;" vertex="1" parent="system">
+          <mxGeometry x="35" y="235" width="245" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="u_profile" value="" style="html=1;fontFamily=Arial;strokeColor=#000000;strokeWidth=1.5;edgeStyle=none;endArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="user" target="profile" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="constraints" value="Задать запреты&lt;br&gt;и продукты" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;ellipse;" vertex="1" parent="system">
+          <mxGeometry x="35" y="315" width="245" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="u_constraints" value="" style="html=1;fontFamily=Arial;strokeColor=#000000;strokeWidth=1.5;edgeStyle=none;endArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="user" target="constraints" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="generate" value="Получить рецепт" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;ellipse;" vertex="1" parent="system">
+          <mxGeometry x="35" y="395" width="245" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="u_generate" value="" style="html=1;fontFamily=Arial;strokeColor=#000000;strokeWidth=1.5;edgeStyle=none;endArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="user" target="generate" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="history" value="Вести историю&lt;br&gt;и рацион" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;ellipse;" vertex="1" parent="system">
+          <mxGeometry x="35" y="475" width="245" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="u_history" value="" style="html=1;fontFamily=Arial;strokeColor=#000000;strokeWidth=1.5;edgeStyle=none;endArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="user" target="history" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="rate" value="Оценить рецепт" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;ellipse;" vertex="1" parent="system">
+          <mxGeometry x="35" y="555" width="245" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="u_rate" value="" style="html=1;fontFamily=Arial;strokeColor=#000000;strokeWidth=1.5;edgeStyle=none;endArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="user" target="rate" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="reports" value="Получить отчёт&lt;br&gt;и анализ" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;ellipse;" vertex="1" parent="system">
+          <mxGeometry x="35" y="635" width="245" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="u_reports" value="" style="html=1;fontFamily=Arial;strokeColor=#000000;strokeWidth=1.5;edgeStyle=none;endArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="user" target="reports" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="register" value="Зарегистрироваться" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;ellipse;" vertex="1" parent="system">
+          <mxGeometry x="35" y="75" width="245" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="u_register" value="" style="html=1;fontFamily=Arial;strokeColor=#000000;strokeWidth=1.5;edgeStyle=none;endArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="user" target="register" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="login" value="Войти в систему" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;ellipse;" vertex="1" parent="system">
+          <mxGeometry x="35" y="155" width="245" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="u_login" value="" style="html=1;fontFamily=Arial;strokeColor=#000000;strokeWidth=1.5;edgeStyle=none;endArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="user" target="login" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="accounts" value="Управлять&lt;br&gt;пользователями" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;ellipse;" vertex="1" parent="system">
+          <mxGeometry x="325" y="475" width="245" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="u_accounts" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;edgeStyle=none;endArrow=none;;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="admin" target="accounts" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="maintenance" value="Сопровождать&lt;br&gt;систему и НСИ" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;ellipse;" vertex="1" parent="system">
+          <mxGeometry x="325" y="575" width="245" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="u_maintenance" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;edgeStyle=none;endArrow=none;;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="admin" target="maintenance" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="inherits" value="" style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;fontSize=18;labelBackgroundColor=#FFFFFF;defaultLabelBackgroundColor=page;endArrow=block;endFill=0;endSize=20;;exitX=0;exitY=0.5;entryX=0.5;entryY=1;jettySize=30;" edge="1" source="admin" target="user" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend" value="Линия — участие в варианте использования; пустой треугольник — обобщение роли." style="html=1;fontFamily=Arial;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;strokeWidth=1.5;fontSize=20;whiteSpace=wrap;text;strokeColor=none;fillColor=none;fontSize=18;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="25" y="890" width="900" height="40" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

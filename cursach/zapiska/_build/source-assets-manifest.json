@@ -1,0 +1,279 @@
+{
+  "output": "D:\\Для Windows 11\\Всё подряд\\Users\\kreck\\Desktop\\Прочее\\Дз по АСОИУ новый курс\\Отчёты\\cursach\\zapiska\\КП_Привалихин_Черновик (07.11.2026).docx",
+  "illustrations": [
+    {
+      "ref": "1",
+      "asset": "as-is",
+      "caption": "Процесс ручного подбора рецепта",
+      "source": "cursach\\zapiska\\assets\\as-is.drawio.png",
+      "sha256": "a21663384b552aaf075a5acb0967e82da52dc4fe35942fa0e006967d3c7028a8",
+      "page": 6,
+      "kind": "restored_authorized"
+    },
+    {
+      "ref": "2",
+      "asset": "use-cases",
+      "caption": "Роли и варианты использования АС ГРСН",
+      "source": "cursach\\zapiska\\assets\\use-cases.drawio.png",
+      "sha256": "e83526c5861e105ab0515670b5ef3c2542a1a2e31ad6d91ff8674b72c6a08df2",
+      "page": 14,
+      "kind": "restored_authorized"
+    },
+    {
+      "ref": "Д.1",
+      "asset": "ui-login",
+      "caption": "Форма входа в систему",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-login.png",
+      "sha256": "c102b3f9e0f78b228b314110ed6f51b1cb9a6cb832f69bdd70dee750bd99339c",
+      "page": 59,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.2",
+      "asset": "ui-register",
+      "caption": "Форма регистрации",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-register.png",
+      "sha256": "40794674c019f86f723a200d93990fbd7b997d6884ba4083df081006df27ef99",
+      "page": 60,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.3",
+      "asset": "ui-profile",
+      "caption": "Профиль и фитнес-ориентир",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-profile.png",
+      "sha256": "f14c9e67e5547b7da45b82ee2b8d31ec59a4d444d1cde60d002c5bc712a8ad74",
+      "page": 61,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.4",
+      "asset": "ui-profile-history",
+      "caption": "История физических параметров",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-profile-history.png",
+      "sha256": "4dd14e951dc6cfaead781cf934ed72e18a6cfad904c9afe9bdbc2c2cf6b08c60",
+      "page": 62,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.5",
+      "asset": "ui-restrictions",
+      "caption": "Запреты и аллергены",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-restrictions.png",
+      "sha256": "6d9746484700f0155c8863f4da46fe70ab63fa91bc90c133ff277639d9212b9e",
+      "page": 63,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.6",
+      "asset": "ui-ingredients",
+      "caption": "Каталог и доступные ингредиенты",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-ingredients.png",
+      "sha256": "9cd2704863b67e0166644ce2d8fb60ecb4a37fdc532ad4004d78b75984a4d3ec",
+      "page": 64,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.7",
+      "asset": "ui-generate-form",
+      "caption": "Форма запроса рецепта",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-generate-form.png",
+      "sha256": "28bcb944323e6ee69320161c8a88ea6e56343277ac7227c06448971091d514ac",
+      "page": 65,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.8",
+      "asset": "ui-generate-result",
+      "caption": "Результат генерации рецепта",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-generate-result.png",
+      "sha256": "0908ceb9c2232ff1e6fa2ff96e1d660e2a88b5b19fdc18c139b2e9dd1feca060",
+      "page": 66,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.9",
+      "asset": "ui-history",
+      "caption": "История рецептов и оценки",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-history.png",
+      "sha256": "2caad790a0b271bc3776c1ac3b15d33b76a57f1b719b7bf033b41665df70bbe7",
+      "page": 67,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.10",
+      "asset": "ui-reports",
+      "caption": "Отчёт о пищевой ценности",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-reports.png",
+      "sha256": "62dc2ca10043a2afc72517b00cc1dbfad6fa8c64d37a581fd8ab456e362219c0",
+      "page": 68,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.11",
+      "asset": "ui-analysis",
+      "caption": "Анализ соответствия рациона цели",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-analysis.png",
+      "sha256": "dea9c66641853713c8d7560a6f52005ab47be2a817e6c6b8576e17a941d483b1",
+      "page": 69,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.12",
+      "asset": "ui-admin",
+      "caption": "Администрирование",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-admin.png",
+      "sha256": "0805361fc64a3f6a11aa4aa699f8002c9f1e8fe40f824677be07253a387427c8",
+      "page": 70,
+      "kind": "original"
+    },
+    {
+      "ref": "Д.13",
+      "asset": "ui-structure",
+      "caption": "Модель структуры интерфейса",
+      "source": "Optimization-Methods\\laba_2\\images\\ui-structure.png",
+      "sha256": "7d014096589af94cb2c7c62e7526137d074bbe6a2a235eab0c5b70023db3a3b8",
+      "page": 71,
+      "kind": "original"
+    },
+    {
+      "ref": "Е.1",
+      "asset": "c4-context",
+      "caption": "Контекстная C4-модель АС ГРСН",
+      "source": "Optimization-Methods\\laba_2\\images\\c4-context.png",
+      "sha256": "ed2bb9fa2cec99bb995e7318f58d5b25e2f737277cc53390f0a9b70c602f6b84",
+      "page": 72,
+      "kind": "original"
+    },
+    {
+      "ref": "Е.2",
+      "asset": "c4-container",
+      "caption": "Контейнерная C4-модель АС ГРСН",
+      "source": "Optimization-Methods\\laba_2\\images\\c4-container.png",
+      "sha256": "dae87a304d3895c6a6c22c3d12cc277ea7c898a6b7738e51ba5fcb0c0d4754bc",
+      "page": 73,
+      "kind": "original"
+    },
+    {
+      "ref": "Е.3",
+      "asset": "c4-component",
+      "caption": "Компонентная C4-модель серверной части",
+      "source": "Optimization-Methods\\laba_2\\images\\c4-component.png",
+      "sha256": "3b34865ba3ae426f379188018c010bc2ea5e04007f464abf3c197db68cf8bdd9",
+      "page": 74,
+      "kind": "original"
+    },
+    {
+      "ref": "Ж.1",
+      "asset": "data-conceptual",
+      "caption": "Концептуальная модель данных",
+      "source": "Optimization-Methods\\laba_2\\images\\data-conceptual.png",
+      "sha256": "7e9fda1b557d0ae7742689fc02566f865e5034c8d8bff7b5fed0966a20168182",
+      "page": 75,
+      "kind": "original"
+    },
+    {
+      "ref": "Ж.2",
+      "asset": "data-er",
+      "caption": "Модель «сущность–связь»",
+      "source": "Optimization-Methods\\laba_2\\images\\data-er.png",
+      "sha256": "57a5189752800de4e558308581747e8aae199ae9ee6cc0129f2defe149db58c6",
+      "page": 76,
+      "kind": "original"
+    },
+    {
+      "ref": "Ж.3",
+      "asset": "data-logical",
+      "caption": "Логическая модель данных",
+      "source": "Optimization-Methods\\laba_2\\images\\data-logical.png",
+      "sha256": "23f66c99675d28484074a1896e32de2cb2728f50dd44bc13e07a0337e6abcb15",
+      "page": 77,
+      "kind": "original"
+    },
+    {
+      "ref": "Ж.4",
+      "asset": "ФизическаяБд",
+      "caption": "Физическая модель данных",
+      "source": "Optimization-Methods\\laba_2\\images\\ФизическаяБд.png",
+      "sha256": "a1ff777651c3c8f7ef9ede61d638b6648f89340c3cc6d105162be510e41670a1",
+      "page": 78,
+      "kind": "original"
+    },
+    {
+      "ref": "И.1",
+      "asset": "tobe-auth",
+      "caption": "Процесс предоставления доступа пользователю",
+      "source": "Optimization-Methods\\laba_2\\images\\tobe-auth.png",
+      "sha256": "ca1bab61712ed7b7bddb0a0fd5edf6f2790476bb0501204245333b72914c4614",
+      "page": 79,
+      "kind": "original"
+    },
+    {
+      "ref": "И.2",
+      "asset": "seq-auth",
+      "caption": "Последовательность регистрации и входа",
+      "source": "Optimization-Methods\\laba_2\\images\\seq-auth.png",
+      "sha256": "66f61230bc2e1e4aef3a62e1c6ccb3d32fed17e4a6cb24e3e21fba7b3cafc17e",
+      "page": 80,
+      "kind": "original"
+    },
+    {
+      "ref": "И.3",
+      "asset": "tobe-generate",
+      "caption": "Процесс генерации персонализированного рецепта",
+      "source": "Optimization-Methods\\laba_2\\images\\tobe-generate.png",
+      "sha256": "15eb3f84dd8b3f9ff35aae4720ed01233987c7b0f41b9ecf65a445743bbc1917",
+      "page": 81,
+      "kind": "original"
+    },
+    {
+      "ref": "И.4",
+      "asset": "seq-generate",
+      "caption": "Последовательность генерации рецепта",
+      "source": "Optimization-Methods\\laba_2\\images\\seq-generate.png",
+      "sha256": "21b9d621241685bf9fb3c94377d4c2e9bb374f4959a1e7d3ea21f96088d73a51",
+      "page": 82,
+      "kind": "original"
+    },
+    {
+      "ref": "И.5",
+      "asset": "seq-admin",
+      "caption": "Последовательность административных операций",
+      "source": "Optimization-Methods\\laba_2\\images\\seq-admin.png",
+      "sha256": "9fe5caf811a010665a80aa4f73cf49f345eef35ca64ccdd4d384d7cef1ba2b81",
+      "page": 83,
+      "kind": "original"
+    },
+    {
+      "ref": "И.6",
+      "asset": "dfd-generate",
+      "caption": "Потоки данных при генерации рецепта",
+      "source": "Optimization-Methods\\laba_2\\images\\dfd-generate.png",
+      "sha256": "3f1ce1e216af4ddd580a9132b938beddbaaa69d58b427110b904aa8513dadb03",
+      "page": 84,
+      "kind": "original"
+    },
+    {
+      "ref": "И.7",
+      "asset": "seq-history-diet",
+      "caption": "Рацион, редактирование и оценка рецепта",
+      "source": "Optimization-Methods\\laba_2\\images\\seq-history-diet.png",
+      "sha256": "0539f4d1b06d72925647b3dfc28bd688b69ae49f24f7527b05c227fa2aad090a",
+      "page": 85,
+      "kind": "original"
+    },
+    {
+      "ref": "И.8",
+      "asset": "tobe-restrictions",
+      "caption": "Процесс управления запретами и аллергенами",
+      "source": "Optimization-Methods\\laba_2\\images\\tobe-restrictions.png",
+      "sha256": "27761b8af82c486047a09211e3fd421460dfd1e2bf9dd4f0be531e8c37d3401a",
+      "page": 86,
+      "kind": "original"
+    }
+  ],
+  "schema_source": "Optimization-Methods/laba_2/diagrams/Bd",
+  "tables": 17,
+  "columns": 143,
+  "relationships": 25
+}
